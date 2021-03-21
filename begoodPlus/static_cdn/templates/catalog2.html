@@ -25,7 +25,7 @@
         <div class="parallax-bg" style="background-image:url({%static 'assets/catalog/imgs/slide_bg_min.jpg'%})"
             data-swiper-parallax="23%"></div>
         <div class="swiper-wrapper">
-            <div class="swiper-slide">
+            <div class="swiper-slide slide-1">
                 <div class="title" data-swiper-parallax-duration="2000" data-swiper-parallax-y="-500"> בעל עסק? גם לך
                     נמאס לבזבז זמן וכסף בהזמנות רכש לעובדים?
                 </div>
@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            <div class="swiper-slide">
+            <div class="swiper-slide slide-2">
                 <div class="title" data-swiper-parallax-duration="2000" data-swiper-parallax-y="500"> לא יודעים מה
                     להזמין ומפחדים לטעות בהזמנה?
                 </div>
@@ -106,7 +106,7 @@
                 </div>
             </div>
 
-            <div class="swiper-slide">
+            <div class="swiper-slide slide-3">
                 <div class="title" data-swiper-parallax-duration="2000" data-swiper-parallax-y="500"> מנהל רכש? שמור על
                     העובדים שלך
                 </div>
@@ -506,7 +506,6 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        debugger;
         /*var x = window.matchMedia("(min-width: 1312px)");
         if(x.matches == false) {
             $('.main-slide .text-wraper').bigtext();
@@ -534,6 +533,7 @@
         var swiper = new Swiper('.swiper-main', {
             speed: 600,
             parallax: true,
+            loop: true,
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
