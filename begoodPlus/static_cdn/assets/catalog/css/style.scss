@@ -7,6 +7,146 @@
   --like-font-size: 30px;
 
 }
+.bg-wraper {
+  background: url('../imgs/catalogBg1.jpeg');
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../imgs/catalogBg1.jpeg');
+  //overflow: hidden;
+  background-size: 50vh;
+  //background-size: 50vh;
+  //background-size: 500px;
+  background-position: center;
+}
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(5rem);
+  }
+}
+
+.section-2 {
+  
+  //background: #111;
+  display: flex;
+  flex-direction: row;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
+  margin-top:50px;
+  margin-left:20px;
+  margin-right:20px;
+  .abount-us {
+    color:white;
+    flex: 1;
+    //text-align: center;
+    //margin: auto;
+    padding:20px;
+    font-size: x-large;
+  }
+  .check-list {
+    flex: 1;
+    $white: #fff;
+    $main-color: #643A7A;
+
+    ul {
+      list-style: none;
+      //padding:  0 4px;
+      //margin: 0 30px;
+      font-weight: 300;
+
+      .button {
+        position: relative;
+        z-index: 2;
+        box-sizing: border-box;
+        float: right;
+        width: 50px;
+        height: 50px;
+        border: 1px solid fade-out($main-color, .5);
+        border-radius: 50%;
+        cursor: pointer;
+        padding-right: 30px;
+      }
+
+      li {
+        color:white;
+        position: relative;
+        display: block;
+        margin: 50px 0;
+        
+        height: 14px;
+
+        .wrapper {
+          position: absolute;
+          width: 50px;
+          right: 0;
+          top: 0px;
+        }
+      }
+
+      .text {
+        //float: left;
+        padding-right: 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all .3s ease-in-out;
+      }
+
+
+      li:nth-of-type(2) {
+        animation: slide-up 1s;
+      }
+
+      li:nth-of-type(3) {
+        animation: slide-up 1.5s;
+      }
+
+      li:nth-of-type(4) {
+        animation: slide-up 2s;
+      }
+
+      .checkmark {
+        position: absolute;
+        //stroke: rgba(100, 58, 122, .5);
+        stroke: rgba(0, 199, 27, 0.746);
+        fill: none;
+        stroke-dashoffset: 340;
+        stroke-dasharray: 360;
+      }
+
+      input {
+        display: none;
+
+        &:checked~ {
+          .text {
+            //color: rgba(100, 58, 122, .5);
+            color: rgba(0, 199, 27, 0.746);
+          }
+
+          .wrapper .checkmark {
+            animation: dash .5s ease-out forwards;
+            opacity: 1;
+          }
+
+          .button {
+            opacity: 0;
+          }
+        }
+      }
+    } /* ul*/
+    
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 340;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+    .checkmark {
+      display: block;
+      stroke-width: 8;
+      opacity: 0;
+    }
+  }/* check list */
+} /* section-2 */
 
 /** {
   border: 1px solid red;
@@ -72,11 +212,11 @@
 
 .catalog {
   //background-color: #FFFDD1;//rgb(61, 61, 61);
-  background: url('../imgs/catalogBg1.jpeg');
+  /*background: url('../imgs/catalogBg1.jpeg');
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../imgs/catalogBg1.jpeg');
   overflow: hidden;
   background-size: 50vh;
-  background-position: center;
+  background-position: center;*/
 
   //mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgb(0, 0, 0));
 }
@@ -642,9 +782,9 @@
 }
 
 
-@media (max-width: 1070px){
-  &.slide-1{ 
-    .img-4-wraper{
+@media (max-width: 1070px) {
+  &.slide-1 {
+    .img-4-wraper {
       display: none;
     }
   }
@@ -653,10 +793,11 @@
 @media (max-width: 854px) {
   .swiper-main {
     .swiper-slide {
-      &.slide-1{ 
-        .title{ 
+      &.slide-1 {
+        .title {
           font-size: 42px;
         }
+
         .img-2-wraper {
           display: none;
         }
@@ -668,23 +809,27 @@
 @media (max-width: 488px) {
   .swiper-main {
     .swiper-slide {
-  &.slide-1{ 
-    .img-3-wraper{
-      display: none;
+      &.slide-1 {
+        .img-3-wraper {
+          display: none;
+        }
+      }
     }
   }
 }
-  }}
-  
-  @media (max-width: 412px) {
-    .swiper-main {
-      .swiper-slide {
-    &.slide-1{ 
-    .title {
-      font-size: 38px;
+
+@media (max-width: 412px) {
+  .swiper-main {
+    .swiper-slide {
+      &.slide-1 {
+        .title {
+          font-size: 38px;
+        }
+      }
     }
-  }}}
   }
+}
+
 /* ============== swiper end ================ */
 /*
 .cls-animate-in-right {

@@ -80,13 +80,54 @@ document.addEventListener('scroll', function(e) {
     if (!ticking) {
         window.requestAnimationFrame(function() {
           handleSideIcons(lastKnownScrollPosition);
+          handleSection2Checkmarks(lastKnownScrollPosition);
           ticking = false;
         });
     
         ticking = true;
     }
 });
-
+var check_list_inputs = document.querySelectorAll('.section-2 .check-list ul li input');
+function handleSection2Checkmarks(pos) {
+    
+    console.log('pos ', pos);
+    debugger;
+    if(pos<100) {
+        check_list_inputs[0].checked = false;
+        check_list_inputs[1].checked = false;
+        check_list_inputs[2].checked = false;
+        check_list_inputs[3].checked = false;
+      //document.querySelector('.section-2 .check-list ul li:nth-of-type(1) input').checked = true;
+    }
+    if(pos>=100 && pos < 200) {
+        check_list_inputs[0].checked = true;
+        check_list_inputs[1].checked = false;
+        check_list_inputs[2].checked = false;
+        check_list_inputs[3].checked = false;
+      //document.querySelector('.section-2 .check-list ul li:nth-of-type(1) input').checked = true;
+    }
+    else if (pos >= 200 && pos < 300){
+        check_list_inputs[0].checked = true;
+        check_list_inputs[1].checked = true;
+        check_list_inputs[2].checked = false;
+        check_list_inputs[3].checked = false;
+      //document.querySelector('.section-2 .check-list ul li input').checked = false;
+    }
+    else if (pos >= 300 && pos < 400){
+        check_list_inputs[0].checked = true;
+        check_list_inputs[1].checked = true;
+        check_list_inputs[2].checked = true;
+        check_list_inputs[3].checked = false;
+      //document.querySelector('.section-2 .check-list ul li input').checked = false;
+    }
+    else if (pos >= 400 && pos < 500){
+        check_list_inputs[0].checked = true;
+        check_list_inputs[1].checked = true;
+        check_list_inputs[2].checked = true;
+        check_list_inputs[3].checked = true;
+      //document.querySelector('.section-2 .check-list ul li input').checked = false;
+    }
+  }
 
 for(var i = 0; i < side_icons.length; i++) {
     side_icons[i].addEventListener('click', (event)=> {
