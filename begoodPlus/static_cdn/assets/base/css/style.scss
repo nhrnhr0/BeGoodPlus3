@@ -167,6 +167,8 @@ body {}
 .ui-autocomplete {
     z-index: 9999999;
     position: fixed;
+    max-height: 80vh;
+    overflow: scroll;
 
     .list-category {
         //background-color: black;

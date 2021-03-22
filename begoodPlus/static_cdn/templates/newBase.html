@@ -169,6 +169,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
     </script>
+    <script src="https://kit.fontawesome.com/022c0fea0b.js" crossorigin="anonymous"></script>
     <script src="{%static 'assets/base/js/base.js' %}"></script>
 
     <script>
@@ -242,7 +243,6 @@
                                         data: value
                                     };
                                 });*/
-                                debugger;
                                 search_term_id = data.id;
                                 var items = [];
                                 for (var i = 0; i < data.all.length; i++) {
@@ -267,7 +267,7 @@
                                     //album = my_item.album[1];
                                     var found_album = false;
                                     for (var j = 0; j < items.length; j++) {
-                                        if (items[j].data.my_type == 'album' && items[j].data.id ==
+                                        if (items[j].data.my_type == album.my_type && items[j].data.id ==
                                             album.id) {
                                             found_album = true;
                                             items[j].data.item_count += 1
@@ -281,7 +281,7 @@
                                             data: {
                                                 id: album.id,
                                                 title: album.title,
-                                                my_type: 'album',
+                                                my_type: album.my_type,
                                                 url: album.url,
                                                 item_count: 1,
                                             }
@@ -328,8 +328,9 @@
 
                         if (item.my_type == 'album') {
                             myStorage.setItem('search_open_category', item.id);
-
-                        } else if (item.my_type == 'product') {
+                        
+                        }
+                        else if (item.my_type == 'product') {
                             myStorage.setItem('search_open_product', item.id);
                             //window.location.href = item.url;
                         }
@@ -345,8 +346,9 @@
                     },
                 })
                 .autocomplete("instance")._renderItem = function (ul, item) {
+            
                     console.log(item);
-                    console.log(ul.html());
+                    //console.log(ul.html());
 
                     var data = item.data;
                     if (data.my_type == 'album') {
@@ -356,9 +358,20 @@
                     } else if (data.my_type == 'product') {
                         return $("<li>")
                             .append(
-                                `<div class="search-item" data-type='product' data-id='${item.value.id}'><img style="height:25px;" src="${item.data.image}" /> ${item.data.title} </div>`
+                                `<div class="search-item" data-type='product' data-id='${item.data.id}'><img style="height:25px;" src="${item.data.image}" /> ${item.data.title} </div>`
                             )
                             .appendTo(ul);
+                    }
+                    else if(data.my_type == 'mylogo_product') {
+                        return $("<li>")
+                            .append(
+                                `<div class="search-item" data-type='product' data-id='${item.data.id}'><img style="height:25px;" src="${item.data.img}" /> ${item.data.title} </div>`
+                            )
+                            .appendTo(ul);
+                    }else if(data.my_type == 'mylogo_album') {
+                        return $(
+                            `<li class="list-category" name="list-category-${data.id}"><div class="search-item" data-type='mylogo_album' data-id='${data.id}'>${data.title} (${data.item_count})</div></li>`
+                        ).prependTo(ul);
                     }
 
                     /*

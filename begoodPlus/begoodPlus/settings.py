@@ -79,6 +79,7 @@ INSTALLED_APPS = [
     'freeFlow',
     'leadsCampains',
     'myUserTasks',
+    'myLogo',
 
 
     'django.contrib.admin',
@@ -94,6 +95,7 @@ INSTALLED_APPS = [
 # django-dbbackup
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR  + '/backups/'}
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240 # higher than the count of fields
 
 #cron
 CRONJOBS = [

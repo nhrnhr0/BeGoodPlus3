@@ -29,7 +29,8 @@ from .serializers import SearchSummarySerializer, SearchCatalogImageSerializer,S
 from itertools import chain 
 from django.db.models import Value,CharField
 from catalogAlbum.serializers import CatalogAlbumSerializer, CatalogImageSerializer
-
+from myLogo.models import MyLogoCategory, MyLogoProduct 
+from myLogo.serializers import MyLogoCategorySearchSerializer, MyLogoProductSearchSerializer
 def get_session_key(request):
     if not request.session.session_key:
         request.session.save()
@@ -47,43 +48,25 @@ def autocompleteModel(request):
             Q(album__title__icontains=q) |
             Q(album__keywords__icontains=q)
             ).distinct()[0:20]
-        '''
-        threshold=0.3
-        products_qs = CatalogImage.objects.annotate(
-            similarity=Greatest(
-                TrigramSimilarity('title', q), 
-                TrigramSimilarity('description', q),
-                TrigramSimilarity('images__title', q)
-            )).filter(similarity__gte=threshold).order_by('-similarity')
-        '''
-        #print(albums_qs)
-        print(products_qs)
-        ser_context={'request': request}
-        #albums = SearchCatalogAlbumSerializer(albums_qs,context=ser_context, many=True)
-        products = SearchCatalogImageSerializer(products_qs,context=ser_context, many=True)
 
-        #all = SearchSummarySerializer()
-        #all.set_querylist([{'queryset': albums_qs, 'serializer_class': SearchCatalogAlbumSerializer},
-        #                        {'queryset': products_qs, 'serializer_class': SearchCatalogImageSerializer}])
-        #temp = all.get()
-        #context = {'all':all}
-        #return JsonResponse(context)
-        #all = chain(albums, products)
-        #all_rep = all.to_representation()
+        mylogo_qs = MyLogoProduct.objects.filter(
+            Q(title__icontains=q) | 
+            Q(description__icontains=q) |  
+            Q(album__title__icontains=q)
+        )
         
-        #album_serializer = CatalogAlbumSerializer(albums_qs,context=ser_context, many=True)
-        #album_data = json.dumps(album_serializer.data)
+        print(products_qs)
+        print(mylogo_qs)
 
-        #products_serializer = CatalogImageSerializer(products_qs,context=ser_context, many=True)
-        #products_data = json.dumps(products_serializer.data)
+        ser_context={'request': request}
+        products = SearchCatalogImageSerializer(products_qs,context=ser_context, many=True)
+        mylogos = MyLogoProductSearchSerializer(mylogo_qs, context=ser_context, many=True)
         session = get_session_key(request)
-        search_history = UserSearchData.objects.create(session=session, term=q, resultCount=len(products.data))
+        search_history = UserSearchData.objects.create(session=session, term=q, resultCount=len(products.data)+ len(mylogos.data))
         search_history.save()
 
-        context = {'all':products.data,
+        context = {'all':products.data + mylogos.data,
                     'id': search_history.id}
-        #context = {'albums':album_data,
-        #            'products': products_data}
 
         
         

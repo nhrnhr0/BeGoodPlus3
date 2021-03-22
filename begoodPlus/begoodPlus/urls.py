@@ -53,6 +53,7 @@ from core.views import admin_subscribe_view, mainView, saveBaseContactFormView,a
 from leadsCampains.views import landingPageFormSubmit
 from catalogAlbum.views import catalogView2,catalogView_api
 from myUserTasks.views import updateContactFormUserTaskView, getUserTasksView,updateProductsFormUserTaskView,getUserCartView,delUserLikedProductView
+from myLogo.views import my_logo_view
 urlpatterns = [
     #path('jet/', include('jet.urls', 'jet')),
     path('admin/', admin.site.urls),
@@ -70,7 +71,8 @@ urlpatterns = [
     re_path(r'catalog/(?P<hierarchy>.+)/$', catalog_page, name='albumView'),
     re_path(r'catalog2/(?P<hierarchy>.+)/$', catalog_page2, name='albumView2'),
     path('begood-plus', catalog_view),
-    path('my-logo', my_logo_wrapper_view),
+    #path('my-logo', my_logo_wrapper_view),
+    path('my-logo/<path:curr>', my_logo_view),
     path('api/providers', api_providers), 
     path('api/packingTypes', api_packing_types),
     path('api/productSizes', api_product_sizes),
