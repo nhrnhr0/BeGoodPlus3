@@ -41,6 +41,14 @@ body {}
                 transform: translateX(170px);
             }
         }
+        &.hover-show {
+            transform: translateX(160px);
+            transition: all 0.1s linear;
+
+            &:hover {
+                transform: translateX(170px);
+            }
+        }
 
         img {
             width: 50px;

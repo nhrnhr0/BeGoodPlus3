@@ -250,6 +250,17 @@ function displayTasks() {
 
 $(function () {
     $(document).ready(function () {
+
+        $('.icon-bar .icon').hover(
+            function() {
+                $(this).addClass('hover-show');
+            },
+            function () {
+                $(this).removeClass('hover-show');
+            }
+        )
+
+
         if (window.location.hash == '#contact-form') {
             setTimeout(() => {
                 window.scrollTo(0, document.body.scrollHeight);

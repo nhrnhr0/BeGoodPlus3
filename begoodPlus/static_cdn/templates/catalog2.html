@@ -10,7 +10,8 @@
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css" />
 -->
-<link rel="stylesheet" href="{%static 'assets/css/swiper.css'%}">
+<!--<link rel="stylesheet" href="{%static 'assets/css/swiper.css'%}">-->
+<link rel="stylesheet" href="https://unpkg.com/swiper@6.5.0/swiper-bundle.min.css">
 <script src="https://kit.fontawesome.com/022c0fea0b.js" crossorigin="anonymous" defer></script>
 <!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
 
@@ -397,7 +398,13 @@
                         </div>
                     </div>
                     {%endfor%}
+                    
                 </div>
+
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+
+
             </div>
         </div>
 
