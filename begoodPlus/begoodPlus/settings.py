@@ -97,6 +97,29 @@ DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR  + '/backups/'}
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240 # higher than the count of fields
 
+# djnago-pipeline
+'''
+STATICFILES_STORAGE = 'pipeline.storage.PipelineManifestStorage'
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
+)
+PIPELINE = {
+    'PIPELINE_ENABLED': True,
+    'JAVASCRIPT': {
+        'base': {
+            'source_sfilenames': (
+                'assets/base/js/022c0fea0b.js'
+                'assets/base/js/jquery-3.6.0.min.js'
+                'assets/base/js/bootstrap.bundle.min.js',
+                'assets/base/js/base.js',
+            ),
+            'output_filename': 'pipeline/js/base.js',
+        }
+    }
+}
+'''
 #cron
 CRONJOBS = [
     ('59 23 * * *', 'begoodPlus.cron.my_db_backup')

@@ -89,41 +89,62 @@ document.addEventListener('scroll', function(e) {
 });
 var check_list_inputs = document.querySelectorAll('.section-2 .check-list ul li input');
 function handleSection2Checkmarks(pos) {
+    var precent = 0;
     if(pos<100) {
+        precent = 10;
         check_list_inputs[0].checked = false;
         check_list_inputs[1].checked = false;
         check_list_inputs[2].checked = false;
         check_list_inputs[3].checked = false;
+        check_list_inputs[4].checked = false;
       //document.querySelector('.section-2 .check-list ul li:nth-of-type(1) input').checked = true;
     }
     if(pos>=100 && pos < 200) {
+        precent = 20;
         check_list_inputs[0].checked = true;
         check_list_inputs[1].checked = false;
         check_list_inputs[2].checked = false;
         check_list_inputs[3].checked = false;
+        check_list_inputs[4].checked = false;
       //document.querySelector('.section-2 .check-list ul li:nth-of-type(1) input').checked = true;
     }
     else if (pos >= 200 && pos < 300){
+        precent = 40;
         check_list_inputs[0].checked = true;
         check_list_inputs[1].checked = true;
         check_list_inputs[2].checked = false;
         check_list_inputs[3].checked = false;
+        check_list_inputs[4].checked = false;
       //document.querySelector('.section-2 .check-list ul li input').checked = false;
     }
     else if (pos >= 300 && pos < 400){
+        precent = 60;
         check_list_inputs[0].checked = true;
         check_list_inputs[1].checked = true;
         check_list_inputs[2].checked = true;
         check_list_inputs[3].checked = false;
+        check_list_inputs[4].checked = false;
       //document.querySelector('.section-2 .check-list ul li input').checked = false;
     }
     else if (pos >= 400 && pos < 500){
+        precent = 80;
         check_list_inputs[0].checked = true;
         check_list_inputs[1].checked = true;
         check_list_inputs[2].checked = true;
         check_list_inputs[3].checked = true;
+        check_list_inputs[4].checked = false;
       //document.querySelector('.section-2 .check-list ul li input').checked = false;
     }
+    else if (pos >= 500){
+        precent = 100; 
+        check_list_inputs[0].checked = true;
+        check_list_inputs[1].checked = true;
+        check_list_inputs[2].checked = true;
+        check_list_inputs[3].checked = true;
+        check_list_inputs[4].checked = true;
+      //document.querySelector('.section-2 .check-list ul li input').checked = false;
+    }
+    $('.progress-bar').css('width', precent+'%');
   }
 
 for(var i = 0; i < side_icons.length; i++) {
