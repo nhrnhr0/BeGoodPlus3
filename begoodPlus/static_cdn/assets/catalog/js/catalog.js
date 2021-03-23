@@ -312,6 +312,7 @@ function openCategoryModal(albumId) {
     return val.id == albumId
   });
   var album = albums[albumIndex];
+  /*
   var nextAlbum = albums[(albumIndex + 1) % albums.length];
   var prevIndex;
   if (albumIndex == 0) {
@@ -321,6 +322,7 @@ function openCategoryModal(albumId) {
   }
   prevIndex -= 1;
   var prevAlbum = albums[prevIndex];
+  */
   var categoryDescription = $(`#album_description_${album.id}`);
   var bodyMarkup = `<h4 class="category-description">${marked(categoryDescription.text())}</h4>`
 
@@ -346,11 +348,21 @@ function openCategoryModal(albumId) {
   imagesMarkup += '</div>'
   bodyMarkup += imagesMarkup;
 
-  buttonsMarkup = `
+/*
+  var buttonsMarkup = `
   <button class="btn btn-primary" onclick="openCategoryModal(${prevAlbum.id})" value=${prevAlbum.id}>${prevAlbum.title}</button>
-    <button class="btn btn-primary" onclick="openCategoryModal(${nextAlbum.id})" value=${nextAlbum.id}>${nextAlbum.title}</button>
-    
-  `
+    <button class="btn btn-primary" onclick="openCategoryModal(${nextAlbum.id})" value=${nextAlbum.id}>${nextAlbum.title}</button>  
+  `*/
+  var buttonsMarkup = ``;
+  for(var i = 0; i < albums.length; i++) {
+    currAlbum = albums[i];
+    if(albumIndex == i) {
+      buttonsMarkup += `<button class="btn btn-success" onclick="openCategoryModal(${currAlbum.id})" value=${currAlbum.id}>${currAlbum.title}</button>`
+    }
+    else {
+      buttonsMarkup += `<button class="btn btn-primary" onclick="openCategoryModal(${currAlbum.id})" value=${currAlbum.id}>${currAlbum.title}</button>`
+    }
+  }
 
   $('#categoryModal .modal-title').text(album.title);
   $('#categoryModal .modal-body').html(bodyMarkup);

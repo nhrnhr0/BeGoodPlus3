@@ -259,6 +259,20 @@
     }
   }
 }
+.swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+    left: 10px;
+    right: auto;
+    width: 75px;
+    height: 75px;
+    transform: translate(0%, -50%);
+}
+.swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+  right: 10px;
+  left: auto;
+  width: 75px;
+  height: 75px;
+  transform: translate(0%, -50%);
+}
 
 .catalog {
 
@@ -536,7 +550,7 @@
   }
 
   .modal-footer {
-    justify-content: space-between;
+    justify-content: space-evenly;
 
     #modal-add-btn {
       cursor: pointer;

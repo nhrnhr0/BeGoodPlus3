@@ -254,6 +254,24 @@
   height: 100%;
 }
 
+.swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+  left: 10px;
+  right: auto;
+  width: 75px;
+  height: 75px;
+  -webkit-transform: translate(0%, -50%);
+          transform: translate(0%, -50%);
+}
+
+.swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+  right: 10px;
+  left: auto;
+  width: 75px;
+  height: 75px;
+  -webkit-transform: translate(0%, -50%);
+          transform: translate(0%, -50%);
+}
+
 .catalog .swiper-slide-active {
   /*box-shadow:
       inset 0 0 60px whitesmoke,
@@ -515,9 +533,9 @@
 }
 
 #catalogModal .modal-footer {
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 #catalogModal .modal-footer #modal-add-btn {
