@@ -27,7 +27,7 @@
 }
 
 .section-1-5 .container {
-  margin: 20px auto;
+  margin: 10px auto;
   width: 100%;
   text-align: center;
 }
@@ -559,6 +559,10 @@
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
   }
+}
+
+#categoryModal .modal-dialog {
+  max-width: 90vw;
 }
 
 #categoryModal .modal-content {

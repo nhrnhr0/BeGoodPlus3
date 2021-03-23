@@ -90,7 +90,10 @@ document.addEventListener('scroll', function(e) {
 var check_list_inputs = document.querySelectorAll('.section-2 .check-list ul li input');
 function handleSection2Checkmarks(pos) {
     var precent = 0;
-    if(pos<50) {
+    if(pos == 0) {
+        precent = 0;
+    }
+    if(pos>50) {
         precent = 10;
         check_list_inputs[0].checked = false;
         check_list_inputs[1].checked = false;
