@@ -711,6 +711,7 @@
             loadPrevNext: true,
             loadOnTransitionStart: true,
             checkInView: true,
+            slideToClickedSlide:true,
 
             coverflowEffect: {
                 rotate: 30,
@@ -776,6 +777,7 @@
             } else {
                 var prodId = parseInt(e.currentTarget.dataset.prodId);
                 var albumId = parseInt(e.currentTarget.dataset.albumId);
+                
                 //var isAdded = e.currentTarget.dataset.isAdded;
 
                 albums = getAllAlbums();
