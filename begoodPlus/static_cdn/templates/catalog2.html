@@ -271,7 +271,14 @@
     </div>
     -->
     </div>
-
+    <div class="section-1-5">
+        <div class="container">
+            <div class="progress progress-striped">
+                <div class="progress-bar">
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="section-2">
         <div class="abount-us">
             ביגוד פלוס מבית אמ. אס גלובל מתחמה במתן פתרונות טקסטיל למוסדות, עסקים, חנויות ועוד.
@@ -352,12 +359,7 @@
                 </li>
             </ul>
 
-            <div class="container">    
-                <div class="progress progress-striped">
-                  <div class="progress-bar">
-                  </div>                       
-                </div> 
-              </div>
+            
         </div>
     </div>
 
@@ -365,7 +367,8 @@
 
         {%for album in albums%}
         {%if album.is_public%}
-        <h3 class="album-description" style="display: none;" id="album_description_{{album.id}}">{{album.description}}</h3>
+        <h3 class="album-description" style="display: none;" id="album_description_{{album.id}}">{{album.description}}
+        </h3>
         <div class="title-wraper">
             <button data-album-id="{{album.id}}" onclick="openCategoryModal({{album.id}})"
                 class="title btn">{{album.title}}</button>
@@ -398,7 +401,7 @@
                         </div>
                     </div>
                     {%endfor%}
-                    
+
                 </div>
 
                 <div class="swiper-button-prev"></div>
@@ -711,7 +714,7 @@
             loadPrevNext: true,
             loadOnTransitionStart: true,
             checkInView: true,
-            slideToClickedSlide:true,
+            slideToClickedSlide: true,
 
             coverflowEffect: {
                 rotate: 30,
@@ -777,7 +780,7 @@
             } else {
                 var prodId = parseInt(e.currentTarget.dataset.prodId);
                 var albumId = parseInt(e.currentTarget.dataset.albumId);
-                
+
                 //var isAdded = e.currentTarget.dataset.isAdded;
 
                 albums = getAllAlbums();

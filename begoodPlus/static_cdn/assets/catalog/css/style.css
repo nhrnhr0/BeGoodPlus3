@@ -26,6 +26,34 @@
   }
 }
 
+.section-1-5 .container {
+  margin: 20px auto;
+  width: 100%;
+  text-align: center;
+}
+
+.section-1-5 .container .progress {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+          box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.section-1-5 .container .progress .progress-bar {
+  height: 18px;
+  background-color: #ee303c;
+  border-radius: 4px;
+  -webkit-transition: 0.4s linear;
+  transition: 0.4s linear;
+  -webkit-transition-property: width, background-color;
+  transition-property: width, background-color;
+  background-color: #FCBC51;
+  width: 0%;
+  background-image: linear-gradient(45deg, #fca311 25%, transparent 25%, transparent 50%, #fca311 50%, #fca311 75%, transparent 75%, transparent);
+  -webkit-animation: progressAnimationStrike 6s;
+          animation: progressAnimationStrike 6s;
+}
+
 .section-2 {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -139,43 +167,6 @@
 
 .section-2 .check-list ul input:checked ~ .button {
   opacity: 0;
-}
-
-.section-2 .check-list .container {
-  margin: 100px auto;
-  width: 100%;
-  text-align: center;
-}
-
-.section-2 .check-list .container .progress {
-  background: rgba(0, 0, 0, 0.25);
-  border-radius: 6px;
-  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
-          box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
-  /*@keyframes progressAnimationStrike {
-          from {
-            width: 0
-          }
-
-          to {
-            width: 80%
-          }
-        }*/
-}
-
-.section-2 .check-list .container .progress .progress-bar {
-  height: 18px;
-  background-color: #ee303c;
-  border-radius: 4px;
-  -webkit-transition: 0.4s linear;
-  transition: 0.4s linear;
-  -webkit-transition-property: width, background-color;
-  transition-property: width, background-color;
-  background-color: #FCBC51;
-  width: 80%;
-  background-image: linear-gradient(45deg, #fca311 25%, transparent 25%, transparent 50%, #fca311 50%, #fca311 75%, transparent 75%, transparent);
-  -webkit-animation: progressAnimationStrike 6s;
-          animation: progressAnimationStrike 6s;
 }
 
 @-webkit-keyframes dash {
