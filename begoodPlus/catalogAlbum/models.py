@@ -45,7 +45,8 @@ from mptt.models import MPTTModel, TreeForeignKey
 class CatalogAlbum(MPTTModel):
     title = models.CharField(max_length=120, verbose_name=_("title"))
     slug = models.SlugField(max_length=120, verbose_name=_("slug"))
-    keywords = models.TextField(verbose_name=_('keyworks'), default='')
+    description= models.TextField(verbose_name=_('description'), default='', blank=True)
+    keywords = models.TextField(verbose_name=_('keyworks'), default='', blank=True)
     images = models.ManyToManyField(to=CatalogImage, related_name='album', blank=True, through='ThroughImage')
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     is_public = models.BooleanField(verbose_name=_('is public'), default=True)

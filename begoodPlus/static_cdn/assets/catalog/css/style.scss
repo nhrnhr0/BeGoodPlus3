@@ -7,6 +7,7 @@
   --like-font-size: 30px;
 
 }
+
 .bg-wraper {
   background: url('../imgs/catalogBg1.jpeg');
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../imgs/catalogBg1.jpeg');
@@ -16,6 +17,7 @@
   //background-size: 500px;
   background-position: center;
 }
+
 @keyframes slide-up {
   0% {
     opacity: 0;
@@ -24,23 +26,25 @@
 }
 
 .section-2 {
-  
+
   //background: #111;
   display: flex;
   flex-direction: row;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 25px;
-  margin-top:50px;
-  margin-left:20px;
-  margin-right:20px;
+  margin-top: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
+
   .abount-us {
-    color:white;
+    color: white;
     flex: 1;
     //text-align: center;
     //margin: auto;
-    padding:20px;
+    padding: 20px;
     font-size: x-large;
   }
+
   .check-list {
     flex: 1;
     $white: #fff;
@@ -66,11 +70,11 @@
       }
 
       li {
-        color:white;
+        color: white;
         position: relative;
         display: block;
         margin: 50px 0;
-        
+
         height: 14px;
 
         .wrapper {
@@ -130,23 +134,31 @@
           }
         }
       }
-    } /* ul*/
-    
-@keyframes dash {
-  0% {
-    stroke-dashoffset: 340;
-  }
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
+    }
+
+    /* ul*/
+
+    @keyframes dash {
+      0% {
+        stroke-dashoffset: 340;
+      }
+
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+
     .checkmark {
       display: block;
       stroke-width: 8;
       opacity: 0;
     }
-  }/* check list */
-} /* section-2 */
+  }
+
+  /* check list */
+}
+
+/* section-2 */
 
 /** {
   border: 1px solid red;
@@ -504,6 +516,12 @@
 
   .modal-body {
     overflow-y: scroll;
+    .category-description{
+      background-color: rgba(0, 0, 0, 0.7);
+      color:white;
+      border-radius: 15px;
+      padding:20px;
+    }
   }
 
   .modal-footer {
@@ -745,11 +763,12 @@
   .swiper-slide .title {
     font-size: 41px;
     font-weight: 400;
-
+    padding-right: 20px;
   }
 
   .swiper-slide .subtitle {
     font-size: 21px;
+    padding-right: 50px;
   }
 
   .swiper-slide .text {
@@ -774,18 +793,28 @@
       img {
         max-width: 100%
       }
-
-      ;
     }
 
   }
 }
-
+.swiper-main {
+  .swiper-slide {
+    &.slide-2 {
+      .images {
+        
+      }
+    }
+  }
+}
 
 @media (max-width: 1070px) {
-  &.slide-1 {
-    .img-4-wraper {
-      display: none;
+  .swiper-main {
+    .swiper-slide {
+      &.slide-1 {
+        .img-4-wraper {
+          display: none;
+        }
+      }
     }
   }
 }

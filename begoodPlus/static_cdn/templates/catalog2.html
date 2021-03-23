@@ -343,6 +343,7 @@
 
         {%for album in albums%}
         {%if album.is_public%}
+        <h3 class="album-description" style="display: none;" id="album_description_{{album.id}}">{{album.description}}</h3>
         <div class="title-wraper">
             <button data-album-id="{{album.id}}" onclick="openCategoryModal({{album.id}})"
                 class="title btn">{{album.title}}</button>
@@ -363,6 +364,10 @@
                                 alt="{{img.description}}" />
 
                             <div class="img-title">{{img.title}}</div>
+
+                            <!-- product SEO -->
+                            <h5 style="display: none;">{{img.title}}</h5>
+                            <h4 style="display: none;">{{img.description}}</h4>
                         </div>
                         <div class="like-btn" name="like-btn">
                             <div class="like-wrapper" data-prod-id="{{img.id}}">
@@ -384,13 +389,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h5 class="modal-title  w-100">Modal title</h5>
+                <h5 class="modal-title  w-100">M.S global</h5>
                 <button type="button" class="close close-modal" data-dismiss="catalogModal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Modal body text goes here.</p>
+                <p>M.S global</p>
             </div>
             <div class="modal-footer">
                 <button type="button" id="modal-send-products-btn" class="btn btn-primary">שלח</button>
@@ -404,13 +409,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h5 class="modal-title  w-100">Modal title</h5>
+                <h5 class="modal-title  w-100">Category</h5>
                 <button type="button" class="close close-modal" data-dismiss="catalogModal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Modal body text goes here.</p>
+                <p>Products in the category.</p>
             </div>
             <div class="modal-footer">
 

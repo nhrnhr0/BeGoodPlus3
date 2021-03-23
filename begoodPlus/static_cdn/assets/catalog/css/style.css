@@ -531,6 +531,13 @@
   overflow-y: scroll;
 }
 
+#categoryModal .modal-body .category-description {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border-radius: 15px;
+  padding: 20px;
+}
+
 #categoryModal .modal-footer {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
@@ -791,10 +798,12 @@
 .swiper-main .swiper-slide .title {
   font-size: 41px;
   font-weight: 400;
+  padding-right: 20px;
 }
 
 .swiper-main .swiper-slide .subtitle {
   font-size: 21px;
+  padding-right: 50px;
 }
 
 .swiper-main .swiper-slide .text {
@@ -831,7 +840,7 @@
 }
 
 @media (max-width: 1070px) {
-  .slide-1 .img-4-wraper {
+  .swiper-main .swiper-slide.slide-1 .img-4-wraper {
     display: none;
   }
 }

@@ -47,13 +47,13 @@ def autocompleteModel(request):
             Q(description__icontains=q) |  
             Q(album__title__icontains=q) |
             Q(album__keywords__icontains=q)
-            ).distinct()[0:20]
+            ).distinct()
 
         mylogo_qs = MyLogoProduct.objects.filter(
             Q(title__icontains=q) | 
             Q(description__icontains=q) |  
             Q(album__title__icontains=q)
-        )
+        ).distinct()
         
         print(products_qs)
         print(mylogo_qs)
@@ -65,7 +65,9 @@ def autocompleteModel(request):
         search_history = UserSearchData.objects.create(session=session, term=q, resultCount=len(products.data)+ len(mylogos.data))
         search_history.save()
 
-        context = {'all':products.data + mylogos.data,
+        all = products.data + mylogos.data
+        all = all[0:20]
+        context = {'all':all,
                     'id': search_history.id}
 
         

@@ -275,7 +275,6 @@ function loadProductsModal() {
 }
 
 function openImageProductModal(prodId) {
-  debugger;
   var albums = getAllAlbums();
   var product = undefined;
   for (var i = 0; i < albums.length; i++) {
@@ -322,6 +321,8 @@ function openCategoryModal(albumId) {
   }
   prevIndex -= 1;
   var prevAlbum = albums[prevIndex];
+  var categoryDescription = $(`#album_description_${album.id}`);
+  var bodyMarkup = `<h3 class="category-description">${marked(categoryDescription.text())}</h3>`
 
   var imagesMarkup = '<div class="category-items">'
   for (var i = 0; i < album.images_list.length; i++) {
@@ -343,6 +344,7 @@ function openCategoryModal(albumId) {
       `
   }
   imagesMarkup += '</div>'
+  bodyMarkup += imagesMarkup;
 
   buttonsMarkup = `
   <button class="btn btn-primary" onclick="openCategoryModal(${prevAlbum.id})" value=${prevAlbum.id}>${prevAlbum.title}</button>
@@ -351,7 +353,7 @@ function openCategoryModal(albumId) {
   `
 
   $('#categoryModal .modal-title').text(album.title);
-  $('#categoryModal .modal-body').html(imagesMarkup);
+  $('#categoryModal .modal-body').html(bodyMarkup);
   $('#categoryModal .modal-footer').html(buttonsMarkup);
   $('#categoryModal').modal('show');
   $('#categoryModal .close-modal').click(function () {

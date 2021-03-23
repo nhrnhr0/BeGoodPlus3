@@ -89,9 +89,6 @@ document.addEventListener('scroll', function(e) {
 });
 var check_list_inputs = document.querySelectorAll('.section-2 .check-list ul li input');
 function handleSection2Checkmarks(pos) {
-    
-    console.log('pos ', pos);
-    debugger;
     if(pos<100) {
         check_list_inputs[0].checked = false;
         check_list_inputs[1].checked = false;
@@ -132,7 +129,6 @@ function handleSection2Checkmarks(pos) {
 for(var i = 0; i < side_icons.length; i++) {
     side_icons[i].addEventListener('click', (event)=> {
         console.log('show');
-        debugger;
         if(event.currentTarget.classList.contains('show')) {
             event.currentTarget.classList.remove('show');
         }else {
