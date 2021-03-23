@@ -517,8 +517,9 @@
   .modal-body {
     overflow-y: scroll;
     .category-description{
-      background-color: rgba(0, 0, 0, 0.7);
-      color:white;
+      //background-color: rgba(0, 0, 0, 0.7);
+      //color:white;
+      color:black;      
       border-radius: 15px;
       padding:20px;
     }
