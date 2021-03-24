@@ -878,6 +878,8 @@
   display: -ms-flexbox;
   display: flex;
   width: 100vw;
+  padding-left: 100px;
+  padding-right: 100px;
   -webkit-box-flex: 0;
       -ms-flex-positive: 0;
           flex-grow: 0;
@@ -898,13 +900,6 @@
 
 .swiper-main .swiper-slide .images .img-wraper img {
   max-width: 100%;
-}
-
-@media (max-width: 1278px) {
-  .swiper-main .swiper-slide.slide-1 .images {
-    padding-left: 100px;
-    padding-right: 100px;
-  }
 }
 
 @media (max-width: 1070px) {

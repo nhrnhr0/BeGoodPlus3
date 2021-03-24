@@ -870,6 +870,8 @@
   .swiper-slide .images {
     display: flex;
     width: 100vw;
+    padding-left: 100px;
+    padding-right: 100px;
     flex-grow: 0;
     flex-shrink: 1;
     justify-content: center;
@@ -885,19 +887,6 @@
       }
     }
 
-  }
-}
-
-@media (max-width: 1278px) {
-  .swiper-main {
-    .swiper-slide {
-      &.slide-1 {
-        .images {
-          padding-left: 100px;
-          padding-right: 100px;
-        }
-      }
-    }
   }
 }
 
