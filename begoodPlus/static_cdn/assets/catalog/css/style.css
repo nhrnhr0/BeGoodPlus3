@@ -220,6 +220,7 @@
   font-weight: bold;
   position: relative;
   background: #222;
+  text-shadow: 1px 1px 0px #FFD880, -3px 0 25px #000000, 3px 0px 3px #a0a0a0, 0px 0px 15px #a0a0a0, 15px 10px 10px black;
 }
 
 .section-2 .section-2-fotter .part-1 {
