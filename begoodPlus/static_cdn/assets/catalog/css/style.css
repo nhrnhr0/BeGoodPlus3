@@ -123,6 +123,8 @@
 .section-2 .check-list ul .text {
   padding-right: 10px;
   font-size: 2.3rem;
+  -webkit-transform: translate(0px, -8px);
+          transform: translate(0px, -8px);
   cursor: pointer;
   -webkit-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
@@ -586,7 +588,7 @@
 }
 
 #categoryModal .modal-content {
-  max-height: 80vh;
+  max-height: 90vh;
 }
 
 #categoryModal .modal-body {
@@ -850,7 +852,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: 110%;
+  width: 130%;
   height: 100%;
   background-size: cover;
   background-position: center;
@@ -962,7 +964,7 @@
 }
 
 .swiper-main .slide-2 .images .img-4-wraper .main-slide-img {
-  height: 280px;
+  height: 300px;
 }
 
 .swiper-main .slide-2 .images .img-5-wraper {
