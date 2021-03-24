@@ -97,7 +97,7 @@
 
 
             <form class="d-flex" id="search_form">
-                <input class="form-control" id="search" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control" id="search" autocomplete="on" type="search" placeholder="Search" aria-label="Search">
                 <!-- <button class="btn btn-outline-success" type="submit">Search</button>-->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <!--
@@ -249,8 +249,8 @@
 
                                     my_item = data.all[i];
                                     items.push({
-                                        lable: my_item.title,
-                                        value: my_item.title,
+                                        label: data.q,
+                                        value: data.q,
                                         data: my_item
                                     });
                                     // get the first album that is not all products
@@ -276,8 +276,8 @@
                                     }
                                     if (found_album == false) {
                                         items.unshift({
-                                            lable: album.title,
-                                            value: album.title,
+                                            label: data.q,
+                                            value: data.q,
                                             data: {
                                                 id: album.id,
                                                 title: album.title,
@@ -307,6 +307,7 @@
                     },
                     minLength: 2,
                     select: function (event, ui) {
+                        debugger;
                         var item = ui.item.data;
                         const csrftoken = getCookie('csrftoken');
                         $.ajax({

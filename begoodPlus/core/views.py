@@ -68,6 +68,7 @@ def autocompleteModel(request):
         all = products.data + mylogos.data
         all = all[0:20]
         context = {'all':all,
+                    'q':q,
                     'id': search_history.id}
 
         
