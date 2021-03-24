@@ -1039,6 +1039,34 @@
           display: none;
         }
       }
+
+      &.slide-2 {
+        .images {
+          padding-left:0px;
+          padding-right:0px;
+        }
+        .img-7-wraper {
+          left: 80%;
+        }
+        .img-8-wraper {
+          display: none;
+        }
+      }
+
+      &.slide-3 {
+        .images {
+          padding-left:0px;
+          padding-right:0px;
+          .img-1-wraper,
+          .img-2-wraper,
+          .img-3-wraper {
+            display: none;
+          }
+          .img-8-wraper {
+            transform: translate(-50%,0);
+          }
+        }
+      }
     }
   }
 }
@@ -1053,6 +1081,32 @@
 
         .img-2-wraper {
           display: none;
+        }
+      }
+
+      &.slide-2 {
+        .img-1-wraper,
+        .img-2-wraper,
+        .img-3-wraper {
+          display: none;
+        }
+
+        .img-4-wraper {
+          left:10%
+        }
+        .img-5-wraper {
+          display: none;
+        }
+        .img-7-wraper {
+          bottom: 100px;
+        }
+      }
+
+      &.slide-3 {
+        .images {
+          .img-8-wraper {
+            display: none;
+          }
         }
       }
     }
