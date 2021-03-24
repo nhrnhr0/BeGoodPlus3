@@ -21,7 +21,7 @@
 }
 
 .modal .modal-body {
-  background: url("../imgs/catalogBg1.jpeg");
+  background: url("../../catalog/imgs/catalogBg1.jpeg");
   overflow: hidden;
   background-size: 50vh;
   background-position: center;
