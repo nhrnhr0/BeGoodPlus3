@@ -56,6 +56,18 @@
         </div>
     </div>
 
+    <div class="icon-bar-2">
+        <div class="icon">
+            <div class="text up">
+            בעל עסק?
+        </div>
+            <img src="{%static 'assets/base/imgs/entrepreneur.png' %}" alt="" srcset="">
+            <div class="text down">
+            לחץ כאן
+        </div>
+        </div>
+    </div>
+
     <!--
     {% if messages %}
     <div style="padding-top:50px;">
@@ -141,6 +153,47 @@
 
         </div>
     </nav>
+
+
+    <div class="modal" id="buisnessModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h5 class="modal-title  w-100">M.S global</h5>
+                    <button type="button" class="close close-modal" data-dismiss="buisnessModal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="contact-form-wraper2">
+                        <div id="contactForm" class="contact-form-wraper">
+                            <form id="contact-form"  action="{%url 'save-contact-form' '/test'%}" method="post" class="contact-form">
+                                {% csrf_token %}
+                                <input type="hidden" name="taskName" id="taskName" value="main-ec6bb117-c8fa-4a38-989a-ab0e0805e44e">
+                                <h2 class="form-header">
+                                    לקבלת הצעת מחיר משתלמת <div class="mark-strong">ללא</div> עלות <div class="mark-strong">וללא</div> התחייבות השאירו פרטים ומיד נחזור אליכם
+                                </h2>
+                                {% bootstrap_form contactForm %}
+                                {% buttons %}
+                                <!--
+                                    <button type="submit" class="btn btn-success form-submit">לשיחת יעוץ ללא עלות וללא התחייבות השאירו
+                                    פרטים</button>
+                                    -->
+                                    <input type="button" class="btn btn-success form-submit"  value="לשליחת טופס לחץ כאן" id="btnsubmit" onclick="submitMainContactForm()">
+                                {% endbuttons %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--
+                <div class="modal-footer">
+                    <button type="button" id="modal-send-products-btn" class="btn btn-primary">שלח</button>
+                    <button type="button" class="btn btn-secondary close-modal" data-dismiss="buisnessModal">Close</button>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
 
     {%block content %} {%endblock content%}
 
@@ -347,6 +400,9 @@
                     },
                 })
                 .autocomplete("instance")._renderItem = function (ul, item) {
+
+
+
             
                     console.log(item);
                     //console.log(ul.html());
@@ -422,6 +478,14 @@
                     }*/
 
                 };
+        
+        
+                $('.icon-bar-2').click(()=> {
+                        $('#buisnessModal').modal('show');
+                        $('#buisnessModal .close-modal').click(function () {
+                        $('#buisnessModal').modal('hide');
+                    });
+                });
         }
 
         getAllAlbums();
@@ -436,3 +500,7 @@
 
 
 </html>
+
+<!-- 
+    <div>Icons made by <a href="https://www.flaticon.com/authors/monkik" title="monkik">monkik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+-->

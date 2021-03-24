@@ -1,3 +1,36 @@
+.modal .close {
+  border: 0;
+  background: none;
+  padding: 0;
+  font-size: 2em;
+}
+
+.modal .close:hover {
+  color: red;
+}
+
+.modal .modal-header {
+  background: #ffd880;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.modal .modal-header .modal-title {
+  font-weight: 700;
+  font-size: 2.5em;
+}
+
+.modal .modal-body {
+  background: url("../imgs/catalogBg1.jpeg");
+  overflow: hidden;
+  background-size: 50vh;
+  background-position: center;
+}
+
+.modal .modal-footer {
+  background: #ffd880;
+}
+
 .icon-bar {
   position: fixed;
   top: 50%;
@@ -159,6 +192,38 @@
 
 .icon-bar .icon a {
   color: white;
+}
+
+.icon-bar-2 {
+  position: fixed;
+  cursor: pointer;
+  top: 50%;
+  right: 0;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  z-index: 10;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.icon-bar-2 .icon {
+  background-color: rgba(49, 49, 49, 0.7);
+  border-radius: 10px;
+}
+
+.icon-bar-2 .icon .text {
+  font-size: 1.5em;
+  color: #FFD880;
+  text-align: center;
+}
+
+.icon-bar-2 .icon img {
+  width: 100px;
 }
 
 #search_form {

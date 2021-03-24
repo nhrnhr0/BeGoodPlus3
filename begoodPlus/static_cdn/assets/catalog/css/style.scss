@@ -482,41 +482,6 @@
   }
 }
 
-.modal {
-  .close {
-    border: 0;
-    background: none;
-    padding: 0;
-    font-size: 2em;
-
-    &:hover {
-      color: red;
-    }
-  }
-
-  .modal-header {
-    background: #ffd880;
-    padding-top: 0px;
-    padding-bottom: 0px;
-
-    .modal-title {
-      font-weight: 700;
-      font-size: 2.5em;
-    }
-  }
-
-  .modal-body {
-    background: url('../imgs/catalogBg1.jpeg');
-    //background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ),url('../imgs/catalogBg1.jpeg');
-    overflow: hidden;
-    background-size: 50vh;
-    background-position: center;
-  }
-
-  .modal-footer {
-    background: #ffd880;
-  }
-}
 
 #catalogModal {
   .modal-body {

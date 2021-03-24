@@ -1,5 +1,42 @@
 body {}
 
+
+.modal {
+    .close {
+      border: 0;
+      background: none;
+      padding: 0;
+      font-size: 2em;
+  
+      &:hover {
+        color: red;
+      }
+    }
+  
+    .modal-header {
+      background: #ffd880;
+      padding-top: 0px;
+      padding-bottom: 0px;
+  
+      .modal-title {
+        font-weight: 700;
+        font-size: 2.5em;
+      }
+    }
+  
+    .modal-body {
+      background: url('../imgs/catalogBg1.jpeg');
+      //background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ),url('../imgs/catalogBg1.jpeg');
+      overflow: hidden;
+      background-size: 50vh;
+      background-position: center;
+    }
+  
+    .modal-footer {
+      background: #ffd880;
+    }
+  }
+
 .icon-bar {
     position: fixed;
     top: 50%;
@@ -156,7 +193,31 @@ body {}
 
 
 }
-
+.icon-bar-2 {
+    position: fixed;
+    cursor: pointer;
+    top: 50%;
+    right: 0;
+    //left: 0px;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    .icon {
+        background-color: rgba(49, 49, 49, 0.7);
+        border-radius: 10px;
+        .text {
+            font-size: 1.5em;
+            //color:whitesmoke;
+            color: #FFD880;
+            text-align: center;
+        }
+        img {
+            width: 100px;
+        }
+    }
+}
 
 #search_form {
     //margin:auto;
