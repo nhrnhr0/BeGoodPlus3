@@ -79,6 +79,17 @@
     //margin: auto;
     padding: 20px;
     font-size: x-large;
+    .begood-logo-wraper {
+      display: inline-block;
+      position: relative;
+      img {
+        position: absolute;
+        height: 30px;
+        left: 0px;
+        transform: translate(-50%, 0%);
+      }
+
+    }
   }
 
   .check-list {
