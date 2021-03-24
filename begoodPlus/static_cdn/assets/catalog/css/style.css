@@ -218,6 +218,12 @@
   text-align: center;
   font-size: 1.5em;
   font-weight: bold;
+  position: relative;
+  background: #222;
+}
+
+.section-2 .section-2-fotter .part-1 {
+  font-size: larger;
 }
 
 /* section-2 */

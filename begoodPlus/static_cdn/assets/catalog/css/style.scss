@@ -65,15 +65,15 @@
 
   //background: #111;
   background: rgba(0, 0, 0, 0.5);
-    border-radius: 25px;
-    margin-top: 50px;
-    margin-left: 20px;
-    margin-right: 20px;
+  border-radius: 25px;
+  margin-top: 50px;
+  margin-left: 20px;
+  margin-right: 20px;
 
   .section-2-wraper {
     display: flex;
     flex-direction: row;
-    
+
 
     .abount-us {
       color: white;
@@ -212,11 +212,19 @@
       }
     }
   }
+
   .section-2-fotter {
-    color:#FFD880;
+    color: #FFD880;
     text-align: center;
     font-size: 1.5em;
     font-weight: bold;
+    position: relative;
+    background: #222;
+
+
+    .part-1 {
+      font-size: larger;
+    }
   }
 
   /* check list */
