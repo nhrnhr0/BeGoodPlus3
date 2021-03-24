@@ -934,7 +934,7 @@
 }
 
 .swiper-main .slide-2 .images .img-wraper .main-slide-img {
-  height: 205px;
+  height: 230px;
 }
 
 .swiper-main .slide-2 .images .img-1-wraper {
@@ -958,11 +958,11 @@
 .swiper-main .slide-2 .images .img-4-wraper {
   position: absolute;
   bottom: 0%;
-  left: 40%;
+  left: 36%;
 }
 
 .swiper-main .slide-2 .images .img-4-wraper .main-slide-img {
-  height: 320px;
+  height: 300px;
 }
 
 .swiper-main .slide-2 .images .img-5-wraper {
