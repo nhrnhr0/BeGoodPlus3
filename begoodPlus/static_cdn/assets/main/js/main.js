@@ -1,5 +1,7 @@
 var carousel = document.querySelector('.carousel');
-var cells = carousel.querySelectorAll('.carousel__cell');
+if(carousel != null) {
+  var cells = carousel.querySelectorAll('.carousel__cell');
+}
 var cellCount; // cellCount set from cells-range input value
 var selectedIndex = 0;
 var cellWidth = carousel.offsetWidth;
