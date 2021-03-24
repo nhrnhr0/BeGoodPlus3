@@ -333,12 +333,6 @@
   border-radius: 15px;
 }
 
-@media (min-width: 576px) {
-  .modal-dialog {
-    max-width: 850px;
-  }
-}
-
 .title-wraper {
   display: -webkit-box;
   display: -ms-flexbox;
