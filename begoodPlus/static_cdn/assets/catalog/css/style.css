@@ -82,11 +82,12 @@
 .section-2 .abount-us .begood-logo-wraper {
   display: inline-block;
   position: relative;
+  font-size: larger;
 }
 
 .section-2 .abount-us .begood-logo-wraper img {
   position: absolute;
-  height: 30px;
+  height: 35px;
   left: 0px;
   -webkit-transform: translate(-50%, 0%);
           transform: translate(-50%, 0%);
@@ -287,6 +288,11 @@
   height: 75px;
   -webkit-transform: translate(0%, -50%);
           transform: translate(0%, -50%);
+}
+
+.swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled {
+  cursor: auto;
+  pointer-events: initial;
 }
 
 .catalog .swiper-slide-active {

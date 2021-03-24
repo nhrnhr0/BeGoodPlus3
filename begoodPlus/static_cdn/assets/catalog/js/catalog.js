@@ -324,6 +324,7 @@ function openCategoryModal(albumId) {
   var prevAlbum = albums[prevIndex];
   */
   var categoryDescription = $(`#album_description_${album.id}`);
+  var categoryFotter = $(`#album_fotter_${album.id}`);
   var bodyMarkup = `<h4 class="category-description">${marked(categoryDescription.text())}</h4>`
 
   var imagesMarkup = '<div class="category-items">'
@@ -347,6 +348,7 @@ function openCategoryModal(albumId) {
   }
   imagesMarkup += '</div>'
   bodyMarkup += imagesMarkup;
+  bodyMarkup += `<h4 class="category-fotter">${marked(categoryFotter.text())}</h4>`
 
 /*
   var buttonsMarkup = `

@@ -287,7 +287,7 @@
                 <img src="{%static 'assets\catalog\imgs\begood_plus_logo_layout.png' %}"/>
                 ביגוד פלוס
             </div>
-            . אס גלובל מתחמה במתן פתרונות טקסטיל למוסדות, עסקים, חנויות ועוד.
+            .מבית אס גלובל מתחמה במתן פתרונות טקסטיל למוסדות, עסקים, חנויות ועוד.
             <br>
             אצלנו תמצאו מגוון רחב של פריטים כמו נעליים, מכנסיים, חולצות, ביגוד חורף, כובעים, ציוד בטיחות, ביגוד מקצועי
             ומוצרים נוספים.
@@ -373,8 +373,8 @@
 
         {%for album in albums%}
         {%if album.is_public%}
-        <h3 class="album-description" style="display: none;" id="album_description_{{album.id}}">{{album.description}}
-        </h3>
+        <h3 class="album-description" style="display: none;" id="album_description_{{album.id}}">{{album.description}}</h3>
+        <h3 class="album-fotter" style="display: none;" id="album_fotter_{{album.id}}">{{album.fotter}}</h3>
         <div class="title-wraper">
             <button data-album-id="{{album.id}}" onclick="openCategoryModal({{album.id}})"
                 class="title btn">{{album.title}}</button>
