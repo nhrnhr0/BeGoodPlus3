@@ -167,11 +167,11 @@
                 </div>
 
             </div>
-            <!-- Add Pagination -->
-            <div class="swiper-pagination swiper-pagination-white"></div>
-            <!-- Add Navigation -->
-            <div class="swiper-button-prev swiper-button-white"></div>
-            <div class="swiper-button-next swiper-button-white"></div>
+            <!--
+                <div class="swiper-pagination swiper-pagination-white"></div>
+                <div class="swiper-button-prev swiper-button-white"></div>
+                <div class="swiper-button-next swiper-button-white"></div>
+            -->
         </div>
         <!--
     <div class="main-slider">
@@ -645,16 +645,11 @@
         });*/
 
         var swiper = new Swiper('.swiper-main', {
-            speed: 600,
+            speed: 1200,
             parallax: true,
             loop: true,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
+            autoplay: {
+                delay: 6000,
             },
             /*watchSlidesProgress: true,
             watchSlidesVisibility: true,*/
