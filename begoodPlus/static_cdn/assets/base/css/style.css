@@ -199,7 +199,8 @@
 
 .ui-autocomplete .search-item .logo {
   height: 20px;
-  vertical-align: middle;
+  -webkit-transform: translate(0, 25%);
+          transform: translate(0, 25%);
   float: left;
 }
 
