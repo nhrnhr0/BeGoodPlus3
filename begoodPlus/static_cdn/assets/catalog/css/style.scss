@@ -913,7 +913,7 @@
   .slide-2{
     .images {
       .main-slide-img {
-        //width: 150px;
+        height: 250px;
       }
       .img-1-wraper {
         position: absolute;
@@ -934,7 +934,7 @@
       .img-3-wraper {
         position: absolute;
         bottom: 0%;
-        left:10%;
+        left:15%;
         .main-slide-img {
           height:  200px;
         }
@@ -943,7 +943,7 @@
       .img-4-wraper {
         position: absolute;
         bottom: 0%;
-        left:25%;
+        left:35%;
         .main-slide-img {
           //width: 250px;
         }
@@ -952,7 +952,7 @@
       .img-5-wraper {
         position: absolute;
         bottom: 0%;
-        left:45%;
+        left:55%;
         .main-slide-img {
           //height: 250px;
         }
@@ -961,7 +961,7 @@
       .img-6-wraper {
         position: absolute;
         bottom: 0px;
-        left:54%;
+        left:64%;
         .main-slide-img {
           //height: 250px;
         }
@@ -971,14 +971,14 @@
         position: absolute;
         bottom: 0px;
         height: 200px;
-        left:70%;
+        left:80%;
       }
       .img-8-wraper {
         position: absolute;
-        bottom: 0px;
+        bottom: 100px;
         left:80%;
         .main-slide-img {
-          //width: 200px;
+          width: 200px;
         }
       }
     }
