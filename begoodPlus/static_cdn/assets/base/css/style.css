@@ -203,7 +203,7 @@
 .icon-bar-2 {
   position: fixed;
   cursor: pointer;
-  top: 50%;
+  top: 80%;
   right: 0;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
