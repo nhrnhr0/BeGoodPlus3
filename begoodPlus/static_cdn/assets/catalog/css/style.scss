@@ -849,6 +849,11 @@
     background-size: cover;
     background-position: center;
   }
+  .swiper-slide {
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    text-shadow: -2px -1px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+  }
 
   .swiper-slide .title {
     font-size: 41px;

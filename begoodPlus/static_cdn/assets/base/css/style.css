@@ -197,6 +197,12 @@
   background-color: #3969B1;
 }
 
+.ui-autocomplete .search-item .logo {
+  height: 20px;
+  vertical-align: middle;
+  float: left;
+}
+
 .navbar {
   position: -webkit-sticky;
   position: sticky;
