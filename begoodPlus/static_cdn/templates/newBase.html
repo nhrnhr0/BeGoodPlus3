@@ -12,11 +12,15 @@
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="{%static 'assets/css/jquery-ui.css'%}">
     <link rel="stylesheet" href="{%static 'assets/base/css/style.css'%}">
+
+    <!-- BLOCK EXTRA HEAD -->
     {% block extra_head %}
     {% endblock %}
+    <!-- ENDBLOCK EXTRA HEAD -->
 </head>
 
 <body dir="rtl">
+    <!-- BLOCK BODY -->
     {% block body %}
 
     <div class="icon-bar">
@@ -195,7 +199,9 @@
         </div>
     </div>
 
+    <!-- BLOCK CONTENT -->
     {%block content %} {%endblock content%}
+    <!-- ENDBLOCK CONTENT -->
 
 
     <footer id="footer">
@@ -491,10 +497,12 @@
         getAllAlbums();
         initAutocomplete();
     </script>
-
+    <!-- BLOCK EXTRA_BODY -->
     {% block extra_body %}
     {% endblock %}
+    <!-- ENDBLOCK EXTRA_BODY -->
     {%endblock%}
+    <!-- ENDBLOCK BODY -->
 
 </body>
 

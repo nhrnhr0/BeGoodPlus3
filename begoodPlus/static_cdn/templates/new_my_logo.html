@@ -1,12 +1,15 @@
-{% include  'newBase.html'%}
+{% extends "newBase.html" %}
+
 {% load i18n %}
 {% load static %}
+{% load bootstrap5 %}
 
-<title>{% block head_title %}{% trans "קטלוג מוצרי פרסום" %}{% endblock %}</title>
-<link rel="shortcut icon" href="{%static 'my_logo_logo.jpg' %}">
+{% block head_title %}{% trans "קטלוג מוצרי פרסום" %}{% endblock %}
+
 
 
 {% block extra_head %}
+<link rel="shortcut icon" href="{%static 'my_logo_logo.jpg' %}">
 <style type="text/css">
     body,
     html {
@@ -29,13 +32,24 @@
         top: 0px;
     }*/
 </style>
-{%endblock extra_head%}
+{%endblock%}
 {% block content %}
 <div id="content">
-
-    <iframe width="100%" name="iframe_a" height="100%" frameborder="0" src="http://www.my-logo.co.il/{{redirect_to}}" />
+    <iframe width="100%" name="iframe_a" height="100%" frameborder="0" src="http://www.my-logo.co.il/{{redirect_to}}">
+    </iframe>
 </div>
-{% endblock content %}
+
+{% endblock %}
+
 
 {% block extra_body %}
-{% endblock extra_body %}
+<script>
+    (function() {
+        var icons = document.querySelectorAll('.icon-bar .icon');
+        for(var i = 0; i < icons.length; i++) {
+            icons[i].classList.remove('hide');
+            icons[i].classList.add('pick');
+        }
+    })();
+</script>
+{% endblock %}
