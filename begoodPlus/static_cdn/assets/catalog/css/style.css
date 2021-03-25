@@ -346,6 +346,14 @@
   direction: ltr;
 }
 
+.title-wraper #counter #year {
+  display: none;
+}
+
+.title-wraper #counter #month {
+  display: none;
+}
+
 .title-wraper .title {
   opacity: 0.5;
   background-color: #0d6efd;

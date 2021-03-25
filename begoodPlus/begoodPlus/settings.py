@@ -80,6 +80,7 @@ INSTALLED_APPS = [
     'leadsCampains',
     'myUserTasks',
     'myLogo',
+    'mySettings',
 
 
     'django.contrib.admin',

@@ -371,6 +371,13 @@
   justify-content: center;
   #counter {
     direction: ltr;
+    #year {
+      display: none;
+    }
+    #month {
+      display: none;
+    }
+
   }
 
   .title {

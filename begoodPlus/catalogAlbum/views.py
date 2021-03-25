@@ -44,8 +44,42 @@ def dprint(object, stream=None, indent=1, width=80, depth=None):
     printer = PrettyPrinter(stream=stream, indent=indent, width=width, depth=depth)
     printer.pprint(object)
 
-
 import json
+import datetime
+
+from mySettings.models import MySettings
+
+# TODO: solve this
+
+def catalog_timer(request, *args, **wkargs):
+    return None
+    timer,created = MySettings.objects.get_or_create(name='discount_counter')
+    if timer.value == None or timer.value == '':
+        time = timer.value
+        try:
+            time = datetime.datetime.strptime(time, '%S-%M-%H-%d-%y')
+        except:
+            time = renew_timer_date()
+            timer.value = str(time)
+            timer.save()
+    myTime = datetime.datetime.strptime(str(timer.value), '%S-%M-%H-%d-%y')
+    currTime = datetime.datetime.strptime(datetime.datetime.now(), '%S-%M-%H-%d-%y')
+
+    diffrence = myTime - currTime
+    if diffrence.days >= 1:
+        time = renew_timer_date()
+        timer.value = str(datetime.datetime.strptime(time, '%S-%M-%H-%d-%y'))
+        timer.save()
+
+
+    return JsonResponse(json.dump(timer.value))
+
+def renew_timer_date():
+    time = datetime.datetime.now() + datetime.timedelta(days=3) 
+    time = datetime.strftime(str(time), '%S-%M-%H-%d-%y')
+    return time
+
+
 def catalogView_api(request, *args, **wkrags):
     print('catalogView_api start')
     albums = CatalogAlbum.objects.prefetch_related('images').all()
