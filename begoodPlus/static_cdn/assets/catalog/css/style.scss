@@ -369,6 +369,9 @@
 .title-wraper {
   display: flex;
   justify-content: center;
+  #counter {
+    direction: ltr;
+  }
 
   .title {
     opacity: 0.5;

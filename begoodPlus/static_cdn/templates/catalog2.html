@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper@6.5.0/swiper-bundle.min.css">
 <script src="https://kit.fontawesome.com/022c0fea0b.js" crossorigin="anonymous" defer></script>
 <!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
-
+<link rel="stylesheet" href="{%static 'assets/catalog/css/countdownCube.css'%}"/>
 <link rel="stylesheet" href="{%static 'assets/catalog/css/style.css' %}">
 {% endblock extra_head%}
 
@@ -387,7 +387,11 @@
         <h3 class="album-fotter" style="display: none;" id="album_fotter_{{album.id}}">{{album.fotter}}</h3>
         <div class="title-wraper">
             <button data-album-id="{{album.id}}" onclick="openCategoryModal({{album.id}})"
-                class="title btn">{{album.title}}</button>
+                class="title btn">
+                <div id="counter"></div>
+                {{album.title}}
+                
+            </button>
         </div>
         <div class="container">
             <div name="slick-slider-{{album.id}}" id="slick-slider-{{forloop.parentloop.counter0}}"
@@ -653,10 +657,26 @@
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <!--<script src="https://zachleat.github.io/BigText/dist/bigtext.js"></script>-->
 <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
+<script type="text/javascript" src="{%static 'assets/catalog/js/countdowncube.js' %}"></script>
+
 <script src="{%static 'assets/catalog/js/catalog.js'%}"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $('#counter').countdownCube( {
+            target: '2022-03-01T10:00:00Z',
+            cubeSize: 50,
+            background: 'rgba( 255, 150, 150, 0.8 )',
+            color: 'white',
+            labelsTranslations: {'year': 'שנים',
+                       'month': 'חודשים',
+                       'day': 'ימים',
+                       'hour': 'שעות',
+                       'minute': 'דקות',
+                       'second': 'שניות'
+                       },
+        });
         /*var x = window.matchMedia("(min-width: 1312px)");
         if(x.matches == false) {
             $('.main-slide .text-wraper').bigtext();

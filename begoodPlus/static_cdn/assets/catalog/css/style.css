@@ -342,6 +342,10 @@
           justify-content: center;
 }
 
+.title-wraper #counter {
+  direction: ltr;
+}
+
 .title-wraper .title {
   opacity: 0.5;
   background-color: #0d6efd;
