@@ -386,6 +386,20 @@
   position: relative;
 }
 
+.slick-slider .my-slick-slide .big-discount {
+  position: absolute;
+  width: 45px;
+  bottom: 0px;
+  right: 0px;
+}
+
+.slick-slider .my-slick-slide .discount {
+  position: absolute;
+  width: 50px;
+  top: 0px;
+  right: 0px;
+}
+
 .slick-slider .my-slick-slide.checked + .like-btn .like-wrapper a {
   border: 1px solid white;
   color: #eee;

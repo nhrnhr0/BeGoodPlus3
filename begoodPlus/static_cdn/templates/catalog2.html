@@ -401,6 +401,13 @@
                             alt="{{img.description}}" />
                             <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>                        
                         -->
+                        {% if img.big_discount %}
+                            <img class="big-discount" alt="מבצע ענק!"src="{%static 'assets/catalog/imgs/big_discount.gif'%}" />
+                        {%endif%}
+                        {%if img.discount != '' %}
+                            <img class="discount" alt="discount" src="{{img.discount}}"/>
+                        {%endif%}
+
                             <img height="100px" width="100px" src="media/{{img.image_thumbnail}}"
                                 alt="{{img.description}}" />
 
@@ -734,6 +741,7 @@
             lazy: true,
             effect: 'coverflow',
             grabCursor: true,
+            loop: true,
             centeredSlides: true,
             slidesPerView: 5,
             loadPrevNext: true,

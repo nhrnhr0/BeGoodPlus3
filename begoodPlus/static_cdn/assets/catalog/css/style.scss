@@ -418,6 +418,18 @@
     &:hover {
       background-color: black;
     }*/
+    .big-discount {
+      position: absolute;
+      width: 45px;
+      bottom: 0px;
+      right: 0px;
+    }
+    .discount {
+      position: absolute;
+      width: 50px;
+      top:0px;
+      right: 0px;
+    }
 
 
     &.checked+.like-btn .like-wrapper a {

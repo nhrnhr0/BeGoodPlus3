@@ -14,7 +14,7 @@ import sys
 class CatalogImage(models.Model):
 
         
-    title = models.CharField(max_length=120, verbose_name=_("title"), unique=True)
+    title = models.CharField(max_length=120, verbose_name=_("title"), unique=False)
     description = models.TextField(verbose_name=_("description"))
     
     image = models.ImageField(verbose_name=_("image"))
@@ -22,6 +22,21 @@ class CatalogImage(models.Model):
 
     colors = models.ManyToManyField(to=Color)
     sizes = models.ManyToManyField(to=ProductSize)
+
+    
+    big_discount = models.BooleanField(default=False)
+    
+    NO_DISCOUNT = ''
+    DISCOUNT_10_PRES = '/static/assets/catalog/imgs/discount_10.png'
+    DISCOUNT_20_PRES = '/static/assets/catalog/imgs/discount_20.png'
+
+
+    DISCOUNT_TYPES = [
+        (NO_DISCOUNT, 'ללא הנחה'),
+        (DISCOUNT_10_PRES, '10% הנחה'),
+        (DISCOUNT_20_PRES, '20% הנחה'),
+    ]
+    discount = models.CharField(max_length=50, choices=DISCOUNT_TYPES, default=NO_DISCOUNT)
     
     class Meta():
         verbose_name = _('Catalog image')
