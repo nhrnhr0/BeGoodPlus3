@@ -256,7 +256,7 @@
         function getAllAlbums() {
             if (allAlbums == undefined) {
                 allAlbums = JSON.parse(myStorage.getItem('msAlbums'));
-                if (allAlbums == undefined) {
+                //if (allAlbums == undefined) {
                     $.ajax({
                         type: "GET",
                         url: '/catalog_api',
@@ -269,7 +269,7 @@
                         },
                         dataType: "json"
                     });
-                }
+                //}
             }
             console.log('getAllAlbums', allAlbums);
             return allAlbums;

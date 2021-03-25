@@ -462,7 +462,7 @@
     </div>
 </div>
 
-<div class="modal" id="catalogModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="catalogModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
@@ -741,6 +741,7 @@
             lazy: true,
             effect: 'coverflow',
             grabCursor: true,
+            speed: 100,
             loop: true,
             centeredSlides: true,
             slidesPerView: 5,
@@ -914,11 +915,12 @@
                     $('#modal-add-btn span').text('הוסף להצעת מחיר');
                     $('#modal-add-btn').removeClass('isAdded');
                 }
-
+                setTimeout(()=> {
                 $('#catalogModal').modal('show');
                 $('#catalogModal .close-modal').click(function () {
                     $('#catalogModal').modal('hide');
                 });
+            }, 250);
 
             }
             $('#modal-add-btn').click((e) => {
