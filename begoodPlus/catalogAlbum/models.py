@@ -41,7 +41,7 @@ class CatalogAlbum(models.Model):
 
 '''
 from mptt.models import MPTTModel, TreeForeignKey
-
+import datetime
 class CatalogAlbum(MPTTModel):
     title = models.CharField(max_length=120, verbose_name=_("title"))
     slug = models.SlugField(max_length=120, verbose_name=_("slug"))
@@ -51,6 +51,11 @@ class CatalogAlbum(MPTTModel):
     images = models.ManyToManyField(to=CatalogImage, related_name='album', blank=True, through='ThroughImage')
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     is_public = models.BooleanField(verbose_name=_('is public'), default=True)
+    
+    renew_for = models.DurationField(null=True, blank=True, default=datetime.timedelta(days=3))
+    renew_after = models.DurationField(null=True, blank=True, default=datetime.timedelta(days=1))
+    timer = models.DateTimeField(null=True, blank=True)
+    
     class MPTTMeta:
         order_insertion_by = ['title']
         

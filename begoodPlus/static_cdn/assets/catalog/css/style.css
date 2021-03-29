@@ -342,15 +342,15 @@
           justify-content: center;
 }
 
-.title-wraper #counter {
+.title-wraper .counter {
   direction: ltr;
 }
 
-.title-wraper #counter #year {
+.title-wraper .counter #year {
   display: none;
 }
 
-.title-wraper #counter #month {
+.title-wraper .counter #month {
   display: none;
 }
 

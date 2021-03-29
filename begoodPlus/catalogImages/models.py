@@ -38,6 +38,9 @@ class CatalogImage(models.Model):
     ]
     discount = models.CharField(max_length=50, choices=DISCOUNT_TYPES, default=NO_DISCOUNT)
     
+    
+    
+    
     class Meta():
         verbose_name = _('Catalog image')
         verbose_name_plural = _('Catalog images')

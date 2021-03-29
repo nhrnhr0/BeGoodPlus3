@@ -409,7 +409,10 @@
         <div class="title-wraper">
             <button data-album-id="{{album.id}}" onclick="openCategoryModal({{album.id}})" class="title btn">
                 {{album.title}}
-                <div id="counter"></div>
+                {%if album.timer != None %}
+                <div class="counter" name="counter" data-time="{{album.timer|safe}}">
+                </div>
+                {%endif%}
 
             </button>
         </div>
@@ -684,34 +687,45 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $.ajax({
-            type: "GET",
-            url: '/catalogTimer',
-            success: (json) => {
-                //allAlbums = ;
-                debugger;
-                console.log(json);
-                $('#counter').countdownCube({
-            target: '2022-03-01T10:00:00Z',
-            cubeSize: 50,
-            background: 'rgba( 255, 150, 150, 0.8 )',
-            color: 'white',
-            labelsTranslations: {
-                'year': 'שנים',
-                'month': 'חודשים',
-                'day': 'ימים',
-                'hour': 'שעות',
-                'minute': 'דקות',
-                'second': 'שניות'
-            },
-        });
-            },
-            error: (e) => {
-                console.log('error:', e);
-            },
-            dataType: "json"
-        });
-        
+        debugger;
+        var counters = $('[name="counter"]');
+        for (var i = 0; i < counters.length; i++) {
+            counter = counters[i];
+            var today = Date.now();
+            var time = new Date($(counter).data().time);
+            if (today < time.getTime()) {
+                $(counter).countdownCube({
+                    target: time, //'2022-03-01T10:00:00Z',
+                    cubeSize: 75,
+                    background: 'rgba( 255, 150, 150, 0.8 )',
+                    color: 'white',
+                    labelsTranslations: {
+                        'year': 'שנים',
+                        'month': 'חודשים',
+                        'day': 'ימים',
+                        'hour': 'שעות',
+                        'minute': 'דקות',
+                        'second': 'שניות'
+                    },
+                });
+            }
+        }
+        /*
+            $.ajax({
+                type: "GET",
+                url: '/catalogTimer',
+                success: (json) => {
+                    //allAlbums = ;
+                    debugger;
+                    console.log(json);
+                    
+                },
+                error: (e) => {
+                    console.log('error:', e);
+                },
+                dataType: "json"
+            });
+            */
         /*var x = window.matchMedia("(min-width: 1312px)");
         if(x.matches == false) {
             $('.main-slide .text-wraper').bigtext();
