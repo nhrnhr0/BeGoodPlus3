@@ -1,6 +1,6 @@
 from django.db import models
 from category.models import Category
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy  as _
 from productColor.models import ProductColor
 from provider.models import Provider
 from packingType.models import PackingType

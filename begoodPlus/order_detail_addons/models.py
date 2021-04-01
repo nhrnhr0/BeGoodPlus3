@@ -3,7 +3,7 @@ from django.db import models
 from order_detail.models import OrderDetail
 from glofa_types.models import GlofaType
 from color.models import Color
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy  as _
 
 # Create your models here.
 class OrderDetailAddons(models.Model):

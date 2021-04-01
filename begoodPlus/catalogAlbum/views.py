@@ -51,6 +51,7 @@ from mySettings.models import MySettings
 
 # TODO: solve this
 
+'''
 def catalog_timer(request, *args, **wkargs):
     return None
     timer,created = MySettings.objects.get_or_create(name='discount_counter')
@@ -78,10 +79,10 @@ def renew_timer_date():
     time = datetime.datetime.now() + datetime.timedelta(days=3) 
     time = datetime.strftime(str(time), '%S-%M-%H-%d-%y')
     return time
-
-
+'''
 def catalogView_api(request, *args, **wkrags):
     print('catalogView_api start')
+    #update_catalogAlbum_timers2()
     albums = CatalogAlbum.objects.prefetch_related('images').all()
     ser_context={'request': request}
     serializer = CatalogAlbumSerializer(albums,context=ser_context, many=True)

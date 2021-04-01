@@ -29,8 +29,16 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 MY_DOMAIN = 'https://ms-global.co.il' #'http://127.0.0.1:8000'
+'''
+from celery.schedules import crontab
 
-
+CELERY_BEAT_SCHEDULE = {
+    "sample_task": {
+        "task": "core.tasks.update_catalogAlbum_timers",
+        "schedule": crontab(minute="*/1"),
+    },
+}
+'''
 # Application definition
 
 INSTALLED_APPS = [
@@ -55,7 +63,7 @@ INSTALLED_APPS = [
     'tof',
     'bootstrap5',
     'drf_multiple_model',
-    
+    'django_celery_beat',
 
     # own
     'core',
@@ -92,6 +100,16 @@ INSTALLED_APPS = [
     
     #'debug_toolbar', # TODO: remove in production
 ]
+
+'''
+CELERY_BEAT_SCHEDULE = {
+    "scheduled_task": {
+        "task": "catalogAlbum.tasks.update_catalogAlbum_timers",
+        "schedule": 5.0,
+    }
+}
+'''
+
 
 # django-dbbackup
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
@@ -225,13 +243,16 @@ AUTH_PASSWORD_VALIDATORS = [
 #LANGUAGE_CODE = 'en-us'
 LANGUAGE_CODE = 'he'
 
-TIME_ZONE = 'UTC'
+#TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+# use timezone
+
+TIME_ZONE = 'Israel'
+USE_TZ = True 
 
 
 # Static files (CSS, JavaScript, Images)

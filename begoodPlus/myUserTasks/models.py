@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.sessions.models import Session
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy  as _
 
 # Create your models here.
 

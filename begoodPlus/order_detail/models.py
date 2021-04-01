@@ -3,7 +3,7 @@ from product.models import Product
 from productSize.models import ProductSize
 from productColor.models import ProductColor
 from order.models import Order
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy  as _
 
 class OrderDetail(models.Model):
     class Meta:

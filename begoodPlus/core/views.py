@@ -36,8 +36,10 @@ def get_session_key(request):
         request.session.save()
     return request.session.session_key
 
-
+#from .tasks import save_user_search
+import time
 def autocompleteModel(request):
+    start = time.time()
     if request.is_ajax():
         q = request.GET.get('q', '')
         # albums_qs = CatalogAlbum.objects.filter(Q(title__icontains=q) & Q(is_public=True))
@@ -55,15 +57,17 @@ def autocompleteModel(request):
             Q(album__title__icontains=q)
         ).distinct()
         
-        print(products_qs)
-        print(mylogo_qs)
+        #print(products_qs)
+        #print(mylogo_qs)
 
         ser_context={'request': request}
         products = SearchCatalogImageSerializer(products_qs,context=ser_context, many=True)
         mylogos = MyLogoProductSearchSerializer(mylogo_qs, context=ser_context, many=True)
         session = get_session_key(request)
+        
         search_history = UserSearchData.objects.create(session=session, term=q, resultCount=len(products.data)+ len(mylogos.data))
         search_history.save()
+        #save_user_search.delay(session=session, term=q,  resultCount=len(products.data)+ len(mylogos.data))
 
         all = products.data + mylogos.data
         all = all[0:20]
@@ -73,7 +77,8 @@ def autocompleteModel(request):
 
         
         
-        
+        end=time.time() - start
+        print('autocompleteModel: ', start-end)
         return JsonResponse(context)
 
 from .models import UserSearchData

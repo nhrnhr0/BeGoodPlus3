@@ -1,6 +1,6 @@
 from django.db import models
 from color.models import Color
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy  as _
 from django.utils.html import mark_safe
 
 #from product.models import Product

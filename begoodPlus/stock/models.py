@@ -4,7 +4,7 @@ from provider.models import Provider
 from productSize.models import ProductSize
 from productColor.models import ProductColor
 from product.models import Product
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy  as _
 from packingType.models import PackingType
 # Create your models here.
 class Stock(models.Model):

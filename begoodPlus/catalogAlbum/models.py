@@ -1,6 +1,7 @@
 from django.db import models
 # Create your models here.
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy  as _
+
 
 from catalogImages.models import CatalogImage
 from django.utils.html import mark_safe

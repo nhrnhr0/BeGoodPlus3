@@ -687,7 +687,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        debugger;
+        var t0 = performance.now()
         var counters = $('[name="counter"]');
         for (var i = 0; i < counters.length; i++) {
             counter = counters[i];
@@ -723,7 +723,7 @@
                 error: (e) => {
                     console.log('error:', e);
                 },
-                dataType: "json"
+                dataType: "json"```
             });
             */
         /*var x = window.matchMedia("(min-width: 1312px)");
@@ -1003,6 +1003,10 @@
             task);
         handleSearchTasks();
         updateClientLikedUI();
+        
+        var t1 = performance.now()
+        console.log("document ready took " + (t1 - t0) + " milliseconds.");
+
     });
 
     function handleSearchTasks() {
@@ -1036,6 +1040,8 @@
             myStorage.removeItem('user_click_task');
         }
     }
+    
+    
 </script>
 {%endblock%}
 

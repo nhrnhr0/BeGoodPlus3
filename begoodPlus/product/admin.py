@@ -4,7 +4,7 @@ from .models import Product
 from productImages.models import ProductImage
 from django.utils.html import mark_safe
 from django.conf import settings
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy  as _
 from django.contrib import messages 
 from django.db.models import Prefetch
 class productImageInline(admin.TabularInline):
