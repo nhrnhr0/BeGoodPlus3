@@ -1,36 +1,5 @@
-/* tasks management */
+
 const myStorage = window.sessionStorage;
-/*
-function getClientTasks() {
-    var tasks = myStorage.getItem('tasks');
-    if (tasks == undefined) {
-        return undefined;
-    } else {
-        return JSON.parse(tasks);
-    }
-}
-
-function getClientTask(taskName) {
-    var tasks = getClientTasks();
-    return tasks[taskName];
-}
-
-function setClientTask(taskName, taskData) {
-    var tasks = getClientTasks();
-    if (tasks == undefined) {
-        tasks = {}
-    }
-    tasks[taskName] = taskData;
-    myStorage.setItem('tasks', JSON.stringify(tasks));
-    displayTasks();
-}
-
-function deleteClientTask(taskName) {
-    var tasks = getClientTasks();
-    delete tasks[taskName]
-    myStorage.setItem('tasks', JSON.stringify(tasks));
-    displayTasks();
-}*/
 
 
 /* ================= icon bar functionality start ======================== */
@@ -80,7 +49,7 @@ document.addEventListener('scroll', function(e) {
     if (!ticking) {
         window.requestAnimationFrame(function() {
           handleSideIcons(lastKnownScrollPosition);
-          if(handleSection2Checkmarks!= undefined) {
+          if(typeof handleSection2Checkmarks !== 'undefined' && typeof handleSection2Checkmarks === 'function'){
             handleSection2Checkmarks(lastKnownScrollPosition);
           }
           ticking = false;
@@ -105,6 +74,109 @@ for(var i = 0; i < side_icons.length; i++) {
 
 /* ================= icon bar functionality end ======================== */
 
+function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
+
+
+function set_form_change_listener(selector, url) {
+    var form = $(selector)
+    
+    var url_field = form.find('[name=url]');
+    url_field.val(url);
+    
+    var uuid_field = form.find('[name=formUUID]');
+    if(uuid_field.val() == '' || uuid_field.val() == undefined) {
+        var uid = localStorage.getItem(selector + '_form_uuid');
+        if (uid == undefined || uid == null) {
+            localStorage.setItem(selector + '_form_uuid', uuidv4());
+            uid = localStorage.getItem(selector + '_form_uuid');
+        }
+        uuid_field.val(uid);
+    }
+    
+    fields = form.find('input')
+    for(var i = 0; i < fields.length;i++) {
+        var field = $(fields[i])
+        value = myStorage.getItem(selector + '_input_'+field.attr('id'));
+        if(value != undefined && value != null && value!= '') {
+            field.val(value)
+        }
+    }
+    fields.change(function() {
+        console.log('input change', $(this).val());
+        myStorage.setItem(selector + '_input_'+ $(this).attr('id'), $(this).val());
+    });
+    
+    form.change(function() {
+        data = $(selector).serializeArray();
+        data = JSON.stringify(data);
+        console.log('FORM CHANGED', url_field.val(), data);
+        update_contact_form(data);
+        
+    });
+    form.submit(function(e) {
+        e.preventDefault();
+        data = $(selector).serializeArray();
+        
+        // change submited to be true
+        for(var i = 0; i < data.length;i++) {
+            if(data[i]["name"] == "sumbited") {
+                data[i]["value"] = 'True'
+            }
+        }
+        data = JSON.stringify(data);
+        console.log('FORM submited', url_field.val(), data);
+        update_contact_form(data);
+        
+        
+        // reset form after submit
+        form.trigger('reset');
+        
+        fields = form.find('input')
+        for(var i = 0; i < fields.length;i++) {
+            var field = $(fields[i])
+            value = myStorage.getItem(selector + '_input_'+field.attr('id'));
+            if(value != undefined && value != null && value!= '') {
+                //field.val('')
+                myStorage.setItem(selector + '_input_'+field.attr('id'), '');
+            }
+        }
+        
+        localStorage.setItem(selector + '_form_uuid', uuidv4());
+        uuid_field.val(localStorage.getItem(selector + '_form_uuid'));
+    });
+}
+
+function update_contact_form(data){
+    $.ajax({
+        type: "POST",
+        url: '/form-change',
+        data: {
+            'content':data,
+            'csrfmiddlewaretoken': getCookie('csrftoken'),
+        },
+        success: function() {
+            console.log('form-change success');
+        },
+        fail: function() {
+            console.log('form-change fail');
+        },
+        error: function() {
+            console.log('form-change fail');
+        },
+        dataType: 'json',
+    });
+}
+
+set_form_change_listener('#contact-form', 'businessOwner');
+
+
+/*
 function set_autosave(selector, autosave_identifier) {
     if (sessionStorage.getItem(autosave_identifier)) {
         selector.value = sessionStorage.getItem(autosave_identifier);
@@ -143,6 +215,7 @@ function resetFormAutoSave(formSelector) {
 function resetContactFormAutoSave() {
     resetFormAutoSave($('#contact-form'));
 }
+*/
 /** contact form submit */
 /* TODO: this function dose not clean the autosave data... */
 /*
@@ -203,18 +276,20 @@ $(function () {
                 $(this).removeClass('hover-show');
             }
         )
-
-
+        
+        /*
         if (window.location.hash == '#contact-form') {
             setTimeout(() => {
                 window.scrollTo(0, document.body.scrollHeight);
             }, 500);
         }
 
-        getUserTasks();
+        getUserTasks();*/
+        
     });
 });
 
+/*
 function startGetUserTasksLoop() {
     setInterval(getUserTasks, 15000);
 }
@@ -236,16 +311,6 @@ function getUserTasks() {
         success: function (json) {
             data = json;
             var markup = ``;
-            /*
-            for (var i = 0; i < data.length; i++) {
-                if (data[i].task_name == "catalog-ec6bb117-c8fa-4a38-989a-ab0e0805e44e") {
-                    markup += `<li><a class="dropdown-item" onclick="myStorage.setItem('user_click_task', '${data[i].task_name}');" data-task="${data.taskName}" href="/testCatalog#contact-form">לא סיימתי למלא טופס בדף הקטלוג </a></li>`
-                } else if (data[i].task_name == "main-ec6bb117-c8fa-4a38-989a-ab0e0805e44e") {
-                    markup += `<li><a class="dropdown-item" onclick="myStorage.setItem('user_click_task', '${data[i].task_name}');" data-task="${data.taskName}" href="/test#contact-form">לא סיימתי למלא טופס בדף הבית </a></li>`
-                } else if (data[i].task_name == "products-ec6bb117-c8fa-4a38-989a-ab0e0805e44e") {
-                    markup += `<li><a class="dropdown-item" onclick="myStorage.setItem('user_click_task', '${data[i].task_name}');" data-task="${data.taskName}" href="/testCatalog">לחץ כאן לשליחת טופס מוצרים אהובים </a></li>`
-                }
-            }*/
             for (var i = 0; i < data.length; i++) { 
                 if(data[i].task_name == "catalog-ec6bb117-c8fa-4a38-989a-ab0e0805e44e") {
                     markup += `<li><a class="dropdown-item" onclick="taskClicked('${data[i].task_name}', '/testCatalog#contact-form', 'לא סיימתי למלא טופס בדף הקטלוג');">לא סיימתי למלא טופס בדף הקטלוג</li>`
@@ -267,13 +332,6 @@ function getUserTasks() {
                 el.offsetWidth = el.offsetWidth;
                 el.classList.add('notify');
             }
-            /*
-            if (count === 0) {
-                el.classList.remove('show-count');
-            }else {
-                
-                el.classList.add('show-count');
-            }*/
         },
         error: function (e) {
             console.log('error: ', e);
@@ -285,3 +343,4 @@ function getUserTasks() {
 setContactFormAutoSave();
 //displayTasks();
 startGetUserTasksLoop();
+*/

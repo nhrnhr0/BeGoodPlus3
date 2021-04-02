@@ -170,7 +170,7 @@ MIDDLEWARE = [
     # own
     #'django.middleware.locale.LocaleMiddleware',
     'django_user_agents.middleware.UserAgentMiddleware',
-    
+    'core.middleware.BaseMiddleware',
 ]
 
 # TODO: remove in production (SQL debug)

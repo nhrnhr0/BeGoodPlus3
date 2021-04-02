@@ -1,11 +1,33 @@
+
+
+
+
+
+
+set_form_change_listener('#business-contact-form', 'main')
+
+
+
+
+
+
+
+
+
+
+
+/*--------------------------------------*/
+/** START carusel implementation */
+/*--------------------------------------*/
 var carousel = document.querySelector('.carousel');
 if(carousel != null) {
   var cells = carousel.querySelectorAll('.carousel__cell');
-}
+  var cellWidth = carousel.offsetWidth;
+  var cellHeight = carousel.offsetHeight;
+
 var cellCount; // cellCount set from cells-range input value
 var selectedIndex = 0;
-var cellWidth = carousel.offsetWidth;
-var cellHeight = carousel.offsetHeight;
+
 var isHorizontal = true;
 var rotateFn = isHorizontal ? 'rotateY' : 'rotateX';
 var radius, theta;
@@ -85,6 +107,7 @@ function onOrientationChange() {
   rotateFn = isHorizontal ? 'rotateY' : 'rotateX';
   changeCarousel();
 }
+/*
 var isCaruselLooping;
 function initLoopCarusel() {
   isCaruselLooping = true;
@@ -101,28 +124,8 @@ function initLoopCarusel() {
       isCaruselLooping=true
     } );
 
-}
+}*/
 
-function loopCarusel() {
-  if(isCaruselLooping) {
-    /*const regex1 = 'rotate.\((?:.+?)deg\)/g';
-    const startIndex = carousel.style.transform .indexOf('rotate') + 8
-    const endIndex = carousel.style.transform .indexOf('deg', startIndex);
-    var newRotation = parseInt(carousel.style.transform .substring(startIndex, endIndex));
-    //console.log(theta * newRotation * -1);
-    carousel.style.transform = 'translateZ(' + -radius + 'px) ' + 
-          rotateFn + '(' + (newRotation+10) + 'deg)';
-
-    activeIndex = parseInt(newRotation%360 /theta);
-    selectedIndex = cells.length -  activeIndex;
-    console.log(cells.length - activeIndex);*/
-
-  }
-  /*if(isCaruselLooping) {
-    $('.next-button').click();
-    console.log('next click');
-  }*/
-}
 
 
 document.addEventListener('touchstart', handleTouchStart, false);
@@ -184,6 +187,15 @@ function isSwipeInCD() {
   return swipeCD;
 }
 
+
+onOrientationChange();
+}
+/*--------------------------------------*/
+/** END carusel implementation */
+/*--------------------------------------*/
+
+
+/*
 function setCatalogTaskListiner() {
   var frm = $('.contact-form');
   frm.change(function(){
@@ -229,12 +241,12 @@ function submitMainContactForm() {
   debugger;
   updateMainTask(isSubmited=true);
 }
-
+*/
 // set initials
-onOrientationChange();
-initLoopCarusel();
-setCatalogTaskListiner();
-getUserTasks();
+
+//initLoopCarusel();
+//setCatalogTaskListiner();
+//getUserTasks();
 
 /*function submitMainContactForm() { 
   var frm = $('.contact-form');

@@ -144,10 +144,8 @@
         </div>
         <div class="contact-form-wraper2">
             <div id="contactForm" class="contact-form-wraper">
-                <form id="contact-form" action="{%url 'save-contact-form' '/test'%}" method="post" class="contact-form">
+                <form name="contact-form" id="business-contact-form" action="{%url 'save-contact-form' '/test'%}" method="post" class="contact-form">
                     {% csrf_token %}
-                    <input type="hidden" name="taskName" id="taskName"
-                        value="main-ec6bb117-c8fa-4a38-989a-ab0e0805e44e">
                     <h2 class="form-header">
                         לקבלת הצעת מחיר משתלמת <div class="mark-strong">ללא</div> עלות <div class="mark-strong">וללא
                         </div> התחייבות השאירו פרטים ומיד נחזור אליכם
@@ -178,6 +176,8 @@
 <script src="{%static 'assets/main/js/main.js' %}"></script>
 
 <script>
+
+    /*
     function activateUserTask(task) {
         if (task == "main-ec6bb117-c8fa-4a38-989a-ab0e0805e44e") {
             setTimeout(() => {
@@ -188,6 +188,7 @@
             }, 1000);
         }
     }
+    */
 </script>
 
 {%endblock extra_body %}

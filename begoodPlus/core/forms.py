@@ -17,6 +17,8 @@ class FormBeseContactInformation(BaseForm):
     email = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'אימייל'}), label='',)
     phone = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'פאלפון - חובה'}), label='',)
     message = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'הודעה', 'rows':'2'}), label='', )
+    url = forms.URLField(widget=forms.HiddenInput())
+    sumbited = forms.BooleanField(widget=forms.HiddenInput())
     def __init__(self, *args, **kwargs):
         super(FormBeseContactInformation, self).__init__(*args, **kwargs)
         self.fields['message'].required = False

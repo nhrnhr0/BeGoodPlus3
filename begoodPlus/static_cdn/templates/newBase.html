@@ -170,21 +170,20 @@
                 </div>
                 <div class="modal-body">
                     <div class="contact-form-wraper2">
-                        <div id="contactForm" class="contact-form-wraper">
+                        <div id="contactFormBase" class="contact-form-wraper">
                             <form id="contact-form"  action="{%url 'save-contact-form' '/test'%}" method="post" class="contact-form">
                                 {% csrf_token %}
-                                <input type="hidden" name="taskName" id="taskName" value="main-ec6bb117-c8fa-4a38-989a-ab0e0805e44e">
+                                
                                 <h2 class="form-header">
                                     לקבלת הצעת מחיר משתלמת <div class="mark-strong">ללא</div> עלות <div class="mark-strong">וללא</div> התחייבות השאירו פרטים ומיד נחזור אליכם
                                 </h2>
-                                {% bootstrap_form contactForm %}
-                                {% buttons %}
-                                <!--
-                                    <button type="submit" class="btn btn-success form-submit">לשיחת יעוץ ללא עלות וללא התחייבות השאירו
-                                    פרטים</button>
-                                    -->
-                                    <input type="button" class="btn btn-success form-submit"  value="לשליחת טופס לחץ כאן" id="btnsubmit" onclick="submitMainContactForm()">
-                                {% endbuttons %}
+                                {% for field in contactForm %}
+                                    <div class="form-group">
+                                        <input type="{{field.field.widget.input_type}}" class="form-control" placeholder="{{field.field.widget.attrs.placeholder}}" name="{{field.name}}" id="base_{{field.id_for_label}}">
+                                    </div>
+                                    
+                                {% endfor %}
+                                    <button type="submit" class="btn btn-success form-submit">לשליחת טופס לחץ כאן</button>
                             </form>
                         </div>
                     </div>
@@ -281,7 +280,6 @@
             return allAlbums;
         }
         var search_term_id = -1;
-
         function initAutocomplete() {
             $('#search').autocomplete({
                     source: function (request, response) {
@@ -293,15 +291,6 @@
                                 q: request.term
                             },
                             success: function (data) {
-                                console.log('response', data);
-                                /*var items = $.map(data.all, function (value, key) {
-                                    console.log('map,', value, key)
-                                    return {
-                                        label: value.title,
-                                        value: value.title,
-                                        data: value
-                                    };
-                                });*/
                                 search_term_id = data.id;
                                 var items = [];
                                 for (var i = 0; i < data.all.length; i++) {
@@ -406,13 +395,6 @@
                     },
                 })
                 .autocomplete("instance")._renderItem = function (ul, item) {
-
-
-
-            
-                    console.log(item);
-                    //console.log(ul.html());
-
                     var data = item.data;
                     if (data.my_type == 'album') {
                         return $(
@@ -439,7 +421,7 @@
                                 `<div class="search-item" data-type='product' data-id='${item.data.id}'>
                                     <img class="logo" src='http://www.my-logo.co.il/images/my_logo_logo.jpg' alt="My Logo">
                                     <img style="height:25px;" src="${item.data.img}" />
-                                     ${item.data.title}
+                                    ${item.data.title}
                                 </div>`
                             )
                             .appendTo(ul);
@@ -454,38 +436,7 @@
                             </li>`
                         ).prependTo(ul);
                     }
-
-                    /*
-                    var album = item.data.images[1];
-                    var category = ul.find(`li[name=list-category-${album.id}]`)[0];
-                    if(category == undefined) {
-                        category = $(`<li name="list-category-${album.id}"><div class="search-item" data-type='album' data-id='${album.id}'>${album.title}</div></li>`);
-                        category.prependTo(ul);
-                        //category = category.find('ul')
-                    }
-                    return $( "<li>" )
-                            .append( `<div class="search-item" data-type='product' data-id='${item.value.id}'><img style="height:25px;" src="${item.data.image}" /> ${item.data.title} </div>`)
-                            .appendTo(ul);
-                    console.log(ul.html());
-                    return ul;
-                    */
-
-                    /*
-                    if(item.my_type == 'album') {
-                        return $( "<li>" )
-                            .append( `<div class="search-item" data-url="${item.url}" data-type='album' data-id='${item.id}'>  ${item.title} </div>`)
-                            .appendTo( ul );
-                    }else if(item.my_type == 'product') {
-                        return $( "<li>" )
-                            .append( `<div class="search-item" data-type='product' data-id='${item.id}'><img style="height:25px;" src="${item.image}" /> ${item.title} </div>`)
-                            .appendTo( ul );
-                    }else {
-                        return ul;
-                    }*/
-
                 };
-        
-        
                 $('.icon-bar-2').click(()=> {
                         $('#buisnessModal').modal('show');
                         $('#buisnessModal .close-modal').click(function () {
