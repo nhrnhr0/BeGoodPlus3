@@ -54,6 +54,7 @@ from leadsCampains.views import landingPageFormSubmit
 from catalogAlbum.views import catalogView2,catalogView_api#,catalog_timer
 from myUserTasks.views import updateContactFormUserTaskView, getUserTasksView,updateProductsFormUserTaskView,getUserCartView,delUserLikedProductView
 from myLogo.views import my_logo_view
+from customerCart.views import cart_changed
 urlpatterns = [
     #path('jet/', include('jet.urls', 'jet')),
     path('admin/', admin.site.urls),
@@ -103,6 +104,7 @@ urlpatterns = [
     path('search',autocompleteModel),
     path('search-click', autocompleteClick),
     path('form-change', form_changed, name='form-change'),
+    path('cart-change', cart_changed, name='cart-change'),
 ]
 
 if settings.DEBUG:

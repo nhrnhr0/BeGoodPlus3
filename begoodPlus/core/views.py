@@ -141,24 +141,10 @@ def form_changed(request):
         customer.save()
         
         pp = '\ncustomer: {id: ' + str(customer.id) + ', new: ' + str(customer_created) + '}\n'
-        pp += '\tinfo: {id:' +  str(obj.id) + ', new: ' + str(created) + ', name: ' + name + ', email: ' + email + ', message: ' + message  + '}\n'
+        pp += '\tinfo: {id:' +  str(obj.id) + ', new: ' + str(created) + ', name: ' + name + ', email: ' + email + ', message: ' + message  + ', url: ' + url + ' }\n'
         print(pp)
         
         
         return JsonResponse({'status':'ok'})
-        '''
-        form = FormBeseContactInformation(request.POST)
-        
-        if form.is_valid():
-            instance = form.save()
-            # serialize in new friend object in json
-            ser_instance = serializers.serialize('json', [ instance, ])
-            # send to client side.
-            return JsonResponse({"instance": ser_instance}, status=200)
-        else:
-            # some form errors occured.
-            return JsonResponse({"error": form.errors}, status=400)
-        '''
     else:
         print('why not post')
-        

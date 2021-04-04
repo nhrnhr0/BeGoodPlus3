@@ -1,5 +1,107 @@
 
 
+
+
+set_form_change_listener('#catalog-contact-form', 'catalog');
+set_cart_form_change_listener('#likedProductsForm');
+
+
+function set_cart_form_change_listener(selector) {
+  var form = $(selector)
+  
+  var uuid_field = form.find('[name=formUUID]');
+  if(uuid_field.val() == '' || uuid_field.val() == undefined) {
+      var uid = localStorage.getItem(selector + '_form_uuid');
+      if (uid == undefined || uid == null) {
+          localStorage.setItem(selector + '_form_uuid', uuidv4());
+          uid = localStorage.getItem(selector + '_form_uuid');
+      }
+      uuid_field.val(uid);
+  }
+  
+  fields = form.find('input')
+  for(var i = 0; i < fields.length;i++) {
+      var field = $(fields[i])
+      value = myStorage.getItem(selector + '_input_'+field.attr('id'));
+      if(value != undefined && value != null && value!= '') {
+          field.val(value)
+      }
+  }
+  fields.change(function() {
+      console.log('input change', $(this).val());
+      myStorage.setItem(selector + '_input_'+ $(this).attr('id'), $(this).val());
+  });
+  
+  form.change(function() {
+  debugger;
+      data = $(selector).serialize();
+      //data = JSON.stringify(data);
+      //console.log('FORM CHANGED', url_field.val(), data);
+      update_cart_to_server(data);
+      
+  });
+  form.submit(function(e) {
+      e.preventDefault();
+      data = $(selector).serialize();
+      
+      // change submited to be true
+      for(var i = 0; i < data.length;i++) {
+          if(data[i]["name"] == "sumbited") {
+              data[i]["value"] = 'True'
+          }
+      }
+      data = JSON.stringify(data);
+      console.log('FORM submited', url_field.val(), data);
+      update_cart_to_server(data);
+      
+      
+      // reset form after submit
+      form.trigger('reset');
+      
+      fields = form.find('input')
+      for(var i = 0; i < fields.length;i++) {
+          var field = $(fields[i])
+          value = myStorage.getItem(selector + '_input_'+field.attr('id'));
+          if(value != undefined && value != null && value!= '') {
+              //field.val('')
+              myStorage.setItem(selector + '_input_'+field.attr('id'), '');
+          }
+      }
+      
+      localStorage.setItem(selector + '_form_uuid', uuidv4());
+      uuid_field.val(localStorage.getItem(selector + '_form_uuid'));
+  });
+}
+
+function update_cart_to_server(data){
+
+  $.ajax({
+      type: "POST",
+      url: '/cart-change',
+      data: {
+          'content':data,
+          'csrfmiddlewaretoken': getCookie('csrftoken'),
+      },
+      success: function() {
+          console.log('form-change success');
+      },
+      fail: function() {
+          console.log('form-change fail');
+      },
+      error: function() {
+          console.log('form-change fail');
+      },
+      dataType: 'json',
+  });
+}
+
+
+
+
+
+
+
+// fix category modal overlaping product modal
 $(document).on('show.bs.modal', '.modal', function (event) {
   var zIndex = 1040 + (10 * $('.modal:visible').length);
   $(this).css('z-index', zIndex);
@@ -11,6 +113,7 @@ $(document).on('hidden.bs.modal', '.modal', function () {
   $('.modal:visible').length && $(document.body).addClass('modal-open');
 });
 
+// handle section 2 check-list and proggres bar amimation
 var check_list_inputs = document.querySelectorAll('.section-2 .check-list ul li input');
 function handleSection2Checkmarks(pos) {
     var precent = 0;
@@ -74,6 +177,7 @@ function handleSection2Checkmarks(pos) {
     $('.progress-bar').css('width', precent+'%');
   }
 
+/*
 function setCatalogTaskListiner() {
   var frm = $('.contact-form');
   frm.change(function () {
@@ -127,8 +231,6 @@ function updateCatalogTask(isSubmited = false) {
 
 function submitCatalogContactForm() {
   updateCatalogTask(isSubmited = true);
-
-
 }
 
 function submitCatalogProducts() {
@@ -167,41 +269,17 @@ function updateLikedProductsTask(isSubmited = false) {
         $('#cartProductsList').empty();
         getUserTasks();
       }
-
-      /*getUserTasks();
-      for(var i = 0; i< json.products_list.length; i++) {
-        img = json.products_list[i];
-        var slick_slide = $(`[data-prod-id="${img.id}"`);
-        slick_slide.data('is-added',true);
-        updateClientLikedUI1(img.id);
-      }*/
     },
     dataType: "json"
   });
 }
 
 
-
-
-
-// handle client liked images:
-/*
-function getClientLinkedProducts() {
-  var products = myStorage.getItem('client_liked_products');
-  if (products == undefined) {
-    return undefined;
-  } else {
-    return JSON.parse(products);
-  }
-}
-
-function setClientLinkedProducts(products) {
-  myStorage.setItem('client_liked_products', JSON.stringify(products));
-}
-*/
 function modal_add_btn_click() {
 
 }
+
+*/
 
 function updateClientLikedUI() {
   console.log('hey');
@@ -213,10 +291,18 @@ function updateClientLikedUI() {
 }
 
 function updateClientLikedUI1(prodId) {
+  //TODO: category-item checked is not working becose the category modal is dynamicly generated
+
+  // update button UI in the catalog page
   $(`.my-slick-slide[data-prod-id=${prodId}]`).addClass('checked');
   $(`.category-item[data-category-prod-id="${prodId}"]`).addClass('checked');
   $(`.my-slick-slide[data-prod-id=${prodId}] + .like-btn span`).text('נוסף להצעת מחיר');
   $(`.category-item[data-category-prod-id=${prodId}] .like-btn .like-wrapper a span`).text('נוסף להצעת מחיר');
+  
+  // update button UI in the product's modal
+  $('#modal-add-btn').prop('disabled', true);
+  $('#modal-add-btn span').text('נוסף להצעת מחיר');
+  $('#modal-add-btn').addClass('isAdded');
 }
 
 function removeClientLikedUI1(prodId) {
@@ -248,17 +334,20 @@ function removeClientLikeProduct(prodId) {
       console.log('product deleted in the server', json);
     }
   });
-  setTimeout(updateLikedProductsTask, 500);
+  //setTimeout(updateLikedProductsTask, 500);
 
 }
 
 function addClientLikeProduct(prodId) {
-  //products = $('#likedProductsForm > products[]');
+  /** 
   $('#likedProductsForm').append(`<input type="text" name="products[]" value="${prodId}"id="">`);
   $('#likedProductsForm').trigger('change');
-  $('#modal-add-btn').prop('disabled', true);
-  $('#modal-add-btn span').text('נוסף להצעת מחיר');
-  $('#modal-add-btn').addClass('isAdded');
+  */
+  
+  /*
+  */
+  $('#likedProductsForm').append(`<input type="text" name="products[]" value="${prodId}" id="">`);
+  $('#likedProductsForm').trigger('change');
   updateClientLikedUI1(prodId);
 
 
@@ -268,27 +357,11 @@ function addClientLikeProduct(prodId) {
   setTimeout(() => {
     $('#navbarDropdown').addClass('notify');
   }, 200);
-  setTimeout(updateProductsCart, 500);
-  setTimeout(getUserTasks, 500);
+  //setTimeout(updateProductsCart, 500);
+  //setTimeout(getUserTasks, 500);
   console.log('addClientLikeProduct done');
-  /*
-  products = getClientLinkedProducts();
-  var found = false;
-  if (products == undefined) {
-    products = [];
-  }
-  for (var i = 0; i < products.length; i++) {
-    if (products[i] == prodId) {
-      found = true;
-    }
-  }
-  if (found == false) {
-    products.push(prodId);
-    setClientLinkedProducts(products);
-    updateLikedProductsTask();
-  }*/
 }
-
+/*
 function updateProductsCart() {
   $.ajax({
     type: "GET",
@@ -321,6 +394,7 @@ function updateProductsCart() {
     dataType: "json"
   });
 }
+*/
 
 // delete the product from the user cart in the html and in the form
 function deleteLikedProductBtn(prodId) {
@@ -334,7 +408,7 @@ function loadProductsModal() {
   $('#likedProductsModal .close-modal').click(function () {
     $('#likedProductsModal').modal('hide');
   });
-  updateProductsCart();
+  //updateProductsCart();
 }
 
 function openImageProductModal(prodId) {
@@ -369,7 +443,7 @@ function openImageProductModal(prodId) {
 function openCategoryModal(albumId) {
   //updateLikedProductsTask();
   $('#catalogModal .close-modal').click();
-  updateProductsCart();
+  //updateProductsCart();
   var albums = getAllAlbums();
   var albumIndex = albums.findIndex((val, idx, obj) => {
     return val.id == albumId
@@ -438,5 +512,5 @@ function openCategoryModal(albumId) {
   });
 }
 
-setCatalogTaskListiner();
-getUserTasks();
+//setCatalogTaskListiner();
+//getUserTasks();

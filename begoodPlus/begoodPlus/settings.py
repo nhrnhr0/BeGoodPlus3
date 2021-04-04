@@ -89,6 +89,7 @@ INSTALLED_APPS = [
     'myUserTasks',
     'myLogo',
     'mySettings',
+    'customerCart',
 
 
     'django.contrib.admin',

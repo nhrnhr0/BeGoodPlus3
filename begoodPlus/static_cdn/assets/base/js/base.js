@@ -116,7 +116,7 @@ function set_form_change_listener(selector, url) {
         data = $(selector).serializeArray();
         data = JSON.stringify(data);
         console.log('FORM CHANGED', url_field.val(), data);
-        update_contact_form(data);
+        update_contact_to_server(data);
         
     });
     form.submit(function(e) {
@@ -131,7 +131,7 @@ function set_form_change_listener(selector, url) {
         }
         data = JSON.stringify(data);
         console.log('FORM submited', url_field.val(), data);
-        update_contact_form(data);
+        update_contact_to_server(data);
         
         
         // reset form after submit
@@ -152,7 +152,7 @@ function set_form_change_listener(selector, url) {
     });
 }
 
-function update_contact_form(data){
+function update_contact_to_server(data){
     $.ajax({
         type: "POST",
         url: '/form-change',
