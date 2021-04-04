@@ -494,7 +494,6 @@ $('#MyModle').on('show.bs.modal', function (event) {
         row.find(".selectpicker").selectpicker();
         
         locationTd = row.find("[name=locationTd]");
-        debugger;
         var glofaData = JSON.parse(window.localStorage.getItem('glofa_data'+product.id));
         var images = {};
         for(var i = 0; i < glofaData.data.length; i++) {

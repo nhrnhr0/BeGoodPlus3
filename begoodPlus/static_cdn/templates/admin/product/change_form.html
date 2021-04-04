@@ -181,7 +181,6 @@
         var newStocks = cartesian([selected_provider], [selected_packingType], selected_sizes, selected_colors, [amount]);
         // read the id field of the product in the change_form
         // used to send it with ajax to add all the stocks to the product
-        debugger;
         multiple_stocks_for_insertion = {'stocks': newStocks,
                                         'product': product_id};
 
@@ -225,7 +224,6 @@
                         return dic[i];
                 }
             }
-            debugger;
             image_src = undefined
             if (product_row[5]) {
                 image_src = 'admin/img/icon-yes.svg'

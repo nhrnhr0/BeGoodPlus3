@@ -63,7 +63,7 @@ INSTALLED_APPS = [
     'tof',
     'bootstrap5',
     'drf_multiple_model',
-    'django_celery_beat',
+    #'django_celery_beat',
 
     # own
     'core',
@@ -215,6 +215,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'OPTIONS': {
+            'timeout': 20, 
+        }
     }
 }
 

@@ -799,34 +799,6 @@
 }
 
 
-#likedProductsModal {
-  .modal-body {
-    max-height: 80vh;
-    overflow: scroll;
-
-    #cartProductsList {
-      ul {
-        li {
-          background: #FFD880;
-          border-radius: 10px;
-          margin: 5px;
-          padding: 5px;
-          display: flex;
-          justify-content: space-between;
-
-          button {
-            border: 0;
-            background-color: transparent;
-
-            &:hover {
-              color: red;
-            }
-          }
-        }
-      }
-    }
-  }
-}
 
 #ImageProductsModal {
   .modal-dialog {

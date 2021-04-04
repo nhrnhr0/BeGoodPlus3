@@ -173,6 +173,62 @@ function update_contact_to_server(data){
     });
 }
 
+
+
+
+
+function openCart() {
+    debugger;
+    console.log('openCart');
+    $('#likedProductsModal').modal('show');
+    $('#likedProductsModal .close-modal').click(function () {
+        $('#likedProductsModal').modal('hide');
+    });
+    var products_elem = $('#likedProductsModal #cartProductsList');
+    products_elem.empty();
+
+    var products_markup = '<ul>';
+
+    var cart = JSON.parse(myStorage.getItem('cart'));
+    console.log(cart);
+    products = cart.products;
+    for(var i = 0; i < products.length; i++) {
+        products_markup  += `<li data-prod-id="${products[i].id}"><img src="${products[i].image}"/>${products[i].id} -> ${products[i].title} <button type="button" onclick="remove_product(${products[i].id})">X</button></li>`
+    }
+    products_markup += '</ul>';
+    products_elem.html(products_markup);
+}
+
+function remove_product(prodId) {
+
+    // delete for the client UI:
+
+    // cart modal
+    $(`#likedProductsForm :input[value=${prodId}]`).remove();
+    $(`.my-slick-slide[data-prod-id=${prodId}]`).removeClass('checked');
+    $(`.category-item[data-category-prod-id="${prodId}"]`).removeClass('checked');
+    $(`.my-slick-slide[data-prod-id=${prodId}] + .like-btn span`).text('הוסף להצעת מחיר');
+    $(`.category-item[data-category-prod-id=${prodId}] .like-btn .like-wrapper a span`).text('הוסף להצעת מחיר');
+
+    // send to server
+    $(`#likedProductsForm #cartProductsList ul li[data-prod-id='${prodId}']`).remove();
+    $(`#likedProductsForm`).trigger('change')
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 set_form_change_listener('#contact-form', 'businessOwner');
 
 

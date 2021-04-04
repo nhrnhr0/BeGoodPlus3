@@ -485,6 +485,42 @@
   color: #ccc;
 }
 
+#likedProductsModal .modal-body {
+  max-height: 80vh;
+  overflow: scroll;
+}
+
+#likedProductsModal .modal-body #cartProductsList ul li {
+  position: relative;
+  background: #FFD880;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#likedProductsModal .modal-body #cartProductsList ul li button {
+  border: 0;
+  background-color: transparent;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  -webkit-transform: translate(25%, 25%);
+          transform: translate(25%, 25%);
+}
+
+#likedProductsModal .modal-body #cartProductsList ul li button:hover {
+  color: red;
+}
+
+#likedProductsModal .modal-body #cartProductsList ul li img {
+  width: 25px;
+  height: 25px;
+  margin-left: 10px;
+}
+
 .contact-form-wraper2 {
   background-color: #FFD880;
   padding-top: 5px;

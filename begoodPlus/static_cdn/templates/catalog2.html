@@ -579,69 +579,6 @@
 </div>
 
 
-<div class="modal" id="likedProductsModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-center">
-                <img class="header-logo header-logo-r" src="{%static 'assets/base/imgs/logo_ms.png' %}" />
-                <h5 class="modal-title  w-100">מוצרים שאהבתי</h5>
-                <img class="header-logo header-logo-l" src="{%static 'assets/base/imgs/begood_plus_logo.png' %}" />
-
-                <button type="button" class="close close-modal" data-dismiss="likedProductsModal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="likedProductsForm">
-                
-                    {%csrf_token%}
-                    
-                    
-                    <input type="text" name="formUUID" class="form-control" placeholder="FormUUID" title="" required="" id="id2_formUUID">
-                    
-                    <div class=" row">
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label class="control-label">Name</label>
-                                <div>
-                                    <input type="text" class="form-control input-lg" id="id2_name" name="name" value="my-name"
-                                        required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">E-Mail Address</label>
-                                <div>
-                                    <input type="email" class="form-control input-lg" id="id2_email" name="email"
-                                        value="" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label">Phone</label>
-                                <div>
-                                    <input type="tel" class="form-control input-lg" id="id2_phone" name="phone" value=""
-                                        required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6" id="cartProductsList">
-                            <h1>הוסף מוצרים לעגלה</h1>
-                        </div>
-                    </div>
-                
-
-                </form>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" onclick="submitCatalogProducts()" class="btn btn-primary">שלח</button>
-                <!--id="modal-add-btn"-->
-                <button type="button" class="btn btn-secondary close-modal"
-                    data-dismiss="likedProductsModal">סגור</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="contact-form-wraper2">
     <div class="contact-form-wraper">
@@ -655,9 +592,7 @@
             </h2>
             {% bootstrap_form contactForm %}
             {% buttons %}
-            <button onclick="submitCatalogContactForm()" type="button" class="btn btn-success form-submit">
-                לשליחת טופס לחץ כאן
-            </button>
+            <button type="submit" class="btn btn-success form-submit">לשליחת טופס לחץ כאן</button>
             {% endbuttons %}
         </form>
     </div>
@@ -712,7 +647,6 @@
                 url: '/catalogTimer',
                 success: (json) => {
                     //allAlbums = ;
-                    debugger;
                     console.log(json);
                     
                 },
@@ -994,11 +928,10 @@
                 return false;
             });
         });
-        task = myStorage.getItem('user_click_task');
-        activateUserTask(
-            task);
+        //task = myStorage.getItem('user_click_task');
+        //activateUserTask(task);
         handleSearchTasks();
-        updateClientLikedUI();
+        //updateClientLikedUI();
         
         var t1 = performance.now()
         console.log("document ready took " + (t1 - t0) + " milliseconds.");

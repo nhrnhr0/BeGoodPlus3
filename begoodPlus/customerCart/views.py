@@ -2,11 +2,11 @@ from django.shortcuts import render
 from django.http import JsonResponse
 #from urlparse import parse_qs
 from urllib.parse import parse_qs
-
-
+from .serializers import CustomerCartSerializer
+from .models import CustomerCart
 # Create your views here.
 import json
-from core.models import Customer, CustomerCart
+from core.models import Customer
 def cart_changed(request):
     if request.is_ajax() and request.method == 'POST':
         customer,customer_created  = Customer.objects.get_or_create(device=request.COOKIES['device'])
@@ -22,13 +22,18 @@ def cart_changed(request):
         products = get_array_if_exist(form_data, 'products[]')
         
         
-        cart, cart_created = CustomerCart.objects.get_or_create(formUUID=formUUID)
+        cart, cart_created = CustomerCart.objects.distinct().get_or_create(formUUID=formUUID)
         cart.name=name
         cart.phone=phone
         cart.email=email
         cart.products.set(products)
         cart.save()
-        
+
+
+        ser_context={'request': request}
+        data = CustomerCartSerializer(cart, context=ser_context)
+        return JsonResponse(data.data)
+
         '''
         form_data_dict = {}
         for field in data:

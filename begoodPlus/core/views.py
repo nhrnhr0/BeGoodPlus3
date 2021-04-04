@@ -141,9 +141,8 @@ def form_changed(request):
         customer.save()
         
         pp = '\ncustomer: {id: ' + str(customer.id) + ', new: ' + str(customer_created) + '}\n'
-        pp += '\tinfo: {id:' +  str(obj.id) + ', new: ' + str(created) + ', name: ' + name + ', email: ' + email + ', message: ' + message  + ', url: ' + url + ' }\n'
+        pp += '\tinfo: {id:' +  str(obj.id) + ', new: ' + str(created) + ', name: ' + name  + ', phone: ' + phone + ', email: ' + email + ', message: ' + message  + ', url: ' + url + ', submited: ' + str(sumbited) + ' }\n'
         print(pp)
-        
         
         return JsonResponse({'status':'ok'})
     else:

@@ -809,7 +809,6 @@
                 
                 // validate form
                 var errors = false;
-                debugger;
                 var name = $('[name=name]');
                 if(name.val() == '') {
                     name.parent().toggleClass("alert-validate", true);
@@ -836,7 +835,6 @@
                     $.post($(this).attr('action'), $(this).serialize(), function(response){
                         linked_images = [];
                         console.log(response);
-                        debugger;
                         localStorage.setItem("liked_product", JSON.stringify(linked_images));
                         // redirect to the same url
                         window.location.href = './';

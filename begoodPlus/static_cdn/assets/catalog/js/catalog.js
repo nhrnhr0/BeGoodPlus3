@@ -2,8 +2,6 @@
 
 
 
-set_form_change_listener('#catalog-contact-form', 'catalog');
-set_cart_form_change_listener('#likedProductsForm');
 
 
 function set_cart_form_change_listener(selector) {
@@ -33,7 +31,6 @@ function set_cart_form_change_listener(selector) {
   });
   
   form.change(function() {
-  debugger;
       data = $(selector).serialize();
       //data = JSON.stringify(data);
       //console.log('FORM CHANGED', url_field.val(), data);
@@ -82,8 +79,12 @@ function update_cart_to_server(data){
           'content':data,
           'csrfmiddlewaretoken': getCookie('csrftoken'),
       },
-      success: function() {
+      success: function(cart) {
           console.log('form-change success');
+          debugger;
+          console.log(cart);
+          myStorage.setItem('cart', JSON.stringify(cart));
+          update_cart_ui(cart);
       },
       fail: function() {
           console.log('form-change fail');
@@ -95,7 +96,23 @@ function update_cart_to_server(data){
   });
 }
 
+function update_cart_ui(cart) {
+  debugger;
+  if(cart == undefined) {
+    //TODO: think about clearing old data
+    return;
+  }
+  var products = cart.products;
+  for(var i = 0; i < products.length;i++) {
+    updateClientLikedUI1(products[i].id)
 
+    var form_elm = $(`#likedProductsForm :input[value="${products[i].id}"]`);
+    if(form_elm.length == 0) {
+      
+      $('#likedProductsForm').append(`<input type="text" name="products[]" value="${products[i].id}" id="">`);
+    }
+  }
+}
 
 
 
@@ -281,6 +298,7 @@ function modal_add_btn_click() {
 
 */
 
+/*
 function updateClientLikedUI() {
   console.log('hey');
   liked_products = $('#likedProductsForm input[name="products[]"]');
@@ -288,7 +306,7 @@ function updateClientLikedUI() {
     updateClientLikedUI1(liked_products.val());
   }
 
-}
+}*/
 
 function updateClientLikedUI1(prodId) {
   //TODO: category-item checked is not working becose the category modal is dynamicly generated
@@ -346,17 +364,19 @@ function addClientLikeProduct(prodId) {
   
   /*
   */
-  $('#likedProductsForm').append(`<input type="text" name="products[]" value="${prodId}" id="">`);
-  $('#likedProductsForm').trigger('change');
-  updateClientLikedUI1(prodId);
+  if($(`#likedProductsForm :input[value="${prodId}"]`).length == 0) {
+    $('#likedProductsForm').append(`<input type="text" name="products[]" value="${prodId}" id="">`);
+    $('#likedProductsForm').trigger('change');
+    updateClientLikedUI1(prodId);
 
 
-  // bell animation:
-  $('#navbarDropdown').removeClass('notify');
-  $('#navbarDropdown').offsetWidth = $('#navbarDropdown').offsetWidth;
-  setTimeout(() => {
-    $('#navbarDropdown').addClass('notify');
-  }, 200);
+    // bell animation:
+    $('#navbarDropdown').removeClass('notify');
+    $('#navbarDropdown').offsetWidth = $('#navbarDropdown').offsetWidth;
+    setTimeout(() => {
+      $('#navbarDropdown').addClass('notify');
+    }, 200);
+  }
   //setTimeout(updateProductsCart, 500);
   //setTimeout(getUserTasks, 500);
   console.log('addClientLikeProduct done');
@@ -510,7 +530,17 @@ function openCategoryModal(albumId) {
   $('#categoryModal .close-modal').click(function () {
     $('#categoryModal').modal('hide');
   });
+
+  update_category_cart_ui();
+}
+
+function update_category_cart_ui() {
+  var cart = JSON.parse(myStorage.getItem('cart'));
+  update_cart_ui(cart);
 }
 
 //setCatalogTaskListiner();
 //getUserTasks();
+set_form_change_listener('#catalog-contact-form', 'catalog');
+set_cart_form_change_listener('#likedProductsForm');
+update_cart_ui(JSON.parse(myStorage.getItem('cart')));

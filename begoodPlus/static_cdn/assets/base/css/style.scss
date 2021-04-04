@@ -444,6 +444,48 @@ body {}
     }
 }
 
+
+#likedProductsModal {
+    .modal-body {
+      max-height: 80vh;
+      overflow: scroll;
+  
+      #cartProductsList {
+        ul {
+          li {
+              position: relative;
+            background: #FFD880;
+            border-radius: 10px;
+            margin: 5px;
+            padding: 5px;
+            display: flex;
+            //justify-content: space-between;
+  
+            button {
+              border: 0;
+              background-color: transparent;
+
+              position: absolute;
+    top: 0px;
+    left: 0px;
+    transform: translate(25%, 25%);
+  
+              &:hover {
+                color: red;
+              }
+            }
+
+            img {
+                width: 25px;
+                height: 25px;
+                margin-left: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+
 .contact-form-wraper2 {
     background-color: #FFD880;
     //background-color: black;
