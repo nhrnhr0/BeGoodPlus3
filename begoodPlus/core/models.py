@@ -28,10 +28,10 @@ class BeseContactInformation(models.Model):
     
         
 
-#from customerCart.models import CustomerCart
+from customerCart.models import CustomerCart
 class Customer(models.Model):
     contact = models.ManyToManyField(to=BeseContactInformation)
-    #carts = models.ManyToManyField(to=CustomerCart, related_name=)
+    carts = models.ManyToManyField(to=CustomerCart)
     device = models.CharField(max_length=120, unique=True)
 
 

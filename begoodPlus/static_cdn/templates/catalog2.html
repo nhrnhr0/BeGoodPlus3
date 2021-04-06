@@ -420,7 +420,7 @@
             <div name="slick-slider-{{album.id}}" id="slick-slider-{{forloop.parentloop.counter0}}"
                 class="swiper-container swiper-category slick-slider">
                 <div class="swiper-wrapper">
-                    {%for img in album.images.all%}
+                    {%for img in album.sorted_image_set%}
                     <div class="wraper-my-slick-slide swiper-slide">
                         <div data-album-id="{{album.id}}" data-my-slide-index="{{forloop.counter0}}"
                             data-prod-id="{{img.id}}" class="my-slick-slide shadow-lg">

@@ -40,19 +40,20 @@ function set_cart_form_change_listener(selector) {
   form.submit(function(e) {
       e.preventDefault();
       data = $(selector).serialize();
+      data += '&sumbited=True'
       
       // change submited to be true
-      for(var i = 0; i < data.length;i++) {
+      /*for(var i = 0; i < data.length;i++) {
           if(data[i]["name"] == "sumbited") {
               data[i]["value"] = 'True'
           }
-      }
-      data = JSON.stringify(data);
-      console.log('FORM submited', url_field.val(), data);
+      }*/
+      //data = JSON.stringify(data);
       update_cart_to_server(data);
       
       
       // reset form after submit
+      form.find('[name="products[]"]').remove();
       form.trigger('reset');
       
       fields = form.find('input')
@@ -81,7 +82,6 @@ function update_cart_to_server(data){
       },
       success: function(cart) {
           console.log('form-change success');
-          debugger;
           console.log(cart);
           myStorage.setItem('cart', JSON.stringify(cart));
           update_cart_ui(cart);
@@ -97,10 +97,16 @@ function update_cart_to_server(data){
 }
 
 function update_cart_ui(cart) {
-  debugger;
+
   if(cart == undefined) {
     //TODO: think about clearing old data
     return;
+  }
+  if(cart.status == "submited") {
+    debugger;
+    $('#cartProductsList').empty();
+    removeClientLikedUIAll();
+
   }
   var products = cart.products;
   for(var i = 0; i < products.length;i++) {
@@ -330,7 +336,15 @@ function removeClientLikedUI1(prodId) {
   $(`.category-item[data-category-prod-id=${prodId}] .like-btn .like-wrapper a span`).text('הוסף להצעת מחיר');
 }
 
+function removeClientLikedUIAll() {
+  $(`.my-slick-slide`).removeClass('checked');
+  $(`.category-item`).removeClass('checked');
+  $(`.my-slick-slide + .like-btn span`).text('הוסף להצעת מחיר');
+  $(`.category-item .like-btn .like-wrapper a span`).text('הוסף להצעת מחיר');
+}
+
 // delete the product from the user form
+/*
 function removeClientLikeProduct(prodId) {
   var productsToRemove = $(`#likedProductsForm :input[name="products[]"]`).filter(function () {
     return this.value == prodId
@@ -355,15 +369,9 @@ function removeClientLikeProduct(prodId) {
   //setTimeout(updateLikedProductsTask, 500);
 
 }
+*/
 
 function addClientLikeProduct(prodId) {
-  /** 
-  $('#likedProductsForm').append(`<input type="text" name="products[]" value="${prodId}"id="">`);
-  $('#likedProductsForm').trigger('change');
-  */
-  
-  /*
-  */
   if($(`#likedProductsForm :input[value="${prodId}"]`).length == 0) {
     $('#likedProductsForm').append(`<input type="text" name="products[]" value="${prodId}" id="">`);
     $('#likedProductsForm').trigger('change');
@@ -377,8 +385,6 @@ function addClientLikeProduct(prodId) {
       $('#navbarDropdown').addClass('notify');
     }, 200);
   }
-  //setTimeout(updateProductsCart, 500);
-  //setTimeout(getUserTasks, 500);
   console.log('addClientLikeProduct done');
 }
 /*
@@ -417,11 +423,11 @@ function updateProductsCart() {
 */
 
 // delete the product from the user cart in the html and in the form
-function deleteLikedProductBtn(prodId) {
+/*function deleteLikedProductBtn(prodId) {
   console.log('delete me');
   $(`li[data-prod-id="${prodId}"`).remove();
   removeClientLikeProduct(prodId);
-}
+}*/
 
 function loadProductsModal() {
   $('#likedProductsModal').modal('show');

@@ -56,6 +56,10 @@ class CatalogAlbum(MPTTModel):
     renew_for = models.DurationField(null=True, blank=True, default=datetime.timedelta(days=3))
     renew_after = models.DurationField(null=True, blank=True, default=datetime.timedelta(days=1))
     timer = models.DateTimeField(null=True, blank=True)
+
+    @property
+    def sorted_image_set(self):
+        return self.images.order_by('throughimage__image_order')
     
     class MPTTMeta:
         order_insertion_by = ['title']

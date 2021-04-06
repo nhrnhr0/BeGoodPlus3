@@ -20,14 +20,23 @@ def cart_changed(request):
         email = get_if_exist(form_data, 'email')
         formUUID = get_if_exist(form_data, 'formUUID')
         products = get_array_if_exist(form_data, 'products[]')
+        submited = get_if_exist(form_data, 'sumbited')
+        if submited == 'True':
+            submited = True
+        else:
+            submited = False
         
         
         cart, cart_created = CustomerCart.objects.distinct().get_or_create(formUUID=formUUID)
         cart.name=name
         cart.phone=phone
         cart.email=email
+        cart.sumbited=submited
         cart.products.set(products)
         cart.save()
+        customer.carts.add(cart)
+        if cart.sumbited == True:
+            return JsonResponse({'status':'submited'})
 
 
         ser_context={'request': request}

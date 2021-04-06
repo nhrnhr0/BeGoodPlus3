@@ -238,7 +238,6 @@ function updateMainTask(isSubmited=false) {
   });
 }
 function submitMainContactForm() {
-  debugger;
   updateMainTask(isSubmited=true);
 }
 */
@@ -272,7 +271,6 @@ function submitMainContactForm() {
 }*/
 /*
 function checkMainTask() {
-  debugger;
   if(document.querySelector('.contact-form #id_name').value != "" ||
      document.querySelector('.contact-form #id_phone').value != "" || 
      document.querySelector('.contact-form #id_email').value != "" || 

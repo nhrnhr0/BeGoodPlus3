@@ -547,7 +547,6 @@ $('#MyModle').on('show.bs.modal', function (event) {
                         <img usemap="#image-map-${image.id}" src="/media/${image.image}"/>
                         <map name="image-map-${image.id}">
                             ${glofaData.map(function(gdata) {
-                            debugger;
                                 if(gdata.data.glofaImage_id == image.id) {
                                     return (`<area target="" alt="" title="" href="" coords="${gdata.data.cords}" shape="rect">`)
                                 }

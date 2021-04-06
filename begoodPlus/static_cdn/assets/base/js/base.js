@@ -178,7 +178,6 @@ function update_contact_to_server(data){
 
 
 function openCart() {
-    debugger;
     console.log('openCart');
     $('#likedProductsModal').modal('show');
     $('#likedProductsModal .close-modal').click(function () {

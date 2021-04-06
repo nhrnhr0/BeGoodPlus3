@@ -93,12 +93,13 @@ def catalogView_api(request, *args, **wkrags):
     #return render(request, 'catalog2.html', context=context)
 
 from django.db.models import Max
-def catalogView2(request, *args, **wkargs):
 
-    print('catalogView2 start')
-    albums = CatalogAlbum.objects.prefetch_related('images')#.annotate(max_weight=Max('throughimage__image_order')).order_by('-max_weight').all()#.order_by("throughimage__image_order")
+#.annotate(max_weight=Max('throughimage__image_order')).order_by('-max_weight').all()#.order_by("throughimage__image_order")
     #albums = albums.order_by('id', 'throughimage__image_order')
     #albums.images.order_by('throughimage__image_order')
+def catalogView2(request, *args, **wkargs):
+    print('catalogView2 start')
+    albums = CatalogAlbum.objects.prefetch_related('images')
     context = {'albums':albums}
     print('catalogView2 end')
     return render(request, 'catalog2.html', context=context)
