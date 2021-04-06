@@ -63,7 +63,7 @@ INSTALLED_APPS = [
     'tof',
     'bootstrap5',
     'drf_multiple_model',
-    #'django_celery_beat',
+    'django_celery_beat',
 
     # own
     'core',

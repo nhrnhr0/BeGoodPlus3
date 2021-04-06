@@ -61,7 +61,7 @@ class CatalogAlbum(MPTTModel):
         order_insertion_by = ['title']
         
     class Meta:
-        unique_together = ('slug', 'parent',)  
+        unique_together = ('slug', 'parent',)
         #ordering = ['throughimage__image_order'] 
         #ordering = ('throughimage__image_order',)
     def __str__(self):
@@ -91,13 +91,11 @@ from adminsortable.fields import SortableForeignKey
 from adminsortable.models import Sortable
 
 class ThroughImage(Sortable):
-    #catalogImage = models.ForeignKey(CatalogImage, on_delete=models.CASCADE)
     catalogImage = SortableForeignKey(CatalogImage, on_delete=models.CASCADE)
     catalogAlbum = models.ForeignKey(CatalogAlbum, on_delete=models.CASCADE)
-    #weight = models.IntegerField(verbose_name=_("weight"))
+
     image_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     class Meta(Sortable.Meta):
-        #ordering = ['weight']
-        #unique_together = ('catalogAlbum', 'weight',)
+
         ordering = ['image_order']
 

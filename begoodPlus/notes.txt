@@ -1,10 +1,22 @@
 
 
+CELERY:
+run windows:
+celery -A begoodPlus beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
+flower -A begoodPlus --port=5555
+celery -A begoodPlus worker -l info --pool=solo
+
+
+
+
 ses-smtp-user.20200925-221629
 SMTP Username:
 AKIAWNTXXG5ZMK4B5AR4
 SMTP Password:
 BOISBR/TRfYsLzTyjxtxs15KTRfx1lCJLPqbwDbpLoNW
+
+
+
 
 
 - הוספת מוצרים מרובים: לא לאפשר מידה 36 לחולצות לדוגמא
