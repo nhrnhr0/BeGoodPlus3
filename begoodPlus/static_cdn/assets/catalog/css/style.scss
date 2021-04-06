@@ -8,14 +8,19 @@
 
 }
 
+.btn-primary {
+  background-color: black;
+  border-color: #eee;
+}
+
 
 .swiper-container {}
 
 .bg-wraper {
   background: url('../imgs/catalogBg1.jpeg');
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../imgs/catalogBg1.jpeg');
+  //background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../imgs/catalogBg1.jpeg');
   //overflow: hidden;
-  background-size: 50vh;
+  //background-size: 50vh;
   //background-size: 50vh;
   //background-size: 500px;
   background-position: center;
@@ -271,7 +276,7 @@
       left: 0;
       width: 0;
       height: 100%;
-      background: #159560; //#ff003b;
+      background: #FFD880;//#159560; //#ff003b;
       transition: all .35s;
       border-radius: 50px;
 
@@ -382,8 +387,11 @@
 
   .title {
     opacity: 0.5;
-    background-color: #0d6efd;
-    border-color: #0d6efd;
+    /*background-color: #0d6efd;
+    border-color: #0d6efd;*/
+    background-color: black;
+    border-color: #eee;
+
     margin-top: 25px;
     color: white;
     font-weight: bold;
@@ -443,11 +451,11 @@
 
 
     &.checked+.like-btn .like-wrapper a {
-      border: 1px solid white;
-      color: #eee;
+      border: 1px solid black;
+      color: rgb(0, 0, 0);
 
       &:hover {
-        color: white;
+        //color: rgb(70, 70, 70);
       }
 
       &:after {
@@ -668,11 +676,11 @@
 
       &.checked {
         .like-wrapper a {
-          color: #eee;
-          border: 1px solid white;
+          color: #000;
+          border: 1px solid black;
 
           &:hover {
-            color: white;
+            //color: white;
           }
 
           &:after {
@@ -831,6 +839,11 @@
   width: 100%;
   height: 66vh;
   background: #000;
+
+  .parallax-bg {
+    //background-image:url('../imgs/catalogBg1.jpeg');
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../imgs/catalogBg1.jpeg);
+  }
 
   .swiper-slide {
     font-size: 18px;
