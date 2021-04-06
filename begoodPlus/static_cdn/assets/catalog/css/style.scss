@@ -18,6 +18,7 @@
 
 .bg-wraper {
   background: url('../imgs/catalogBg1.jpeg');
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../imgs/catalogBg1.jpeg);
   //background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../imgs/catalogBg1.jpeg');
   //overflow: hidden;
   //background-size: 50vh;
@@ -841,8 +842,8 @@
   background: #000;
 
   .parallax-bg {
-    //background-image:url('../imgs/catalogBg1.jpeg');
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../imgs/catalogBg1.jpeg);
+    background-image:url('../imgs/catalogBg1.jpeg');
+    //background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../imgs/catalogBg1.jpeg);
   }
 
   .swiper-slide {
