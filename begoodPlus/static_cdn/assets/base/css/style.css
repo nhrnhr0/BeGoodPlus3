@@ -3,8 +3,11 @@
   --clr-primery-gold: #f0b300;
 }
 
-body {
-  font-family: 'M PLUS Rounded 1c', sans-serif;
+/*body {
+    font-family: 'M PLUS Rounded 1c'!important;
+}*/
+* {
+  font-family: 'M PLUS Rounded 1c';
 }
 
 .modal .close {
@@ -132,6 +135,7 @@ body {
 }
 
 .icon-bar .icon.delivery {
+  border: 1px solid #FFD880;
   overflow: hidden;
 }
 
@@ -192,11 +196,17 @@ body {
 }
 
 .icon-bar .icon.whatsapp {
+  border: 1px solid #25D366;
   color: white;
 }
 
 .icon-bar .icon.facebook {
+  border: 1px solid #0066E0;
   text-shadow: 0 -1px -1px #1f2f52;
+}
+
+.icon-bar .icon.instegram {
+  border: 1px solid #EA4959;
 }
 
 .icon-bar .icon a {

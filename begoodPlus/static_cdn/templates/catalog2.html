@@ -13,8 +13,10 @@
 <!--<link rel="stylesheet" href="{%static 'assets/css/swiper.css'%}">-->
 <link rel="stylesheet" href="https://unpkg.com/swiper@6.5.0/swiper-bundle.min.css">
 <script src="https://kit.fontawesome.com/022c0fea0b.js" crossorigin="anonymous" defer></script>
-<!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
+<!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> 
 <link rel="stylesheet" href="{%static 'assets/catalog/css/countdowncube.css'%}" />
+-->
+<link rel="stylesheet" href="{%static 'assets/catalog/css/flipdown.min.css'%}" />
 <link rel="stylesheet" href="{%static 'assets/catalog/css/style.css' %}">
 {% endblock extra_head%}
 
@@ -303,12 +305,19 @@
     </div>
     <div class="section-2">
         <div class="section-2-fotter">
+            &bull; עיינו באתר
+            &bull; הוסיפו לעגלה
+            &bull; שלחו אלינו
+            &bull;
+            <!--
             <div class="part-1 shine">
                 מוזמנים לעיין באתר ולהוסיף להצעת מחיר את הפריטים שאהבתם
             </div>
             <div class="part-2 shine">
                 לא לשכוח לשלוח את הטופס בסיום
             </div>
+            -->
+
         </div>
     </div>
 
@@ -319,14 +328,13 @@
         <h3 class="album-description" style="display: none;" id="album_description_{{album.id}}">{{album.description}}
         </h3>
         <h3 class="album-fotter" style="display: none;" id="album_fotter_{{album.id}}">{{album.fotter}}</h3>
+        {%if album.timer != None %}
+        <div id="counter-{{album.id}}" class="flipdown" name="counter" data-time="{{album.timer|safe}}">
+        </div>
+        {%endif%}
         <div class="title-wraper">
             <button data-album-id="{{album.id}}" onclick="openCategoryModal({{album.id}})" class="title btn">
                 {{album.title}}
-                {%if album.timer != None %}
-                <div class="counter" name="counter" data-time="{{album.timer|safe}}">
-                </div>
-                {%endif%}
-
             </button>
         </div>
         <div class="container">
@@ -539,7 +547,7 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
 <div class="modal" id="categoryModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            
+
 
             <div class="modal-header text-center">
                 <div class="modal-header-links"> </div>
@@ -624,9 +632,10 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
 <script src="{%static 'assets/js/swiper-bundle.js'%}"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <!--<script src="https://zachleat.github.io/BigText/dist/bigtext.js"></script>-->
-<!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
+<!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
 <script type="text/javascript" src="{%static 'assets/catalog/js/countdowncube.js' %}"></script>
-
+-->
+<script src="{%static 'assets/catalog/js/flipdown.min.js'%}"></script>
 <script src="{%static 'assets/catalog/js/catalog.js'%}"></script>
 
 <script type="text/javascript">
@@ -638,7 +647,13 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
             var today = Date.now();
             var time = new Date($(counter).data().time);
             if (today < time.getTime()) {
-                $(counter).countdownCube({
+                var t= Math.floor(time.getTime()/1000);
+                var flipdown = new FlipDown(t, counter.id, {
+                    theme: 'light'
+                });
+                flipdown.start();
+
+                /*$(counter).countdownCube({
                     target: time, //'2022-03-01T10:00:00Z',
                     cubeSize: 75,
                     //background: 'rgba( 255, 150, 150, 0.8 )',
@@ -652,7 +667,7 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
                         'minute': 'דקות',
                         'second': 'שניות'
                     },
-                });
+                });*/
             }
         }
         /*

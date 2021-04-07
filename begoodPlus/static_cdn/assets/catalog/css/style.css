@@ -331,6 +331,10 @@
   pointer-events: initial;
 }
 
+.catalog .flipdown {
+  margin: auto;
+}
+
 .catalog .container {
   position: relative;
 }
