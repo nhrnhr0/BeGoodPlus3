@@ -432,7 +432,8 @@
                             <img class="big-discount" alt="מבצע ענק!"
                                 src="{%static 'assets/catalog/imgs/big_discount.gif'%}" />
                             {%endif%}
-                            {%if img.discount != '' %}
+
+                            {%if img.discount %}
                             <img class="discount" alt="discount" src="{{img.discount}}" />
                             {%endif%}
 

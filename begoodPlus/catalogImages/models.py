@@ -36,7 +36,7 @@ class CatalogImage(models.Model):
         (DISCOUNT_10_PRES, '10% הנחה'),
         (DISCOUNT_20_PRES, '20% הנחה'),
     ]
-    discount = models.CharField(max_length=50, choices=DISCOUNT_TYPES, default=NO_DISCOUNT)
+    discount = models.CharField(max_length=50, choices=DISCOUNT_TYPES, default=NO_DISCOUNT, null=True, blank=True)
     
     
     
