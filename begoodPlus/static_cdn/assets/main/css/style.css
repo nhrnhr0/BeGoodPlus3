@@ -266,7 +266,6 @@
 }
 
 .scene-wraper .scene-title-wraper {
-  background-color: black;
   border-radius: 20px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -279,6 +278,7 @@
   text-align: center;
   font-size: 2em;
   font-weight: 700;
+  color: black;
 }
 
 .scene {

@@ -2,6 +2,10 @@
 const myStorage = window.sessionStorage;
 
 
+
+
+
+
 /* ================= icon bar functionality start ======================== */
 var lastKnownScrollPosition = 0;
 var ticking = false;
@@ -43,12 +47,16 @@ function pick_delivery_icon_in_start(delivery) {
     delivery.classList.add('pick');
     //is_delivery_first_open = false;
 }
+function collapseMenu() {
+    $('#navbarSupportedContent').collapse('hide');
+}
 document.addEventListener('scroll', function(e) {
     lastKnownScrollPosition = window.scrollY;
     console.log(lastKnownScrollPosition);
     if (!ticking) {
         window.requestAnimationFrame(function() {
           handleSideIcons(lastKnownScrollPosition);
+          collapseMenu();
           if(typeof handleSection2Checkmarks !== 'undefined' && typeof handleSection2Checkmarks === 'function'){
             handleSection2Checkmarks(lastKnownScrollPosition);
           }
@@ -73,6 +81,8 @@ for(var i = 0; i < side_icons.length; i++) {
 }
 
 /* ================= icon bar functionality end ======================== */
+
+
 
 function uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -322,6 +332,11 @@ function displayTasks() {
 
 $(function () {
     $(document).ready(function () {
+
+        $('.menu-wraper').focusout(function(){
+            collapseMenu();
+            
+        });
 
         $('.icon-bar .icon').hover(
             function() {

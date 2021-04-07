@@ -1,3 +1,12 @@
+:root {
+  --clr-primery-bg: linear-gradient(to right, #e7ad00, #ebb000, #f0b300, #f4b700, #f9ba00, #f9ba00, #f9ba00, #f9ba00, #f4b700, #f0b300, #ebb000, #e7ad00);
+  --clr-primery-gold: #f0b300;
+}
+
+body {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
 .modal .close {
   border: 0;
   background: none;
@@ -26,8 +35,9 @@
 
 .modal .modal-body {
   background: url("../../catalog/imgs/catalogBg1.jpeg");
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), url("../../catalog/imgs/catalogBg1.jpeg");
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../catalog/imgs/catalogBg1.jpeg");
   overflow: hidden;
-  background-size: 50vh;
   background-position: center;
 }
 
@@ -122,7 +132,6 @@
 }
 
 .icon-bar .icon.delivery {
-  background-color: #FFD880;
   overflow: hidden;
 }
 
@@ -183,21 +192,11 @@
 }
 
 .icon-bar .icon.whatsapp {
-  background: -webkit-gradient(linear, left top, left bottom, from(#25D366), to(#128C7E));
-  background: linear-gradient(#25D366, #128C7E);
   color: white;
 }
 
 .icon-bar .icon.facebook {
-  background-color: #2b4170;
-  background: -webkit-gradient(linear, left top, left bottom, from(#11AEFE), to(#0066E0));
-  background: linear-gradient(top, #11AEFE, #0066E0);
   text-shadow: 0 -1px -1px #1f2f52;
-}
-
-.icon-bar .icon.instegram {
-  background: radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent), -webkit-gradient(linear, left top, left bottom, from(#6559ca), color-stop(30%, #bc318f), color-stop(50%, #e33f5f), color-stop(70%, #f77638), to(#fec66d));
-  background: radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
 }
 
 .icon-bar .icon a {
@@ -284,7 +283,7 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: #ffd880;
+  background-image: var(--clr-primery-bg);
 }
 
 .navbar .nav-logo {
@@ -310,9 +309,9 @@
   top: 0px;
   right: 0px;
   padding: 5px;
-  -webkit-transform: translate(0px, 50%);
-          transform: translate(0px, 50%);
-  background-color: white;
+  -webkit-transform: translate(0px, 25%);
+          transform: translate(0px, 25%);
+  background-color: #e2e2e2;
   border-radius: 15px;
   border: 1px solid black;
 }
@@ -325,15 +324,30 @@
 .navbar .menu-wraper #navbarSupportedContent ul li {
   font-size: xx-large;
   white-space: nowrap;
-  /*padding-left: 50px;
-                    padding-right: 50px;*/
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
   width: 100%;
 }
 
 .navbar .menu-wraper #navbarSupportedContent ul li:hover {
-  background-color: #eee;
+  background-color: #8a8a8a;
+}
+
+.navbar .menu-wraper #navbarSupportedContent ul li a {
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navbar .menu-wraper #navbarSupportedContent ul li a img {
+  height: 30px;
 }
 
 .navbar #navbarDropdown {
@@ -522,7 +536,7 @@
 }
 
 .contact-form-wraper2 {
-  background-color: #FFD880;
+  background-image: var(--clr-primery-bg);
   padding-top: 5px;
 }
 
@@ -542,7 +556,6 @@
 
 .contact-form-wraper2 .contact-form-wraper .contact-form .form-header {
   color: black;
-  background-color: #ffca43;
   border-radius: 20px;
   padding-right: 10px;
   text-align: center;

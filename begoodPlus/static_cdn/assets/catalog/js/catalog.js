@@ -1,126 +1,134 @@
+function set_like_btn(selector, val) {
+  btns = $(selector);
+  btns.html(get_like_markup(val));
+}
+function get_like_markup(val) {
+  if(val == false) {
+    return (`<img src="static/assets/catalog/imgs/icons8-plus-48.png"> הוסף`);
+  }else {
+    return (`<img src="static/assets/catalog/imgs/icons8-check-mark-48.png"> הוסף`);
+  }
+}
 
-
-
-
+/*============ cart and form functionality start =====================*/
 
 
 function set_cart_form_change_listener(selector) {
   var form = $(selector)
-  
+
   var uuid_field = form.find('[name=formUUID]');
-  if(uuid_field.val() == '' || uuid_field.val() == undefined) {
-      var uid = localStorage.getItem(selector + '_form_uuid');
-      if (uid == undefined || uid == null) {
-          localStorage.setItem(selector + '_form_uuid', uuidv4());
-          uid = localStorage.getItem(selector + '_form_uuid');
-      }
-      uuid_field.val(uid);
-  }
-  
-  fields = form.find('input')
-  for(var i = 0; i < fields.length;i++) {
-      var field = $(fields[i])
-      value = myStorage.getItem(selector + '_input_'+field.attr('id'));
-      if(value != undefined && value != null && value!= '') {
-          field.val(value)
-      }
-  }
-  fields.change(function() {
-      console.log('input change', $(this).val());
-      myStorage.setItem(selector + '_input_'+ $(this).attr('id'), $(this).val());
-  });
-  
-  form.change(function() {
-      data = $(selector).serialize();
-      //data = JSON.stringify(data);
-      //console.log('FORM CHANGED', url_field.val(), data);
-      update_cart_to_server(data);
-      
-  });
-  form.submit(function(e) {
-      e.preventDefault();
-      data = $(selector).serialize();
-      data += '&sumbited=True'
-      
-      // change submited to be true
-      /*for(var i = 0; i < data.length;i++) {
-          if(data[i]["name"] == "sumbited") {
-              data[i]["value"] = 'True'
-          }
-      }*/
-      //data = JSON.stringify(data);
-      update_cart_to_server(data);
-      
-      
-      // reset form after submit
-      form.find('[name="products[]"]').remove();
-      form.trigger('reset');
-      
-      fields = form.find('input')
-      for(var i = 0; i < fields.length;i++) {
-          var field = $(fields[i])
-          value = myStorage.getItem(selector + '_input_'+field.attr('id'));
-          if(value != undefined && value != null && value!= '') {
-              //field.val('')
-              myStorage.setItem(selector + '_input_'+field.attr('id'), '');
-          }
-      }
-      
+  if (uuid_field.val() == '' || uuid_field.val() == undefined) {
+    var uid = localStorage.getItem(selector + '_form_uuid');
+    if (uid == undefined || uid == null) {
       localStorage.setItem(selector + '_form_uuid', uuidv4());
-      uuid_field.val(localStorage.getItem(selector + '_form_uuid'));
+      uid = localStorage.getItem(selector + '_form_uuid');
+    }
+    uuid_field.val(uid);
+  }
+
+  fields = form.find('input')
+  for (var i = 0; i < fields.length; i++) {
+    var field = $(fields[i])
+    value = myStorage.getItem(selector + '_input_' + field.attr('id'));
+    if (value != undefined && value != null && value != '') {
+      field.val(value)
+    }
+  }
+  fields.change(function () {
+    console.log('input change', $(this).val());
+    myStorage.setItem(selector + '_input_' + $(this).attr('id'), $(this).val());
+  });
+
+  form.change(function () {
+    data = $(selector).serialize();
+    //data = JSON.stringify(data);
+    //console.log('FORM CHANGED', url_field.val(), data);
+    update_cart_to_server(data);
+
+  });
+  form.submit(function (e) {
+    e.preventDefault();
+    data = $(selector).serialize();
+    data += '&sumbited=True'
+
+    // change submited to be true
+    /*for(var i = 0; i < data.length;i++) {
+        if(data[i]["name"] == "sumbited") {
+            data[i]["value"] = 'True'
+        }
+    }*/
+    //data = JSON.stringify(data);
+    update_cart_to_server(data);
+
+
+    // reset form after submit
+    form.find('[name="products[]"]').remove();
+    form.trigger('reset');
+
+    fields = form.find('input')
+    for (var i = 0; i < fields.length; i++) {
+      var field = $(fields[i])
+      value = myStorage.getItem(selector + '_input_' + field.attr('id'));
+      if (value != undefined && value != null && value != '') {
+        //field.val('')
+        myStorage.setItem(selector + '_input_' + field.attr('id'), '');
+      }
+    }
+
+    localStorage.setItem(selector + '_form_uuid', uuidv4());
+    uuid_field.val(localStorage.getItem(selector + '_form_uuid'));
   });
 }
 
-function update_cart_to_server(data){
+function update_cart_to_server(data) {
 
   $.ajax({
-      type: "POST",
-      url: '/cart-change',
-      data: {
-          'content':data,
-          'csrfmiddlewaretoken': getCookie('csrftoken'),
-      },
-      success: function(cart) {
-          console.log('form-change success');
-          console.log(cart);
-          myStorage.setItem('cart', JSON.stringify(cart));
-          update_cart_ui(cart);
-      },
-      fail: function() {
-          console.log('form-change fail');
-      },
-      error: function() {
-          console.log('form-change fail');
-      },
-      dataType: 'json',
+    type: "POST",
+    url: '/cart-change',
+    data: {
+      'content': data,
+      'csrfmiddlewaretoken': getCookie('csrftoken'),
+    },
+    success: function (cart) {
+      console.log('form-change success');
+      console.log(cart);
+      myStorage.setItem('cart', JSON.stringify(cart));
+      update_cart_ui(cart);
+    },
+    fail: function () {
+      console.log('form-change fail');
+    },
+    error: function () {
+      console.log('form-change fail');
+    },
+    dataType: 'json',
   });
 }
 
 function update_cart_ui(cart) {
 
-  if(cart == undefined) {
+  if (cart == undefined) {
     //TODO: think about clearing old data
     return;
   }
-  if(cart.status == "submited") {
-    debugger;
+  if (cart.status == "submited") {
     $('#cartProductsList').empty();
     removeClientLikedUIAll();
 
   }
   var products = cart.products;
-  for(var i = 0; i < products.length;i++) {
+  for (var i = 0; i < products.length; i++) {
     updateClientLikedUI1(products[i].id)
 
     var form_elm = $(`#likedProductsForm :input[value="${products[i].id}"]`);
-    if(form_elm.length == 0) {
-      
+    if (form_elm.length == 0) {
+
       $('#likedProductsForm').append(`<input type="text" name="products[]" value="${products[i].id}" id="">`);
     }
   }
 }
 
-
+/*============ cart and form functionality end =====================*/
 
 
 
@@ -137,68 +145,66 @@ $(document).on('hidden.bs.modal', '.modal', function () {
 });
 
 // handle section 2 check-list and proggres bar amimation
-var check_list_inputs = document.querySelectorAll('.section-2 .check-list ul li input');
+var check_list_inputs = document.querySelectorAll('.section-3 .check-list ul li input');
+
 function handleSection2Checkmarks(pos) {
-    var precent = 0;
-    if(pos == 0) {
-        precent = 0;
-    }
-    if(pos>50) {
-        precent = 10;
-        check_list_inputs[0].checked = false;
-        check_list_inputs[1].checked = false;
-        check_list_inputs[2].checked = false;
-        check_list_inputs[3].checked = false;
-        check_list_inputs[4].checked = false;
-      //document.querySelector('.section-2 .check-list ul li:nth-of-type(1) input').checked = true;
-    }
-    if(pos>=100 && pos < 200) {
-        precent = 20;
-        check_list_inputs[0].checked = true;
-        check_list_inputs[1].checked = false;
-        check_list_inputs[2].checked = false;
-        check_list_inputs[3].checked = false;
-        check_list_inputs[4].checked = false;
-      //document.querySelector('.section-2 .check-list ul li:nth-of-type(1) input').checked = true;
-    }
-    else if (pos >= 200 && pos < 300){
-        precent = 40;
-        check_list_inputs[0].checked = true;
-        check_list_inputs[1].checked = true;
-        check_list_inputs[2].checked = false;
-        check_list_inputs[3].checked = false;
-        check_list_inputs[4].checked = false;
-      //document.querySelector('.section-2 .check-list ul li input').checked = false;
-    }
-    else if (pos >= 300 && pos < 400){
-        precent = 60;
-        check_list_inputs[0].checked = true;
-        check_list_inputs[1].checked = true;
-        check_list_inputs[2].checked = true;
-        check_list_inputs[3].checked = false;
-        check_list_inputs[4].checked = false;
-      //document.querySelector('.section-2 .check-list ul li input').checked = false;
-    }
-    else if (pos >= 400 && pos < 500){
-        precent = 80;
-        check_list_inputs[0].checked = true;
-        check_list_inputs[1].checked = true;
-        check_list_inputs[2].checked = true;
-        check_list_inputs[3].checked = true;
-        check_list_inputs[4].checked = false;
-      //document.querySelector('.section-2 .check-list ul li input').checked = false;
-    }
-    else if (pos >= 500){
-        precent = 100; 
-        check_list_inputs[0].checked = true;
-        check_list_inputs[1].checked = true;
-        check_list_inputs[2].checked = true;
-        check_list_inputs[3].checked = true;
-        check_list_inputs[4].checked = true;
-      //document.querySelector('.section-2 .check-list ul li input').checked = false;
-    }
-    $('.progress-bar').css('width', precent+'%');
+  var pos_offset = 4800;
+  var precent = 0;
+  if (pos == 0) {
+    precent = 0;
   }
+  if (pos > 50 + pos_offset) {
+    precent = 10;
+    check_list_inputs[0].checked = false;
+    check_list_inputs[1].checked = false;
+    check_list_inputs[2].checked = false;
+    check_list_inputs[3].checked = false;
+    check_list_inputs[4].checked = false;
+    //document.querySelector('.section-2 .check-list ul li:nth-of-type(1) input').checked = true;
+  }
+  if (pos >= 100 + pos_offset && pos < 200 + pos_offset) {
+    precent = 20;
+    check_list_inputs[0].checked = true;
+    check_list_inputs[1].checked = false;
+    check_list_inputs[2].checked = false;
+    check_list_inputs[3].checked = false;
+    check_list_inputs[4].checked = false;
+    //document.querySelector('.section-2 .check-list ul li:nth-of-type(1) input').checked = true;
+  } else if (pos >= 200 + pos_offset && pos < 300 + pos_offset) {
+    precent = 40;
+    check_list_inputs[0].checked = true;
+    check_list_inputs[1].checked = true;
+    check_list_inputs[2].checked = false;
+    check_list_inputs[3].checked = false;
+    check_list_inputs[4].checked = false;
+    //document.querySelector('.section-2 .check-list ul li input').checked = false;
+  } else if (pos >= 300 + pos_offset && pos < 400 + pos_offset) {
+    precent = 60;
+    check_list_inputs[0].checked = true;
+    check_list_inputs[1].checked = true;
+    check_list_inputs[2].checked = true;
+    check_list_inputs[3].checked = false;
+    check_list_inputs[4].checked = false;
+    //document.querySelector('.section-2 .check-list ul li input').checked = false;
+  } else if (pos >= 400 + pos_offset && pos < 500 + pos_offset) {
+    precent = 80;
+    check_list_inputs[0].checked = true;
+    check_list_inputs[1].checked = true;
+    check_list_inputs[2].checked = true;
+    check_list_inputs[3].checked = true;
+    check_list_inputs[4].checked = false;
+    //document.querySelector('.section-2 .check-list ul li input').checked = false;
+  } else if (pos >= 500 + pos_offset) {
+    precent = 100;
+    check_list_inputs[0].checked = true;
+    check_list_inputs[1].checked = true;
+    check_list_inputs[2].checked = true;
+    check_list_inputs[3].checked = true;
+    check_list_inputs[4].checked = true;
+    //document.querySelector('.section-2 .check-list ul li input').checked = false;
+  }
+  //$('.progress-bar').css('width', precent + '%');
+}
 
 /*
 function setCatalogTaskListiner() {
@@ -320,27 +326,56 @@ function updateClientLikedUI1(prodId) {
   // update button UI in the catalog page
   $(`.my-slick-slide[data-prod-id=${prodId}]`).addClass('checked');
   $(`.category-item[data-category-prod-id="${prodId}"]`).addClass('checked');
-  $(`.my-slick-slide[data-prod-id=${prodId}] + .like-btn span`).text('נוסף להצעת מחיר');
-  $(`.category-item[data-category-prod-id=${prodId}] .like-btn .like-wrapper a span`).text('נוסף להצעת מחיר');
-  
+  set_like_btn(`.my-slick-slide[data-prod-id=${prodId}] + .like-btn span`, true);
+  set_like_btn(`.category-item[data-category-prod-id=${prodId}] .like-btn .like-wrapper a span`, true);
+  /*
+  $(`.my-slick-slide[data-prod-id=${prodId}] + .like-btn span`).html(`
+    <img src="{%static 'assets/catalog/imgs/icons8-check-mark-48.png'%}"> הוסף
+  הוסף להצעת מחיר
+  `);
+  $(`.category-item[data-category-prod-id=${prodId}] .like-btn .like-wrapper a span`).html(`
+  <img src="{%static 'assets/catalog/imgs/icons8-check-mark-48.png'%}"> הוסף
+הוסף להצעת מחיר
+`);*/
+
   // update button UI in the product's modal
   $('#modal-add-btn').prop('disabled', true);
-  $('#modal-add-btn span').text('נוסף להצעת מחיר');
+  set_like_btn('#modal-add-btn span', true);
   $('#modal-add-btn').addClass('isAdded');
 }
 
 function removeClientLikedUI1(prodId) {
   $(`.my-slick-slide[data-prod-id=${prodId}]`).removeClass('checked');
   $(`.category-item[data-category-prod-id="${prodId}"]`).removeClass('checked');
-  $(`.my-slick-slide[data-prod-id=${prodId}] + .like-btn span`).text('הוסף להצעת מחיר');
-  $(`.category-item[data-category-prod-id=${prodId}] .like-btn .like-wrapper a span`).text('הוסף להצעת מחיר');
+  set_like_btn(`.my-slick-slide[data-prod-id=${prodId}] + .like-btn span`, false);
+  set_like_btn(`.category-item[data-category-prod-id=${prodId}] .like-btn .like-wrapper a span`, false);
+  /*
+  $(`.my-slick-slide[data-prod-id=${prodId}] + .like-btn span`).html(`
+  <img src="{%static 'assets/catalog/imgs/icons8-plus-48.png'%}"> הוסף
+הוסף להצעת מחיר
+`);
+  $(`.category-item[data-category-prod-id=${prodId}] .like-btn .like-wrapper a span`).html(`
+  <img src="{%static 'assets/catalog/imgs/icons8-plus-48.png'%}"> הוסף
+הוסף להצעת מחיר
+`);*/
 }
 
 function removeClientLikedUIAll() {
   $(`.my-slick-slide`).removeClass('checked');
   $(`.category-item`).removeClass('checked');
-  $(`.my-slick-slide + .like-btn span`).text('הוסף להצעת מחיר');
-  $(`.category-item .like-btn .like-wrapper a span`).text('הוסף להצעת מחיר');
+
+
+  set_like_btn('.my-slick-slide + .like-btn span', false);
+  set_like_btn('.category-item .like-btn .like-wrapper a span', false);
+  /*
+  $(`.my-slick-slide + .like-btn span`).html(`
+  <img src="{%static 'assets/catalog/imgs/icons8-plus-48.png'%}"> הוסף
+הוסף להצעת מחיר
+`); 
+  $(`.category-item .like-btn .like-wrapper a span`).html(`
+  <img src="{%static 'assets/catalog/imgs/icons8-plus-48.png'%}"> הוסף
+הוסף להצעת מחיר
+`);*/
 }
 
 // delete the product from the user form
@@ -372,7 +407,7 @@ function removeClientLikeProduct(prodId) {
 */
 
 function addClientLikeProduct(prodId) {
-  if($(`#likedProductsForm :input[value="${prodId}"]`).length == 0) {
+  if ($(`#likedProductsForm :input[value="${prodId}"]`).length == 0) {
     $('#likedProductsForm').append(`<input type="text" name="products[]" value="${prodId}" id="">`);
     $('#likedProductsForm').trigger('change');
     updateClientLikedUI1(prodId);
@@ -502,7 +537,10 @@ function openCategoryModal(albumId) {
         <div>
           <div onclick="$('.my-slick-slide[data-prod-id=${img.id}] + .like-btn .like-wrapper')[0].click();" class="like-btn" name="like-btn">
             <div class="like-wrapper">
-              <a name="like-btn"><span name="like-btn">הוסף להצעת מחיר</span></a>
+              <a name="like-btn">
+              <span name="like-btn">
+                ${get_like_markup(false)}
+              </span></a>
             </div>
           </div>
         </div>
@@ -513,25 +551,25 @@ function openCategoryModal(albumId) {
   bodyMarkup += imagesMarkup;
   bodyMarkup += `<h4 class="category-fotter">${marked(categoryFotter.text())}</h4>`
 
-/*
-  var buttonsMarkup = `
-  <button class="btn btn-primary" onclick="openCategoryModal(${prevAlbum.id})" value=${prevAlbum.id}>${prevAlbum.title}</button>
-    <button class="btn btn-primary" onclick="openCategoryModal(${nextAlbum.id})" value=${nextAlbum.id}>${nextAlbum.title}</button>  
-  `*/
+  /*
+    var buttonsMarkup = `
+    <button class="btn btn-primary" onclick="openCategoryModal(${prevAlbum.id})" value=${prevAlbum.id}>${prevAlbum.title}</button>
+      <button class="btn btn-primary" onclick="openCategoryModal(${nextAlbum.id})" value=${nextAlbum.id}>${nextAlbum.title}</button>  
+    `*/
   var buttonsMarkup = ``;
-  for(var i = 0; i < albums.length; i++) {
+  for (var i = 0; i < albums.length; i++) {
     currAlbum = albums[i];
-    if(albumIndex == i) {
-      buttonsMarkup += `<button class="btn btn-success" onclick="openCategoryModal(${currAlbum.id})" value=${currAlbum.id}>${currAlbum.title}</button>`
-    }
-    else {
-      buttonsMarkup += `<button class="btn btn-primary" onclick="openCategoryModal(${currAlbum.id})" value=${currAlbum.id}>${currAlbum.title}</button>`
+    if (albumIndex == i) {
+      buttonsMarkup += `<button class="btn btn btn-dark" onclick="openCategoryModal(${currAlbum.id})" value=${currAlbum.id}>${currAlbum.title}</button>`
+    } else {
+      buttonsMarkup += `<button class="btn btn-outline-dark" onclick="openCategoryModal(${currAlbum.id})" value=${currAlbum.id}>${currAlbum.title}</button>`
     }
   }
 
   $('#categoryModal .modal-title').text(album.title);
   $('#categoryModal .modal-body').html(bodyMarkup);
-  $('#categoryModal .modal-footer').html(buttonsMarkup);
+  //$('#categoryModal .modal-footer').html(buttonsMarkup);
+  $('#categoryModal .modal-header .modal-header-links').html(buttonsMarkup);
   $('#categoryModal').modal('show');
   $('#categoryModal .close-modal').click(function () {
     $('#categoryModal').modal('hide');
