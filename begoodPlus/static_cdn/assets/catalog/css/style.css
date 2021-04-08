@@ -340,7 +340,8 @@
 }
 
 .catalog .container .swiper-container {
-  padding-top: 100px;
+  padding-top: 220px;
+  padding-bottom: 120px;
 }
 
 .catalog .swiper-slide-active {

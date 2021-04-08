@@ -652,22 +652,6 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
                     theme: 'light'
                 });
                 flipdown.start();
-
-                /*$(counter).countdownCube({
-                    target: time, //'2022-03-01T10:00:00Z',
-                    cubeSize: 75,
-                    //background: 'rgba( 255, 150, 150, 0.8 )',
-                    background: '#C0C0C0',
-                    color: 'white',
-                    labelsTranslations: {
-                        'year': 'שנים',
-                        'month': 'חודשים',
-                        'day': 'ימים',
-                        'hour': 'שעות',
-                        'minute': 'דקות',
-                        'second': 'שניות'
-                    },
-                });*/
             }
         }
         /*
@@ -780,10 +764,15 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
                 loadOnTransitionStart: true,
                 checkInView: true,
                 slideToClickedSlide: true,
+                on: {
+                    init: function(d) {
+                        set_selected_slide_bigger(d);
+                    },
+                },
 
                 coverflowEffect: {
                     rotate: 30,
-                    stretch: 0,
+                    stretch: 10,
                     depth: 100,
                     modifier: 1,
 
@@ -800,6 +789,10 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
                 },
 
             }));
+            swipers[swipers.length-1].on('transitionEnd', function(d) {
+                set_selected_slide_bigger(d);
+            });
+
         }
         //var swipers = new Swiper
         /*var swipers = new Swiper('.swiper-category', {
@@ -1041,6 +1034,12 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
             loadProductsModal();
             myStorage.removeItem('user_click_task');
         }
+    }
+    
+    
+    
+    function set_selected_slide_bigger(swiper) {
+        swiper.slides[swiper.activeIndex].style.transform = swiper.slides[swiper.activeIndex].style.transform.replace("scale(1)","scale(1.7)")
     }
 </script>
 {%endblock%}

@@ -13,8 +13,11 @@
     <link rel="shortcut icon" type="image/jpg" href="{%static 'assets/base/imgs/logo_ms.png'%}"/>
     <link rel="stylesheet" href="{%static 'assets/css/jquery-ui.css'%}">
     <link rel="stylesheet" href="{%static 'assets/base/css/style.css'%}">
+    
+    <!--
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet"> 
+    -->
     <!-- BLOCK EXTRA HEAD -->
     {% block extra_head %}
     {% endblock %}
@@ -520,7 +523,8 @@
                         ).prependTo(ul);
                     }
                 };
-                $('.icon-bar-2').click(()=> {
+            // TODO: why is this here?
+            $('.icon-bar-2').click(()=> {
                         $('#buisnessModal').modal('show');
                         $('#buisnessModal .close-modal').click(function () {
                         $('#buisnessModal').modal('hide');
