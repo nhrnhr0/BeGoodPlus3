@@ -27,8 +27,8 @@ class CatalogImage(models.Model):
     big_discount = models.BooleanField(default=False)
     
     NO_DISCOUNT = ''
-    DISCOUNT_10_PRES = '/static/assets/catalog/imgs/discount_10.png'
-    DISCOUNT_20_PRES = '/static/assets/catalog/imgs/discount_20.png'
+    DISCOUNT_10_PRES = '/static/assets/catalog/imgs/discount_10.gif'
+    DISCOUNT_20_PRES = '/static/assets/catalog/imgs/discount_20.gif'
 
 
     DISCOUNT_TYPES = [
