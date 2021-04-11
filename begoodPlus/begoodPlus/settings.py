@@ -201,7 +201,7 @@ COMPRESS_FILTERS = {
         'compressor.filters.jsmin.JSMinFilter',
     ]
 }
-HTML_MINIFY = True
+HTML_MINIFY = False # is True, create problems with markdown in catalog2.html page
 KEEP_COMMENTS_ON_MINIFYING = True
 
 # TODO: remove in production (SQL debug)
