@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'tof',
     'bootstrap5',
     'drf_multiple_model',
+    'compressor',
     #'django_celery_beat',
 
     # own
@@ -157,9 +158,23 @@ CACHES = {
 # cache alias will be used. Set to `None` to disable caching.
 USER_AGENTS_CACHE = 'default'
 
+#django-compressor
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+
+    # Add this
+    'compressor.finders.CompressorFinder',
+)
 
 MIDDLEWARE = [
     #'debug_toolbar.middleware.DebugToolbarMiddleware', # TODO: remove in production
+    #django-compressor
+    'django.middleware.gzip.GZipMiddleware',
+    'htmlmin.middleware.HtmlMinifyMiddleware',
+    'htmlmin.middleware.MarkRequestMiddleware',
+    
+    
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -173,6 +188,21 @@ MIDDLEWARE = [
     'django_user_agents.middleware.UserAgentMiddleware',
     'core.middleware.BaseMiddleware',
 ]
+
+# Compressor and minifier config
+COMPRESS_ENABLED = True
+COMPRESS_CSS_HASHING_METHOD = 'content'
+COMPRESS_FILTERS = {
+    'css':[
+        'compressor.filters.css_default.CssAbsoluteFilter',
+        'compressor.filters.cssmin.rCSSMinFilter',
+    ],
+    'js':[
+        'compressor.filters.jsmin.JSMinFilter',
+    ]
+}
+HTML_MINIFY = True
+KEEP_COMMENTS_ON_MINIFYING = True
 
 # TODO: remove in production (SQL debug)
 INTERNAL_IPS = [
