@@ -473,8 +473,8 @@
 .slick-slider .my-slick-slide .discount {
   position: absolute;
   width: 85px;
-  bottom: 0px;
-  left: 0px;
+  left: 10px;
+  top: 10px;
 }
 
 .slick-slider .my-slick-slide.checked + .like-btn .like-wrapper a {
