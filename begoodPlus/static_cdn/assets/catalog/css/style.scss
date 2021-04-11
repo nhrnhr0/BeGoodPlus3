@@ -252,6 +252,20 @@
   border: 1px solid red;
 }*/
 .like-btn {
+  &:hover {
+    .like-wrapper {
+      a { 
+        span {
+          &::after {
+            content: ' לסל';
+          }
+        }
+      }
+    }
+  }
+  &:hover {
+    
+  }
   .like-wrapper {
     a {
       border-radius: 50px;
@@ -273,6 +287,7 @@
       span {
         position: relative;
         z-index: 2;
+        
       }
 
       /*
@@ -297,6 +312,7 @@
     &.isAdded a {
       color: #eee;
 
+
       &:hover {
         color: white;
       }
@@ -308,10 +324,24 @@
     }
   }
 }
+.my-slick-slide.checked + .like-btn {
+  &:hover {
+    .like-wrapper {
+      a { 
+        span {
+          &::after {
+            content: '';
+          }
+        }
+      }
+    }
+  }
+}
 
 .swiper-button-next,
 .swiper-button-prev {
   font-weight: bolder;
+  color: black;
 
   //font-size: 4.7rem;
   ::after {
@@ -325,7 +355,7 @@
   right: auto;
   width: 75px;
   height: 75px;*/
-  transform: translate(-95%, 75%);
+  transform: translate(-110%, 75%);
 }
 
 .swiper-button-next,
@@ -334,7 +364,7 @@
   left: auto;
   width: 75px;
   height: 75px;*/
-  transform: translate(95%, 75%);
+  transform: translate(110%, 75%);
 }
 
 .swiper-button-next.swiper-button-disabled,

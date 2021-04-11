@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root {
   --like-font-size: 30px;
   --swiper-navigation-size: 80px;
@@ -242,6 +243,10 @@
 /** {
   border: 1px solid red;
 }*/
+.like-btn:hover .like-wrapper a span::after {
+  content: ' לסל';
+}
+
 .like-btn .like-wrapper a {
   border-radius: 50px;
   width: 100%;
@@ -295,9 +300,14 @@
   height: 100%;
 }
 
+.my-slick-slide.checked + .like-btn:hover .like-wrapper a span::after {
+  content: '';
+}
+
 .swiper-button-next,
 .swiper-button-prev {
   font-weight: bolder;
+  color: black;
 }
 
 .swiper-button-next ::after,
@@ -311,8 +321,8 @@
   right: auto;
   width: 75px;
   height: 75px;*/
-  -webkit-transform: translate(-95%, 75%);
-          transform: translate(-95%, 75%);
+  -webkit-transform: translate(-110%, 75%);
+          transform: translate(-110%, 75%);
 }
 
 .swiper-button-next,
@@ -321,8 +331,8 @@
   left: auto;
   width: 75px;
   height: 75px;*/
-  -webkit-transform: translate(95%, 75%);
-          transform: translate(95%, 75%);
+  -webkit-transform: translate(110%, 75%);
+          transform: translate(110%, 75%);
 }
 
 .swiper-button-next.swiper-button-disabled,
