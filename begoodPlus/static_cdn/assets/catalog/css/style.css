@@ -97,6 +97,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  text-align: right;
 }
 
 .section-3 .abount-us {
@@ -243,8 +244,12 @@
 /** {
   border: 1px solid red;
 }*/
+.like-btn:hover .like-wrapper a span img {
+  display: none;
+}
+
 .like-btn:hover .like-wrapper a span::after {
-  content: ' לסל';
+  content: ' פריט להצעת מחיר';
 }
 
 .like-btn .like-wrapper a {
@@ -252,7 +257,7 @@
   width: 100%;
   display: block;
   line-height: 40px;
-  font-size: 1.2em;
+  font-size: 1rem;
   font-weight: 700;
   font-family: sans-serif;
   text-decoration: none;
@@ -298,6 +303,10 @@
 .like-btn .like-wrapper.isAdded a:after {
   width: 100%;
   height: 100%;
+}
+
+.my-slick-slide.checked + .like-btn:hover .like-wrapper a span img {
+  display: inline;
 }
 
 .my-slick-slide.checked + .like-btn:hover .like-wrapper a span::after {

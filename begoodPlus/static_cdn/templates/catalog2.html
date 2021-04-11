@@ -27,8 +27,7 @@
     <div class="section-1">
 
         <div class="swiper-container swiper-main">
-            <div class="parallax-bg"
-                data-swiper-parallax="23%"></div>
+            <div class="parallax-bg" data-swiper-parallax="23%"></div>
             <!-- -->
             <div class="swiper-wrapper">
                 <div class="swiper-slide slide-1">
@@ -329,7 +328,7 @@
         <h3 class="album-description" style="display: none;" id="album_description_{{album.id}}">{{album.description}}
         </h3>
         <h3 class="album-fotter" style="display: none;" id="album_fotter_{{album.id}}">{{album.fotter}}</h3>
-        
+
         <div class="title-wraper">
             <button data-album-id="{{album.id}}" onclick="openCategoryModal({{album.id}})" class="title btn">
                 {{album.title}}
@@ -530,13 +529,14 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
                 <button id="modal-prev-btn" class="btn modal-nav-btn">
                     <img src="{%static 'assets/catalog/imgs/icons8-arrow-48.png'%}">
                 </button>
-
-                <div id="modal-add-btn" class="like-wrapper">
-                    <a name="like-btn">
-                        <span name="like-btn">
-                            <img src="{%static 'assets/catalog/imgs/icons8-plus-48.png'%}"> הוסף
-                        </span>
-                    </a>
+                <div class="like-btn">
+                    <div id="modal-add-btn" class="like-wrapper">
+                        <a name="like-btn">
+                            <span name="like-btn">
+                                <img src="{%static 'assets/catalog/imgs/icons8-plus-48.png'%}"> הוסף
+                            </span>
+                        </a>
+                    </div>
                 </div>
 
                 <button id="modal-next-btn" class="btn modal-nav-btn">
@@ -610,7 +610,10 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
             {% csrf_token %}
             <input type="hidden" name="taskName" id="taskName" value="catalog-ec6bb117-c8fa-4a38-989a-ab0e0805e44e">
             <h2 class="form-header">
-                לקבלת הצעת מחיר משתלמת <div class="mark-strong">ללא</div> עלות <div class="mark-strong">וללא</div>
+                לקבלת הצעת מחיר משתלמת
+                <div class="mark-strong">&nbsp;ללא&nbsp;</div>
+                עלות
+                <div class="mark-strong">&nbsp;וללא&nbsp;</div>
                 התחייבות השאירו פרטים ומיד נחזור אליכם
             </h2>
             </h2>
@@ -650,7 +653,7 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
             var today = Date.now();
             var time = new Date($(counter).data().time);
             if (today < time.getTime()) {
-                var t= Math.floor(time.getTime()/1000);
+                var t = Math.floor(time.getTime() / 1000);
                 var flipdown = new FlipDown(t, counter.id, {
                     theme: 'light'
                 });
@@ -768,7 +771,7 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
                 checkInView: true,
                 slideToClickedSlide: true,
                 on: {
-                    init: function(d) {
+                    init: function (d) {
                         set_selected_slide_bigger(d);
                     },
                 },
@@ -792,7 +795,7 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
                 },
 
             }));
-            swipers[swipers.length-1].on('transitionEnd', function(d) {
+            swipers[swipers.length - 1].on('transitionEnd', function (d) {
                 set_selected_slide_bigger(d);
             });
 
@@ -1038,15 +1041,20 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
             myStorage.removeItem('user_click_task');
         }
     }
-    
-    
-    
+
+
+
     function set_selected_slide_bigger(swiper) {
-        swiper.slides[swiper.activeIndex].style.transform = swiper.slides[swiper.activeIndex].style.transform.replace("scale(1)","scale(1.5)");
-        swiper.slides[swiper.activeIndex - 1].style.transform = swiper.slides[swiper.activeIndex - 1].style.transform.replace("scale(1)","scale(1.3)");
-        swiper.slides[swiper.activeIndex + 1].style.transform = swiper.slides[swiper.activeIndex + 1].style.transform.replace("scale(1)","scale(1.3)");
-        swiper.slides[swiper.activeIndex - 2].style.transform = swiper.slides[swiper.activeIndex - 2].style.transform.replace("scale(1)","scale(1.1)");
-        swiper.slides[swiper.activeIndex + 2].style.transform = swiper.slides[swiper.activeIndex + 2].style.transform.replace("scale(1)","scale(1.1)");
+        swiper.slides[swiper.activeIndex].style.transform = swiper.slides[swiper.activeIndex].style.transform.replace(
+            "scale(1)", "scale(1.5)");
+        swiper.slides[swiper.activeIndex - 1].style.transform = swiper.slides[swiper.activeIndex - 1].style.transform
+            .replace("scale(1)", "scale(1.3)");
+        swiper.slides[swiper.activeIndex + 1].style.transform = swiper.slides[swiper.activeIndex + 1].style.transform
+            .replace("scale(1)", "scale(1.3)");
+        swiper.slides[swiper.activeIndex - 2].style.transform = swiper.slides[swiper.activeIndex - 2].style.transform
+            .replace("scale(1)", "scale(1.1)");
+        swiper.slides[swiper.activeIndex + 2].style.transform = swiper.slides[swiper.activeIndex + 2].style.transform
+            .replace("scale(1)", "scale(1.1)");
 
 
     }
