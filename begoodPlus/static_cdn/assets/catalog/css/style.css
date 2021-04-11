@@ -11,6 +11,8 @@
 
 .bg-wraper {
   background: url("../imgs/wall_bg.jpg");
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0.3))), url(../imgs/wall_bg.jpg);
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(../imgs/wall_bg.jpg);
   background-position: center;
 }
 
@@ -470,7 +472,7 @@
 
 .slick-slider .my-slick-slide .discount {
   position: absolute;
-  width: 85px;
+  width: 65px;
   left: 10px;
   top: 10px;
 }
