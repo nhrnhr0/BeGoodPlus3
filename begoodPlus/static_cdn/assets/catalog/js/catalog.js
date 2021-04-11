@@ -131,10 +131,10 @@ function update_cart_ui(cart) {
 /*============ cart and form functionality end =====================*/
 
 
-
+var _modal_z_index_incrementor = 0;
 // fix category modal overlaping product modal
 $(document).on('show.bs.modal', '.modal', function (event) {
-  var zIndex = 1040 + (10 * $('.modal:visible').length);
+  var zIndex = _modal_z_index_incrementor++ + 1040 + (10 * $('.modal:visible').length);
   $(this).css('z-index', zIndex);
   setTimeout(function () {
     $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
@@ -503,6 +503,7 @@ function openImageProductModal(prodId) {
 
 function openCategoryModal(albumId) {
   //updateLikedProductsTask();
+  debugger;
   $('#catalogModal .close-modal').click();
   //updateProductsCart();
   var albums = getAllAlbums();
