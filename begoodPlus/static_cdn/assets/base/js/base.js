@@ -91,6 +91,50 @@ function uuidv4() {
     });
   }
 
+//var last_updated_forms = [];
+function get_last_updated_forms() {
+    var forms = myStorage.getItem('last_updated_forms');
+    if(forms == undefined)
+    forms = '[]';
+    return JSON.parse(forms);
+}
+function set_last_updated_forms(data) {
+    myStorage.setItem('last_updated_forms', JSON.stringify(data));
+}
+function contact_form_changed(data) {
+    var jsdata = JSON.parse(data);
+    console.log(jsdata);
+    var formUUID = jsdata.find((e)=>{return (e.name=='formUUID')}).value;
+    var last_updated_form = get_last_updated_forms()[formUUID];
+    if(last_updated_form == undefined) {
+        last_updated_form = {}
+    }
+    if(last_updated_form?.value != data) {
+        last_updated_form['id'] = formUUID;
+        last_updated_form['value'] = data;
+        last_updated_form['changed'] = true;
+        var new_forms = get_last_updated_forms().filter(function (val, index, arr) {
+            return val.id != formUUID;
+        });
+        new_forms.push(last_updated_form);
+        set_last_updated_forms(new_forms);
+    }
+    
+}
+
+function contact_form_interval() {
+    forms = get_last_updated_forms();
+    for(var i = 0; i < forms.length; i++) {
+        form = forms[i];
+        if(form['changed'] == true) {
+            update_contact_to_server(form.value);
+            form['changed'] = false;
+            forms = forms.splice(i, 1);
+            set_last_updated_forms(forms);
+        }
+    }
+}
+
 
 
 function set_form_change_listener(selector, url) {
@@ -126,7 +170,8 @@ function set_form_change_listener(selector, url) {
         data = $(selector).serializeArray();
         data = JSON.stringify(data);
         console.log('FORM CHANGED', url_field.val(), data);
-        update_contact_to_server(data);
+        contact_form_changed(data);
+        //update_contact_to_server(data);
         
     });
     form.submit(function(e) {
@@ -141,7 +186,8 @@ function set_form_change_listener(selector, url) {
         }
         data = JSON.stringify(data);
         console.log('FORM submited', url_field.val(), data);
-        update_contact_to_server(data);
+        //update_contact_to_server(data);
+        contact_form_changed(data);
         
         
         // reset form after submit
@@ -160,6 +206,8 @@ function set_form_change_listener(selector, url) {
         localStorage.setItem(selector + '_form_uuid', uuidv4());
         uuid_field.val(localStorage.getItem(selector + '_form_uuid'));
     });
+
+    
 }
 
 function update_contact_to_server(data){
@@ -239,6 +287,7 @@ function remove_product(prodId) {
 
 
 set_form_change_listener('#contact-form', 'businessOwner');
+setInterval(contact_form_interval, 10000);
 
 
 /*

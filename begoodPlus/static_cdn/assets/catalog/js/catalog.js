@@ -2,16 +2,86 @@ function set_like_btn(selector, val) {
   btns = $(selector);
   btns.html(get_like_markup(val));
 }
+
 function get_like_markup(val) {
-  if(val == false) {
+  if (val == false) {
     return (`<img src="static/assets/catalog/imgs/icons8-plus-48.png"> הוסף`);
-  }else {
+  } else {
     return (`<img src="static/assets/catalog/imgs/icons8-check-mark-48.png"> הוסף`);
   }
 }
 
 /*============ cart and form functionality start =====================*/
+function get_last_cart() {
+  var forms = myStorage.getItem('last_cart');
+  if (forms == undefined)
+    forms = '[]';
+  return JSON.parse(forms);
+}
 
+function set_last_cart(data) {
+  myStorage.setItem('last_cart', JSON.stringify(data));
+}
+
+function deparam(query) {
+  var pairs, i, keyValuePair, key, value, map = {};
+  // remove leading question mark if its there
+  debugger;
+  if (query.slice(0, 1) === '?') {
+    query = query.slice(1);
+  }
+  if (query !== '') {
+    pairs = query.split('&');
+    for (i = 0; i < pairs.length; i += 1) {
+      keyValuePair = pairs[i].split('=');
+      key = decodeURIComponent(keyValuePair[0]);
+      value = (keyValuePair.length > 1) ? decodeURIComponent(keyValuePair[1]) : undefined;
+      if (Array.isArray(map[key])) {
+        map[key].push(value);
+      } else if (map[key] != undefined) {
+        map[key] = [map[key], value];
+      } else {
+        map[key] = value;
+      }
+    }
+  }
+  return map;
+}
+
+function cart_form_changed(data) {
+  debugger;
+
+  var jsdata = deparam(data);
+  console.log(jsdata);
+  var formUUID = jsdata.formUUID
+  var last_updated_form = get_last_cart()[formUUID];
+  if (last_updated_form == undefined) {
+    last_updated_form = {}
+  }
+  if (last_updated_form?.value != data) {
+    last_updated_form['id'] = formUUID;
+    last_updated_form['value'] = data;
+    last_updated_form['changed'] = true;
+    var new_forms = get_last_cart().filter(function (val, index, arr) {
+      return val.id != formUUID;
+    });
+    new_forms.push(last_updated_form);
+    set_last_cart(new_forms);
+  }
+}
+
+function cart_form_interval() {
+  forms = get_last_cart();
+  for (var i = 0; i < forms.length; i++) {
+    form = forms[i];
+    if (form['changed'] == true) {
+      update_cart_to_server(form.value);
+      form['changed'] = false;
+      forms = forms.splice(i, 1);
+      set_last_cart(forms);
+    }
+  }
+}
 
 function set_cart_form_change_listener(selector) {
   var form = $(selector)
@@ -43,7 +113,8 @@ function set_cart_form_change_listener(selector) {
     data = $(selector).serialize();
     //data = JSON.stringify(data);
     //console.log('FORM CHANGED', url_field.val(), data);
-    update_cart_to_server(data);
+    cart_form_changed(data);
+    //update_cart_to_server(data);
 
   });
   form.submit(function (e) {
@@ -503,7 +574,6 @@ function openImageProductModal(prodId) {
 
 function openCategoryModal(albumId) {
   //updateLikedProductsTask();
-  debugger;
   $('#catalogModal .close-modal').click();
   //updateProductsCart();
   var albums = getAllAlbums();
@@ -589,3 +659,4 @@ function update_category_cart_ui() {
 set_form_change_listener('#catalog-contact-form', 'catalog');
 set_cart_form_change_listener('#likedProductsForm');
 update_cart_ui(JSON.parse(myStorage.getItem('cart')));
+setInterval(cart_form_interval, 3000);
