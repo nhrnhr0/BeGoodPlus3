@@ -61,11 +61,10 @@
 }
 
 .section-2 {
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 25px;
-  margin-top: 50px;
   margin-left: 20px;
+  padding-top: 50px;
   margin-right: 20px;
+  padding-bottom: 50px;
   /* check list */
 }
 
@@ -244,11 +243,11 @@
 /** {
   border: 1px solid red;
 }*/
-.like-btn:hover .like-wrapper a span img {
+.like-btn:hover .like-wrapper:not([class*=isAdded]) a span img {
   display: none;
 }
 
-.like-btn:hover .like-wrapper a span::after {
+.like-btn:hover .like-wrapper:not([class*=isAdded]) a span::after {
   content: ' פריט להצעת מחיר';
 }
 
@@ -290,6 +289,10 @@
 .like-btn .like-wrapper a span {
   position: relative;
   z-index: 2;
+}
+
+.like-btn .like-wrapper a span img {
+  height: 31px;
 }
 
 .like-btn .like-wrapper.isAdded a {
@@ -354,13 +357,17 @@
   margin: auto;
 }
 
+.catalog .timer-text {
+  text-align: center;
+}
+
 .catalog .container {
   position: relative;
 }
 
 .catalog .container .swiper-container {
-  padding-top: 220px;
-  padding-bottom: 120px;
+  padding-top: 150px;
+  padding-bottom: 60px;
 }
 
 .catalog .swiper-slide-active {
@@ -419,21 +426,29 @@
 
 .title-wraper .title {
   opacity: 0.5;
-  /*background-color: #0d6efd;
-    border-color: #0d6efd;*/
   background-color: black;
   border-color: var(--clr-primery-gold);
-  margin-top: 25px;
   color: white;
   font-weight: bold;
   text-align: center;
   font-size: 2rem;
-  width: 70%;
-  border-radius: 30px;
+  width: 100%;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 .title-wraper .title:hover {
   opacity: 0.8;
+}
+
+.title-wraper .title:hover::before {
+  content: '>> למעבר לקטגוריית ';
+  opacity: 1;
+}
+
+.title-wraper .title:hover::after {
+  content: ' לחץ כאן <<';
+  opacity: 1;
 }
 
 .slick-dots li button:before {
@@ -515,7 +530,7 @@
   display: none;
   color: white;
   width: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  text-shadow: -1px -1px 0 #000, 0   -1px 0 #000, 1px -1px 0 #000, 1px  0   0 #000, 1px  1px 0 #000, 0    1px 0 #000, -1px  1px 0 #000, -1px  0   0 #000;
   border-radius: 15px;
   z-index: 2000;
   -webkit-transform: translate(-50%, -100%);

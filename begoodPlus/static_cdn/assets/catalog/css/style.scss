@@ -75,11 +75,10 @@
 .section-2 {
 
   //background: #111;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 25px;
-  margin-top: 50px;
   margin-left: 20px;
+  padding-top: 50px;
   margin-right: 20px;
+  padding-bottom: 50px;
 
   
 
@@ -257,7 +256,7 @@
 }*/
 .like-btn {
   &:hover {
-    .like-wrapper {
+    .like-wrapper:not([class*=isAdded]) {
       a { 
         span {
           img {
@@ -269,9 +268,6 @@
         }
       }
     }
-  }
-  &:hover {
-    
   }
   .like-wrapper {
     a {
@@ -294,6 +290,9 @@
       span {
         position: relative;
         z-index: 2;
+        img {
+          height: 31px;
+        }
         
       }
 
@@ -388,13 +387,18 @@
   .flipdown {
     margin: auto;
   }
+  .timer-text {
+    text-align: center;
+    //color: var(--clr-primery-gold);
+  }
   .container {
     position: relative;
 
     .swiper-container {
-      padding-top: 220px;
-      padding-bottom: 120px;
-      //margin-bottom: 100px;
+      padding-top: 150px;
+      padding-bottom: 60px;
+      //padding-top: 220px;
+      //padding-bottom: 120px;
     }
 
   }
@@ -461,22 +465,28 @@
 
   .title {
     opacity: 0.5;
-    /*background-color: #0d6efd;
-    border-color: #0d6efd;*/
     background-color: black;
     border-color: var(--clr-primery-gold);
-
-    margin-top: 25px;
+    //margin-top: 25px;
     color: white;
     font-weight: bold;
-
     text-align: center;
     font-size: 2rem;
-    width: 70%;
-    border-radius: 30px;
-
+    width: 100%;
+    margin-right: 20px;
+    margin-left: 20px;
     &:hover {
+      &::before{ 
+        content: '>> למעבר לקטגוריית ';
+        opacity: 1;
+        
+      }
+      &::after {
+        content: ' לחץ כאן <<';
+        opacity: 1;
+      }
       opacity: 0.8;
+      
     }
   }
 }
@@ -569,7 +579,17 @@
       display: none;
       color: white;
       width: 100%;
-      background: rgba(0, 0, 0, 0.5);
+      //background: rgba(0, 0, 0, 0.5);
+      text-shadow:
+    -1px -1px 0 #000,
+     0   -1px 0 #000,
+     1px -1px 0 #000,
+     1px  0   0 #000,
+     1px  1px 0 #000,
+     0    1px 0 #000,
+    -1px  1px 0 #000,
+    -1px  0   0 #000;
+
       border-radius: 15px;
       z-index: 2000;
       //bottom: 0%;

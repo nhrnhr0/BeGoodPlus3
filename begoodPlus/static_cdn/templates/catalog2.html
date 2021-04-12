@@ -24,6 +24,23 @@
 {% block content %}
 
 <div class="bg-wraper">
+    <div class="section-2">
+        <div class="section-2-fotter">
+            &bull; עיינו באתר
+            &bull; הוסיפו לעגלה
+            &bull; שלחו אלינו
+            &bull;
+            <!--
+            <div class="part-1 shine">
+                מוזמנים לעיין באתר ולהוסיף להצעת מחיר את הפריטים שאהבתם
+            </div>
+            <div class="part-2 shine">
+                לא לשכוח לשלוח את הטופס בסיום
+            </div>
+            -->
+
+        </div>
+    </div>
     <div class="section-1">
 
         <div class="swiper-container swiper-main">
@@ -303,23 +320,7 @@
             -->
         </div>
     </div>
-    <div class="section-2">
-        <div class="section-2-fotter">
-            &bull; עיינו באתר
-            &bull; הוסיפו לעגלה
-            &bull; שלחו אלינו
-            &bull;
-            <!--
-            <div class="part-1 shine">
-                מוזמנים לעיין באתר ולהוסיף להצעת מחיר את הפריטים שאהבתם
-            </div>
-            <div class="part-2 shine">
-                לא לשכוח לשלוח את הטופס בסיום
-            </div>
-            -->
-
-        </div>
-    </div>
+    
 
     <div class="catalog">
 
@@ -334,6 +335,13 @@
                 {{album.title}}
             </button>
         </div>
+        {%if album.timer != None %}
+        <h1 class="timer-text">
+            המבצעים יסתיימו בעוד...
+        </h1>
+        <div id="counter-{{album.id}}" class="flipdown" name="counter" data-time="{{album.timer|safe}}">
+        </div>
+        {%endif%}
         <div class="container">
             <div name="slick-slider-{{album.id}}" id="slick-slider-{{album.id}}"
                 class="swiper-container swiper-category slick-slider">
@@ -382,10 +390,7 @@
             <div class="swiper-button-next"></div>
         </div>
 
-        {%if album.timer != None %}
-        <div id="counter-{{album.id}}" class="flipdown" name="counter" data-time="{{album.timer|safe}}">
-        </div>
-        {%endif%}
+        
 
         {%endif%}
         {%endfor%}
@@ -1077,4 +1082,6 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
 <div>Icons made by <a href="https://www.flaticon.com/authors/icongeek26" title="Icongeek26">Icongeek26</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 <a target="_blank" href="undefined/icons/set/check-mark-emoji">Check Mark icon</a> icon by <a target="_blank" href="">Icons8</a>
 <a target="_blank" href="undefined/icons/set/arrow">Arrow icon</a> icon by <a target="_blank" href="">Icons8</a>
+<a target="_blank" href="undefined/icons/set/plus-math--v2">Plus Math icon</a> icon by <a target="_blank" href="">Icons8</a>
+<a target="_blank" href="undefined/icons/set/plus-math--v1">Plus Math icon</a> icon by <a target="_blank" href="">Icons8</a>
 -->

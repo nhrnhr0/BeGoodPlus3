@@ -413,13 +413,18 @@
     // menu (humburger):
     .menu-wraper {
         position: relative;
+        button {
+            .navbar-toggler-icon{
+                background-image: url('../imgs/icons8-menu.svg');
+            }
+        }
 
         #navbarSupportedContent {
             position: absolute;
             top: 0px;
             right: 0px;
             padding:5px;
-            transform: translate(0px, 25%);
+            transform: translate(75%, 25%);
             //background-color: white;
             background-color: rgb(226, 226, 226);
             border-radius: 15px;

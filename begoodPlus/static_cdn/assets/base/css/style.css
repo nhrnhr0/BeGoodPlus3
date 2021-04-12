@@ -405,13 +405,17 @@
   position: relative;
 }
 
+.navbar .menu-wraper button .navbar-toggler-icon {
+  background-image: url("../imgs/icons8-menu.svg");
+}
+
 .navbar .menu-wraper #navbarSupportedContent {
   position: absolute;
   top: 0px;
   right: 0px;
   padding: 5px;
-  -webkit-transform: translate(0px, 25%);
-          transform: translate(0px, 25%);
+  -webkit-transform: translate(75%, 25%);
+          transform: translate(75%, 25%);
   background-color: #e2e2e2;
   border-radius: 15px;
   border: 1px solid black;
