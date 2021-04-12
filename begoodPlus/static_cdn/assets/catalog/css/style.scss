@@ -80,7 +80,7 @@
   margin-right: 20px;
   padding-bottom: 50px;
 
-  
+
 
   .section-2-fotter {
     color: #FFD880;
@@ -254,14 +254,16 @@
 /** {
   border: 1px solid red;
 }*/
-.like-btn {
+
+ .like-btn {
   &:hover {
     .like-wrapper:not([class*=isAdded]) {
-      a { 
+      a {
         span {
           img {
             display: none;
           }
+
           &::after {
             content: ' פריט להצעת מחיר';
           }
@@ -269,6 +271,7 @@
       }
     }
   }
+
   .like-wrapper {
     a {
       border-radius: 50px;
@@ -290,10 +293,11 @@
       span {
         position: relative;
         z-index: 2;
+
         img {
           height: 31px;
         }
-        
+
       }
 
       /*
@@ -330,14 +334,17 @@
     }
   }
 }
-.my-slick-slide.checked + .like-btn {
+
+.my-slick-slide.checked+.like-btn,
+.category-item.checked>div .like-btn {
   &:hover {
     .like-wrapper {
-      a { 
+      a {
         span {
           img {
             display: inline;
           }
+
           &::after {
             content: '';
           }
@@ -387,10 +394,12 @@
   .flipdown {
     margin: auto;
   }
+
   .timer-text {
     text-align: center;
     //color: var(--clr-primery-gold);
   }
+
   .container {
     position: relative;
 
@@ -475,18 +484,23 @@
     width: 100%;
     margin-right: 20px;
     margin-left: 20px;
+
     &:hover {
-      &::before{ 
+      &::before {
         content: '>> למעבר לקטגוריית ';
         opacity: 1;
-        
+        font-size: 1.4rem;
       }
+
       &::after {
         content: ' לחץ כאן <<';
         opacity: 1;
+        font-size: 1.4rem;
       }
+
       opacity: 0.8;
-      
+      //font-size: 2.2rem;
+
     }
   }
 }
@@ -528,7 +542,7 @@
       position: absolute;
       width: 65px;
       left: 10px;
-      top:10px;
+      top: 10px;
     }
 
 
@@ -581,14 +595,14 @@
       width: 100%;
       //background: rgba(0, 0, 0, 0.5);
       text-shadow:
-    -1px -1px 0 #000,
-     0   -1px 0 #000,
-     1px -1px 0 #000,
-     1px  0   0 #000,
-     1px  1px 0 #000,
-     0    1px 0 #000,
-    -1px  1px 0 #000,
-    -1px  0   0 #000;
+        -1px -1px 0 #000,
+        0 -1px 0 #000,
+        1px -1px 0 #000,
+        1px 0 0 #000,
+        1px 1px 0 #000,
+        0 1px 0 #000,
+        -1px 1px 0 #000,
+        -1px 0 0 #000;
 
       border-radius: 15px;
       z-index: 2000;
@@ -638,6 +652,7 @@
       .product-properties {
         display: flex;
         flex-direction: column;
+
         .product-color {
           display: flex;
           flex-wrap: wrap;
@@ -828,7 +843,7 @@
       padding: 5px;
 
       &.checked {
-        .like-wrapper a {
+        /*.like-wrapper a {
           color: #000;
           border: 1px solid black;
 
@@ -840,29 +855,36 @@
             width: 100%;
             height: 100%;
           }
-        }
+          span {
+            img {
 
+            }
+          }
+        }
+*/
       }
 
       &:hover {}
 
       position: relative;
 
-      img {
-        height: auto;
-        padding: 5px;
-        border-radius: 15px;
+      .category-item-img-wraper {
+        img {
+          height: auto;
+          padding: 5px;
+          border-radius: 15px;
 
-        &:hover {
-          transform: scale(1.1);
-          mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
-        }
+          &:hover {
+            transform: scale(1.1);
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+          }
 
-        &:hover+.img-title {
-          display: block;
-          transition: transform 0.2s;
-          //transform: translate(-50%, -80%);
-          font-weight: 700;
+          &:hover+.img-title {
+            display: block;
+            transition: transform 0.2s;
+            //transform: translate(-50%, -80%);
+            font-weight: 700;
+          }
         }
       }
 

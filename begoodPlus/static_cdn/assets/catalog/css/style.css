@@ -308,11 +308,13 @@
   height: 100%;
 }
 
-.my-slick-slide.checked + .like-btn:hover .like-wrapper a span img {
+.my-slick-slide.checked + .like-btn:hover .like-wrapper a span img,
+.category-item.checked > div .like-btn:hover .like-wrapper a span img {
   display: inline;
 }
 
-.my-slick-slide.checked + .like-btn:hover .like-wrapper a span::after {
+.my-slick-slide.checked + .like-btn:hover .like-wrapper a span::after,
+.category-item.checked > div .like-btn:hover .like-wrapper a span::after {
   content: '';
 }
 
@@ -444,11 +446,13 @@
 .title-wraper .title:hover::before {
   content: '>> למעבר לקטגוריית ';
   opacity: 1;
+  font-size: 1.4rem;
 }
 
 .title-wraper .title:hover::after {
   content: ' לחץ כאן <<';
   opacity: 1;
+  font-size: 1.4rem;
 }
 
 .slick-dots li button:before {
@@ -530,7 +534,7 @@
   display: none;
   color: white;
   width: 100%;
-  text-shadow: -1px -1px 0 #000, 0   -1px 0 #000, 1px -1px 0 #000, 1px  0   0 #000, 1px  1px 0 #000, 0    1px 0 #000, -1px  1px 0 #000, -1px  0   0 #000;
+  text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0 #000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000;
   border-radius: 15px;
   z-index: 2000;
   -webkit-transform: translate(-50%, -100%);
@@ -843,23 +847,35 @@
   background-color: black;
 }
 
-#categoryModal .category-items .category-item.checked .like-wrapper a {
-  color: #000;
-  border: 1px solid black;
+#categoryModal .category-items .category-item.checked {
+  /*.like-wrapper a {
+          color: #000;
+          border: 1px solid black;
+
+          &:hover {
+            //color: white;
+          }
+
+          &:after {
+            width: 100%;
+            height: 100%;
+          }
+          span {
+            img {
+
+            }
+          }
+        }
+*/
 }
 
-#categoryModal .category-items .category-item.checked .like-wrapper a:after {
-  width: 100%;
-  height: 100%;
-}
-
-#categoryModal .category-items .category-item img {
+#categoryModal .category-items .category-item .category-item-img-wraper img {
   height: auto;
   padding: 5px;
   border-radius: 15px;
 }
 
-#categoryModal .category-items .category-item img:hover {
+#categoryModal .category-items .category-item .category-item-img-wraper img:hover {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
   -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(black), to(rgba(0, 0, 0, 0)));
@@ -868,7 +884,7 @@
           mask-image: linear-gradient(to bottom, black, rgba(0, 0, 0, 0));
 }
 
-#categoryModal .category-items .category-item img:hover + .img-title {
+#categoryModal .category-items .category-item .category-item-img-wraper img:hover + .img-title {
   display: block;
   -webkit-transition: -webkit-transform 0.2s;
   transition: -webkit-transform 0.2s;
