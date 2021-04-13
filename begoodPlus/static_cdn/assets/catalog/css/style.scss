@@ -267,10 +267,15 @@
 }*/
 
 .like-btn {
+  * {
+    // fix text quality with transform: scale()
+    backface-visibility: hidden;
+  }
   &:hover {
     .like-wrapper:not([class*=isAdded]) {
       a {
         span {
+          
           img {
             display: none;
           }

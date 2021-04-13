@@ -255,6 +255,11 @@
 /** {
   border: 1px solid red;
 }*/
+.like-btn * {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+
 .like-btn:hover .like-wrapper:not([class*=isAdded]) a span img {
   display: none;
 }
