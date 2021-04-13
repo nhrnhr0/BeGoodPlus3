@@ -123,6 +123,7 @@
   background: none;
   padding: 0;
   font-size: 2em;
+  margin: auto;
 }
 
 .modal .close:hover {
@@ -151,6 +152,7 @@
 
 .modal .modal-header .header-logo {
   height: 35px;
+  margin: auto;
 }
 
 .modal .modal-header .modal-title {

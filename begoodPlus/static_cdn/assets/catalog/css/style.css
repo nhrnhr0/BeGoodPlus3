@@ -735,11 +735,11 @@
   margin: 0px;
   padding: 0px;
   max-width: 100vw;
-  height: 98vh;
+  height: 100vh;
 }
 
 #categoryModal .modal-content {
-  height: 98vh;
+  height: 100vh;
 }
 
 #categoryModal .modal-content .modal-header .modal-header-links {
@@ -1007,7 +1007,7 @@
 /* ============== swiper start ================ */
 .swiper-main {
   width: 100%;
-  height: 50vh;
+  height: 55vh;
   background: #000;
 }
 

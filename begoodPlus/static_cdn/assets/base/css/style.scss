@@ -141,6 +141,7 @@
         background: none;
         padding: 0;
         font-size: 2em;
+        margin: auto;
 
         &:hover {
             color: red;
@@ -155,6 +156,7 @@
 
         .header-logo {
             height: 35px;
+            margin: auto;
         }
 
         .modal-title {
