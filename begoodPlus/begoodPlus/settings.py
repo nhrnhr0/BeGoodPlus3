@@ -190,7 +190,7 @@ MIDDLEWARE = [
 ]
 
 # Compressor and minifier config
-COMPRESS_ENABLED = False
+COMPRESS_ENABLED = True
 COMPRESS_CSS_HASHING_METHOD = 'content'
 COMPRESS_FILTERS = {
     'css':[
