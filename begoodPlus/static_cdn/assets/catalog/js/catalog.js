@@ -819,9 +819,8 @@ function openCategoryModal(albumId) {
 }
 var _last_cart_contact_info = undefined;
 var _need_to_update_cart_contact_info = false;
-function check_for_contact_info_change(form) {
-  console.log(form);
-  ser_form = $(form).serialize();
+function check_for_contact_info_change(ser_form) {
+  
   if(ser_form != _last_cart_contact_info) {
     _need_to_update_cart_contact_info = true;
     _last_cart_contact_info = ser_form;
@@ -852,13 +851,18 @@ function set_cart_contact_change_listener(selector) {
   });
 
   form.change(function () {
-    check_for_contact_info_change(this);
+    ser_form = $(form).serialize();
+    ser_form+="&submited=false";
+    check_for_contact_info_change(ser_form);
   });
 
   form.submit(function (e) {
     e.preventDefault();
-    data = $(selector).serialize();
-    data += '&sumbited=True'
+    ser_form = $(form).serialize();
+    ser_form+="&submited=true";
+    check_for_contact_info_change(ser_form);
+    //data = $(selector).serialize();
+    //data += '&sumbited=True'
   });
 
 }

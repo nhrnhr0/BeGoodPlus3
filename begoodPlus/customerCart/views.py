@@ -16,12 +16,21 @@ def cart_info(request):
         cart = customer.get_active_cart()
         data = request.POST['content']
         data = parse_qs(data)
-        cart.name= data['name'][0]
-        cart.email= data['email'][0]
-        cart.phone= data['phone'][0]
-        if cart.has_key('submited'):
-            cart.submited = cart['submited'][0]
+        if 'name' in data:
+            cart.name= data['name'][0]
+        if 'email' in data:
+            cart.email= data['email'][0]
+        if 'phone' in data:
+            cart.phone= data['phone'][0]
+        if 'submited' in data:
+            sub = False if data['submited'][0] == 'false' else True
+            cart.sumbited = sub
         cart.save()
+        print('name: ', cart.name)
+        print('email', cart.email)
+        print('phone',cart.phone)
+        print('submited', cart.sumbited)
+
         ser_context={'request': request}
         data = CustomerCartSerializer(cart, context=ser_context).data
         data['timestemp'] = str(datetime.datetime.now())
