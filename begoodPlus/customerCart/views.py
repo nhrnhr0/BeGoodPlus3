@@ -7,6 +7,24 @@ from .models import CustomerCart
 # Create your views here.
 import json
 from core.models import Customer
+from catalogImages.models import CatalogImage
+import datetime
+def cart_add(request):
+    if request.is_ajax() and request.method == 'POST':
+        customer,customer_created  = Customer.objects.get_or_create(device=request.COOKIES['device'])
+        cart = customer.get_active_cart()
+        data = request.POST['content']
+        if not cart.products.filter(pk=data).exists():
+            product = CatalogImage.objects.get(pk=data)
+            cart.products.add(product)
+
+        ser_context={'request': request}
+        data = CustomerCartSerializer(cart, context=ser_context).data
+        data['timestemp'] = str(datetime.datetime.now())
+        return JsonResponse(data)
+    pass
+def cart_del(request):
+    pass
 def cart_changed(request):
     if request.is_ajax() and request.method == 'POST':
         customer,customer_created  = Customer.objects.get_or_create(device=request.COOKIES['device'])

@@ -27,12 +27,16 @@ class BeseContactInformation(models.Model):
         return url + ' | '  + name + ' | ' +phone + ' | ' + email
     
         
-
+import uuid
 from customerCart.models import CustomerCart
 class Customer(models.Model):
     contact = models.ManyToManyField(to=BeseContactInformation)
     carts = models.ManyToManyField(to=CustomerCart)
     device = models.CharField(max_length=120, unique=True)
+
+    def get_active_cart(self):
+        active_cart,created = self.carts.get_or_create(sumbited=False, defaults={'formUUID':uuid.uuid4(),})
+        return active_cart
 
 
 class UserSearchData(models.Model):

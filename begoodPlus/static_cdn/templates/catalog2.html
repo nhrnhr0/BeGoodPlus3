@@ -355,16 +355,18 @@
                             <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>                        
                         -->
                             {% if img.big_discount %}
-                            <img class="big-discount" alt="מבצע ענק!"
-                                src="{%static 'assets/catalog/imgs/big_discount.gif'%}" />
+                            <img class="big-discount  swiper-lazy" alt="מבצע ענק!"
+                                data-src="{%static 'assets/catalog/imgs/big_discount.gif'%}" />
                             {%endif%}
 
                             {%if img.discount %}
-                            <img class="discount" alt="discount" src="{{img.discount}}" />
+                            <img class="discount swiper-lazy" data-src="{{img.discount}}" alt="discount" />
                             {%endif%}
 
+                            
                             <img height="100px" width="100px" src="media/{{img.image_thumbnail}}"
                                 alt="{{img.description}}" />
+                            
 
                             <div class="img-title">{{img.title}}</div>
 
@@ -608,7 +610,7 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
 
 
 
-<div class="contact-form-wraper2">
+<div class="contact-form-wraper2 bg-gradient">
     <div class="contact-form-wraper">
         <form id="catalog-contact-form" action="{%url 'save-contact-form' '/testCatalog'%}" method="post"
             class="contact-form">
@@ -767,13 +769,14 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
                 lazy: true,
                 effect: 'coverflow',
                 grabCursor: true,
-                speed: 100,
+                speed: 125,
                 loop: true,
                 centeredSlides: true,
                 slidesPerView: 5,
+                loopedSlides: 8,
                 loadPrevNext: true,
                 loadOnTransitionStart: true,
-                checkInView: true,
+                //checkInView: true,
                 slideToClickedSlide: true,
                 on: {
                     init: function (d) {
@@ -782,7 +785,7 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
                 },
 
                 coverflowEffect: {
-                    rotate: -17,
+                    rotate: -13,
                     stretch: 10,
                     depth: 100,
                     modifier: 1,
@@ -877,12 +880,10 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
 
         $('.my-slick-slide + .like-btn .like-wrapper').on('click', (e) => {
             console.log('like clicked');
-            debugger;
             addClientLikeProduct(e.currentTarget.dataset.prodId);
         });
 
         $('.my-slick-slide').on('click', (e) => {
-            debugger;
             console.log('.my-slick-slide', e, e.currentTarget.dataset.prodId);
             /*if (e.target.getAttribute('name') == 'like-btn') {
                 addClientLikeProduct(e.currentTarget.dataset.prodId);
