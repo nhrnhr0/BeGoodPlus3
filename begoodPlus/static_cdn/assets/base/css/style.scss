@@ -43,7 +43,9 @@
     font-display: swap;
 }
 
-
+body.waiting * {
+    cursor: progress;
+}
 
 * {
     //font-family: 'Rounded Mplus 1c';

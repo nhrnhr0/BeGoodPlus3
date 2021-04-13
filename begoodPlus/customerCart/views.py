@@ -9,6 +9,13 @@ import json
 from core.models import Customer
 from catalogImages.models import CatalogImage
 import datetime
+def cart_view(request):
+    customer,customer_created  = Customer.objects.get_or_create(device=request.COOKIES['device'])
+    cart = customer.get_active_cart()
+    ser_context={'request': request}
+    data = CustomerCartSerializer(cart, context=ser_context).data
+    data['timestemp'] = str(datetime.datetime.now())
+    return JsonResponse(data)
 def cart_add(request):
     if request.is_ajax() and request.method == 'POST':
         customer,customer_created  = Customer.objects.get_or_create(device=request.COOKIES['device'])
@@ -17,6 +24,7 @@ def cart_add(request):
         if not cart.products.filter(pk=data).exists():
             product = CatalogImage.objects.get(pk=data)
             cart.products.add(product)
+            cart.save()
 
         ser_context={'request': request}
         data = CustomerCartSerializer(cart, context=ser_context).data
@@ -24,6 +32,19 @@ def cart_add(request):
         return JsonResponse(data)
     pass
 def cart_del(request):
+    if request.is_ajax() and request.method == 'POST':
+        customer,customer_created  = Customer.objects.get_or_create(device=request.COOKIES['device'])
+        cart = customer.get_active_cart()
+        data = request.POST['content']
+        
+        product = CatalogImage.objects.get(pk=data)
+        cart.products.remove(product)
+        cart.save()
+
+        ser_context={'request': request}
+        data = CustomerCartSerializer(cart, context=ser_context).data
+        data['timestemp'] = str(datetime.datetime.now())
+        return JsonResponse(data)
     pass
 def cart_changed(request):
     if request.is_ajax() and request.method == 'POST':

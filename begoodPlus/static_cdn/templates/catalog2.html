@@ -355,12 +355,12 @@
                             <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>                        
                         -->
                             {% if img.big_discount %}
-                            <img class="big-discount  swiper-lazy" alt="מבצע ענק!"
-                                data-src="{%static 'assets/catalog/imgs/big_discount.gif'%}" />
+                            <img class="big-discount" alt="מבצע ענק!"
+                                src="{%static 'assets/catalog/imgs/big_discount.gif'%}" />
                             {%endif%}
 
                             {%if img.discount %}
-                            <img class="discount swiper-lazy" data-src="{{img.discount}}" alt="discount" />
+                            <img class="discount" src="{{img.discount}}" alt="discount" />
                             {%endif%}
 
                             
@@ -768,7 +768,7 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
         for (var i = 0; i < swiperDom.length; i++) {
             swipers.push(new Swiper(swiperDom[i], {
                 // Enable lazy loading
-                lazy: true,
+                //lazy: true,
                 effect: 'coverflow',
                 grabCursor: true,
                 speed: 125,

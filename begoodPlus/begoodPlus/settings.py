@@ -190,7 +190,7 @@ MIDDLEWARE = [
 ]
 
 # Compressor and minifier config
-COMPRESS_ENABLED = True
+COMPRESS_ENABLED = False
 COMPRESS_CSS_HASHING_METHOD = 'content'
 COMPRESS_FILTERS = {
     'css':[
@@ -202,7 +202,7 @@ COMPRESS_FILTERS = {
     ]
 }
 HTML_MINIFY = False # is True, create problems with markdown in catalog2.html page
-KEEP_COMMENTS_ON_MINIFYING = True
+KEEP_COMMENTS_ON_MINIFYING = False
 
 # TODO: remove in production (SQL debug)
 INTERNAL_IPS = [

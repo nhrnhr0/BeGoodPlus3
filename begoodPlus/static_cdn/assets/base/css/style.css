@@ -37,6 +37,10 @@
   font-display: swap;
 }
 
+body.waiting * {
+  cursor: progress;
+}
+
 * {
   font-family: 'Rubik';
   font-style: normal;

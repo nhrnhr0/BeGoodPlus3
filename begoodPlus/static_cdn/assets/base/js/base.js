@@ -241,7 +241,7 @@ function openCart() {
     $('#likedProductsModal .close-modal').click(function () {
         $('#likedProductsModal').modal('hide');
     });
-    var products_elem = $('#likedProductsModal #cartProductsList');
+    /*var products_elem = $('#likedProductsModal #cartProductsList');
     products_elem.empty();
 
     var products_markup = '<ul>';
@@ -254,23 +254,10 @@ function openCart() {
     }
     products_markup += '</ul>';
     products_elem.html(products_markup);
+    */
 }
 
-function remove_product(prodId) {
 
-    // delete for the client UI:
-
-    // cart modal
-    $(`#likedProductsForm :input[value=${prodId}]`).remove();
-    $(`.my-slick-slide[data-prod-id=${prodId}]`).removeClass('checked');
-    $(`.category-item[data-category-prod-id="${prodId}"]`).removeClass('checked');
-    $(`.my-slick-slide[data-prod-id=${prodId}] + .like-btn span`).text('הוסף להצעת מחיר');
-    $(`.category-item[data-category-prod-id=${prodId}] .like-btn .like-wrapper a span`).text('הוסף להצעת מחיר');
-
-    // send to server
-    $(`#likedProductsForm #cartProductsList ul li[data-prod-id='${prodId}']`).remove();
-    $(`#likedProductsForm`).trigger('change')
-}
 
 
 
