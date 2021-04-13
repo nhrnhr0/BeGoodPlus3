@@ -9,6 +9,25 @@ import json
 from core.models import Customer
 from catalogImages.models import CatalogImage
 import datetime
+
+def cart_info(request):
+    if request.is_ajax() and request.method == 'POST':
+        customer,customer_created  = Customer.objects.get_or_create(device=request.COOKIES['device'])
+        cart = customer.get_active_cart()
+        data = request.POST['content']
+        data = parse_qs(data)
+        cart.name= data['name'][0]
+        cart.email= data['email'][0]
+        cart.phone= data['phone'][0]
+        if cart.has_key('submited'):
+            cart.submited = cart['submited'][0]
+        cart.save()
+        ser_context={'request': request}
+        data = CustomerCartSerializer(cart, context=ser_context).data
+        data['timestemp'] = str(datetime.datetime.now())
+        return JsonResponse(data)
+    pass
+
 def cart_view(request):
     customer,customer_created  = Customer.objects.get_or_create(device=request.COOKIES['device'])
     cart = customer.get_active_cart()
