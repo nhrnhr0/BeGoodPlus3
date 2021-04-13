@@ -21,54 +21,6 @@
   }
 }
 
-/*body {
-    font-family: 'M PLUS Rounded 1c'!important;
-}*/
-/*
-@font-face {
-    font-family: 'Rounded Mplus 1c';
-    src: url('subset-RoundedMplus1c-Bold.woff2') format('woff2'),
-        url('subset-RoundedMplus1c-Bold.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Rounded Mplus 1c';
-    src: url('../fonts/../fonts/subset-RoundedMplus1c-Regular.woff2') format('woff2'),
-        url('../fonts/../fonts/subset-RoundedMplus1c-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-
-* {
-    font-family: 'Rounded Mplus 1c';
-    font-weight: bold;
-    font-style: normal;
-}
-*/
-/*
-@font-face {
-    font-family: 'Rounded Mplus 1c';
-    src: url('../fonts/subset-RoundedMplus1c-Black.woff2') format('woff2'),
-        url('../fonts/subset-RoundedMplus1c-Black.woff') format('woff');
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Rounded Mplus 1c';
-    src: url('../fonts/subset-RoundedMplus1c-ExtraBold.woff2') format('woff2'),
-        url('../fonts/subset-RoundedMplus1c-ExtraBold.woff') format('woff');
-    font-weight: 800;
-    font-style: normal;
-    font-display: swap;
-}
-*/
 @font-face {
   font-family: 'Rounded Mplus 1c';
   src: url("../fonts/subset-RoundedMplus1c-Bold.woff2") format("woff2"), url("../fonts/subset-RoundedMplus1c-Bold.woff") format("woff");
@@ -77,16 +29,6 @@
   font-display: swap;
 }
 
-/*
-@font-face {
-    font-family: 'Rounded Mplus 1c';
-    src: url('../fonts/subset-RoundedMplus1c-Light.woff2') format('woff2'),
-        url('../fonts/subset-RoundedMplus1c-Light.woff') format('woff');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-*/
 @font-face {
   font-family: 'Rounded Mplus 1c';
   src: url("../fonts/subset-RoundedMplus1c-Medium.woff2") format("woff2"), url("../fonts/subset-RoundedMplus1c-Medium.woff") format("woff");
@@ -95,26 +37,8 @@
   font-display: swap;
 }
 
-/*
-@font-face {
-    font-family: 'Rounded Mplus 1c';
-    src: url('../fonts/subset-RoundedMplus1c-Regular.woff2') format('woff2'),
-        url('../fonts/subset-RoundedMplus1c-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Rounded Mplus 1c';
-    src: url('../fonts/subset-RoundedMplus1c-Thin.woff2') format('woff2'),
-        url('../fonts/subset-RoundedMplus1c-Thin.woff') format('woff');
-    font-weight: 100;
-    font-style: normal;
-    font-display: swap;
-}*/
 * {
-  font-family: 'Rounded Mplus 1c';
+  font-family: 'Rubik';
   font-style: normal;
 }
 
