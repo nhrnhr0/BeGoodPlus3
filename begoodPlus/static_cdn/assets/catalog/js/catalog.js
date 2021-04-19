@@ -181,8 +181,8 @@ function remove_productUI(prodId) {
   //$(`#likedProductsForm :input[value=${prodId}]`).remove();
   $(`.my-slick-slide[data-prod-id=${prodId}]`).removeClass('checked');
   $(`.category-item[data-category-prod-id="${prodId}"]`).removeClass('checked');
-  $(`.my-slick-slide[data-prod-id=${prodId}] + .like-btn span`).text('הוסף להצעת מחיר');
-  $(`.category-item[data-category-prod-id=${prodId}] .like-btn .like-wrapper a span`).text('הוסף להצעת מחיר');
+  $(`.my-slick-slide[data-prod-id=${prodId}] + .like-btn span`).text('הוסף');
+  $(`.category-item[data-category-prod-id=${prodId}] .like-btn .like-wrapper a span`).text('הוסף');
 
   // send to server
   //$(`#likedProductsForm #cartProductsList ul li[data-prod-id='${prodId}']`).remove();
@@ -195,9 +195,9 @@ function remove_product(prodId) {
 }
 
 function update_cart_modal(cart) {
-  var cart_markup =  `<ul>`;
-  for(var i=0; i  < cart.products.length; i++) {
-    cart_markup  += 
+  var cart_markup = `<ul>`;
+  for (var i = 0; i < cart.products.length; i++) {
+    cart_markup +=
       `<li data-prod-id="${cart.products[i].id}">
         <img src="${cart.products[i].image}"/>
         ${cart.products[i].id} -> ${cart.products[i].title}
@@ -212,7 +212,7 @@ function update_cart_modal(cart) {
 
 
 function update_cart_ui(cart) {
-
+debugger;
   if (cart == undefined) {
     //TODO: think about clearing old data
     return;
@@ -220,7 +220,6 @@ function update_cart_ui(cart) {
   if (cart.status == "submited") {
     $('#cartProductsList').empty();
     removeClientLikedUIAll();
-
   }
   var products = cart.products;
   update_cart_modal(cart);
@@ -514,28 +513,29 @@ function removeClientLikeProduct(prodId) {
 */
 
 var last_updated_cart = undefined;
+
 function render_cart_view(data) {
-  
-  if(last_updated_cart != undefined) {
+  if (last_updated_cart != undefined) {
     var last_updated_time = last_updated_cart['timestemp']
     last_updated_time = Date.parse(last_updated_time);
     var curr_updated_time = Date.parse(data['timestemp']);
-    if(curr_updated_time >= last_updated_time) {
+    if (curr_updated_time >= last_updated_time) {
       last_updated_cart = data;
-    }else {
+    } else {
       console.error('packets get in wierd order');
     }
-  }else {
+  } else {
     last_updated_cart = data;
   }
-  
+
   update_cart_ui(last_updated_cart);
 
 }
 
 var _ajax_product_count = 0;
+
 function ajax_product_del(prodId) {
-  _ajax_product_count+=1;
+  _ajax_product_count += 1;
   $('body').addClass('waiting');
   $.ajax({
     type: "POST",
@@ -545,8 +545,8 @@ function ajax_product_del(prodId) {
       'csrfmiddlewaretoken': getCookie('csrftoken'),
     },
     success: function (data) {
-      _ajax_product_count-=1;
-      if(_ajax_product_count == 0) {
+      _ajax_product_count -= 1;
+      if (_ajax_product_count == 0) {
         $('body').removeClass('waiting');
       }
       //updateClientLikedUI1(prodId);
@@ -568,6 +568,7 @@ function ajax_product_del(prodId) {
 }
 
 function ajax_refresh_cart() {
+
   $.ajax({
     type: "POST",
     url: '/cart/view',
@@ -588,7 +589,7 @@ function ajax_refresh_cart() {
 }
 
 function ajax_product_add(prodId) {
-  _ajax_product_count+=1;
+  _ajax_product_count += 1;
   $('body').addClass('waiting');
   $.ajax({
     type: "POST",
@@ -598,8 +599,8 @@ function ajax_product_add(prodId) {
       'csrfmiddlewaretoken': getCookie('csrftoken'),
     },
     success: function (data) {
-      _ajax_product_count-=1;
-      if(_ajax_product_count == 0) {
+      _ajax_product_count -= 1;
+      if (_ajax_product_count == 0) {
         $('body').removeClass('waiting');
       }
       //updateClientLikedUI1(prodId);
@@ -631,6 +632,7 @@ function ajax_cart_contact_info(data) {
     },
     success: function (data) {
       console.log(data);
+      render_cart_view(data);
     },
     fail: function () {
       console.log('form-change fail');
@@ -742,6 +744,7 @@ function openImageProductModal(prodId) {
 
 
 function openCategoryModal(albumId) {
+debugger;
   //updateLikedProductsTask();
   $('#catalogModal .close-modal').click();
   //updateProductsCart();
@@ -815,21 +818,33 @@ function openCategoryModal(albumId) {
     $('#categoryModal').modal('hide');
   });
 
-  //update_category_cart_ui();
+  update_cart_ui(last_updated_cart);
 }
 var _last_cart_contact_info = undefined;
 var _need_to_update_cart_contact_info = false;
-function check_for_contact_info_change(ser_form) {
-  
-  if(ser_form != _last_cart_contact_info) {
+
+function check_for_contact_info_change(ser_form, isImportant = false) {
+  if (isImportant) {
+    cart_info_update(ser_form);
+    _last_cart_contact_info = ser_form;
+    return;
+  }
+
+  if (ser_form != _last_cart_contact_info) {
     _need_to_update_cart_contact_info = true;
     _last_cart_contact_info = ser_form;
   }
 
 }
+
+// actual sending request to the server
+function cart_info_update(info) {
+  ajax_cart_contact_info(info);
+}
+// used with setInserval and send the periotecly if there is changes to not overload the server
 function cart_info_updater() {
-  if(_need_to_update_cart_contact_info) {
-    ajax_cart_contact_info(_last_cart_contact_info);
+  if (_need_to_update_cart_contact_info) {
+    cart_info_update(_last_cart_contact_info);
     _need_to_update_cart_contact_info = false;
   }
 }
@@ -852,15 +867,15 @@ function set_cart_contact_change_listener(selector) {
 
   form.change(function () {
     ser_form = $(form).serialize();
-    ser_form+="&submited=false";
+    ser_form += "&submited=false";
     check_for_contact_info_change(ser_form);
   });
 
   form.submit(function (e) {
     e.preventDefault();
     ser_form = $(form).serialize();
-    ser_form+="&submited=true";
-    check_for_contact_info_change(ser_form);
+    ser_form += "&submited=true";
+    check_for_contact_info_change(ser_form, true);
     //data = $(selector).serialize();
     //data += '&sumbited=True'
   });

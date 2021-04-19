@@ -55,7 +55,7 @@ from catalogAlbum.views import catalogView2,catalogView_api#,catalog_timer
 from myUserTasks.views import updateContactFormUserTaskView, getUserTasksView,updateProductsFormUserTaskView,getUserCartView,delUserLikedProductView
 from myLogo.views import my_logo_view
 #from customerCart.views import cart_changed
-from customerCart.views import cart_changed, cart_del, cart_add,cart_view,cart_info
+from customerCart.views import cart_del, cart_add,cart_view,cart_info
 urlpatterns = [
     #path('jet/', include('jet.urls', 'jet')),
     path('admin/', admin.site.urls),
@@ -105,7 +105,7 @@ urlpatterns = [
     path('search',autocompleteModel),
     path('search-click', autocompleteClick),
     path('form-change', form_changed, name='form-change'),
-    path('cart-change', cart_changed, name='cart-change'),
+    #path('cart-change', cart_changed, name='cart-change'),
     path('cart/add', cart_add, name='cart-add'),
     path('cart/del', cart_del, name='cart-del'),
     path('cart/view', cart_view, name='cart-view'),
