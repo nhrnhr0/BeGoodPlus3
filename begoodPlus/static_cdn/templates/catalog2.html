@@ -780,11 +780,6 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
                 loadOnTransitionStart: true,
                 //checkInView: true,
                 slideToClickedSlide: true,
-                on: {
-                    init: function (d) {
-                        set_selected_slide_bigger(d);
-                    },
-                },
 
                 coverflowEffect: {
                     rotate: -13,
@@ -803,13 +798,21 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
                     nextEl: `#${swiperDom[i].id} ~ .swiper-button-prev`,
                     prevEl: `#${swiperDom[i].id} ~ .swiper-button-next`,
                 },
-
             }));
-
-            swipers[swipers.length - 1].on('transitionEnd', function (d) {
+            /*
+            var last_swiper = swipers[swipers.length - 1];
+            last_swiper.on('transitionEnd', function (d) {
+                console.log('transitionEnd');
                 set_selected_slide_bigger(d);
             });
-
+            last_swiper.update();*/
+            /*
+            last_swiper.on('afterInit', function(d) {
+                console.log('afterInit');
+                set_selected_slide_bigger(d);
+            });
+            */
+            //set_selected_slide_bigger(last_swiper);
         }
         //var swipers = new Swiper
         /*var swipers = new Swiper('.swiper-category', {
@@ -1060,26 +1063,6 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
         }
     }
     */
-
-
-
-    function set_selected_slide_bigger(swiper) {
-        swiper.slides[swiper.activeIndex].style.transform = swiper.slides[swiper.activeIndex].style.transform.replace(
-            "scale(1)", "scale(1.4)");
-        console.log('set_selected_slide_bigger', swiper);
-        /*
-        swiper.slides[swiper.activeIndex - 1].style.transform = swiper.slides[swiper.activeIndex - 1].style.transform
-            .replace("scale(1)", "scale(1.3)");
-        swiper.slides[swiper.activeIndex + 1].style.transform = swiper.slides[swiper.activeIndex + 1].style.transform
-            .replace("scale(1)", "scale(1.3)");
-        swiper.slides[swiper.activeIndex - 2].style.transform = swiper.slides[swiper.activeIndex - 2].style.transform
-            .replace("scale(1)", "scale(1.1)");
-        swiper.slides[swiper.activeIndex + 2].style.transform = swiper.slides[swiper.activeIndex + 2].style.transform
-            .replace("scale(1)", "scale(1.1)");
-            */
-
-
-    }
 </script>
 {%endblock%}
 

@@ -212,7 +212,6 @@ function update_cart_modal(cart) {
 
 
 function update_cart_ui(cart) {
-debugger;
   if (cart == undefined) {
     //TODO: think about clearing old data
     return;
@@ -744,7 +743,6 @@ function openImageProductModal(prodId) {
 
 
 function openCategoryModal(albumId) {
-debugger;
   //updateLikedProductsTask();
   $('#catalogModal .close-modal').click();
   //updateProductsCart();
