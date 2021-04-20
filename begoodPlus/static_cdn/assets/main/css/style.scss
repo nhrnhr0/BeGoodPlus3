@@ -1,3 +1,6 @@
+
+@import "../../base/css/style.scss";
+
 .my-body {
     background-color: rgb(255, 255, 255);
     /*position: relative;
@@ -170,7 +173,10 @@
     }
 }
 
-.main-section {}
+.main-section {
+
+    background: url('../../catalog/imgs/catalogBg1.jpeg');
+}
 
 .section-2-wraper {
     
@@ -180,10 +186,11 @@
 .section-1-wraper {
     text-align:right;
     //background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../imgs/white_paper.webp');
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../catalog/imgs/catalogBg1.jpeg');
+    //background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../catalog/imgs/catalogBg1.jpeg');
     background-size: cover;
 
     .hero-wraper {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) 0% 0% / cover;
         .hero {
             .sentence {
                 font-size: 1.5em;
@@ -259,7 +266,7 @@
     position: relative;
     z-index: 1;
     //background: url('../../base/imgs/mainBg3.jpg');
-    background: url('../../catalog/imgs/catalogBg1.jpeg');
+    //background: url('../../catalog/imgs/catalogBg1.jpeg');
     padding-top: 3.4em;
     padding-bottom: 150px;
 
@@ -594,7 +601,59 @@ $gold-animation-text-color: rgba(255, 255, 255, 0.3);
     border-radius: 20px;
 }
 
-
+.section-2-wraper {
+    //background: url('../../catalog/imgs/catalogBg1.jpeg');
+    .slider-title {
+        @include  bg-gradient;
+        font-size: 3rem;
+        text-align:center;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+    .showcase {
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+        .window {
+            float: left;
+        }
+    
+        .slider {
+          display: block;
+          list-style: none;
+          position: relative;
+          margin-left: auto;
+          margin-right: auto;
+      
+          .item {
+            display: block;
+            float: left;
+            position: relative;
+            width: 200px;
+            //height: 200px;
+            //width: auto;
+            line-height: 200px;
+            text-align: center;
+      
+            img {
+              vertical-align: middle;
+              max-width: 100%;
+              max-height: 100%;
+              -webkit-transition: 0 linear left;
+              -moz-transition: 0 linear left;
+              transition: 0 linear left;
+              opacity: 0.65;
+      
+              &:hover {
+              opacity: 1.0;
+              }
+            }
+          }
+        }
+      
+      }
+}
 .contact-form-wraper2 {
     background-color: #FFD880;
 }
