@@ -268,7 +268,7 @@
     //background: url('../../base/imgs/mainBg3.jpg');
     //background: url('../../catalog/imgs/catalogBg1.jpeg');
     padding-top: 3.4em;
-    padding-bottom: 150px;
+    padding-bottom: 25px;
 
     overflow: hidden;
     background-size: cover;
@@ -603,13 +603,6 @@ $gold-animation-text-color: rgba(255, 255, 255, 0.3);
 
 .section-2-wraper {
     //background: url('../../catalog/imgs/catalogBg1.jpeg');
-    .slider-title {
-        @include  bg-gradient;
-        font-size: 3rem;
-        text-align:center;
-        font-weight: bold;
-        text-decoration: underline;
-    }
     .showcase {
         display: block;
         width: 100%;
