@@ -772,11 +772,11 @@ function openCategoryModal(albumId) {
     imagesMarkup += `
       <div class="category-item" data-category-prod-id="${img.id}">
         <div class="category-item-img-wraper">
-          <img width="250px" height="250px" onclick="$('.my-slick-slide[data-prod-id=${img.id}]').click();" src="${img.image_thumbnail}" alt="${img.description}" />
+          <img class="product-image" width="250px" height="250px" onclick="$('.my-slick-slide[data-prod-id=${img.id}]').click();" src="${img.image_thumbnail}" alt="${img.description}" />
           <div class="img-title">${img.title}</div>
         </div>
         <div>
-          <div onclick="$('.my-slick-slide[data-prod-id=${img.id}] + .like-btn .like-wrapper')[0].click();" class="like-btn" name="like-btn">
+          <div onclick="categoryLikeBtnClicked(${img.id})" class="like-btn" name="like-btn">
             <div class="like-wrapper">
               <a name="like-btn">
               <span name="like-btn">
@@ -818,6 +818,13 @@ function openCategoryModal(albumId) {
 
   update_cart_ui(last_updated_cart);
 }
+
+function categoryLikeBtnClicked(prodId) {
+  addClientLikeProduct(prodId);
+  flyToCart($(`#categoryModal .modal-body`).find(`div[data-category-prod-id='${prodId}'] .product-image`));
+  
+}
+
 var _last_cart_contact_info = undefined;
 var _need_to_update_cart_contact_info = false;
 
@@ -880,6 +887,47 @@ function set_cart_contact_change_listener(selector) {
 
 }
 
+
+function flyToCart(img) {
+  var eltoDrag = img;
+  target = $('.cart');
+  shake =true;
+  var imgclone = eltoDrag.clone()
+      .offset({
+          top: eltoDrag.offset().top,
+          left: eltoDrag.offset().left
+      })
+      .css({
+          'opacity': '0.5',
+          'position': 'absolute',
+          'height': eltoDrag.height() / 2,
+          'width': eltoDrag.width() / 2,
+          'z-index': '999999'
+      })
+      .appendTo($('body'))
+      .animate({
+          'top': target.offset().top + 10,
+          'left': target.offset().left + 15,
+          'height': eltoDrag.height() / 2,
+          'width': eltoDrag.width() / 2
+      }, 1000, 'easeInOutExpo');
+
+  if (shake) {
+      setTimeout(function () {
+          target.effect("shake", {
+              times: 2
+          }, 200);
+      }, 1500);
+  }
+
+
+  imgclone.animate({
+      'width': 0,
+      'height': 0
+  }, function () {
+      $(this).detach()
+  });
+}
 
 /*
 function update_category_cart_ui() {

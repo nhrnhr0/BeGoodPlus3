@@ -364,7 +364,7 @@
                             {%endif%}
 
 
-                            <img height="100px" width="100px" src="media/{{img.image_thumbnail}}"
+                            <img class="product-image" height="100px" width="100px" src="media/{{img.image_thumbnail}}"
                                 alt="{{img.description}}" />
 
 
@@ -882,10 +882,18 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
                 }
             }]
         });*/
+        /*
+        $('.catalog').flyto({
+            item: '',
+            target: '#cart-btn',
+            button: '.my-slick-slide + .like-btn .like-wrapper',
+        });*/
 
 
         $('.my-slick-slide + .like-btn .like-wrapper').on('click', (e) => {
-            console.log('like clicked');
+        debugger;;
+            console.log('like clicked', e);
+            flyToCart($(e.currentTarget.parentNode.parentNode).find('img.product-image'));
             addClientLikeProduct(e.currentTarget.dataset.prodId);
         });
 
@@ -1014,7 +1022,9 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
         });
 
         $('#modal-add-btn').click((e) => {
+        flyToCart($(`#catalog-image-${e.currentTarget.value}`));
             console.log('modal-add-btn', e);
+            
             addClientLikeProduct(e.currentTarget.value)
             return false;
         });
@@ -1029,6 +1039,7 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
 
     });
 
+    
 
 
     function handleSearchTasks() {
