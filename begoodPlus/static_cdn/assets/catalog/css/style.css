@@ -690,6 +690,12 @@
           justify-content: space-evenly;
 }
 
+#catalogModal .modal-footer .btn {
+  padding: 0px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 #catalogModal .modal-footer .modal-nav-btn img {
   width: 60px;
 }
@@ -714,7 +720,7 @@
 }
 
 #catalogModal .modal-footer #modal-add-btn a {
-  padding: 10px !important;
+  padding: 5px !important;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
 }

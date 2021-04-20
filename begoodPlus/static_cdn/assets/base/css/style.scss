@@ -85,6 +85,7 @@ body.waiting * {
         .modal-title {
             font-weight: 700;
             font-size: 2.5em;
+            
         }
     }
 
@@ -101,6 +102,13 @@ body.waiting * {
 
     .modal-footer {
         @include bg-gradient();
+        .modal-title {
+            line-height: initial;
+        }
+        padding:0px;
+        * {
+            margin: 0px;
+        }
         //background: #ffd880;
     }
 }

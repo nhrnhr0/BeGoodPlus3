@@ -110,12 +110,21 @@ body.waiting * {
   background-image: repeating-linear-gradient(to left, #f9f295 0%, #e0aa3e 25%, #f9f295 50%, #e0aa3e 75%, #f9f295 100%);
   background-image: -ms-repeating-linear-gradient(right, #f9f295 0%, #e0aa3e 25%, #f9f295 50%, #e0aa3e 75%, #f9f295 100%);
   /* IE8- CSS hack */
+  padding: 0px;
 }
 
 @media \0screen\,screen\9 {
   .modal .modal-footer {
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fff9f295", endColorstr="#fff9f295", GradientType=1);
   }
+}
+
+.modal .modal-footer .modal-title {
+  line-height: initial;
+}
+
+.modal .modal-footer * {
+  margin: 0px;
 }
 
 @media (min-width: 576px) {
