@@ -55,8 +55,8 @@ body.waiting * {
   margin-bottom: 0;
   margin-left: 0px;
   margin-right: auto;
-  -webkit-transform: translate(-0.5rem, -0.5rem);
-          transform: translate(-0.5rem, -0.5rem);
+  -webkit-transform: translate(-0.5rem, 0.5rem);
+          transform: translate(-0.5rem, 0.5rem);
 }
 
 .modal .close:hover {
