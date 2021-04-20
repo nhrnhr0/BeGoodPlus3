@@ -808,7 +808,7 @@ function openCategoryModal(albumId) {
   }
 
   $('#categoryModal .modal-title').text(album.title);
-  $('#categoryModal .modal-body').html(bodyMarkup);
+  $('#categoryModal .modal-body').html(bodyMarkup).scrollTop(0);
   //$('#categoryModal .modal-footer').html(buttonsMarkup);
   $('#categoryModal .modal-header .modal-header-links').html(buttonsMarkup);
   $('#categoryModal').modal('show');
