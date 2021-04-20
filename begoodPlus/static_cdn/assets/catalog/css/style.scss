@@ -425,10 +425,12 @@
 
 .catalog {
   .timer {
-    display:none;
+    display: none;
+
     &.active {
-      display:block;
+      display: block;
     }
+
     .flipdown {
       margin: auto;
     }
@@ -684,7 +686,7 @@
       //padding-right: 5px;
       flex: 1;
       min-width: 35%;
-      padding-left: 30px;
+      padding-left: 10px;
 
       .product-title {
         font-size: 2em;
@@ -700,11 +702,11 @@
 
       .product-properties {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
 
         .product-color {
           display: flex;
-          flex-wrap: wrap;
+          //flex-wrap: wrap;
 
           /*
         flex-wrap: wrap;
@@ -716,6 +718,7 @@
             width: 25px;
             height: 25px;
             border: 1px black solid;
+            border-radius: 50%;
 
             &:hover {
               border: 2px red solid;
@@ -723,24 +726,26 @@
           }
         }
 
-        .product-size {
-          /*
+        .product-size-wraper {
+          .product-size {
+            /*
         display: flex;
         flex-direction: row-reverse;
         flex-wrap: wrap;*/
-          display: flex;
-          flex-wrap: wrap;
+            display: flex;
+            //flex-wrap: wrap;
 
-          .size-box {
-            border: 1px black solid;
-            margin: 3px;
-            min-width: 30px;
-            text-align: center;
-            font-weight: 700;
+            .size-box {
+              border: 1px black solid;
+              margin: 3px;
+              min-width: 30px;
+              text-align: center;
+              font-weight: 700;
 
-            &:hover {
-              background-color: #3D3D3D;
-              color: white
+              &:hover {
+                background-color: #3D3D3D;
+                color: white
+              }
             }
           }
         }

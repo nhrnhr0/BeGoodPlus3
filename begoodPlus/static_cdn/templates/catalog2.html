@@ -661,7 +661,6 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
         var counters = $('[name="counter"]');
         for (var i = 0; i < counters.length; i++) {
             counter = counters[i];
-            debugger;
             
             
             var today = Date.now();
@@ -928,7 +927,7 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
                 var colorMarkup = ``
                 for (var i = 0; i < img.colors_list.length; i++) {
                     var col = img.colors_list[i];
-                    colorMarkup += `<div class="color-box" style="background:${col.color};"></div>`;
+                    colorMarkup += `<div class="color-box" title="${col.name}" alt="${col.name}" style="background:${col.color};"></div>`;
                 }
 
                 var sizeMarkup = ``;
@@ -949,10 +948,10 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
                         <div class="product-title">${img.title}</div>
                         <hr>
                         <div class="product-properties">
-                            <div class="col-6">
+                            <div class="product-color-wraper">
                                 <div class="product-color ">${colorMarkup}</div>
                             </div>
-                            <div class="col-6">
+                            <div class="product-size-wraper">
                                 <div class="product-size">${sizeMarkup}</div>
                             </div>
                         </div>
