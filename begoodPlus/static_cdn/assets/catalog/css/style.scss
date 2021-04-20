@@ -301,7 +301,6 @@
 
   .like-wrapper {
     a {
-      border-radius: 50px;
       width: 100%;
       display: block;
       line-height: 40px;
@@ -316,6 +315,10 @@
       position: relative;
       transition: all .35s;
       color: white;
+      
+      border-radius: 25px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
 
       span {
         position: relative;
@@ -465,7 +468,14 @@
         display: block;
       }
 
-      border-radius: 15px;
+      //border-radius: 15px;
+    }
+    
+    .img-title {
+      background: #0000007a;
+      border-radius: 25px;
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 0;
     }
 
     /*box-shadow:
@@ -598,7 +608,7 @@
       width: 100%;
       height: auto;
       //padding: 5px;
-      border-radius: 15px;
+      border-radius: 0px;
       /*
       filter: none !important;
 
@@ -633,7 +643,7 @@
         -1px 1px 0 #000,
         -1px 0 0 #000;
 
-      border-radius: 15px;
+      //border-radius: 15px;
       z-index: 2000;
       //bottom: 0%;
       transform: translate(-50%, -100%);
