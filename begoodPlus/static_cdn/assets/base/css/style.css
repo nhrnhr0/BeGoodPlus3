@@ -163,6 +163,7 @@ body.waiting * {
           transform: translateX(160px);
   -webkit-transition: all 0.5s linear;
   transition: all 0.5s linear;
+  --icon-bar-border-size: 3px;
   /*&.pick {
             transform: translateX(-90px);
         }*/
@@ -214,7 +215,7 @@ body.waiting * {
 }
 
 .icon-bar .icon.delivery {
-  border: 1px solid #FFD880;
+  border: var(--icon-bar-border-size) solid #FFD880;
   overflow: hidden;
 }
 
@@ -275,17 +276,17 @@ body.waiting * {
 }
 
 .icon-bar .icon.whatsapp {
-  border: 1px solid #25D366;
+  border: var(--icon-bar-border-size) solid #25D366;
   color: white;
 }
 
 .icon-bar .icon.facebook {
-  border: 1px solid #0066E0;
+  border: var(--icon-bar-border-size) solid #0066E0;
   text-shadow: 0 -1px -1px #1f2f52;
 }
 
 .icon-bar .icon.instegram {
-  border: 1px solid #EA4959;
+  border: var(--icon-bar-border-size) solid #EA4959;
 }
 
 .icon-bar .icon a {
