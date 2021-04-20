@@ -336,10 +336,12 @@
             </button>
         </div>
         {%if album.timer != None %}
-        <h1 class="timer-text">
-            המבצעים יסתיימו בעוד...
-        </h1>
-        <div id="counter-{{album.id}}" class="flipdown" name="counter" data-time="{{album.timer|safe}}">
+        <div id="timer-{{album.id}}" class="timer">
+            <h1 id="timer-title-{{album.id}}" class="timer-text">
+                המבצעים יסתיימו בעוד...
+            </h1>
+            <div id="counter-{{album.id}}" class="flipdown" name="counter" data-time="{{album.timer|safe}}">
+            </div>
         </div>
         {%endif%}
         <div class="container">
@@ -659,9 +661,14 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
         var counters = $('[name="counter"]');
         for (var i = 0; i < counters.length; i++) {
             counter = counters[i];
+            debugger;
+            
+            
             var today = Date.now();
             var time = new Date($(counter).data().time);
             if (today < time.getTime()) {
+                var albumId = counter.id.split('-').pop();
+                $(`#timer-${albumId}`).addClass('active');
                 var t = Math.floor(time.getTime() / 1000);
                 var flipdown = new FlipDown(t, counter.id, {
                     theme: 'light'

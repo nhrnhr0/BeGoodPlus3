@@ -378,11 +378,19 @@
   pointer-events: initial;
 }
 
-.catalog .flipdown {
+.catalog .timer {
+  display: none;
+}
+
+.catalog .timer.active {
+  display: block;
+}
+
+.catalog .timer .flipdown {
   margin: auto;
 }
 
-.catalog .timer-text {
+.catalog .timer .timer-text {
   text-align: center;
 }
 
