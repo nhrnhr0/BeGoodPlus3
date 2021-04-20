@@ -778,6 +778,8 @@
 
       a {
         padding: 10px !important;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
       }
 
       &.isAdded {
@@ -873,14 +875,14 @@
 
     .category-item {
       cursor: pointer;
-
+      padding: 5px;
       .category-item-img-wraper {
         &:hover {
           background-color: black;
         }
       }
 
-      padding: 5px;
+      
 
       &.checked {
         /*.like-wrapper a {
@@ -911,8 +913,11 @@
       .category-item-img-wraper {
         img {
           height: auto;
-          padding: 5px;
-          border-radius: 15px;
+          /*padding: 5px;*/
+          border-radius: 0px;
+          border-top-right-radius: 15px;
+          border-top-left-radius: 15px;
+
 
           &:hover {
             transform: scale(1.1);

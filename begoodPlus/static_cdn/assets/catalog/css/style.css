@@ -710,6 +710,8 @@
 
 #catalogModal .modal-footer #modal-add-btn a {
   padding: 10px !important;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
 }
 
 #catalogModal .modal-footer #modal-add-btn.isAdded {
@@ -896,8 +898,10 @@
 
 #categoryModal .category-items .category-item .category-item-img-wraper img {
   height: auto;
-  padding: 5px;
-  border-radius: 15px;
+  /*padding: 5px;*/
+  border-radius: 0px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
 }
 
 #categoryModal .category-items .category-item .category-item-img-wraper img:hover {
