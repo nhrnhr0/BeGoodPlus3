@@ -20,22 +20,25 @@
   }
 }
 
+/*
 @font-face {
-  font-family: 'Rounded Mplus 1c';
-  src: url("../fonts/subset-RoundedMplus1c-Bold.woff2") format("woff2"), url("../fonts/subset-RoundedMplus1c-Bold.woff") format("woff");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
+    font-family: 'Rounded Mplus 1c';
+    src: url('../fonts/subset-RoundedMplus1c-Bold.woff2') format('woff2'),
+        url('../fonts/subset-RoundedMplus1c-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
-  font-family: 'Rounded Mplus 1c';
-  src: url("../fonts/subset-RoundedMplus1c-Medium.woff2") format("woff2"), url("../fonts/subset-RoundedMplus1c-Medium.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
+    font-family: 'Rounded Mplus 1c';
+    src: url('../fonts/subset-RoundedMplus1c-Medium.woff2') format('woff2'),
+        url('../fonts/subset-RoundedMplus1c-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
 }
-
+*/
 body.waiting * {
   cursor: progress;
 }
@@ -477,7 +480,6 @@ body.waiting * {
 }
 
 .navbar #navbarDropdown::after {
-  font-family: Arial;
   font-size: 0.7em;
   font-weight: 700;
   position: absolute;

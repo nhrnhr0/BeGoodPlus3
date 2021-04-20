@@ -24,7 +24,7 @@
 .bg-gradient {
     @include bg-gradient;
 }
-
+/*
 @font-face {
     font-family: 'Rounded Mplus 1c';
     src: url('../fonts/subset-RoundedMplus1c-Bold.woff2') format('woff2'),
@@ -42,7 +42,7 @@
     font-style: normal;
     font-display: swap;
 }
-
+*/
 body.waiting * {
     cursor: progress;
 }
@@ -449,7 +449,6 @@ body.waiting * {
         }
 
         &::after {
-            font-family: Arial;
             font-size: 0.7em;
             font-weight: 700;
             position: absolute;
