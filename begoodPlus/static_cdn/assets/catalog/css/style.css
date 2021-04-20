@@ -2,6 +2,7 @@
 :root {
   --like-font-size: 30px;
   --swiper-navigation-size: 80px;
+  --swiper-slide-border: 2px;
 }
 
 .btn-primary {
@@ -280,7 +281,7 @@
   font-weight: 700;
   font-family: sans-serif;
   text-decoration: none;
-  border: 2px solid #333;
+  border: var(--swiper-slide-border) solid black;
   background: #0000007a;
   letter-spacing: 2px;
   text-align: center;
@@ -291,6 +292,7 @@
   border-radius: 25px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  border-top-width: 0px;
   /*
     &:after {
       position: absolute;
@@ -403,6 +405,11 @@
   padding-bottom: 60px;
 }
 
+.catalog .container .product-image {
+  border: var(--swiper-slide-border) solid black;
+  border-bottom-width: 0px;
+}
+
 .catalog .swiper-slide-active {
   -webkit-transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg) scale(1.4) !important;
           transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg) scale(1.4) !important;
@@ -416,6 +423,10 @@
       -10px 0 80px black,
       10px 0 80px #FFD880 !important;
     }*/
+}
+
+.catalog .swiper-slide-active .product-image {
+  border-top-width: 0px;
 }
 
 .catalog .swiper-slide-active .my-slick-slide {
@@ -442,6 +453,8 @@
   border-radius: 25px;
   border-bottom-right-radius: 0px;
   border-bottom-left-radius: 0;
+  border: var(--swiper-slide-border) solid black;
+  border-bottom-width: 0px;
 }
 
 .title-wraper {
