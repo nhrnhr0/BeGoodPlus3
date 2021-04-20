@@ -74,7 +74,7 @@ urlpatterns = [
     re_path(r'catalog2/(?P<hierarchy>.+)/$', catalog_page2, name='albumView2'),
     path('begood-plus', catalog_view),
     #path('my-logo', my_logo_wrapper_view),
-    path('my-logo/<path:curr>', my_logo_view),
+    path('my-logo/<path:curr>', my_logo_view, name="my-logo"),
     path('api/providers', api_providers), 
     path('api/packingTypes', api_packing_types),
     path('api/productSizes', api_product_sizes),
