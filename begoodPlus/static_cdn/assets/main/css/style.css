@@ -353,6 +353,7 @@ body.waiting * {
 }
 
 .ui-autocomplete .list-category .search-item {
+  text-align: right;
   border: 2px solid black;
   border-radius: 15px;
   background-color: #FFD880;
@@ -362,6 +363,10 @@ body.waiting * {
 
 .ui-autocomplete .list-category:hover .search-item {
   background-color: #3969B1;
+}
+
+.ui-autocomplete .search-item {
+  text-align: right;
 }
 
 .ui-autocomplete .search-item .logo {

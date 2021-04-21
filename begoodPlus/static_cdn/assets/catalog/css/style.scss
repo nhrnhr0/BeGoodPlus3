@@ -1,3 +1,5 @@
+@import "../../base/css/style.scss";
+
 :root {
   $fade-grey: #ededed;
   $grey: #111;
@@ -456,6 +458,7 @@
       border: var(--swiper-slide-border) solid black;
       //border-top-width: 0px;
       border-bottom-width: 0px;
+      @include bg-gradient;
     }
 
   }
@@ -466,7 +469,7 @@
       border-top-width: 0px;
     }
     .my-slick-slide {
-
+      
       position: relative;
 
       /*
@@ -585,8 +588,8 @@
 
 
   }
-
   .my-slick-slide {
+    
     cursor: pointer;
 
     /*
@@ -768,6 +771,7 @@
       flex: 1;
 
       img {
+        @include bg-gradient;
         width: 450px;
         float: left;
         border-radius: 15px;
@@ -911,6 +915,9 @@
       .category-item-img-wraper {
         &:hover {
           background-color: black;
+        }
+        .product-image {
+          @include bg-gradient;
         }
       }
 
@@ -1071,16 +1078,22 @@
 
     .modal-content {
       max-height: 100vh;
+      @include bg-gradient;
 
       .modal-body {
+        @include bg-gradient;
         padding: 0px;
         overflow-y: auto;
         /*overflow-y: scroll;
         display: flex;
         justify-content: center;
         align-items: center;*/
-
-        img {}
+        margin: auto;
+        
+        .img-fluid {
+          
+          margin:auto
+        }
       }
     }
   }

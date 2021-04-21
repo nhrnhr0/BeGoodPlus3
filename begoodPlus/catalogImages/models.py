@@ -48,21 +48,56 @@ class CatalogImage(models.Model):
         
     
     def optimize_image(image,size, *args, **kwargs):
+        desired_size = 500
+        im = Image.open(image)
+        old_size = im.size  # old_size[0] is in (width, height) format
+
+        ratio = float(desired_size)/max(old_size)
+        new_size = tuple([int(x*ratio) for x in old_size])
+        # use thumbnail() or resize() method to resize the input image
+
+        # thumbnail is a in-place operation
+
+        # im.thumbnail(new_size, Image.ANTIALIAS)
+
+        im = im.resize(new_size, Image.ANTIALIAS)
+        # create a new image and paste the resized on it
+
+        new_im = Image.new("RGBA", (desired_size, desired_size))
+        new_im.paste(im, ((desired_size-new_size[0])//2,
+                    (desired_size-new_size[1])//2))
+        
+        output = BytesIO()
+        new_im.save(output, format='PNG', quality=75)
+        output.seek(0)
+        return output
+        
+        '''
         im = Image.open(image)
         output = BytesIO()
+        im = im.resize(size, Image.ANTIALIAS)
+        im = im.convert('RGBA')
+        im.save(output, format='PNG', quality=75)
+        output.seek(0)
+        return output 
+        '''
+    def optimize_tubmail(image, size, *args, **kwargs):
+        im = Image.open(image)
+        output = BytesIO()
+        im.thumbnail(size)
         im = im.resize(size)
-        im = im.convert('RGB')
-        im.save(output, format='JPEG', quality=75)
+        im = im.convert('RGBA')
+        im.save(output, format='PNG', quality=50)
         output.seek(0)
         return output 
     
     def save(self, *args, **kwargs):
         if self.image:
             output = CatalogImage.optimize_image(self.image, size=(923, 715))
-            self.image = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % self.image.name.split('.')[0], 'image/jpeg',
+            self.image = InMemoryUploadedFile(output, 'ImageField', "%s.png" % self.image.name.split('.')[0], 'image/PNG',
                                         sys.getsizeof(output), None)
-            output2 = CatalogImage.optimize_image(self.image, size=(450,450))
-            self.image_thumbnail = InMemoryUploadedFile(output2, 'ImageField', "image_thumbnail_%s.jpg" % self.image.name.split('.')[0], 'image/jpeg',
+            output2 = CatalogImage.optimize_tubmail(self.image, size=(250,250))
+            self.image_thumbnail = InMemoryUploadedFile(output2, 'ImageField', "image_thumbnail_%s.png" % self.image.name.split('.')[0], 'image/PNG',
                                         sys.getsizeof(output2), None)
         # if the image is set and and squere image we will generate one
         '''
