@@ -1129,8 +1129,8 @@ body.waiting * {
 .catalog .container .product-image {
   border: var(--swiper-slide-border) solid black;
   border-bottom-width: 0px;
-  background: #e5e5e5;
-  background: radial-gradient(circle, #e5e5e5 50%, #797979 100%);
+  background: white;
+  background: radial-gradient(circle, white 0%, white 32%, #c7c7c7 84%);
 }
 
 .catalog .swiper-slide-active {
@@ -1413,8 +1413,8 @@ body.waiting * {
 }
 
 #catalogModal .inner-body .img-wraper img {
-  background: #e5e5e5;
-  background: radial-gradient(circle, #e5e5e5 50%, #797979 100%);
+  background: white;
+  background: radial-gradient(circle, white 0%, white 32%, #c7c7c7 84%);
   width: 450px;
   float: left;
   border-radius: 15px;
@@ -1624,8 +1624,8 @@ body.waiting * {
 }
 
 #categoryModal .category-items .category-item .category-item-img-wraper .product-image {
-  background: #e5e5e5;
-  background: radial-gradient(circle, #e5e5e5 50%, #797979 100%);
+  background: white;
+  background: radial-gradient(circle, white 0%, white 32%, #c7c7c7 84%);
 }
 
 #categoryModal .category-items .category-item.checked {
@@ -1765,13 +1765,13 @@ body.waiting * {
 
 #ImageProductsModal .modal-dialog .modal-content {
   max-height: 100vh;
-  background: #e5e5e5;
-  background: radial-gradient(circle, #e5e5e5 50%, #797979 100%);
+  background: white;
+  background: radial-gradient(circle, white 0%, white 32%, #c7c7c7 84%);
 }
 
 #ImageProductsModal .modal-dialog .modal-content .modal-body {
-  background: #e5e5e5;
-  background: radial-gradient(circle, #e5e5e5 50%, #797979 100%);
+  background: white;
+  background: radial-gradient(circle, white 0%, white 32%, #c7c7c7 84%);
   padding: 0px;
   overflow-y: auto;
   /*overflow-y: scroll;
