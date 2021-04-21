@@ -13,12 +13,17 @@
 
 }
 
+
+
 .btn-primary {
   background-color: black;
   border-color: #eee;
 }
 
-
+@mixin bg-image {
+  background: rgb(229,229,229);
+background: radial-gradient(circle, rgba(229,229,229,1) 50%, rgba(121,121,121,1) 100%);
+}
 .swiper-container {}
 
 .bg-wraper {
@@ -458,7 +463,7 @@
       border: var(--swiper-slide-border) solid black;
       //border-top-width: 0px;
       border-bottom-width: 0px;
-      @include bg-gradient;
+      @include bg-image;
     }
 
   }
@@ -771,7 +776,7 @@
       flex: 1;
 
       img {
-        @include bg-gradient;
+        @include bg-image;
         width: 450px;
         float: left;
         border-radius: 15px;
@@ -917,7 +922,7 @@
           background-color: black;
         }
         .product-image {
-          @include bg-gradient;
+          @include bg-image;
         }
       }
 
@@ -1078,10 +1083,10 @@
 
     .modal-content {
       max-height: 100vh;
-      @include bg-gradient;
+      @include bg-image;
 
       .modal-body {
-        @include bg-gradient;
+        @include bg-image;
         padding: 0px;
         overflow-y: auto;
         /*overflow-y: scroll;
