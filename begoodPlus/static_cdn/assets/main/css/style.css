@@ -416,7 +416,7 @@ body.waiting * {
 }
 
 .navbar .menu-wraper button .navbar-toggler-icon {
-  background-image: url("../imgs/icons8-menu.svg");
+  background-image: url("../../base/imgs/icons8-menu.svg");
 }
 
 .navbar .menu-wraper #navbarSupportedContent {
