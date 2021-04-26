@@ -261,8 +261,157 @@ function openCart() {
 
 
 
+function openProductModal(prodId, albumId, delay=0) {
 
 
+    //var isAdded = e.currentTarget.dataset.isAdded;
+    console.log('openProductModal',prodId,albumId, delay);
+    albums = getAllAlbums();
+    var album = undefined;
+    var albumArrIdx = -1;
+    if(albumId == -1) {
+        [album ,albumArrIdx]= getAlbumFormProdId(prodId)
+    }
+    else {
+        album = albums.find((val, idx, obj) => {
+            albumArrIdx = idx;
+            return val.id == albumId
+        });
+    }
+    var prodArrIdx = -1;
+    var img = album.images_list.find((val, idx) => {
+        prodArrIdx  = idx;
+        return val.id == prodId
+    });
+
+    var colorMarkup = ``
+    for (var i = 0; i < img.colors_list.length; i++) {
+        var col = img.colors_list[i];
+        colorMarkup += `<div class="color-box" title="${col.name}" alt="${col.name}" style="background:${col.color};"></div>`;
+    }
+
+    var sizeMarkup = ``;
+    for (var i = 0; i < img.sizes_list.length; i++) {
+        var size = img.sizes_list[i];
+        sizeMarkup += `<div class="size-box">${size.size}</div>`;
+    }
+
+    //$('#catalogModal .modal-title').text(album.title);
+    $('#catalogModal .modal-title').html(`
+    <button data-album-id="${album.id}" onclick="openCategoryModal(${album.id})"
+        class="title btn btn-outline-dark">${album.title}</button>
+        `);
+    $('#catalogModal .modal-body').html(`
+    <div class="inner-body">
+
+        <div class="product-detail">
+            <div class="product-title">${img.title}</div>
+            <hr>
+            <div class="product-properties">
+                <div class="product-color-wraper">
+                    <div class="product-color ">${colorMarkup}</div>
+                </div>
+                <div class="product-size-wraper">
+                    <div class="product-size">${sizeMarkup}</div>
+                </div>
+            </div>
+            <hr>
+            
+            <!-- <div class="product-description">${img.description.replace(/(?:\r\n|\r|\n)/g, '<br>') }</div> -->
+            <div class="product-description">${marked(img.description)}</div>
+            
+        </div>
+        <div class="img-wraper" onclick="openImageProductModal(${img.id})"><img id="catalog-image-${img.id}" src="${img.image_thumbnail}"/></div>
+    </div>
+    <div class="inner-footer">
+    </div>
+    `);
+
+
+    var modalNextBtn = $('#modal-next-btn');
+    var modalPrevBtn = $('#modal-prev-btn');
+    var nextElementStr =
+        `[name=slick-slider-${album.id}] .my-slick-slide[data-my-slide-index=${prodArrIdx+1}]`;
+    var prevElementStr =
+        `[name=slick-slider-${album.id}] .my-slick-slide[data-my-slide-index=${prodArrIdx-1}]`;
+    var nextElement = $(nextElementStr);
+    var prevElement = $(prevElementStr);
+    
+    
+    var nextProduct = album.images_list[prodArrIdx+1];
+    var prevProduct = album.images_list[prodArrIdx-1];
+    if(nextProduct) {
+        modalNextBtn.attr('onClick',
+        `openProductModal(${album.images_list[prodArrIdx+1].id}, ${album.id}, 0)`
+        //`$('${nextElementStr}').click();`
+        );
+        
+        modalNextBtn.data('hide-me', 'no');
+        modalNextBtn.css('visibility', 'visible');
+    }else {
+        // no more next, so hide next button
+        modalNextBtn.data('hide-me', 'yes');
+        modalNextBtn.css('visibility', 'hidden');
+    }
+    
+    if(prevProduct) {
+        modalPrevBtn.attr('onClick',
+        `openProductModal(${album.images_list[prodArrIdx-1].id}, ${album.id}, 0)`
+        //`$('${prevElementStr}').click();`
+        
+        );
+            modalPrevBtn.data('hide-me', 'no');
+            modalPrevBtn.css('visibility', 'visible');
+    }
+    else {
+        // no more prev, so hide prev button
+        modalPrevBtn.data('hide-me', 'yes');
+        modalPrevBtn.css('visibility', 'hidden');
+    }
+    
+
+    /*$('#modal-prev-btn').click(function (e) {
+    
+        $(`.my-slick-slide[data-my-slide-index=${prodArrIdx-1}]`)
+            .click();
+    //        openProductModal(prodId,albumId, z0);
+    });*/
+
+    $('#modal-add-btn').val(prodId);
+    slider = $(`.my-slick-slide[data-prod-id=${prodId}]`);
+    if (slider.hasClass('checked')) {
+        $('#modal-add-btn').prop('disabled', true);
+        set_like_btn('#modal-add-btn span', true);
+        //$('#modal-add-btn span').text('נוסף להצעת מחיר');
+        $('#modal-add-btn').addClass('isAdded');
+    } else {
+        $('#modal-add-btn').prop('disabled', false);
+        set_like_btn('#modal-add-btn span', false);
+        //$('#modal-add-btn span').text('הוסף להצעת מחיר');
+        $('#modal-add-btn').removeClass('isAdded');
+    }
+    setTimeout(() => {
+        $('#catalogModal').modal('show');
+        $('#catalogModal .close-modal').click(function () {
+            $('#catalogModal').modal('hide');
+        });
+    }, delay);
+}
+
+
+
+// get the first album id that has image id = prodId
+function getAlbumFormProdId(prodId) {
+debugger;
+    var albums = getAllAlbums();
+    for(var i = 0; i < albums.length; i++) {
+        for(var j = 0; j < albums[i].images_list.length;j++) {
+            if(albums[i].images_list[j].id == prodId) {
+                return [albums[i], i];
+            }
+        }
+    }
+}
 
 
 

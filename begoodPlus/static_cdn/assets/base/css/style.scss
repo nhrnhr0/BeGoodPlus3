@@ -17,13 +17,14 @@
     /* IE8- CSS hack */
     @media \0screen\,screen\9 {
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fff9f295", endColorstr="#fff9f295", GradientType=1);
-        
+
     }
 }
 
 .bg-gradient {
     @include bg-gradient;
 }
+
 /*
 @font-face {
     font-family: 'Rounded Mplus 1c';
@@ -85,7 +86,7 @@ body.waiting * {
         .modal-title {
             font-weight: 700;
             font-size: 2.5em;
-            
+
         }
     }
 
@@ -97,18 +98,22 @@ body.waiting * {
         overflow: hidden;
         text-align: right;
         //background-size: 50vh;
-        
+
     }
 
     .modal-footer {
         @include bg-gradient();
+
         .modal-title {
             line-height: initial;
         }
+
         padding:0px;
+
         * {
             margin: 0px;
         }
+
         //background: #ffd880;
     }
 }
@@ -182,7 +187,9 @@ body.waiting * {
             padding: 10px;
             height: 100%;
         }
+
         --icon-bar-border-size: 3px;
+
         &.delivery {
             ///background-color: #FFD880;
             border: var(--icon-bar-border-size) solid #FFD880;
@@ -241,7 +248,7 @@ body.waiting * {
 
         &.whatsapp {
             //background: linear-gradient(#25D366, #128C7E);
-            border:  var(--icon-bar-border-size)  solid #25D366;
+            border: var(--icon-bar-border-size) solid #25D366;
             color: white;
         }
 
@@ -249,13 +256,13 @@ body.waiting * {
             //background-color: #4267B2
             //background-color: #2b4170;
             //background: linear-gradient(top, #11AEFE, #0066E0);
-            border:  var(--icon-bar-border-size)  solid #0066E0;
+            border: var(--icon-bar-border-size) solid #0066E0;
             text-shadow: 0 -1px -1px #1f2f52;
         }
 
         &.instegram {
             //background: radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
-            border:  var(--icon-bar-border-size)  solid #EA4959;
+            border: var(--icon-bar-border-size) solid #EA4959;
         }
 
         /*&.pick {
@@ -323,7 +330,7 @@ body.waiting * {
 
         margin: 5px;
         padding: 3px;
-        
+
 
         .search-item {
             text-align: right;
@@ -346,6 +353,7 @@ body.waiting * {
 
     .search-item {
         text-align: right;
+
         .logo {
             //display: inline-block;
             height: 20px;
@@ -569,12 +577,27 @@ body.waiting * {
                             color: red;
                         }
                     }
+                    .cart-item {
+                    
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: start;
+                    width: 100%;
+                    cursor: pointer;
+                    align-items: center;
+                    .cart-item-title {
+                        /*display: flex;
+                        justify-content: center;
+                        align-items: center;*/
+                        font-size: larger;
+                    }
 
-                    img {
-                        width: 25px;
-                        height: 25px;
+                    .cart-item-image {
+                        width: 50px;
+                        height: 50px;
                         margin-left: 10px;
                     }
+                }
                 }
             }
         }

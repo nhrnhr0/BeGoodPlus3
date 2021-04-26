@@ -199,8 +199,12 @@ function update_cart_modal(cart) {
   for (var i = 0; i < cart.products.length; i++) {
     cart_markup +=
       `<li data-prod-id="${cart.products[i].id}">
-        <img src="${cart.products[i].image}"/>
-        ${cart.products[i].id} -> ${cart.products[i].title}
+      <div class="cart-item" onclick="openProductModal(${cart.products[i].id}, -1,0);">
+        <img class="cart-item-image" src="${cart.products[i].image}"/>
+        <div class="cart-item-title">
+        ${cart.products[i].title}
+        </div>
+      </div>
         <button type="button" onclick="remove_product(${cart.products[i].id})">X</button>
       </li>`
   }
