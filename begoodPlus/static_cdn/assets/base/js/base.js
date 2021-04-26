@@ -1,4 +1,3 @@
-
 const myStorage = window.sessionStorage;
 
 
@@ -11,28 +10,29 @@ var lastKnownScrollPosition = 0;
 var ticking = false;
 var side_icons = document.querySelectorAll('.icon-bar .icon');
 var is_delivery_first_open = false;
+
 function handleSideIcons(scrollPos) {
     //var icons = document.querySelectorAll('.icon-bar > div');
     if (scrollPos > 200) {
         //
         //var icons = document.querySelectorAll('.icon-bar > div');
-        for(var i= 0; i  < side_icons.length; i++) {
+        for (var i = 0; i < side_icons.length; i++) {
             //icons[i].style.transform =  'translateX(0px)';
             side_icons[i].classList.remove('hide');
             side_icons[i].classList.add('pick');
-            
+
 
         }
-        if(is_delivery_first_open == false) {
+        if (is_delivery_first_open == false) {
             var delivery = document.querySelector('.icon-bar .icon.delivery');
             delivery.classList.remove('pick');
             delivery.classList.add('show');
             setTimeout(pick_delivery_icon_in_start, 3000, delivery);
             is_delivery_first_open = true;
         }
-    }else {
-        
-        for(var i= 0; i  < side_icons.length; i++) {
+    } else {
+
+        for (var i = 0; i < side_icons.length; i++) {
             //icons[i].style.transform =  'translateX(-220px)';
             side_icons[i].classList.remove('show');
             side_icons[i].classList.remove('pick');
@@ -47,37 +47,38 @@ function pick_delivery_icon_in_start(delivery) {
     delivery.classList.add('pick');
     //is_delivery_first_open = false;
 }
+
 function collapseMenu() {
     $('#navbarSupportedContent').collapse('hide');
 }
-document.addEventListener('scroll', function(e) {
+document.addEventListener('scroll', function (e) {
     lastKnownScrollPosition = window.scrollY;
     console.log(lastKnownScrollPosition);
     if (!ticking) {
-        window.requestAnimationFrame(function() {
-          handleSideIcons(lastKnownScrollPosition);
-          collapseMenu();
-          if(typeof handleSection2Checkmarks !== 'undefined' && typeof handleSection2Checkmarks === 'function'){
-            handleSection2Checkmarks(lastKnownScrollPosition);
-          }
-          ticking = false;
+        window.requestAnimationFrame(function () {
+            handleSideIcons(lastKnownScrollPosition);
+            collapseMenu();
+            if (typeof handleSection2Checkmarks !== 'undefined' && typeof handleSection2Checkmarks === 'function') {
+                handleSection2Checkmarks(lastKnownScrollPosition);
+            }
+            ticking = false;
         });
-    
+
         ticking = true;
     }
 });
 
 
-for(var i = 0; i < side_icons.length; i++) {
-    side_icons[i].addEventListener('click', (event)=> {
+for (var i = 0; i < side_icons.length; i++) {
+    side_icons[i].addEventListener('click', (event) => {
         console.log('show');
-        if(event.currentTarget.classList.contains('show')) {
+        if (event.currentTarget.classList.contains('show')) {
             event.currentTarget.classList.remove('show');
-        }else {
+        } else {
             event.currentTarget.classList.add('show');
         }
     });
-    
+
 }
 
 /* ================= icon bar functionality end ======================== */
@@ -85,31 +86,36 @@ for(var i = 0; i < side_icons.length; i++) {
 
 
 function uuidv4() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0,
+            v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
     });
-  }
+}
 
 //var last_updated_forms = [];
 function get_last_updated_forms() {
     var forms = myStorage.getItem('last_updated_forms');
-    if(forms == undefined)
-    forms = '[]';
+    if (forms == undefined)
+        forms = '[]';
     return JSON.parse(forms);
 }
+
 function set_last_updated_forms(data) {
     myStorage.setItem('last_updated_forms', JSON.stringify(data));
 }
+
 function contact_form_changed(data) {
     var jsdata = JSON.parse(data);
     console.log(jsdata);
-    var formUUID = jsdata.find((e)=>{return (e.name=='formUUID')}).value;
+    var formUUID = jsdata.find((e) => {
+        return (e.name == 'formUUID')
+    }).value;
     var last_updated_form = get_last_updated_forms()[formUUID];
-    if(last_updated_form == undefined) {
+    if (last_updated_form == undefined) {
         last_updated_form = {}
     }
-    if(last_updated_form?.value != data) {
+    if (last_updated_form?.value != data) {
         last_updated_form['id'] = formUUID;
         last_updated_form['value'] = data;
         last_updated_form['changed'] = true;
@@ -119,14 +125,14 @@ function contact_form_changed(data) {
         new_forms.push(last_updated_form);
         set_last_updated_forms(new_forms);
     }
-    
+
 }
 
 function contact_form_interval() {
     forms = get_last_updated_forms();
-    for(var i = 0; i < forms.length; i++) {
+    for (var i = 0; i < forms.length; i++) {
         form = forms[i];
-        if(form['changed'] == true) {
+        if (form['changed'] == true) {
             update_contact_to_server(form.value);
             form['changed'] = false;
             forms = forms.splice(i, 1);
@@ -139,12 +145,12 @@ function contact_form_interval() {
 
 function set_form_change_listener(selector, url) {
     var form = $(selector)
-    
+
     var url_field = form.find('[name=url]');
     url_field.val(url);
-    
+
     var uuid_field = form.find('[name=formUUID]');
-    if(uuid_field.val() == '' || uuid_field.val() == undefined) {
+    if (uuid_field.val() == '' || uuid_field.val() == undefined) {
         var uid = localStorage.getItem(selector + '_form_uuid');
         if (uid == undefined || uid == null) {
             localStorage.setItem(selector + '_form_uuid', uuidv4());
@@ -152,35 +158,35 @@ function set_form_change_listener(selector, url) {
         }
         uuid_field.val(uid);
     }
-    
+
     fields = form.find('input')
-    for(var i = 0; i < fields.length;i++) {
+    for (var i = 0; i < fields.length; i++) {
         var field = $(fields[i])
-        value = myStorage.getItem(selector + '_input_'+field.attr('id'));
-        if(value != undefined && value != null && value!= '') {
+        value = myStorage.getItem(selector + '_input_' + field.attr('id'));
+        if (value != undefined && value != null && value != '') {
             field.val(value)
         }
     }
-    fields.change(function() {
+    fields.change(function () {
         console.log('input change', $(this).val());
-        myStorage.setItem(selector + '_input_'+ $(this).attr('id'), $(this).val());
+        myStorage.setItem(selector + '_input_' + $(this).attr('id'), $(this).val());
     });
-    
-    form.change(function() {
+
+    form.change(function () {
         data = $(selector).serializeArray();
         data = JSON.stringify(data);
         console.log('FORM CHANGED', url_field.val(), data);
         contact_form_changed(data);
         //update_contact_to_server(data);
-        
+
     });
-    form.submit(function(e) {
+    form.submit(function (e) {
         e.preventDefault();
         data = $(selector).serializeArray();
-        
+
         // change submited to be true
-        for(var i = 0; i < data.length;i++) {
-            if(data[i]["name"] == "sumbited") {
+        for (var i = 0; i < data.length; i++) {
+            if (data[i]["name"] == "sumbited") {
                 data[i]["value"] = 'True'
             }
         }
@@ -188,43 +194,43 @@ function set_form_change_listener(selector, url) {
         console.log('FORM submited', url_field.val(), data);
         //update_contact_to_server(data);
         contact_form_changed(data);
-        
-        
+
+
         // reset form after submit
         form.trigger('reset');
-        
+
         fields = form.find('input')
-        for(var i = 0; i < fields.length;i++) {
+        for (var i = 0; i < fields.length; i++) {
             var field = $(fields[i])
-            value = myStorage.getItem(selector + '_input_'+field.attr('id'));
-            if(value != undefined && value != null && value!= '') {
+            value = myStorage.getItem(selector + '_input_' + field.attr('id'));
+            if (value != undefined && value != null && value != '') {
                 //field.val('')
-                myStorage.setItem(selector + '_input_'+field.attr('id'), '');
+                myStorage.setItem(selector + '_input_' + field.attr('id'), '');
             }
         }
-        
+
         localStorage.setItem(selector + '_form_uuid', uuidv4());
         uuid_field.val(localStorage.getItem(selector + '_form_uuid'));
     });
 
-    
+
 }
 
-function update_contact_to_server(data){
+function update_contact_to_server(data) {
     $.ajax({
         type: "POST",
         url: '/form-change',
         data: {
-            'content':data,
+            'content': data,
             'csrfmiddlewaretoken': getCookie('csrftoken'),
         },
-        success: function() {
+        success: function () {
             console.log('form-change success');
         },
-        fail: function() {
+        fail: function () {
             console.log('form-change fail');
         },
-        error: function() {
+        error: function () {
             console.log('form-change fail');
         },
         dataType: 'json',
@@ -261,18 +267,17 @@ function openCart() {
 
 
 
-function openProductModal(prodId, albumId, delay=0) {
+function openProductModal(prodId, albumId, delay = 0) {
 
 
     //var isAdded = e.currentTarget.dataset.isAdded;
-    console.log('openProductModal',prodId,albumId, delay);
+    console.log('openProductModal', prodId, albumId, delay);
     albums = getAllAlbums();
     var album = undefined;
     var albumArrIdx = -1;
-    if(albumId == -1) {
-        [album ,albumArrIdx]= getAlbumFormProdId(prodId)
-    }
-    else {
+    if (albumId == -1) {
+        [album, albumArrIdx] = getAlbumFormProdId(prodId)
+    } else {
         album = albums.find((val, idx, obj) => {
             albumArrIdx = idx;
             return val.id == albumId
@@ -280,7 +285,7 @@ function openProductModal(prodId, albumId, delay=0) {
     }
     var prodArrIdx = -1;
     var img = album.images_list.find((val, idx) => {
-        prodArrIdx  = idx;
+        prodArrIdx = idx;
         return val.id == prodId
     });
 
@@ -336,39 +341,38 @@ function openProductModal(prodId, albumId, delay=0) {
         `[name=slick-slider-${album.id}] .my-slick-slide[data-my-slide-index=${prodArrIdx-1}]`;
     var nextElement = $(nextElementStr);
     var prevElement = $(prevElementStr);
-    
-    
-    var nextProduct = album.images_list[prodArrIdx+1];
-    var prevProduct = album.images_list[prodArrIdx-1];
-    if(nextProduct) {
+
+
+    var nextProduct = album.images_list[prodArrIdx + 1];
+    var prevProduct = album.images_list[prodArrIdx - 1];
+    if (nextProduct) {
         modalNextBtn.attr('onClick',
-        `openProductModal(${album.images_list[prodArrIdx+1].id}, ${album.id}, 0)`
-        //`$('${nextElementStr}').click();`
+            `openProductModal(${album.images_list[prodArrIdx+1].id}, ${album.id}, 0)`
+            //`$('${nextElementStr}').click();`
         );
-        
+
         modalNextBtn.data('hide-me', 'no');
         modalNextBtn.css('visibility', 'visible');
-    }else {
+    } else {
         // no more next, so hide next button
         modalNextBtn.data('hide-me', 'yes');
         modalNextBtn.css('visibility', 'hidden');
     }
-    
-    if(prevProduct) {
+
+    if (prevProduct) {
         modalPrevBtn.attr('onClick',
-        `openProductModal(${album.images_list[prodArrIdx-1].id}, ${album.id}, 0)`
-        //`$('${prevElementStr}').click();`
-        
+            `openProductModal(${album.images_list[prodArrIdx-1].id}, ${album.id}, 0)`
+            //`$('${prevElementStr}').click();`
+
         );
-            modalPrevBtn.data('hide-me', 'no');
-            modalPrevBtn.css('visibility', 'visible');
-    }
-    else {
+        modalPrevBtn.data('hide-me', 'no');
+        modalPrevBtn.css('visibility', 'visible');
+    } else {
         // no more prev, so hide prev button
         modalPrevBtn.data('hide-me', 'yes');
         modalPrevBtn.css('visibility', 'hidden');
     }
-    
+
 
     /*$('#modal-prev-btn').click(function (e) {
     
@@ -402,11 +406,11 @@ function openProductModal(prodId, albumId, delay=0) {
 
 // get the first album id that has image id = prodId
 function getAlbumFormProdId(prodId) {
-debugger;
+    debugger;
     var albums = getAllAlbums();
-    for(var i = 0; i < albums.length; i++) {
-        for(var j = 0; j < albums[i].images_list.length;j++) {
-            if(albums[i].images_list[j].id == prodId) {
+    for (var i = 0; i < albums.length; i++) {
+        for (var j = 0; j < albums[i].images_list.length; j++) {
+            if (albums[i].images_list[j].id == prodId) {
                 return [albums[i], i];
             }
         }
@@ -422,8 +426,6 @@ debugger;
 
 
 
-set_form_change_listener('#contact-form', 'businessOwner');
-setInterval(contact_form_interval, 10000);
 
 
 /*
@@ -518,20 +520,20 @@ function displayTasks() {
 $(function () {
     $(document).ready(function () {
 
-        $('.menu-wraper').focusout(function(){
+        $('.menu-wraper').focusout(function () {
             collapseMenu();
-            
+
         });
 
         $('.icon-bar .icon').hover(
-            function() {
+            function () {
                 $(this).addClass('hover-show');
             },
             function () {
                 $(this).removeClass('hover-show');
             }
         )
-        
+
         /*
         if (window.location.hash == '#contact-form') {
             setTimeout(() => {
@@ -540,62 +542,194 @@ $(function () {
         }
 
         getUserTasks();*/
-        
+
     });
 });
 
-/*
-function startGetUserTasksLoop() {
-    setInterval(getUserTasks, 15000);
-}
-function taskClicked(taskName, taskUrl, msg) {
-    if(taskUrl !=  window.location.pathname) {
-        myStorage.setItem('user_click_task', `${taskName}`);
-        window.location.href= taskUrl;
-    }else {
-        activateUserTask(taskName)
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
     }
+    return cookieValue;
 }
 
-function getUserTasks() {
+
+function remove_product(prodId) {
+    ajax_product_del(prodId);
+    if(remove_productUI && remove_productUI ==='function') {
+        remove_productUI(prodId);
+    }
+  }
+  
+
+
+function ajax_refresh_cart() {
     $.ajax({
-        url: "/tasks/get-user-tasks",
-        type: "GET",
-        //cache:false,
-        dataType: "json",
-        success: function (json) {
-            data = json;
-            var markup = ``;
-            for (var i = 0; i < data.length; i++) { 
-                if(data[i].task_name == "catalog-ec6bb117-c8fa-4a38-989a-ab0e0805e44e") {
-                    markup += `<li><a class="dropdown-item" onclick="taskClicked('${data[i].task_name}', '/testCatalog#contact-form', 'לא סיימתי למלא טופס בדף הקטלוג');">לא סיימתי למלא טופס בדף הקטלוג</li>`
-                }else if (data[i].task_name == "main-ec6bb117-c8fa-4a38-989a-ab0e0805e44e") {
-                    markup += `<li><a class="dropdown-item" onclick="taskClicked('${data[i].task_name}', '/test/#contact-form', 'לא סיימתי למלא טופס בדף הבית');">לא סיימתי למלא טופס בדף הבית</li>`
-                }else if (data[i].task_name == "products-ec6bb117-c8fa-4a38-989a-ab0e0805e44e") {
-                    markup += `<li><a class="dropdown-item" onclick="taskClicked('${data[i].task_name}', '/testCatalog', 'לחץ כאן לשליחת טופס מוצרים אהובים');">לחץ כאן לשליחת טופס מוצרים אהובים</li>`
-                }
-            }
-            $('#navbarDropdownList').html(markup);
-            var tasksLenght = $('#navbarDropdownList li').length;
-            el = document.getElementById('navbarDropdown');
-            var count = Number(el.getAttribute('data-count')) || 0;
-            
-            if(count != tasksLenght) {
-                
-                el.setAttribute('data-count', tasksLenght);
-                el.classList.remove('notify');
-                el.offsetWidth = el.offsetWidth;
-                el.classList.add('notify');
-            }
+        type: "POST",
+        url: '/cart/view',
+        data: {
+            'csrfmiddlewaretoken': getCookie('csrftoken'),
         },
-        error: function (e) {
-            console.log('error: ', e);
-        }
+        success: function (data) {
+            render_cart_view(data);
+        },
+        fail: function () {
+            console.log('form-change fail');
+        },
+        error: function () {
+            console.log('form-change fail');
+        },
+        dataType: 'json',
     });
 }
 
 
-setContactFormAutoSave();
-//displayTasks();
-startGetUserTasksLoop();
-*/
+
+var last_updated_cart = undefined;
+function render_cart_view(data) {
+    debugger;
+  if (last_updated_cart != undefined) {
+    var last_updated_time = last_updated_cart['timestemp']
+    last_updated_time = Date.parse(last_updated_time);
+    var curr_updated_time = Date.parse(data['timestemp']);
+    if (curr_updated_time >= last_updated_time) {
+      last_updated_cart = data;
+    } else {
+      console.error('packets get in wierd order');
+    }
+  } else {
+    last_updated_cart = data;
+  }
+  update_cart_ui(last_updated_cart);
+}
+
+
+function update_cart_ui(cart) {
+    if (cart == undefined) {
+      //TODO: think about clearing old data
+      return;
+    }
+    if (cart.status == "submited") {
+      $('#cartProductsList').empty();
+      if(removeClientLikedUIAll && typeof removeClientLikedUIAll==='function') {
+        removeClientLikedUIAll();
+      }
+    }
+    var products = cart.products;
+    update_cart_modal(cart);
+    if(updateClientLikedUI1 && typeof updateClientLikedUI1 === 'function') {
+        for (var i = 0; i < products.length; i++) {
+            updateClientLikedUI1(products[i].id);
+        }
+    }
+  }
+
+
+  function update_cart_modal(cart) {
+    var cart_markup = `<ul>`;
+    for (var i = 0; i < cart.products.length; i++) {
+      cart_markup +=
+        `<li data-prod-id="${cart.products[i].id}">
+        <div class="cart-item" onclick="openProductModal(${cart.products[i].id}, -1,0);">
+          <img class="cart-item-image" src="${cart.products[i].image}"/>
+          <div class="cart-item-title">
+          ${cart.products[i].title}
+          </div>
+        </div>
+          <button type="button" onclick="remove_product(${cart.products[i].id})">X</button>
+        </li>`
+    }
+    cart_markup += `</ul>`
+  
+    $('#cartProductsList').html(cart_markup)
+  }
+
+
+
+
+  
+
+var _ajax_product_count = 0;
+
+function ajax_product_del(prodId) {
+  _ajax_product_count += 1;
+  $('body').addClass('waiting');
+  $.ajax({
+    type: "POST",
+    url: '/cart/del',
+    data: {
+      'content': prodId,
+      'csrfmiddlewaretoken': getCookie('csrftoken'),
+    },
+    success: function (data) {
+      _ajax_product_count -= 1;
+      if (_ajax_product_count == 0) {
+        $('body').removeClass('waiting');
+      }
+      //updateClientLikedUI1(prodId);
+      console.log(data);
+      render_cart_view(data);
+      /*console.log('form-change success');
+      console.log(cart);
+      myStorage.setItem('cart', JSON.stringify(cart));
+      update_cart_ui(cart);*/
+    },
+    fail: function () {
+      console.log('form-change fail');
+    },
+    error: function () {
+      console.log('form-change fail');
+    },
+    dataType: 'json',
+  });
+}
+
+
+function ajax_product_add(prodId) {
+  _ajax_product_count += 1;
+  $('body').addClass('waiting');
+  $.ajax({
+    type: "POST",
+    url: '/cart/add',
+    data: {
+      'content': prodId,
+      'csrfmiddlewaretoken': getCookie('csrftoken'),
+    },
+    success: function (data) {
+      _ajax_product_count -= 1;
+      if (_ajax_product_count == 0) {
+        $('body').removeClass('waiting');
+      }
+      //updateClientLikedUI1(prodId);
+      console.log(data);
+      render_cart_view(data);
+      /*console.log('form-change success');
+      console.log(cart);
+      myStorage.setItem('cart', JSON.stringify(cart));
+      update_cart_ui(cart);*/
+    },
+    fail: function () {
+      console.log('form-change fail');
+    },
+    error: function () {
+      console.log('form-change fail');
+    },
+    dataType: 'json',
+  });
+}
+
+
+
+
+ajax_refresh_cart();
+set_form_change_listener('#contact-form', 'businessOwner');
+setInterval(contact_form_interval, 10000);

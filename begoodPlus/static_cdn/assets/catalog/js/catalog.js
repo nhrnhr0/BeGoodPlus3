@@ -189,53 +189,11 @@ function remove_productUI(prodId) {
   //$(`#likedProductsForm`).trigger('change')
 }
 
-function remove_product(prodId) {
-  ajax_product_del(prodId);
-  remove_productUI(prodId);
-}
-
-function update_cart_modal(cart) {
-  var cart_markup = `<ul>`;
-  for (var i = 0; i < cart.products.length; i++) {
-    cart_markup +=
-      `<li data-prod-id="${cart.products[i].id}">
-      <div class="cart-item" onclick="openProductModal(${cart.products[i].id}, -1,0);">
-        <img class="cart-item-image" src="${cart.products[i].image}"/>
-        <div class="cart-item-title">
-        ${cart.products[i].title}
-        </div>
-      </div>
-        <button type="button" onclick="remove_product(${cart.products[i].id})">X</button>
-      </li>`
-  }
-  cart_markup += `</ul>`
-
-  $('#cartProductsList').html(cart_markup)
-}
 
 
 
-function update_cart_ui(cart) {
-  if (cart == undefined) {
-    //TODO: think about clearing old data
-    return;
-  }
-  if (cart.status == "submited") {
-    $('#cartProductsList').empty();
-    removeClientLikedUIAll();
-  }
-  var products = cart.products;
-  update_cart_modal(cart);
-  for (var i = 0; i < products.length; i++) {
-    updateClientLikedUI1(products[i].id)
 
-    /*var form_elm = $(`#likedProductsForm :input[value="${products[i].id}"]`);
-    if (form_elm.length == 0) {
 
-      $('#likedProductsForm').append(`<input type="text" name="products[]" value="${products[i].id}" id="">`);
-    }*/
-  }
-}
 
 /*============ cart and form functionality end =====================*/
 
@@ -515,114 +473,6 @@ function removeClientLikeProduct(prodId) {
 }
 */
 
-var last_updated_cart = undefined;
-
-function render_cart_view(data) {
-  if (last_updated_cart != undefined) {
-    var last_updated_time = last_updated_cart['timestemp']
-    last_updated_time = Date.parse(last_updated_time);
-    var curr_updated_time = Date.parse(data['timestemp']);
-    if (curr_updated_time >= last_updated_time) {
-      last_updated_cart = data;
-    } else {
-      console.error('packets get in wierd order');
-    }
-  } else {
-    last_updated_cart = data;
-  }
-
-  update_cart_ui(last_updated_cart);
-
-}
-
-var _ajax_product_count = 0;
-
-function ajax_product_del(prodId) {
-  _ajax_product_count += 1;
-  $('body').addClass('waiting');
-  $.ajax({
-    type: "POST",
-    url: '/cart/del',
-    data: {
-      'content': prodId,
-      'csrfmiddlewaretoken': getCookie('csrftoken'),
-    },
-    success: function (data) {
-      _ajax_product_count -= 1;
-      if (_ajax_product_count == 0) {
-        $('body').removeClass('waiting');
-      }
-      //updateClientLikedUI1(prodId);
-      console.log(data);
-      render_cart_view(data);
-      /*console.log('form-change success');
-      console.log(cart);
-      myStorage.setItem('cart', JSON.stringify(cart));
-      update_cart_ui(cart);*/
-    },
-    fail: function () {
-      console.log('form-change fail');
-    },
-    error: function () {
-      console.log('form-change fail');
-    },
-    dataType: 'json',
-  });
-}
-
-function ajax_refresh_cart() {
-
-  $.ajax({
-    type: "POST",
-    url: '/cart/view',
-    data: {
-      'csrfmiddlewaretoken': getCookie('csrftoken'),
-    },
-    success: function (data) {
-      render_cart_view(data);
-    },
-    fail: function () {
-      console.log('form-change fail');
-    },
-    error: function () {
-      console.log('form-change fail');
-    },
-    dataType: 'json',
-  });
-}
-
-function ajax_product_add(prodId) {
-  _ajax_product_count += 1;
-  $('body').addClass('waiting');
-  $.ajax({
-    type: "POST",
-    url: '/cart/add',
-    data: {
-      'content': prodId,
-      'csrfmiddlewaretoken': getCookie('csrftoken'),
-    },
-    success: function (data) {
-      _ajax_product_count -= 1;
-      if (_ajax_product_count == 0) {
-        $('body').removeClass('waiting');
-      }
-      //updateClientLikedUI1(prodId);
-      console.log(data);
-      render_cart_view(data);
-      /*console.log('form-change success');
-      console.log(cart);
-      myStorage.setItem('cart', JSON.stringify(cart));
-      update_cart_ui(cart);*/
-    },
-    fail: function () {
-      console.log('form-change fail');
-    },
-    error: function () {
-      console.log('form-change fail');
-    },
-    dataType: 'json',
-  });
-}
 
 
 function ajax_cart_contact_info(data) {
@@ -942,7 +792,7 @@ function update_category_cart_ui() {
 //setCatalogTaskListiner();
 //getUserTasks();
 set_form_change_listener('#catalog-contact-form', 'catalog');
-ajax_refresh_cart();
+
 set_cart_contact_change_listener('#likedProductsForm');
 setInterval(cart_info_updater, 3000);
 //set_cart_form_change_listener('#likedProductsForm');
