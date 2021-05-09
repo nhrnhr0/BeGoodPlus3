@@ -388,57 +388,82 @@ body.waiting * {
         position: absolute;
     }
 
-    // menu (humburger):
-    .menu-wraper {
-        position: relative;
-
-        button {
-            .navbar-toggler-icon {
-                background-image: url('../../base/imgs/icons8-menu.svg');
+    .menu {
+        
+        .collapsible {
+            
+            //background-color: #777;
+            //color: white;
+            background-color: transparent;
+            cursor: pointer;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            border: 1px solid;
+            color: rgba(0,0,0,.5);
+            border-color: rgba(0,0,0,.1);
+            &.active, &:hover {
+                background-color: #0000003d;
             }
-        }
-
-        #navbarSupportedContent {
+          }
+          
+          
+          
+          .content {
             position: absolute;
-            top: 0px;
-            right: 0px;
-            padding: 5px;
-            transform: translate(75%, 25%);
-            //background-color: white;
-            background-color: rgb(226, 226, 226);
+            //padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            
+            //transform: translate(75%, 25%);
+            background-color: #e2e2e2;
             border-radius: 15px;
             border: 1px solid black;
-
             ul {
-                padding: 0;
-                min-width: 80px;
-
+                list-style: none;
+                padding: 0px;
+                margin: 0px;
                 li {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                
                     font-size: xx-large;
                     white-space: nowrap;
-                    padding-left: 40px;
-                    padding-right: 40px;
-                    width: 100%;
-
-                    &:hover {
-                        background-color: rgb(138, 138, 138);
+                    @mixin menu-link-spaceing {
+                        padding: 0px;
+                        padding-left: 0px;
+                        padding-right: 0px;
                     }
-
-                    a {
-                        color: black;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-
-                        img {
-                            height: 30px;
-                        }
+                    img {
+                        @include menu-link-spaceing();
+                        height: 100%;
+                        width: 250px;
+                    }
+                    //margin-top:5px;
+                    //margin-bottom:5px;
+                    width: 100%;
+                    
+                    &:hover {
+                        background-color: #8a8a8a;
+                        cursor: pointer;
+                    }
+                    
+                    & .who-us {
+                        @include menu-link-spaceing();
+                        font-size: larger;
                     }
                 }
             }
-
-
-        }
+          }
+          
+          &.active {
+            .content {
+                display: block!important;
+            }
+          }
     }
 
     #navbarDropdown {

@@ -2,7 +2,40 @@ const myStorage = window.sessionStorage;
 
 
 
+/*============================================================================================================== */
+/*=========================================== menu functionality start ========================================= */
+/*============================================================================================================== */
 
+var menu_btn = $('#menu .collapsible');
+
+function toggle_menu() {
+    menu.classList.toggle("active");
+}
+
+function set_menu_active(flag) {
+    if (flag) {
+        menu.classList.add("active");
+    } else {
+        menu.classList.remove("active");
+    }
+}
+
+menu_btn.on('click', function (e) {
+    toggle_menu();
+});
+
+$(window).on('click', function (e) {
+    // is element other then the menu and what inside is clicked?
+    if (e.target != menu_btn && menu_btn[0].contains(e.target) == false) {
+        //Hide the menus if visible
+        set_menu_active(false);
+    } else {
+    }
+});
+
+/*============================================================================================================== */
+/*=========================================== menu functionality end =========================================== */
+/*============================================================================================================== */
 
 
 /* ================= icon bar functionality start ======================== */
@@ -406,7 +439,6 @@ function openProductModal(prodId, albumId, delay = 0) {
 
 // get the first album id that has image id = prodId
 function getAlbumFormProdId(prodId) {
-    debugger;
     var albums = getAllAlbums();
     for (var i = 0; i < albums.length; i++) {
         for (var j = 0; j < albums[i].images_list.length; j++) {
@@ -596,7 +628,6 @@ function ajax_refresh_cart() {
 
 var last_updated_cart = undefined;
 function render_cart_view(data) {
-    debugger;
   if (last_updated_cart != undefined) {
     var last_updated_time = last_updated_cart['timestemp']
     last_updated_time = Date.parse(last_updated_time);

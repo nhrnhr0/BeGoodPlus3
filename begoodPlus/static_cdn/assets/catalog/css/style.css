@@ -412,45 +412,39 @@ body.waiting * {
   position: absolute;
 }
 
-.navbar .menu-wraper {
-  position: relative;
+.navbar .menu .collapsible {
+  background-color: transparent;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  border: 1px solid;
+  color: rgba(0, 0, 0, 0.5);
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
-.navbar .menu-wraper button .navbar-toggler-icon {
-  background-image: url("../../base/imgs/icons8-menu.svg");
+.navbar .menu .collapsible.active, .navbar .menu .collapsible:hover {
+  background-color: #0000003d;
 }
 
-.navbar .menu-wraper #navbarSupportedContent {
+.navbar .menu .content {
   position: absolute;
-  top: 0px;
-  right: 0px;
-  padding: 5px;
-  -webkit-transform: translate(75%, 25%);
-          transform: translate(75%, 25%);
+  display: none;
+  overflow: hidden;
   background-color: #e2e2e2;
   border-radius: 15px;
   border: 1px solid black;
 }
 
-.navbar .menu-wraper #navbarSupportedContent ul {
-  padding: 0;
-  min-width: 80px;
+.navbar .menu .content ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
 }
 
-.navbar .menu-wraper #navbarSupportedContent ul li {
-  font-size: xx-large;
-  white-space: nowrap;
-  padding-left: 40px;
-  padding-right: 40px;
-  width: 100%;
-}
-
-.navbar .menu-wraper #navbarSupportedContent ul li:hover {
-  background-color: #8a8a8a;
-}
-
-.navbar .menu-wraper #navbarSupportedContent ul li a {
-  color: black;
+.navbar .menu .content ul li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -460,10 +454,31 @@ body.waiting * {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  font-size: xx-large;
+  white-space: nowrap;
+  width: 100%;
 }
 
-.navbar .menu-wraper #navbarSupportedContent ul li a img {
-  height: 30px;
+.navbar .menu .content ul li img {
+  padding: 15px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.navbar .menu .content ul li:hover {
+  background-color: #8a8a8a;
+  cursor: pointer;
+}
+
+.navbar .menu .content ul li .who-us {
+  padding: 15px;
+  padding-left: 40px;
+  padding-right: 40px;
+  font-size: larger;
+}
+
+.navbar .menu.active .content {
+  display: block !important;
 }
 
 .navbar #navbarDropdown {
@@ -644,20 +659,32 @@ body.waiting * {
   color: red;
 }
 
-#likedProductsModal .modal-body #cartProductsList ul li .cart-item-title {
+#likedProductsModal .modal-body #cartProductsList ul li .cart-item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  width: 100%;
+  cursor: pointer;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+#likedProductsModal .modal-body #cartProductsList ul li .cart-item .cart-item-title {
+  /*display: flex;
+                        justify-content: center;
+                        align-items: center;*/
   font-size: larger;
 }
 
-#likedProductsModal .modal-body #cartProductsList ul li .cart-item-image {
+#likedProductsModal .modal-body #cartProductsList ul li .cart-item .cart-item-image {
   width: 50px;
   height: 50px;
   margin-left: 10px;
