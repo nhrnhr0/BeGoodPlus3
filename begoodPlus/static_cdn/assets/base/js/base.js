@@ -12,7 +12,18 @@ function set_like_btn(selector, val) {
       return (`<img src="/static/assets/catalog/imgs/icons8-check-mark-48.png"> הוסף`);
     }
   }
-
+  var _modal_z_index_incrementor = 0;
+  // fix category modal overlaping product modal
+  $(document).on('show.bs.modal', '.modal', function (event) {
+      var zIndex = _modal_z_index_incrementor++ + 1040 + (10 * $('.modal:visible').length);
+      $(this).css('z-index', zIndex);
+      setTimeout(function () {
+          $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+      }, 0);
+  });
+  $(document).on('hidden.bs.modal', '.modal', function () {
+      $('.modal:visible').length && $(document.body).addClass('modal-open');
+  });
 /*============================================================================================================== */
 /*=========================================== menu functionality start ========================================= */
 /*============================================================================================================== */
@@ -832,7 +843,35 @@ function update_cart_ui(cart) {
   הוסף להצעת מחיר
   `);*/
   }
-
+  
+  
+  function openImageProductModal(prodId) {
+    var albums = getAllAlbums();
+    var product = undefined;
+    for (var i = 0; i < albums.length; i++) {
+      for (var j = 0; j < albums[i].images_list.length; j++) {
+        if (albums[i].images_list[j].id == prodId) {
+          product = albums[i].images_list[j];
+          break;
+        }
+      }
+      if (product != undefined) {
+        break;
+      }
+    }
+  
+  
+  
+    $('#ImageProductsModal .modal-title').text(product.title);
+    $('#ImageProductsModal .modal-body').html(`
+      <img class="img-fluid" src=${product.image} />
+    `);
+    //$('#ImageProductsModal .modal-footer').html('');
+    $('#ImageProductsModal').modal('show');
+    $('#ImageProductsModal .close-modal').click(function () {
+      $('#ImageProductsModal').modal('hide');
+    });
+  }
   function update_cart_modal(cart) {
     var cart_markup = `<ul>`;
     for (var i = 0; i < cart.products.length; i++) {

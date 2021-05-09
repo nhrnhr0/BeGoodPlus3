@@ -187,18 +187,8 @@ function remove_productUI(prodId) {
 /*============ cart and form functionality end =====================*/
 
 
-var _modal_z_index_incrementor = 0;
-// fix category modal overlaping product modal
-$(document).on('show.bs.modal', '.modal', function (event) {
-  var zIndex = _modal_z_index_incrementor++ + 1040 + (10 * $('.modal:visible').length);
-  $(this).css('z-index', zIndex);
-  setTimeout(function () {
-    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-  }, 0);
-});
-$(document).on('hidden.bs.modal', '.modal', function () {
-  $('.modal:visible').length && $(document.body).addClass('modal-open');
-});
+
+
 
 // handle section 2 check-list and proggres bar amimation
 var check_list_inputs = document.querySelectorAll('.section-3 .check-list ul li input');
@@ -482,33 +472,7 @@ function loadProductsModal() {
   //updateProductsCart();
 }*/
 
-function openImageProductModal(prodId) {
-  var albums = getAllAlbums();
-  var product = undefined;
-  for (var i = 0; i < albums.length; i++) {
-    for (var j = 0; j < albums[i].images_list.length; j++) {
-      if (albums[i].images_list[j].id == prodId) {
-        product = albums[i].images_list[j];
-        break;
-      }
-    }
-    if (product != undefined) {
-      break;
-    }
-  }
 
-
-
-  $('#ImageProductsModal .modal-title').text(product.title);
-  $('#ImageProductsModal .modal-body').html(`
-    <img class="img-fluid" src=${product.image} />
-  `);
-  //$('#ImageProductsModal .modal-footer').html('');
-  $('#ImageProductsModal').modal('show');
-  $('#ImageProductsModal .close-modal').click(function () {
-    $('#ImageProductsModal').modal('hide');
-  });
-}
 
 
 
