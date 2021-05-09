@@ -1,8 +1,52 @@
 const myStorage = window.sessionStorage;
 
+function set_like_btn(selector, val) {
+    btns = $(selector);
+    btns.html(get_like_markup(val));
+  }
+  
+  function get_like_markup(val) {
+    if (val == false) {
+      return (`<img src="/static/assets/catalog/imgs/icons8-plus-48.png"> הוסף`);
+    } else {
+      return (`<img src="/static/assets/catalog/imgs/icons8-check-mark-48.png"> הוסף`);
+    }
+  }
 
+/*============================================================================================================== */
+/*=========================================== menu functionality start ========================================= */
+/*============================================================================================================== */
 
+var menu_btn = $('#menu .collapsible');
 
+function toggle_menu() {
+    menu.classList.toggle("active");
+}
+
+function set_menu_active(flag) {
+    if (flag) {
+        menu.classList.add("active");
+    } else {
+        menu.classList.remove("active");
+    }
+}
+
+menu_btn.on('click', function (e) {
+    toggle_menu();
+});
+
+$(window).on('click', function (e) {
+    // is element other then the menu and what inside is clicked?
+    if (e.target != menu_btn && menu_btn[0].contains(e.target) == false) {
+        //Hide the menus if visible
+        set_menu_active(false);
+    } else {
+    }
+});
+
+/*============================================================================================================== */
+/*=========================================== menu functionality end =========================================== */
+/*============================================================================================================== */
 
 
 /* ================= icon bar functionality start ======================== */
@@ -224,7 +268,8 @@ function update_contact_to_server(data) {
             'content': data,
             'csrfmiddlewaretoken': getCookie('csrftoken'),
         },
-        success: function () {
+        success: function (response) {
+        console.log('update_contact_to_server: ', response)
             console.log('form-change success');
         },
         fail: function () {
@@ -272,6 +317,7 @@ function openProductModal(prodId, albumId, delay = 0) {
 
     //var isAdded = e.currentTarget.dataset.isAdded;
     console.log('openProductModal', prodId, albumId, delay);
+    debugger;
     albums = getAllAlbums();
     var album = undefined;
     var albumArrIdx = -1;
@@ -382,7 +428,20 @@ function openProductModal(prodId, albumId, delay = 0) {
     });*/
 
     $('#modal-add-btn').val(prodId);
-    slider = $(`.my-slick-slide[data-prod-id=${prodId}]`);
+    var cart_item = $(`#cartProductsList ul li[data-prod-id=${prodId}]`);
+    if(cart_item.length != 0) {
+        $('#modal-add-btn').prop('disabled', true);
+        set_like_btn('#modal-add-btn span', true);
+        //$('#modal-add-btn span').text('נוסף להצעת מחיר');
+        $('#modal-add-btn').addClass('isAdded');
+    }else {
+        $('#modal-add-btn').prop('disabled', false);
+        set_like_btn('#modal-add-btn span', false);
+        //$('#modal-add-btn span').text('הוסף להצעת מחיר');
+        $('#modal-add-btn').removeClass('isAdded');
+    }
+    
+    /*slider = $(`.my-slick-slide[data-prod-id=${prodId}]`);
     if (slider.hasClass('checked')) {
         $('#modal-add-btn').prop('disabled', true);
         set_like_btn('#modal-add-btn span', true);
@@ -393,7 +452,7 @@ function openProductModal(prodId, albumId, delay = 0) {
         set_like_btn('#modal-add-btn span', false);
         //$('#modal-add-btn span').text('הוסף להצעת מחיר');
         $('#modal-add-btn').removeClass('isAdded');
-    }
+    }*/
     setTimeout(() => {
         $('#catalogModal').modal('show');
         $('#catalogModal .close-modal').click(function () {
@@ -406,7 +465,6 @@ function openProductModal(prodId, albumId, delay = 0) {
 
 // get the first album id that has image id = prodId
 function getAlbumFormProdId(prodId) {
-    debugger;
     var albums = getAllAlbums();
     for (var i = 0; i < albums.length; i++) {
         for (var j = 0; j < albums[i].images_list.length; j++) {
@@ -596,7 +654,6 @@ function ajax_refresh_cart() {
 
 var last_updated_cart = undefined;
 function render_cart_view(data) {
-    debugger;
   if (last_updated_cart != undefined) {
     var last_updated_time = last_updated_cart['timestemp']
     last_updated_time = Date.parse(last_updated_time);
@@ -612,7 +669,90 @@ function render_cart_view(data) {
   update_cart_ui(last_updated_cart);
 }
 
+function openCategoryModal(albumId) {
+    debugger;
 
+    //updateLikedProductsTask();
+    $('#catalogModal .close-modal').click();
+    //updateProductsCart();
+    var albums = getAllAlbums();
+    var albumIndex = albums.findIndex((val, idx, obj) => {
+      return val.id == albumId
+    });
+    var album = albums[albumIndex];
+    /*
+    var nextAlbum = albums[(albumIndex + 1) % albums.length];
+    var prevIndex;
+    if (albumIndex == 0) {
+      prevIndex = albums.length
+    } else {
+      prevIndex = albumIndex
+    }
+    prevIndex -= 1;
+    var prevAlbum = albums[prevIndex];
+    */
+    var categoryDescription =album.description;
+    var categoryFotter = album.fotter;
+    var bodyMarkup = `<h4 class="category-description">${marked(categoryDescription)}</h4>`
+  
+    var imagesMarkup = '<div class="category-items">'
+    for (var i = 0; i < album.images_list.length; i++) {
+      img = album.images_list[i];
+      imagesMarkup += `
+        <div class="category-item" data-category-prod-id="${img.id}">
+          <div class="category-item-img-wraper">
+            <img class="product-image" width="250px" height="250px" onclick="$('.my-slick-slide[data-prod-id=${img.id}]').click();" src="${img.image_thumbnail}" alt="${img.description}" />
+            <div class="img-title">${img.title}</div>
+          </div>
+          <div>
+            <div onclick="categoryLikeBtnClicked(${img.id})" class="like-btn" name="like-btn">
+              <div class="like-wrapper">
+                <a name="like-btn">
+                <span name="like-btn">
+                  ${get_like_markup(false)}
+                </span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        `
+    }
+    imagesMarkup += '</div>'
+    bodyMarkup += imagesMarkup;
+    bodyMarkup += `<h4 class="category-fotter">${marked(categoryFotter)}</h4>`
+  
+    /*
+      var buttonsMarkup = `
+      <button class="btn btn-primary" onclick="openCategoryModal(${prevAlbum.id})" value=${prevAlbum.id}>${prevAlbum.title}</button>
+        <button class="btn btn-primary" onclick="openCategoryModal(${nextAlbum.id})" value=${nextAlbum.id}>${nextAlbum.title}</button>  
+      `*/
+    var buttonsMarkup = ``;
+    for (var i = 0; i < albums.length; i++) {
+      currAlbum = albums[i];
+      if (albumIndex == i) {
+        buttonsMarkup += `<button class="btn btn btn-dark" onclick="openCategoryModal(${currAlbum.id})" value=${currAlbum.id}>${currAlbum.title}</button>`
+      } else {
+        buttonsMarkup += `<button class="btn btn-outline-dark" onclick="openCategoryModal(${currAlbum.id})" value=${currAlbum.id}>${currAlbum.title}</button>`
+      }
+    }
+  
+    $('#categoryModal .modal-title').text(album.title);
+    $('#categoryModal .modal-body').html(bodyMarkup).scrollTop(0);
+    //$('#categoryModal .modal-footer').html(buttonsMarkup);
+    $('#categoryModal .modal-header .modal-header-links').html(buttonsMarkup);
+    $('#categoryModal').modal('show');
+    $('#categoryModal .close-modal').click(function () {
+      $('#categoryModal').modal('hide');
+    });
+  
+    update_cart_ui(last_updated_cart);
+  }
+  
+  
+  function categoryLikeBtnClicked(prodId) {
+    addClientLikeProduct(prodId);
+    flyToCart($(`#categoryModal .modal-body`).find(`div[data-category-prod-id='${prodId}'] .product-image`));
+  }
 function update_cart_ui(cart) {
     if (cart == undefined) {
       //TODO: think about clearing old data
@@ -620,19 +760,78 @@ function update_cart_ui(cart) {
     }
     if (cart.status == "submited") {
       $('#cartProductsList').empty();
-      if(removeClientLikedUIAll && typeof removeClientLikedUIAll==='function') {
+      if(typeof removeClientLikedUIAll==='function') {
         removeClientLikedUIAll();
       }
     }
     var products = cart.products;
     update_cart_modal(cart);
-    if(updateClientLikedUI1 && typeof updateClientLikedUI1 === 'function') {
+    if(typeof updateClientLikedUI1 === 'function') {
         for (var i = 0; i < products.length; i++) {
             updateClientLikedUI1(products[i].id);
         }
     }
   }
 
+
+
+  function updateClientLikedUI1(prodId) {
+    //TODO: category-item checked is not working becose the category modal is dynamicly generated
+  
+    // update button UI in the catalog page
+    $(`.my-slick-slide[data-prod-id=${prodId}]`).addClass('checked');
+    $(`.category-item[data-category-prod-id="${prodId}"]`).addClass('checked');
+    set_like_btn(`.my-slick-slide[data-prod-id=${prodId}] + .like-btn span`, true);
+    set_like_btn(`.category-item[data-category-prod-id=${prodId}] .like-btn .like-wrapper a span`, true);
+    /*
+    $(`.my-slick-slide[data-prod-id=${prodId}] + .like-btn span`).html(`
+      <img src="{%static 'assets/catalog/imgs/icons8-check-mark-48.png'%}"> הוסף
+    הוסף להצעת מחיר
+    `);
+    $(`.category-item[data-category-prod-id=${prodId}] .like-btn .like-wrapper a span`).html(`
+    <img src="{%static 'assets/catalog/imgs/icons8-check-mark-48.png'%}"> הוסף
+  הוסף להצעת מחיר
+  `);*/
+  
+    // update button UI in the product's modal
+    $('#modal-add-btn').prop('disabled', true);
+    set_like_btn('#modal-add-btn span', true);
+    $('#modal-add-btn').addClass('isAdded');
+  }
+  
+  function removeClientLikedUI1(prodId) {
+    $(`.my-slick-slide[data-prod-id=${prodId}]`).removeClass('checked');
+    $(`.category-item[data-category-prod-id="${prodId}"]`).removeClass('checked');
+    set_like_btn(`.my-slick-slide[data-prod-id=${prodId}] + .like-btn span`, false);
+    set_like_btn(`.category-item[data-category-prod-id=${prodId}] .like-btn .like-wrapper a span`, false);
+    /*
+    $(`.my-slick-slide[data-prod-id=${prodId}] + .like-btn span`).html(`
+    <img src="{%static 'assets/catalog/imgs/icons8-plus-48.png'%}"> הוסף
+  הוסף להצעת מחיר
+  `);
+    $(`.category-item[data-category-prod-id=${prodId}] .like-btn .like-wrapper a span`).html(`
+    <img src="{%static 'assets/catalog/imgs/icons8-plus-48.png'%}"> הוסף
+  הוסף להצעת מחיר
+  `);*/
+  }
+  
+  function removeClientLikedUIAll() {
+    $(`.my-slick-slide`).removeClass('checked');
+    $(`.category-item`).removeClass('checked');
+  
+  
+    set_like_btn('.my-slick-slide + .like-btn span', false);
+    set_like_btn('.category-item .like-btn .like-wrapper a span', false);
+    /*
+    $(`.my-slick-slide + .like-btn span`).html(`
+    <img src="{%static 'assets/catalog/imgs/icons8-plus-48.png'%}"> הוסף
+  הוסף להצעת מחיר
+  `); 
+    $(`.category-item .like-btn .like-wrapper a span`).html(`
+    <img src="{%static 'assets/catalog/imgs/icons8-plus-48.png'%}"> הוסף
+  הוסף להצעת מחיר
+  `);*/
+  }
 
   function update_cart_modal(cart) {
     var cart_markup = `<ul>`;
@@ -692,40 +891,82 @@ function ajax_product_del(prodId) {
     dataType: 'json',
   });
 }
-
-
+function addClientLikeProduct(prodId) {
+    ajax_product_add(prodId);
+  }
+  function flyToCart(img) {
+    var eltoDrag = img;
+    target = $('.cart');
+    shake =true;
+    var imgclone = eltoDrag.clone()
+        .offset({
+            top: eltoDrag.offset().top,
+            left: eltoDrag.offset().left
+        })
+        .css({
+            'opacity': '0.5',
+            'position': 'absolute',
+            'height': eltoDrag.height() / 2,
+            'width': eltoDrag.width() / 2,
+            'z-index': '999999'
+        })
+        .appendTo($('body'))
+        .animate({
+            'top': target.offset().top + 10,
+            'left': target.offset().left + 15,
+            'height': eltoDrag.height() / 2,
+            'width': eltoDrag.width() / 2
+        }, 1000, 'easeInOutExpo');
+  
+    if (shake) {
+        setTimeout(function () {
+            target.effect("shake", {
+                times: 2
+            }, 200);
+        }, 1500);
+    }
+  
+  
+    imgclone.animate({
+        'width': 0,
+        'height': 0
+    }, function () {
+        $(this).detach()
+    });
+  }
+  
 function ajax_product_add(prodId) {
-  _ajax_product_count += 1;
-  $('body').addClass('waiting');
-  $.ajax({
-    type: "POST",
-    url: '/cart/add',
-    data: {
-      'content': prodId,
-      'csrfmiddlewaretoken': getCookie('csrftoken'),
-    },
-    success: function (data) {
-      _ajax_product_count -= 1;
-      if (_ajax_product_count == 0) {
-        $('body').removeClass('waiting');
-      }
-      //updateClientLikedUI1(prodId);
-      console.log(data);
-      render_cart_view(data);
-      /*console.log('form-change success');
-      console.log(cart);
-      myStorage.setItem('cart', JSON.stringify(cart));
-      update_cart_ui(cart);*/
-    },
-    fail: function () {
-      console.log('form-change fail');
-    },
-    error: function () {
-      console.log('form-change fail');
-    },
-    dataType: 'json',
-  });
-}
+    _ajax_product_count += 1;
+    $('body').addClass('waiting');
+    $.ajax({
+      type: "POST",
+      url: '/cart/add',
+      data: {
+        'content': prodId,
+        'csrfmiddlewaretoken': getCookie('csrftoken'),
+      },
+      success: function (data) {
+        _ajax_product_count -= 1;
+        if (_ajax_product_count == 0) {
+          $('body').removeClass('waiting');
+        }
+        //updateClientLikedUI1(prodId);
+        console.log(data);
+        render_cart_view(data);
+        /*console.log('form-change success');
+        console.log(cart);
+        myStorage.setItem('cart', JSON.stringify(cart));
+        update_cart_ui(cart);*/
+      },
+      fail: function () {
+        console.log('form-change fail');
+      },
+      error: function () {
+        console.log('form-change fail');
+      },
+      dataType: 'json',
+    });
+  }
 
 
 

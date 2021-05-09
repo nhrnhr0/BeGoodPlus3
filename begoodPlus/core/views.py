@@ -25,7 +25,7 @@ def saveBaseContactFormView(request,next, *args, **kwargs):
 from django.db.models import Q
 import json
 from catalogAlbum.models import CatalogAlbum, CatalogImage
-from .serializers import SearchSummarySerializer, SearchCatalogImageSerializer,SearchCatalogAlbumSerializer
+from .serializers import SearchCatalogImageSerializer,SearchCatalogAlbumSerializer, UserTasksSerializer
 from itertools import chain 
 from django.db.models import Value,CharField
 from catalogAlbum.serializers import CatalogAlbumSerializer, CatalogImageSerializer
@@ -140,10 +140,14 @@ def form_changed(request):
         customer.contact.add(obj)
         customer.save()
         
+        contacts_qs = customer.contact.filter(sumbited=False)
+        contacts_task = UserTasksSerializer(contacts_qs, many=True)
+        print(contacts_task)
+        print(contacts_task.data)
         pp = '\ncustomer: {id: ' + str(customer.id) + ', new: ' + str(customer_created) + '}\n'
         pp += '\tinfo: {id:' +  str(obj.id) + ', new: ' + str(created) + ', name: ' + name  + ', phone: ' + phone + ', email: ' + email + ', message: ' + message  + ', url: ' + url + ', submited: ' + str(sumbited) + ' }\n'
         print(pp)
         
-        return JsonResponse({'status':'ok'})
+        return JsonResponse({'status':'ok','data':contacts_task.data})
     else:
         print('why not post')

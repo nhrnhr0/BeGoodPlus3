@@ -25,8 +25,14 @@ class SearchCatalogImageSerializer(serializers.HyperlinkedModelSerializer):
         #exclude = ('colors','sizes')
         fields = ('id','url','title', 'album','description', 'image','image_thumbnail', 'my_type',)
 
+from .models import BeseContactInformation
+class UserTasksSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BeseContactInformation
+        fields = ('name', 'phone', 'email', 'message', 'url', 'sumbited', 'created_date','formUUID' )
 
 
+'''
 from drf_multiple_model.views import ObjectMultipleModelAPIView
 
 class SearchSummarySerializer(ObjectMultipleModelAPIView):
@@ -36,7 +42,7 @@ class SearchSummarySerializer(ObjectMultipleModelAPIView):
     ]
     def set_querylist(self, querylist):
         self.querylist = querylist
-
+'''
 '''
 class SearchSummarySerializer(serializers.Serializer):
     """ Serializer that renders each instance with its own specific serializer """

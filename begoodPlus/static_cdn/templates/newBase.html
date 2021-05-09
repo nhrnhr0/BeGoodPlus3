@@ -140,7 +140,7 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="{%url 'main-view'%}"><img class="nav-logo"
                     src="{%static 'assets/base/imgs/logo_ms.png'%}" alt="" height="58" width="24px"></a>
-
+<!--
             <div class="menu-wraper">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -174,6 +174,39 @@
                     </ul>
                 </div>
             </div>
+-->
+
+
+<div id="menu" class="menu">
+    <button name="menu-btn" type="button" class="collapsible">
+        <img src="{%static 'assets/base/imgs/icons8-menu.svg' %}" height="40" width="40" alt="menu" srcset="">
+    </button>
+    <div class="content">
+        <ul>
+            <li>
+                <a href="{%url 'main-view'%}">
+                    <img src="{%static 'assets/base/imgs/logo_ms.png' %}" alt="" srcset="">
+                </a>
+            </li>
+            <li>
+                <a href="{%url 'catalogView2'%}">
+                    <img src="{%static 'assets/base/imgs/begood_plus_logo.png' %}"  alt="" srcset="">
+                </a>
+            </li>
+            <li>
+                <a href="{%url 'my-logo' '#'%}">
+                    <img src="http://www.my-logo.co.il/images/my_logo_logo.jpg"   alt="" srcset="">
+                </a>
+            </li>
+            <li>
+                <div class="who-us">
+                    מי אנחנו
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
 
 
             <form class="d-flex" id="search_form">
@@ -293,6 +326,107 @@
     </div>
 </div>
 
+
+
+<div class="modal" id="categoryModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+
+            <div class="modal-header text-center">
+                <div class="modal-header-links"> </div>
+                <button type="button" class="close close-modal" data-dismiss="categoryModal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <img class="header-logo header-logo-r" src="{%static 'assets/base/imgs/logo_ms.png' %}" />
+                <h5 class="modal-title">Category</h5>
+                <img class="header-logo header-logo-l" src="{%static 'assets/base/imgs/begood_plus_logo.png' %}" />
+                <!--<button type="button" class="btn btn-secondary close-modal" data-dismiss="catalogModal">Close</button>-->
+
+                <!--
+                <button id="modal-prev-btn" class="btn btn-secondary"> הקודם </button>
+                <button type="button" id="modal-add-btn" class="btn btn-primary">הוסף להצעת מחיר</button>
+                <button id="modal-next-btn" class="btn btn-secondary" > הבא </button>
+                -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="ImageProductsModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <img class="header-logo header-logo-r" src="{%static 'assets/base/imgs/logo_ms.png' %}" />
+                <h5 class="modal-title  w-100">modal title</h5>
+                <img class="header-logo header-logo-l" src="{%static 'assets/base/imgs/begood_plus_logo.png' %}" />
+
+                <button type="button" class="close close-modal" data-dismiss="ImageProductsModal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                modal body
+            </div>
+            <!--
+            <div class="modal-footer">
+                modal footer
+            </div>
+            -->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="modal fade" id="catalogModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <img class="header-logo header-logo-r" src="{%static 'assets/base/imgs/logo_ms.png' %}" />
+                <h5 class="modal-title  w-100">Category</h5>
+                <img class="header-logo header-logo-l" src="{%static 'assets/base/imgs/begood_plus_logo.png' %}" />
+
+                <button type="button" class="close close-modal" data-dismiss="catalogModal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Products in the category.</p>
+            </div>
+            <div class="modal-footer">
+
+
+
+                <button id="modal-prev-btn" class="btn modal-nav-btn">
+                    <img src="{%static 'assets/catalog/imgs/icons8-arrow-48.png'%}">
+                </button>
+                <div class="like-btn">
+                    <div id="modal-add-btn" class="like-wrapper">
+                        <a name="like-btn">
+                            <span name="like-btn">
+                                <img src="{%static 'assets/catalog/imgs/icons8-plus-48.png'%}"> הוסף
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <button id="modal-next-btn" class="btn modal-nav-btn">
+                    <img src="{%static 'assets/catalog/imgs/icons8-arrow-48.png'%}">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     <div class="modal" id="buisnessModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -360,6 +494,8 @@
         <script src="{%static 'assets/js/jquery-ui.js'%}"></script>
         <script src="{%static 'assets/base/js/bootstrap.bundle.min.js'%}"></script>
         <script src="{%static 'assets/base/js/022c0fea0b.js'%}"></script>
+        <script src="{%static 'assets/js/swiper-bundle.js'%}"></script>
+        <script src="{%static 'assets/base/js/marked.min.js'%}"></script>
         <script src="{%static 'assets/base/js/base.js' %}"></script>
     {% endcompress %}
     <!--
