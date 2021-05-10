@@ -191,7 +191,7 @@ function remove_productUI(prodId) {
 
 
 // handle section 2 check-list and proggres bar amimation
-var check_list_inputs = document.querySelectorAll('.section-3 .check-list ul li input');
+/*var check_list_inputs = document.querySelectorAll('.section-3 .check-list ul li input');
 
 function handleSection2Checkmarks(pos) {
   var pos_offset = 4800;
@@ -250,7 +250,7 @@ function handleSection2Checkmarks(pos) {
     //document.querySelector('.section-2 .check-list ul li input').checked = false;
   }
   //$('.progress-bar').css('width', precent + '%');
-}
+}*/
 
 /*
 function setCatalogTaskListiner() {

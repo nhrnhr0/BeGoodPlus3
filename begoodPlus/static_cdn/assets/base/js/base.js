@@ -1063,7 +1063,6 @@ function ajax_user_tasks() {
 }
 
 function handle_user_tasks() {
-debugger;
     if(sessionStorage.getItem("main_user_task") != undefined){
         sessionStorage.removeItem("main_user_task");
         setTimeout(function() {
