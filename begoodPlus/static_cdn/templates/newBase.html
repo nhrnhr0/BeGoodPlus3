@@ -233,12 +233,8 @@
                                 -->
                         </a>
                         <ul class="dropdown-menu" id="navbarDropdownList" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><div class="loader"></div></li>
+                            
                         </ul>
                     </li>
                 </ul>
@@ -711,11 +707,8 @@
                 };
             // TODO: why is this here?
             $('.icon-bar-2').click(()=> {
-                        $('#buisnessModal').modal('show');
-                        $('#buisnessModal .close-modal').click(function () {
-                        $('#buisnessModal').modal('hide');
-                    });
-                });
+                openBuisnessModal();
+            });
         }
 
         getAllAlbums();

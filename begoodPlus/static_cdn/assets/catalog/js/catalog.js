@@ -411,10 +411,10 @@ function ajax_cart_contact_info(data) {
       render_cart_view(data);
     },
     fail: function () {
-      console.log('form-change fail');
+      console.log('ajax_cart_contact_info fail');
     },
     error: function () {
-      console.log('form-change fail');
+      console.log('ajax_cart_contact_info fail');
     },
     dataType: 'json',
   });

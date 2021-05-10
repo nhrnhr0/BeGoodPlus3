@@ -631,6 +631,40 @@ body.waiting * {
   color: #ccc;
 }
 
+.loader {
+  border: 16px solid #f3f3f3;
+  /* Light grey */
+  border-top: 16px solid #3498db;
+  /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+          animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
 #catalogModal .inner-body {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -805,6 +839,78 @@ body.waiting * {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
   }
+}
+
+.like-btn * {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+
+.like-btn:hover .like-wrapper:not([class*=isAdded]) a span img {
+  display: none;
+}
+
+.like-btn:hover .like-wrapper:not([class*=isAdded]) a span::after {
+  content: ' פריט להצעת מחיר';
+}
+
+.like-btn .like-wrapper a {
+  width: 100%;
+  display: block;
+  line-height: 40px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  border: var(--swiper-slide-border) solid black;
+  background: #0000007a;
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  -webkit-transition: all .35s;
+  transition: all .35s;
+  color: white;
+  border-radius: 25px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top-width: 0px;
+  /*
+      &:after {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background: #00000042;//#159560; //#ff003b;
+        transition: all .35s;
+        border-radius: 50px;
+      }
+  
+      &:hover {
+        color: #fff;
+      }*/
+}
+
+.like-btn .like-wrapper a span {
+  position: relative;
+  z-index: 2;
+}
+
+.like-btn .like-wrapper a span img {
+  height: 31px;
+}
+
+.like-btn .like-wrapper.isAdded a {
+  color: #eee;
+}
+
+.like-btn .like-wrapper.isAdded a:hover {
+  color: white;
+}
+
+.like-btn .like-wrapper.isAdded a:after {
+  width: 100%;
+  height: 100%;
 }
 
 #categoryModal .modal-dialog {

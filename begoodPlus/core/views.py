@@ -4,6 +4,16 @@ from django.db.models.functions import Greatest
 from django.contrib.postgres.search import TrigramSimilarity
 from .models import UserSearchData
 # Create your views here.
+def json_user_tasks(customer):
+    contacts_qs = customer.contact.filter(sumbited=False)
+    contacts_task = UserTasksSerializer(contacts_qs, many=True)
+    #print(contacts_task.data)
+    
+    return JsonResponse({'status':'ok','data':contacts_task.data})
+def user_tasks(request):
+    customer,customer_created  = Customer.objects.get_or_create(device=request.COOKIES['device'])
+    return json_user_tasks(customer)
+
 def admin_subscribe_view(request):
     webpush = {"group": 'admin' }
     return render(request, 'adminSubscribe.html',{"webpush":webpush})
@@ -140,14 +150,6 @@ def form_changed(request):
         customer.contact.add(obj)
         customer.save()
         
-        contacts_qs = customer.contact.filter(sumbited=False)
-        contacts_task = UserTasksSerializer(contacts_qs, many=True)
-        print(contacts_task)
-        print(contacts_task.data)
-        pp = '\ncustomer: {id: ' + str(customer.id) + ', new: ' + str(customer_created) + '}\n'
-        pp += '\tinfo: {id:' +  str(obj.id) + ', new: ' + str(created) + ', name: ' + name  + ', phone: ' + phone + ', email: ' + email + ', message: ' + message  + ', url: ' + url + ', submited: ' + str(sumbited) + ' }\n'
-        print(pp)
-        
-        return JsonResponse({'status':'ok','data':contacts_task.data})
+        return json_user_tasks(customer)
     else:
         print('why not post')

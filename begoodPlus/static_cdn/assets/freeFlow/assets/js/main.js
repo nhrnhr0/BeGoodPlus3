@@ -195,8 +195,6 @@
 function initCountriesDropDown(){
   $("#languages").msDropdown({
     on: {change:function(data, ui) {
-      console.log('data',data);
-      console.log('ui',ui);
       var selected_value = data.value;
       window.location = selected_value;
     }}
@@ -274,7 +272,6 @@ function initCountriesDropDown(){
 
 
     $.get('/api/freeFlowStores/', (res, data)=>{
-      console.log(res);
       if(data == 'success') {
         var locations = res;
         var infowindow = new google.maps.InfoWindow();
@@ -454,7 +451,6 @@ function initCountriesDropDown(){
 
     if (Math.abs(xDiff) > Math.abs(yDiff)) {
       //most significant
-      console.log('xDiff', xDiff);
       if (xDiff > 50) {
         // left swipe 
         //evt.originalEvent.dataTransfer.setData('d', 'n');
@@ -482,7 +478,6 @@ function initCountriesDropDown(){
   }
   function rotate(e) {
 
-    console.log('rotating');
     if(isSwipeInCD() == false) {
       if (e.data.d == "n") {
         currdeg = currdeg - 36;
@@ -496,8 +491,6 @@ function initCountriesDropDown(){
         "-o-transform": "rotateY(" + currdeg + "deg)",
         "transform": "rotateY(" + currdeg + "deg)"
       });
-      console.log(currdeg);
-      console.log(currdeg%360);
       var smallScreen = window.matchMedia("(max-width: 768px)");
       if(smallScreen.matches == false) {
         $(".prev").css("display", (currdeg % 360)?"block":"none");

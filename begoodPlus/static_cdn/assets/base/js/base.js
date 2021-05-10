@@ -160,7 +160,7 @@ function set_last_updated_forms(data) {
     myStorage.setItem('last_updated_forms', JSON.stringify(data));
 }
 
-function contact_form_changed(data) {
+function contact_form_changed(data, isImportant=false) {
     var jsdata = JSON.parse(data);
     console.log(jsdata);
     var formUUID = jsdata.find((e) => {
@@ -179,6 +179,10 @@ function contact_form_changed(data) {
         });
         new_forms.push(last_updated_form);
         set_last_updated_forms(new_forms);
+    }
+    
+    if(isImportant) {
+        contact_form_interval();
     }
 
 }
@@ -248,7 +252,7 @@ function set_form_change_listener(selector, url) {
         data = JSON.stringify(data);
         console.log('FORM submited', url_field.val(), data);
         //update_contact_to_server(data);
-        contact_form_changed(data);
+        contact_form_changed(data, true);
 
 
         // reset form after submit
@@ -280,8 +284,8 @@ function update_contact_to_server(data) {
             'csrfmiddlewaretoken': getCookie('csrftoken'),
         },
         success: function (response) {
-        console.log('update_contact_to_server: ', response)
-            console.log('form-change success');
+            console.log('render_user_tasks', response.data);
+            render_user_tasks(response.data);
         },
         fail: function () {
             console.log('form-change fail');
@@ -292,6 +296,8 @@ function update_contact_to_server(data) {
         dataType: 'json',
     });
 }
+
+
 
 
 
@@ -328,7 +334,6 @@ function openProductModal(prodId, albumId, delay = 0) {
 
     //var isAdded = e.currentTarget.dataset.isAdded;
     console.log('openProductModal', prodId, albumId, delay);
-    debugger;
     albums = getAllAlbums();
     var album = undefined;
     var albumArrIdx = -1;
@@ -681,7 +686,6 @@ function render_cart_view(data) {
 }
 
 function openCategoryModal(albumId) {
-    debugger;
 
     //updateLikedProductsTask();
     $('#catalogModal .close-modal').click();
@@ -1007,9 +1011,82 @@ function ajax_product_add(prodId) {
     });
   }
 
+function render_user_tasks(data) {
+    var tasks_markup = '';
+    for(var i = 0; i < data.length; i++) {
+        if(data[i].url == 'catalog') {
+            tasks_markup += `<li> <button type="button" onclick="handle_user_task_click('catalog')"> לא סיימת למלא טופס יצירת קשר בדף הקטלוג </button> </li>`;
+        }else if(data[i].url == 'main') {
+            tasks_markup += `<li> <button type="button" onclick="handle_user_task_click('main')"> לא סיימת למלא טופס יצירת קשר בדף הראשי </button> </li>`;
+        }else if(data[i].url == 'businessOwner') {
+            tasks_markup += `<li> <button type="button" onclick="handle_user_task_click('businessOwner')"> לא סיימת למלא טופס יצירת קשר בדף בעל עסק </button> </li>`;
+        }
+    }
+    $('#navbarDropdownList').html(tasks_markup);
+}
 
+function handle_user_task_click(taskName, e) {
+console.log(e);
+    if(taskName == 'catalog') {
+        sessionStorage.setItem('catalog_user_task', "true");
+        window.location.href = '/testCatalog';
+    }
+    else if(taskName == 'main') {
+        sessionStorage.setItem('main_user_task', "true");
+        window.location.href = '/test';
+    }
+    else if(taskName == 'businessOwner') {
+        //sessionStorage.setItem('businessOwner_user_task', "true");
+        openBuisnessModal();
+    }
+}
 
+function ajax_user_tasks() {
+    $.ajax({
+      type: "POST",
+      url: '/user-tasks',
+      data: {
+        'csrfmiddlewaretoken': getCookie('csrftoken'),
+      },
+      success: function (data) {
+        console.log('ajax_user_tasks', data);
+        render_user_tasks(data.data)
+      },
+      fail: function () {
+        console.log('ajax_user_tasks fail');
+      },
+      error: function () {
+        console.log('ajax_user_tasks fail');
+      },
+      dataType: 'json',
+    });
+}
 
+function handle_user_tasks() {
+debugger;
+    if(sessionStorage.getItem("main_user_task") != undefined){
+        sessionStorage.removeItem("main_user_task");
+        setTimeout(function() {
+            document.querySelector("#contactForm").scrollIntoView();
+        },50);
+    }
+    
+    else if(sessionStorage.getItem("catalog_user_task") != undefined){
+        sessionStorage.removeItem("catalog_user_task");
+        setTimeout(function() {
+            document.querySelector("#catalog-contact-form").scrollIntoView();
+        },50);
+    }
+}
+
+function openBuisnessModal() {
+    $('#buisnessModal').modal('show');
+    $('#buisnessModal .close-modal').click(function () {
+        $('#buisnessModal').modal('hide');
+    });
+}
+ajax_user_tasks();
 ajax_refresh_cart();
 set_form_change_listener('#contact-form', 'businessOwner');
 setInterval(contact_form_interval, 10000);
+handle_user_tasks();
