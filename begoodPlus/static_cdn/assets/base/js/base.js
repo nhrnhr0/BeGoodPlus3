@@ -1023,6 +1023,11 @@ function render_user_tasks(data) {
         }
     }
     $('#navbarDropdownList').html(tasks_markup);
+    $('#navbarDropdown').attr('data-content', data.length);
+    $('#navbarDropdown').addClass('notify');
+    setTimeout(function () {
+        $('#navbarDropdown').removeClass('notify');
+    }, 1000)
 }
 
 function handle_user_task_click(taskName, e) {
