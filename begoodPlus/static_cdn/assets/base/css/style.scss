@@ -1029,7 +1029,25 @@ body.waiting * {
     }
   }
 
-
+.cart {
+  position: relative;
+  .cart-counter {
+    position: absolute;
+    background-color: red;
+    border: 1px #fff solid;
+    border-radius: 50%;
+    width: 28px;
+    font-size: 1.2em;
+    font-weight: 700;
+    height: 28px;
+    top:0px;
+    right: 0px;
+    text-align: center;
+    margin: auto;
+    transform: translate(50%,-50%);
+    color: white;
+  }
+}
 #likedProductsModal {
     .modal-body {
         max-height: 80vh;
