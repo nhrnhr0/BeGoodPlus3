@@ -432,16 +432,26 @@ body.waiting * {
                 
                     font-size: xx-large;
                     white-space: nowrap;
+                    
                     @mixin menu-link-spaceing {
                         padding: 0px;
                         padding-left: 0px;
                         padding-right: 0px;
                     }
+                    a {
+                      width: 250px;
+                      height: 50px;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
                     img {
                         @include menu-link-spaceing();
-                        height: 100%;
-                        width: 250px;
+                        height: 40px;
+                        width: auto;
+                        //width: 100px;
+                        margin: auto;
                     }
+                  }
                     //margin-top:5px;
                     //margin-bottom:5px;
                     width: 100%;
