@@ -165,7 +165,6 @@ function update_cart_to_server(data) {
 function remove_productUI(prodId) {
 
   // delete for the client UI:
-
   // cart modal
   //$(`#likedProductsForm :input[value=${prodId}]`).remove();
   $(`.my-slick-slide[data-prod-id=${prodId}]`).removeClass('checked');

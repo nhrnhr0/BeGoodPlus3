@@ -639,7 +639,7 @@ function getCookie(name) {
 
 function remove_product(prodId) {
     ajax_product_del(prodId);
-    if(remove_productUI && remove_productUI ==='function') {
+    if(typeof remove_productUI ==='function') {
         remove_productUI(prodId);
     }
   }
