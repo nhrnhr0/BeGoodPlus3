@@ -40,6 +40,7 @@ router.register(r'CatalogImages', CatalogImageViewSet)
 router.register(r'freeFlowStores', FfStoreViewSet)
 router.register(r'colors', ColorsViewSet)
 router.register(r'sizes', SizesViewSet)
+
 from provider.views import api_providers
 from packingType.views import api_packing_types
 from productSize.views import api_product_sizes
@@ -49,18 +50,18 @@ from clientLikedImages.views import add_liked_images
 from clientImages.views import upload_user_image
 from glofa_types.views import glofa_data
 from freeFlow.views import freeFlowView, freeFlowChangeLanguage
-from core.views import admin_subscribe_view, mainView, saveBaseContactFormView,autocompleteModel, autocompleteClick, form_changed
+from core.views import admin_subscribe_view, mainView,autocompleteModel, autocompleteClick, form_changed #saveBaseContactFormView
 from leadsCampains.views import landingPageFormSubmit
 from catalogAlbum.views import catalogView2,catalogView_api#,catalog_timer
 from myUserTasks.views import updateContactFormUserTaskView, getUserTasksView,updateProductsFormUserTaskView,getUserCartView,delUserLikedProductView
 from myLogo.views import my_logo_view
-from core.views import user_tasks
+from core.views import user_tasks, success_view
 #from customerCart.views import cart_changed
 from customerCart.views import cart_del, cart_add,cart_view,cart_info
 urlpatterns = [
     #path('jet/', include('jet.urls', 'jet')),
     path('admin/', admin.site.urls),
-    path('', landing_page_view),
+    path('', landing_page_view, name='home'),
     #path('order/', order_form),
     #path('order2/', order_form2),
     #path('order3/', order_form3),
@@ -92,7 +93,8 @@ urlpatterns = [
     #re_path('^webpush/', include('webpush.urls')),
     #path('TaxReturnCampain/', TaxReturnCampainView)
     #path('landingPageFormSubmit', landingPageFormSubmit),
-    path('saveContactForm/<path:next>/', saveBaseContactFormView, name="save-contact-form"),
+    
+    #path('saveContactForm/<path:next>/', saveBaseContactFormView, name="save-contact-form"),
 
     path('test/', mainView, name='main-view'),
     path('testCatalog', catalogView2,name="catalogView2"),
@@ -114,6 +116,7 @@ urlpatterns = [
     path('cart/view', cart_view, name='cart-view'),
     path('cart/info', cart_info, name='cart-info'),
     path('user-tasks', user_tasks, name='user-tasks'),
+    path('success/', success_view, name='success')
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,24 @@
+
+
+/* TODO: remove duplication from base.scss*/
+@import './../../base/css/mixins';
+body {
+    
+}
+.main-content {
+    @include bg-gradient();
+    min-height: calc(100vh - 120px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .inner {
+        background-color: #494949;
+        text-align: start;
+        box-shadow: -1px 1px 39px 4px rgba(0,0,0,1);
+        padding: 50px;
+        border-radius: 25px;
+        color: white;
+    }
+}

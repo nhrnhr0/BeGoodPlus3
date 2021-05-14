@@ -406,8 +406,10 @@ function ajax_cart_contact_info(data) {
       'csrfmiddlewaretoken': getCookie('csrftoken'),
     },
     success: function (data) {
-      console.log(data);
       render_cart_view(data);
+      if(data.redirect_to != undefined) {
+        window.location = data.redirect_to;
+      }
     },
     fail: function () {
       console.log('ajax_cart_contact_info fail');

@@ -1,18 +1,20 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, HttpResponse
 from django.http import JsonResponse
 from django.db.models.functions import Greatest
 from django.contrib.postgres.search import TrigramSimilarity
 from .models import UserSearchData
+from django.urls import reverse
+
 # Create your views here.
 def json_user_tasks(customer):
     contacts_qs = customer.contact.filter(sumbited=False)
     contacts_task = UserTasksSerializer(contacts_qs, many=True)
     #print(contacts_task.data)
     
-    return JsonResponse({'status':'ok','data':contacts_task.data})
+    return {'status':'ok','data':contacts_task.data}
 def user_tasks(request):
     customer,customer_created  = Customer.objects.get_or_create(device=request.COOKIES['device'])
-    return json_user_tasks(customer)
+    return JsonResponse(json_user_tasks(customer))
 
 def admin_subscribe_view(request):
     webpush = {"group": 'admin' }
@@ -23,14 +25,16 @@ def mainView(request, *args, **kwargs):
     return render(request, 'newMain.html', {})
 
 from .forms import FormBeseContactInformation
+'''
 def saveBaseContactFormView(request,next, *args, **kwargs):
     if request.method == "POST":
         form = FormBeseContactInformation(request.POST)
         if form.is_valid():
             form.save()
-            print('form saved')
+            print('saveBaseContactFormView')
 
     return redirect(next)
+'''
 
 from django.db.models import Q
 import json
@@ -123,7 +127,6 @@ from .forms import FormBeseContactInformation
 import  json
 def form_changed(request):
     if request.is_ajax() and request.method == 'POST':
-        pass
         customer,customer_created  = Customer.objects.get_or_create(device=request.COOKIES['device'])
         data = request.POST['content']
         data = json.loads(data)
@@ -149,7 +152,19 @@ def form_changed(request):
         obj.save()
         customer.contact.add(obj)
         customer.save()
-        
-        return json_user_tasks(customer)
+        response = json_user_tasks(customer)
+        '''
+        if sumbited:
+            response.redirect_to = reverse('success')
+            print(response)
+        print('form_changed' , response)
+        return data
+        '''
+        if sumbited:
+            response['redirect_to'] = reverse('success')
+        return JsonResponse(response)
     else:
         print('why not post')
+
+def success_view(request):
+    return HttpResponse(render(request, 'success.html', context={}))

@@ -1,4 +1,4 @@
-const myStorage = window.sessionStorage;
+const myStorage = window.localStorage;
 
 function set_like_btn(selector, val) {
     btns = $(selector);
@@ -286,6 +286,11 @@ function update_contact_to_server(data) {
         success: function (response) {
             console.log('render_user_tasks', response.data);
             render_user_tasks(response.data);
+            debugger;
+            if(response.redirect_to != undefined) {
+                
+                window.location = response.redirect_to;
+            }
         },
         fail: function () {
             console.log('form-change fail');

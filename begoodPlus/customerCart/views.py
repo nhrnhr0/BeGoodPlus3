@@ -9,6 +9,7 @@ import json
 from core.models import Customer
 from catalogImages.models import CatalogImage
 import datetime
+from django.urls import reverse
 
 def json_cart(request, cart):
     ser_context={'request': request}
@@ -40,7 +41,10 @@ def cart_info(request):
         #ser_context={'request': request}
         #data = CustomerCartSerializer(cart, context=ser_context).data
         #data['timestemp'] = str(datetime.datetime.now())
-        return JsonResponse(json_cart(request, cart))
+        response = json_cart(request, cart)
+        if sub:
+            response['redirect_to'] = reverse('success')
+        return JsonResponse(response)
     pass
 
 def cart_view(request):
