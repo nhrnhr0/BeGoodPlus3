@@ -21,4 +21,9 @@ body {
         border-radius: 25px;
         color: white;
     }
+    .img-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
