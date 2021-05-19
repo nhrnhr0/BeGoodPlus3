@@ -16,11 +16,13 @@ def user_tasks(request):
     customer,customer_created  = Customer.objects.get_or_create(device=request.COOKIES['device'])
     return JsonResponse(json_user_tasks(customer))
 
+
+# TODO: unused, can be deleted
 def admin_subscribe_view(request):
     webpush = {"group": 'admin' }
     return render(request, 'adminSubscribe.html',{"webpush":webpush})
 
-
+ 
 def mainView(request, *args, **kwargs):
     return render(request, 'newMain.html', {})
 

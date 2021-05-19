@@ -390,9 +390,6 @@ body.waiting * {
   position: sticky;
   top: 0;
   z-index: 1000;
-  /*#navbarDropdownList {
-        
-    }*/
 }
 
 @media \0screen\,screen\9 {
@@ -409,6 +406,10 @@ body.waiting * {
 .navbar .nav-logo-2 {
   width: auto;
   height: 40px;
+}
+
+.navbar #navbarDropdownList {
+  position: absolute;
 }
 
 .navbar .menu .collapsible {

@@ -271,8 +271,6 @@ function set_form_change_listener(selector, url) {
         localStorage.setItem(selector + '_form_uuid', uuidv4());
         uuid_field.val(localStorage.getItem(selector + '_form_uuid'));
     });
-
-
 }
 
 function update_contact_to_server(data) {
@@ -786,7 +784,7 @@ function update_cart_ui(cart) {
     }
     var products = cart.products;
     update_cart_modal(cart);
-    update_cart_counter(cart);
+    //update_cart_counter(cart);
     if(typeof updateClientLikedUI1 === 'function') {
         for (var i = 0; i < products.length; i++) {
             updateClientLikedUI1(products[i].id);
@@ -883,9 +881,10 @@ function update_cart_ui(cart) {
     });
   }
 
-  function update_cart_counter(cart) {
+/*  function update_cart_counter(cart) {
 
   }
+*/
   function update_cart_modal(cart) {
     var cart_markup = `<ul>`;
     for (var i = 0; i < cart.products.length; i++) {
