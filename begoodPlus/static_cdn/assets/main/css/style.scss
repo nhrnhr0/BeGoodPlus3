@@ -248,13 +248,13 @@
     }
 
     .carusel-extra {
-    margin-top: 9em;
+    margin-top: 1em;
     //background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../catalog/imgs/catalogBg1.jpeg);
     background-color: #00000080;
     background-size: cover;
 
         .hero-description {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             //color: #ddb550;
             padding-top: 20px;
             text-align: center;
@@ -265,7 +265,9 @@
                 -1px 1px 0 #000,
                 1px 1px 0 #000;*/
     
-            .hero-description-title {}
+            .hero-description-title {
+                font-size: larger;
+            }
     
             //mix-blend-mode: difference;
         }

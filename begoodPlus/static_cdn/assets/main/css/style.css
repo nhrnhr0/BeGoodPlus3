@@ -1529,13 +1529,13 @@ body.waiting * {
 }
 
 .section-1-wraper .carusel-extra {
-  margin-top: 9em;
+  margin-top: 1em;
   background-color: #00000080;
   background-size: cover;
 }
 
 .section-1-wraper .carusel-extra .hero-description {
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   padding-top: 20px;
   text-align: center;
   /*text-shadow:
@@ -1543,6 +1543,10 @@ body.waiting * {
                 1px -1px 0 #000,
                 -1px 1px 0 #000,
                 1px 1px 0 #000;*/
+}
+
+.section-1-wraper .carusel-extra .hero-description .hero-description-title {
+  font-size: larger;
 }
 
 .scene-wraper {
