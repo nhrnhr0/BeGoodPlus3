@@ -1,5 +1,19 @@
 const myStorage = window.localStorage;
 
+
+
+
+$('#who_us_btn').click(function(e) {
+    console.log(e);
+    
+
+    $('#whousModal').modal('show');
+    $('#whousModal .close-modal').click(function () {
+        $('#whousModal').modal('hide');
+    });
+});
+
+
 function set_like_btn(selector, val) {
     btns = $(selector);
     btns.html(get_like_markup(val));

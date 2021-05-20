@@ -110,6 +110,27 @@ body.waiting * {
 }
 
 
+.gold-animation {
+  @include gold-animation-mix;
+}
+
+#whousModal {
+  .modal-dialog {
+    .modal-content {
+      .modal-body {
+
+        //background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) 0% 0%/cover;
+        //background: rgb(58, 58, 58);
+        background: rgb(34, 34, 34);
+        padding: 50px;
+        .carusel-extra {
+          font-size: 1.8em;
+        }
+      }
+    }
+  }
+}
+
 .icon-bar {
     position: fixed;
     top: 50%;

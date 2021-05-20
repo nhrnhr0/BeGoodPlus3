@@ -4,6 +4,22 @@
   --clr-primery-gold: #f0b300;
 }
 
+@-webkit-keyframes shine {
+  0%,
+  10% {
+    background-position: -1000px;
+  }
+  20% {
+    background-position: top left;
+  }
+  90% {
+    background-position: top right;
+  }
+  100% {
+    background-position: 1000px;
+  }
+}
+
 .bg-gradient {
   background-color: #edce6a;
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIxMDAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZjlmMjk1IiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiNlMGFhM2UiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjI1Ii8+PHN0b3Agc3RvcC1jb2xvcj0iI2Y5ZjI5NSIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAuNSIvPjxzdG9wIHN0b3AtY29sb3I9IiNlMGFhM2UiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjc1Ii8+PHN0b3Agc3RvcC1jb2xvcj0iI2Y5ZjI5NSIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjEiLz48L2xpbmVhckdyYWRpZW50PjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjdnNnZykiIC8+PC9zdmc+);
@@ -135,6 +151,27 @@ body.waiting * {
   .modal-dialog {
     max-width: 850px;
   }
+}
+
+.gold-animation {
+  background: #222 -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff)) 0 0 no-repeat;
+  background-image: -webkit-linear-gradient(-40deg, transparent 0%, transparent 40%, #fff 50%, transparent 60%, transparent 100%);
+  -webkit-background-size: 200px;
+  color: rgba(255, 255, 255, 0.3);
+  -webkit-background-clip: text;
+  -webkit-animation-name: shine;
+  -webkit-animation-duration: 5s;
+  -webkit-animation-iteration-count: infinite;
+  text-shadow: 0 0px 0px #cc9900ce;
+}
+
+#whousModal .modal-dialog .modal-content .modal-body {
+  background: #222222;
+  padding: 50px;
+}
+
+#whousModal .modal-dialog .modal-content .modal-body .carusel-extra {
+  font-size: 1.8em;
 }
 
 .icon-bar {
@@ -1848,34 +1885,6 @@ body.waiting * {
   .scene .carousel__cell {
     width: 290px;
     height: 170px;
-  }
-}
-
-.gold-animation {
-  background: #222 -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff)) 0 0 no-repeat;
-  background-image: -webkit-linear-gradient(-40deg, transparent 0%, transparent 40%, #fff 50%, transparent 60%, transparent 100%);
-  -webkit-background-size: 200px;
-  color: rgba(255, 255, 255, 0.3);
-  -webkit-background-clip: text;
-  -webkit-animation-name: shine;
-  -webkit-animation-duration: 5s;
-  -webkit-animation-iteration-count: infinite;
-  text-shadow: 0 0px 0px #cc9900ce;
-}
-
-@-webkit-keyframes shine {
-  0%,
-  10% {
-    background-position: -1000px;
-  }
-  20% {
-    background-position: top left;
-  }
-  90% {
-    background-position: top right;
-  }
-  100% {
-    background-position: 1000px;
   }
 }
 

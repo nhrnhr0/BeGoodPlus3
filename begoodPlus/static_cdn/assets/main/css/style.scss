@@ -564,51 +564,6 @@
     }
 }
 
-
-
-
-
-
-$gold-animation-duration: 5s;
-$gold-animation-text-color: rgba(255, 255, 255, 0.3);
-//$bgr-color: #333;
-
-.gold-animation {
-    background: #222 -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff)) 0 0 no-repeat;
-    background-image: -webkit-linear-gradient(-40deg, transparent 0%, transparent 40%, #fff 50%, transparent 60%, transparent 100%);
-    -webkit-background-size: 200px;
-    color: $gold-animation-text-color;
-    -webkit-background-clip: text;
-    -webkit-animation-name: shine;
-    -webkit-animation-duration: $gold-animation-duration;
-    -webkit-animation-iteration-count: infinite;
-    //text-shadow: 0 0px 0px #cc9900ce;//rgba(255, 255, 0, 0.623);
-    //text-shadow: 1 1px 0px #cc9900ce, -3px -3px 0 rgba(0, 0, 0, 1), 3px -3px 0 rgba(0, 0, 0, 1), -3px 3px 0 rgba(0, 0, 0, 1);//, 1px 1px 0 rgba(0, 0, 0, 0.5);
-    text-shadow: 0 0px 0px #cc9900ce;
-
-}
-
-
-@-webkit-keyframes shine {
-
-    0%,
-    10% {
-        background-position: -1000px;
-    }
-
-    20% {
-        background-position: top left;
-    }
-
-    90% {
-        background-position: top right;
-    }
-
-    100% {
-        background-position: 1000px;
-    }
-}
-
 .temp-img {
     width: 440px;
     border-radius: 20px;
