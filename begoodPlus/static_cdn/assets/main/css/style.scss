@@ -15,25 +15,34 @@
     max-width: 100vw;
     padding-left:100px;
     padding-right:100px;
+
+    justify-content: center;
+        align-items: center;
+
     .part {
         padding-top:50px;
         flex: 1;
-        .title {
-            background-color: #FFD880;
-            font-size: 2em;
-            text-align: center;
-        }
-        .carusel-img{
-            max-width: 100%;
-        }
-        .btn{
-            margin: auto;
-            width: 80%;
-            padding-top: 20px;
-            padding-bottom: 20px;
-            display: flex;
-  justify-content: center;
-  align-items: center;
+        flex-grow: 0;
+        flex-shrink: 1;
+        .wraper{
+            .title {
+                background-color: #FFD880;
+                font-size: 2em;
+                text-align: center;
+            }
+            .carusel-img{
+                max-width: 100%;
+                min-width: 750px;
+            }
+            .btn{
+                margin: auto;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 80%;
+            }
         }
     }
 }
