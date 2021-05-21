@@ -680,7 +680,7 @@ background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 
 /* ============== swiper start ================ */
 .swiper-main {
   width: 100%;
-  height: 80vh;
+  height: 60vh;
   background: #000;
 
   .swiper-slide {
@@ -701,74 +701,48 @@ background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 
     text-shadow: -2px -1px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
 
 
-    background-position: center;
+    background-position-x: center;
+    background-position-y: 25%;
     background-repeat: no-repeat;
     background-size: cover;
-  }
-
-  .swiper-slide .title {
-    font-size: 41px;
-    font-weight: 400;
-    padding-right: 20px;
-  }
-
-  .swiper-slide .subtitle {
-    font-size: 21px;
-    padding-right: 50px;
-  }
-
-  .swiper-slide .text {
-    font-size: 14px;
-    max-width: 400px;
-    line-height: 1.3;
-  }
-
-  /*.swiper-slide .images {
     display: flex;
-    width: 100vw;
-    flex-grow: 0;
-    flex-shrink: 1;
     justify-content: center;
-    position: absolute;
-    bottom: 0px;
-
-    //align-items:flex-start;
-    .img-wraper {
-      flex: 1;
-
-      img {
-        max-width: 100%;
-        max-height: 100%;
-        height: 300px;
+    align-items: center;
+    .text {
+      .title {
+        font-size: 3rem;
+        font-weight: 400;
+        padding-right: 20px;
+      }
+      .subtitle {
+        font-size: 3rem;
+        padding-right: 50px;
       }
     }
-  }*/
+  }
 
   .slide-1 {
     background-image: url('../imgs/slides/slide3.jpg');
-    font-size: 43px;
-
-    .subtitle {
-      text-align: center;
-      font-size: 40px;
-    }
   }
 
   .slide-2 {
     background-image: url('../imgs/slides/slide2.jpg');
-    font-size: 43px;
-
-    .subtitle {
-      text-align: center;
-      font-size: 40px;
+    .text {
+      .title {
+        font-size: 4rem;
+      }
+      .subtitle {
+        font-size: 3rem;
+      }
     }
   }
 
   .slide-3 {
     background-image: url('../imgs/slides/slide1.jpg');
-    .subtitle {
-      text-align: center;
-      font-size: 40px;
+    .text {
+      .title {
+        font-size: 4rem;
+      }
     }
   }
 }

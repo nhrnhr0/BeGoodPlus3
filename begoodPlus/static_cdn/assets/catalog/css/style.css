@@ -1937,28 +1937,8 @@ body.waiting * {
 /* ============== swiper start ================ */
 .swiper-main {
   width: 100%;
-  height: 80vh;
+  height: 60vh;
   background: #000;
-  /*.swiper-slide .images {
-    display: flex;
-    width: 100vw;
-    flex-grow: 0;
-    flex-shrink: 1;
-    justify-content: center;
-    position: absolute;
-    bottom: 0px;
-
-    //align-items:flex-start;
-    .img-wraper {
-      flex: 1;
-
-      img {
-        max-width: 100%;
-        max-height: 100%;
-        height: 300px;
-      }
-    }
-  }*/
 }
 
 .swiper-main .swiper-slide {
@@ -1975,55 +1955,54 @@ body.waiting * {
   background-color: rgba(0, 0, 0, 0);
   color: white;
   text-shadow: -2px -1px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
-  background-position: center;
+  background-position-x: center;
+  background-position-y: 25%;
   background-repeat: no-repeat;
   background-size: cover;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.swiper-main .swiper-slide .title {
-  font-size: 41px;
+.swiper-main .swiper-slide .text .title {
+  font-size: 3rem;
   font-weight: 400;
   padding-right: 20px;
 }
 
-.swiper-main .swiper-slide .subtitle {
-  font-size: 21px;
+.swiper-main .swiper-slide .text .subtitle {
+  font-size: 3rem;
   padding-right: 50px;
-}
-
-.swiper-main .swiper-slide .text {
-  font-size: 14px;
-  max-width: 400px;
-  line-height: 1.3;
 }
 
 .swiper-main .slide-1 {
   background-image: url("../imgs/slides/slide3.jpg");
-  font-size: 43px;
-}
-
-.swiper-main .slide-1 .subtitle {
-  text-align: center;
-  font-size: 40px;
 }
 
 .swiper-main .slide-2 {
   background-image: url("../imgs/slides/slide2.jpg");
-  font-size: 43px;
 }
 
-.swiper-main .slide-2 .subtitle {
-  text-align: center;
-  font-size: 40px;
+.swiper-main .slide-2 .text .title {
+  font-size: 4rem;
+}
+
+.swiper-main .slide-2 .text .subtitle {
+  font-size: 3rem;
 }
 
 .swiper-main .slide-3 {
   background-image: url("../imgs/slides/slide1.jpg");
 }
 
-.swiper-main .slide-3 .subtitle {
-  text-align: center;
-  font-size: 40px;
+.swiper-main .slide-3 .text .title {
+  font-size: 4rem;
 }
 
 /* ============== swiper end ================ */
