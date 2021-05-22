@@ -1312,6 +1312,12 @@ body.waiting * {
   margin: 0 auto;
 }
 
+@media only screen and (max-width: 800px) {
+  .navbar .container-fluid .navbar-brand {
+    display: none;
+  }
+}
+
 :root {
   --like-font-size: 30px;
   --swiper-navigation-size: 80px;
@@ -1422,6 +1428,122 @@ body.waiting * {
   text-align: right;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 15px;
+  /*.check-list {
+      flex: 1;
+      $white: #fff;
+      $main-color: #643A7A;
+
+      ul {
+        list-style: none;
+        //padding:  0 4px;
+        //margin: 0 30px;
+        font-weight: 300;
+
+        .button {
+          position: relative;
+          z-index: 2;
+          box-sizing: border-box;
+          float: right;
+          width: 50px;
+          height: 50px;
+          border: 1px solid fade-out($main-color, .5);
+          border-radius: 50%;
+          cursor: pointer;
+          padding-right: 30px;
+        }
+
+        li {
+          &:first-child {
+            margin: 0;
+            margin-top: 20px;
+          }
+
+          color: white;
+          position: relative;
+          display: block;
+
+          margin: 50px 0;
+
+          height: 14px;
+
+          .wrapper {
+            position: absolute;
+            width: 50px;
+            right: 0;
+            top: 0px;
+          }
+        }
+
+        .text {
+          //float: left;
+          padding-right: 10px;
+          font-size: 2.3rem;
+          transform: translate(0px, -8px);
+          cursor: pointer;
+          transition: all .3s ease-in-out;
+        }
+
+
+        li:nth-of-type(2) {
+          animation: slide-up 1s;
+        }
+
+        li:nth-of-type(3) {
+          animation: slide-up 1.5s;
+        }
+
+        li:nth-of-type(4) {
+          animation: slide-up 2s;
+        }
+
+        .checkmark {
+          position: absolute;
+          //stroke: rgba(100, 58, 122, .5);
+          stroke: rgba(0, 199, 27, 0.746);
+          fill: none;
+          stroke-dashoffset: 340;
+          stroke-dasharray: 360;
+        }
+
+        input {
+          display: none;
+
+          &:checked~ {
+            .text {
+              //color: rgba(100, 58, 122, .5);
+              color: rgba(0, 199, 27, 0.746);
+            }
+
+            .wrapper .checkmark {
+              animation: dash .5s ease-out forwards;
+              opacity: 1;
+            }
+
+            .button {
+              opacity: 0;
+            }
+          }
+        }
+      }
+
+
+
+      @keyframes dash {
+        0% {
+          stroke-dashoffset: 340;
+        }
+
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      .checkmark {
+        display: block;
+        stroke-width: 8;
+        opacity: 0;
+      }
+    }*/
 }
 
 .section-3 .container .abount-us {
@@ -1448,125 +1570,48 @@ body.waiting * {
           transform: translate(-50%, 0%);
 }
 
-.section-3 .container .check-list {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  /* ul*/
+.section-3 .container .check-list .part {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.section-3 .container .check-list ul {
-  list-style: none;
-  font-weight: 300;
-}
-
-.section-3 .container .check-list ul .button {
-  position: relative;
-  z-index: 2;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  float: right;
-  width: 50px;
-  height: 50px;
-  border: 1px solid rgba(100, 58, 122, 0.5);
-  border-radius: 50%;
-  cursor: pointer;
-  padding-right: 30px;
-}
-
-.section-3 .container .check-list ul li {
-  color: white;
-  position: relative;
-  display: block;
-  margin: 50px 0;
-  height: 14px;
-}
-
-.section-3 .container .check-list ul li:first-child {
-  margin: 0;
-  margin-top: 20px;
-}
-
-.section-3 .container .check-list ul li .wrapper {
-  position: absolute;
-  width: 50px;
-  right: 0;
-  top: 0px;
-}
-
-.section-3 .container .check-list ul .text {
+.section-3 .container .check-list .part .text {
   padding-right: 10px;
   font-size: 2.3rem;
-  -webkit-transform: translate(0px, -8px);
-          transform: translate(0px, -8px);
   cursor: pointer;
   -webkit-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
-}
-
-.section-3 .container .check-list ul li:nth-of-type(2) {
-  -webkit-animation: slide-up 1s;
-          animation: slide-up 1s;
-}
-
-.section-3 .container .check-list ul li:nth-of-type(3) {
-  -webkit-animation: slide-up 1.5s;
-          animation: slide-up 1.5s;
-}
-
-.section-3 .container .check-list ul li:nth-of-type(4) {
-  -webkit-animation: slide-up 2s;
-          animation: slide-up 2s;
-}
-
-.section-3 .container .check-list ul .checkmark {
-  position: absolute;
-  stroke: rgba(0, 199, 27, 0.746);
-  fill: none;
-  stroke-dashoffset: 340;
-  stroke-dasharray: 360;
-}
-
-.section-3 .container .check-list ul input {
-  display: none;
-}
-
-.section-3 .container .check-list ul input:checked ~ .text {
   color: rgba(0, 199, 27, 0.746);
 }
 
-.section-3 .container .check-list ul input:checked ~ .wrapper .checkmark {
+.section-3 .container .check-list .part .wrapper {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  max-width: 50px;
+  width: 50px;
+}
+
+.section-3 .container .check-list .part .wrapper svg {
+  width: 100%;
+}
+
+.section-3 .container .check-list .part .wrapper svg .checkmark {
+  position: absolute;
+  stroke: rgba(0, 199, 27, 0.746);
+  fill: none;
+  stroke-dashoffset: 0;
+  stroke-dasharray: 360;
   -webkit-animation: dash .5s ease-out forwards;
           animation: dash .5s ease-out forwards;
   opacity: 1;
-}
-
-.section-3 .container .check-list ul input:checked ~ .button {
-  opacity: 0;
-}
-
-@-webkit-keyframes dash {
-  0% {
-    stroke-dashoffset: 340;
-  }
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes dash {
-  0% {
-    stroke-dashoffset: 340;
-  }
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
-
-.section-3 .container .check-list .checkmark {
-  display: block;
-  stroke-width: 8;
-  opacity: 0;
 }
 
 /* section-2 */
@@ -2003,6 +2048,36 @@ body.waiting * {
 
 .swiper-main .slide-3 .text .title {
   font-size: 4rem;
+}
+
+@media only screen and (max-width: 1221px) {
+  .section-3 .container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 1050px) {
+  .catalog .container {
+    width: 80%;
+    max-width: 80%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .catalog .container {
+    width: 95%;
+    max-width: 95%;
+  }
+  .catalog .container .swiper-container {
+    padding-bottom: 120px;
+  }
+  .catalog .container .swiper-button-prev,
+  .catalog .container .swiper-button-next {
+    display: none;
+  }
 }
 
 /* ============== swiper end ================ */

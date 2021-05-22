@@ -127,9 +127,11 @@ document.addEventListener('scroll', function (e) {
         window.requestAnimationFrame(function () {
             handleSideIcons(lastKnownScrollPosition);
             collapseMenu();
+            /*
             if (typeof handleSection2Checkmarks !== 'undefined' && typeof handleSection2Checkmarks === 'function') {
                 handleSection2Checkmarks(lastKnownScrollPosition);
             }
+            */
             ticking = false;
         });
 
