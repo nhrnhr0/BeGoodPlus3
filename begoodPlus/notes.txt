@@ -146,3 +146,11 @@ server {
 /////////////////////////////////////////////////////////////////////
 sudo nginx -t
 sudo ln /etc/nginx/sites-available/django.conf /etc/nginx/sites-enabled/
+
+
+
+TODO:
+mobile
+sitemap
+tobots.txt
+https v2
