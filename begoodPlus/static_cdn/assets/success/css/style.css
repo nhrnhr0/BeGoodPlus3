@@ -47,6 +47,8 @@
 }
 
 .main-content .inner {
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
   background-color: #494949;
   text-align: start;
   -webkit-box-shadow: -1px 1px 39px 4px black;

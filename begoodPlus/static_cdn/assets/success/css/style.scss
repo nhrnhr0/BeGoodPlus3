@@ -14,6 +14,7 @@ body {
     flex-direction: column;
 
     .inner {
+        transform: scale(1.5);
         background-color: #494949;
         text-align: start;
         box-shadow: -1px 1px 39px 4px rgba(0,0,0,1);
