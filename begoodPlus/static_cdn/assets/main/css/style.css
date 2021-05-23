@@ -1425,6 +1425,17 @@ body.waiting * {
       flex-shrink: 1;
 }
 
+.temp .part .wraper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 80vw;
+}
+
 .temp .part .wraper .title {
   background-color: #FFD880;
   font-size: 2em;
@@ -1432,8 +1443,7 @@ body.waiting * {
 }
 
 .temp .part .wraper .carusel-img {
-  max-width: 100%;
-  min-width: 750px;
+  width: 100%;
 }
 
 .temp .part .wraper .btn {
