@@ -895,21 +895,26 @@ body.waiting * {
         .navbar {
           .container-fluid {
             #categoryNavbarNavDropdown {
-            #categoryNav {
-              li {
-              a {
-              .btn-dark {
-                &:hover,
-                &:focus{
-                  background-color: lighten(#343a40, 50%);
-                  
+              #categoryNav {
+                li {
+                  a {
+                    .btn-dark {
+
+                      &:hover,
+                      &:focus {
+                        background-color: lighten(#343a40, 50%);
+
+                      }
+                    }
+                  }
                 }
-              }}}
-              
+
                 .dropdown {
                   margin: auto;
+
                   .dropdown-menu {
                     @include bg-gradient();
+
                     li {
                       text-align: center;
                     }
@@ -1240,6 +1245,40 @@ body.waiting * {
     .container-fluid {
       .navbar-brand {
         display: none;
+      }
+    }
+  }
+
+
+  #catalogModal {
+    .modal-dialog {
+      .modal-content {
+        .modal-body {
+          .inner-body {
+            flex-direction: column-reverse;
+
+            .product-detail {
+              .product-title {
+
+                position: absolute;
+                top: 0px;
+                right:  0%;
+                width: 100%;
+                text-align: center;
+              }
+            }
+
+            .img-wraper {
+              img {
+                width: 100%;
+              }
+              padding-top: 60px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+        }
       }
     }
   }
