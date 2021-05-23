@@ -1588,15 +1588,6 @@ body.waiting * {
   background: url("../../catalog/imgs/catalogBg1.jpeg");
 }
 
-.section-2-wraper {
-  overflow: hidden;
-}
-
-.section-2-wraper .swiper-container-free-mode > .swiper-wrapper {
-  -webkit-transition-timing-function: linear;
-          transition-timing-function: linear;
-}
-
 .section-1-wraper {
   text-align: right;
   background-size: cover;
@@ -1979,6 +1970,7 @@ body.waiting * {
 }
 
 .section-2-wraper {
+  overflow: hidden;
   /*
     .showcase {
         display: block;
@@ -2023,6 +2015,11 @@ body.waiting * {
         }
       
       }*/
+}
+
+.section-2-wraper .logo-swiper .swiper-wrapper {
+  -webkit-transition-timing-function: linear;
+          transition-timing-function: linear;
 }
 
 .section-2-wraper .logo-swiper .swiper-wrapper .swiper-slide {

@@ -9,12 +9,12 @@ set_form_change_listener('#business-contact-form', 'main')
 
 
 var logo_swiper = new Swiper(".logo-swiper", {
-  freeMode: true,
+  //freeMode: true,
   //freeModeFluid: true,
   loop: true,
-  speed:1800,
+  speed:4000,
+  spaceBetween: 50,
   slidesPerView: "auto",
-  spaceBetween: 30,
   autoplay: {
     delay:0,
   }
