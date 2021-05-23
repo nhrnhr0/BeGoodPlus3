@@ -1341,6 +1341,12 @@ body.waiting * {
   margin: 0 auto;
 }
 
+@media only screen and (max-width: 425px) {
+  #ImageProductsModal .modal-dialog .modal-content .modal-header .header-logo {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 800px) {
   .icon-bar-2 {
     top: 90% !important;

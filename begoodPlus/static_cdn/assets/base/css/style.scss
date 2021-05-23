@@ -1228,7 +1228,19 @@ body.waiting * {
   }
 }
 
-
+@media only screen and (max-width: 425px) {
+  #ImageProductsModal {
+    .modal-dialog {
+      .modal-content {
+        .modal-header {
+          .header-logo {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
 
 @media only screen and (max-width: 800px) {
   .icon-bar-2 {
@@ -1262,7 +1274,7 @@ body.waiting * {
 
                 position: absolute;
                 top: 0px;
-                right:  0%;
+                right: 0%;
                 width: 100%;
                 text-align: center;
               }
@@ -1272,6 +1284,7 @@ body.waiting * {
               img {
                 width: 100%;
               }
+
               padding-top: 60px;
               display: flex;
               justify-content: center;
