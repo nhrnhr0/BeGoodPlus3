@@ -570,7 +570,17 @@
 }
 
 .section-2-wraper {
+    .logo-swiper {
+        .swiper-wrapper {
+            .swiper-slide {
+                flex-shrink: 1;
+            }
+        }
+    
+    }
     //background: url('../../catalog/imgs/catalogBg1.jpeg');
+    
+    /*
     .showcase {
         display: block;
         width: 100%;
@@ -613,7 +623,7 @@
           }
         }
       
-      }
+      }*/
 }
 .contact-form-wraper2 {
     background-color: #FFD880;

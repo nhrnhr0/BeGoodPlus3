@@ -842,7 +842,39 @@
     }
   }
 }
+@media only screen and (max-width:500px) {
+  .bg-wraper {
+    .section-1{
+      .swiper-container {
+        .swiper-wrapper{
+          .slide-1 {
+            .text {
+              .title {
+                font-size: 2rem;
+              }
+              .subtitle {
+                font-size: 2rem;
+              }
+            }
+          }
+          
+          .slide-2,
+          .slide-3 {
+            .text {
+              .title {
+                font-size: 3rem;
+              }
+              .subtitle {
+                font-size: 2rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 
+}
 
 
 /* ============== swiper end ================ */
