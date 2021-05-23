@@ -892,6 +892,35 @@ body.waiting * {
     .modal-header {
 
       .modal-header-links {
+        .navbar {
+          .container-fluid {
+            #categoryNavbarNavDropdown {
+            #categoryNav {
+              li {
+              a {
+              .btn-dark {
+                &:hover,
+                &:focus{
+                  background-color: lighten(#343a40, 50%);
+                  
+                }
+              }}}
+              
+                .dropdown {
+                  margin: auto;
+                  .dropdown-menu {
+                    @include bg-gradient();
+                    li {
+                      text-align: center;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -1197,6 +1226,15 @@ body.waiting * {
 
 
 @media only screen and (max-width: 800px) {
+  .icon-bar-2 {
+    top: 90% !important;
+
+    .icon {
+      .bissness-owner-img {
+        display: none;
+      }
+    }
+  }
 
   .navbar {
     .container-fluid {

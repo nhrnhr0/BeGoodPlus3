@@ -2071,8 +2071,12 @@ body.waiting * {
     width: 95%;
     max-width: 95%;
   }
+  .catalog .container .slick-slider .my-slick-slide .img-title {
+    font-size: 1rem;
+  }
   .catalog .container .swiper-container {
-    padding-bottom: 120px;
+    padding-bottom: 50px;
+    padding-top: 120px;
   }
   .catalog .container .swiper-button-prev,
   .catalog .container .swiper-button-next {

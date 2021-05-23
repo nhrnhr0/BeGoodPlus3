@@ -300,7 +300,6 @@ function update_contact_to_server(data) {
         success: function (response) {
             console.log('render_user_tasks', response.data);
             render_user_tasks(response.data);
-            debugger;
             if(response.redirect_to != undefined) {
                 
                 window.location = response.redirect_to;
@@ -761,6 +760,7 @@ function openCategoryModal(albumId) {
         <button class="btn btn-primary" onclick="openCategoryModal(${nextAlbum.id})" value=${nextAlbum.id}>${nextAlbum.title}</button>  
       `*/
     var buttonsMarkup = ``;
+    /*
     for (var i = 0; i < albums.length; i++) {
       currAlbum = albums[i];
       if (albumIndex == i) {
@@ -768,13 +768,58 @@ function openCategoryModal(albumId) {
       } else {
         buttonsMarkup += `<button class="btn btn-outline-dark" onclick="openCategoryModal(${currAlbum.id})" value=${currAlbum.id}>${currAlbum.title}</button>`
       }
+    }*/
+    
+    buttonsMarkup += `
+    <nav class="navbar navbar-expand">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#categoryNavbarNavDropdown" aria-controls="categoryNavbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="categoryNavbarNavDropdown">
+                <ul class="navbar-nav align-self-end flex-wrap" id="categoryNav">
+                `
+    for (var i = 0; i < albums.length; i++) { 
+        currAlbum = albums[i];
+        if(albumIndex == i) {
+            buttonsMarkup += `<li class="nav-item">
+            <a class="nav-link" href="#"><button class="btn btn-outline" onclick="openCategoryModal(${currAlbum.id})" value=${currAlbum.id}>${currAlbum.title}</button></a>
+            </li>`
+        }
+        else{
+            buttonsMarkup += `<li class="nav-item">
+            <a class="nav-link" href="#"><button class="btn btn-dark" onclick="openCategoryModal(${currAlbum.id})" value=${currAlbum.id}>${currAlbum.title}</button></a>
+            </li>`
+        }
+        /*
+        buttonsMarkup += `<li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <button class="btn btn btn-dark" onclick="openCategoryModal(${currAlbum.id})" value=${currAlbum.id}>${currAlbum.title}</button>
+                    </a>
+                </li>
+                `
+                */
     }
+    buttonsMarkup += `
+                <li class="nav-item dropdown d-none">
+                    <a class="btn btn-secondary dropdown-toggle" href="#"  role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+        `
+    
   
     $('#categoryModal .modal-title').text(album.title);
     $('#categoryModal .modal-body').html(bodyMarkup).scrollTop(0);
     //$('#categoryModal .modal-footer').html(buttonsMarkup);
     $('#categoryModal .modal-header .modal-header-links').html(buttonsMarkup);
     $('#categoryModal').modal('show');
+    autocollapseCategoryHeaders();
     $('#categoryModal .close-modal').click(function () {
       $('#categoryModal').modal('hide');
     });
@@ -787,6 +832,57 @@ function openCategoryModal(albumId) {
     addClientLikeProduct(prodId);
     flyToCart($(`#categoryModal .modal-body`).find(`div[data-category-prod-id='${prodId}'] .product-image`));
   }
+
+
+
+  $(window).on('resize', function () {
+    autocollapseCategoryHeaders();
+});
+
+  function autocollapseCategoryHeaders() {
+    console.log('autocollapseCategoryHeaders');
+    autocollapse('#categoryNav', 80);
+
+  }
+  
+  var autocollapse = function (menu,maxHeight) {
+    var nav = $(menu);
+    var navHeight = nav.innerHeight();
+    if (navHeight >= maxHeight) {
+        
+        $(menu + ' .dropdown').removeClass('d-none');
+        $(".navbar-nav").removeClass('w-auto').addClass("w-100");
+        
+        while (navHeight > maxHeight) {
+            //  add child to dropdown
+            var children = nav.children(menu + ' li:not(:last-child)');
+            var count = children.length;
+            $(children[count - 1]).prependTo(menu + ' .dropdown-menu');
+            navHeight = nav.innerHeight();
+        }
+        $(".navbar-nav").addClass("w-auto").removeClass('w-100');
+        
+    }
+    else {
+        
+        var collapsed = $(menu + ' .dropdown-menu').children(menu + ' li');
+      
+        if (collapsed.length===0) {
+          $(menu + ' .dropdown').addClass('d-none');
+        }
+      
+        while (navHeight < maxHeight && (nav.children(menu + ' li').length > 0) && collapsed.length > 0) {
+            //  remove child from dropdown
+            collapsed = $(menu + ' .dropdown-menu').children('li');
+            $(collapsed[0]).insertBefore(nav.children(menu + ' li:last-child'));
+            navHeight = nav.innerHeight();
+        }
+
+        if (navHeight > maxHeight) { 
+            autocollapse(menu,maxHeight);
+        }
+    }
+}
 function update_cart_ui(cart) {
     if (cart == undefined) {
       //TODO: think about clearing old data

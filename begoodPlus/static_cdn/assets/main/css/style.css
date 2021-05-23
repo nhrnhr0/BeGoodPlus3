@@ -1312,6 +1312,12 @@ body.waiting * {
   margin: 0 auto;
 }
 
+@media only screen and (max-width: 800px) {
+  .navbar .container-fluid .navbar-brand {
+    display: none;
+  }
+}
+
 .my-body {
   background-color: white;
   /*position: relative;
