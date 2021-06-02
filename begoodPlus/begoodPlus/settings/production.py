@@ -1,4 +1,4 @@
 from .base import *
 
-COMPRESS_ENABLED = True
-DEBUG=False
+COMPRESS_ENABLED = False
+DEBUG=True
