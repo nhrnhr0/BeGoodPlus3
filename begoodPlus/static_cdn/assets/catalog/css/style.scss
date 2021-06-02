@@ -194,7 +194,7 @@
           width: 50px;
 
           svg {
-            width: 100%;
+            width: 35px;
 
             .checkmark {
               position: absolute;
@@ -843,8 +843,10 @@
 
   .catalog {
     .container {
-      width: 95%;
-      max-width: 95%;
+      width: 100%;
+      max-width: 100%;
+      padding-right: 0px;
+      padding-left: 0px;
 
       .slick-slider {
         

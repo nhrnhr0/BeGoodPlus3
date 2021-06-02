@@ -122,7 +122,6 @@ function collapseMenu() {
 }
 document.addEventListener('scroll', function (e) {
     lastKnownScrollPosition = window.scrollY;
-    console.log(lastKnownScrollPosition);
     if (!ticking) {
         window.requestAnimationFrame(function () {
             handleSideIcons(lastKnownScrollPosition);

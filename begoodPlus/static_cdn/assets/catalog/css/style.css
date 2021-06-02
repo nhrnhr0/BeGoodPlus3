@@ -1671,7 +1671,7 @@ body.waiting * {
 }
 
 .section-3 .container .check-list .part .wrapper svg {
-  width: 100%;
+  width: 35px;
 }
 
 .section-3 .container .check-list .part .wrapper svg .checkmark {
@@ -2145,8 +2145,10 @@ body.waiting * {
     display: block;
   }
   .catalog .container {
-    width: 95%;
-    max-width: 95%;
+    width: 100%;
+    max-width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
   }
   .catalog .container .slick-slider .my-slick-slide .img-title {
     font-size: 1rem;
