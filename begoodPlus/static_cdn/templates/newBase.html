@@ -763,6 +763,20 @@
                         ).prependTo(ul);
                     }
                 };
+                
+                $('#search').on( "autocompleteopen", function( event, ui ) {
+                    console.log("AutoComplete Opened",ui);
+                    console.log('event: ', event)
+                    var resultsHolder = $('#ui-id-1');
+                    var serachBar = event.target;
+                    var holderWidth = parseFloat(resultsHolder.css('width').replace('px',''));
+                    if(holderWidth < 550) {
+                        var newWidth = 
+                        resultsHolder.css({'width':window.innerWidth*0.8  + 'px',
+                        'left': window.innerWidth*0.1 + 'px'});
+                    }
+                } );
+                
             // TODO: why is this here?
             $('.icon-bar-2').click(()=> {
                 openBuisnessModal();
