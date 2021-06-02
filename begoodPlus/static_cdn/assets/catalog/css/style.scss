@@ -118,6 +118,17 @@
       0px 0px 15px rgb(160, 160, 160),
       15px 10px 10px black,
     ;*/
+    ul {
+        overflow-x: hidden;
+        width: 100%;
+      li {
+        &::before {
+          content: '•';
+          display: inline;
+        }
+        display: inline;
+      }
+    }
 
     .part-1 {
       font-size: larger;
@@ -816,6 +827,20 @@
 }
 
 @media only screen and (max-width:700px) {
+  .section-2 {
+    .section-2-fotter{
+      border-radius: 25px;
+      ul {
+        
+        li {
+          display: block;
+          
+        }
+      }
+    }
+  }
+
+
   .catalog {
     .container {
       width: 95%;
@@ -872,6 +897,7 @@
         }
       }
     }
+    
   }
 
 }

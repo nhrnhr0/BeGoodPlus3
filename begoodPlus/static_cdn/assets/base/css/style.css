@@ -232,18 +232,6 @@ body.waiting * {
           transform: translateX(170px);
 }
 
-.icon-bar .icon.hover-show {
-  -webkit-transform: translateX(160px);
-          transform: translateX(160px);
-  -webkit-transition: all 0.1s linear;
-  transition: all 0.1s linear;
-}
-
-.icon-bar .icon.hover-show:hover {
-  -webkit-transform: translateX(170px);
-          transform: translateX(170px);
-}
-
 .icon-bar .icon img {
   width: 50px;
 }

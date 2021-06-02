@@ -232,18 +232,6 @@ body.waiting * {
           transform: translateX(170px);
 }
 
-.icon-bar .icon.hover-show {
-  -webkit-transform: translateX(160px);
-          transform: translateX(160px);
-  -webkit-transition: all 0.1s linear;
-  transition: all 0.1s linear;
-}
-
-.icon-bar .icon.hover-show:hover {
-  -webkit-transform: translateX(170px);
-          transform: translateX(170px);
-}
-
 .icon-bar .icon img {
   width: 50px;
 }
@@ -1478,6 +1466,20 @@ body.waiting * {
     ;*/
 }
 
+.section-2 .section-2-fotter ul {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.section-2 .section-2-fotter ul li {
+  display: inline;
+}
+
+.section-2 .section-2-fotter ul li::before {
+  content: '•';
+  display: inline;
+}
+
 .section-2 .section-2-fotter .part-1 {
   font-size: larger;
 }
@@ -2136,6 +2138,12 @@ body.waiting * {
 }
 
 @media only screen and (max-width: 700px) {
+  .section-2 .section-2-fotter {
+    border-radius: 25px;
+  }
+  .section-2 .section-2-fotter ul li {
+    display: block;
+  }
   .catalog .container {
     width: 95%;
     max-width: 95%;
