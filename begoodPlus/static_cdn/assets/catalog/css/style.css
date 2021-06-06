@@ -1202,7 +1202,13 @@ body.waiting * {
   overflow: scroll;
 }
 
-#likedProductsModal .modal-body #cartProductsList ul li {
+#likedProductsModal .modal-body #likedProductsForm .row {
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  margin: 0px;
+}
+
+#likedProductsModal .modal-body #likedProductsForm .row #cartProductsList ul li {
   position: relative;
   background: #FFD880;
   border-radius: 10px;
@@ -1213,7 +1219,7 @@ body.waiting * {
   display: flex;
 }
 
-#likedProductsModal .modal-body #cartProductsList ul li button {
+#likedProductsModal .modal-body #likedProductsForm .row #cartProductsList ul li button {
   border: 0;
   background-color: transparent;
   position: absolute;
@@ -1223,11 +1229,11 @@ body.waiting * {
           transform: translate(25%, 25%);
 }
 
-#likedProductsModal .modal-body #cartProductsList ul li button:hover {
+#likedProductsModal .modal-body #likedProductsForm .row #cartProductsList ul li button:hover {
   color: red;
 }
 
-#likedProductsModal .modal-body #cartProductsList ul li .cart-item {
+#likedProductsModal .modal-body #likedProductsForm .row #cartProductsList ul li .cart-item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1245,14 +1251,14 @@ body.waiting * {
           align-items: center;
 }
 
-#likedProductsModal .modal-body #cartProductsList ul li .cart-item .cart-item-title {
+#likedProductsModal .modal-body #likedProductsForm .row #cartProductsList ul li .cart-item .cart-item-title {
   /*display: flex;
-                        justify-content: center;
-                        align-items: center;*/
+                            justify-content: center;
+                            align-items: center;*/
   font-size: larger;
 }
 
-#likedProductsModal .modal-body #cartProductsList ul li .cart-item .cart-item-image {
+#likedProductsModal .modal-body #likedProductsForm .row #cartProductsList ul li .cart-item .cart-item-image {
   width: 50px;
   height: 50px;
   margin-left: 10px;
@@ -1336,6 +1342,27 @@ body.waiting * {
 }
 
 @media only screen and (max-width: 800px) {
+  #whousModal .modal-dialog .modal-content .modal-header .header-logo-l {
+    display: none;
+  }
+  #likedProductsModal .modal-body #likedProductsForm .row {
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin: 0px;
+  }
+  #likedProductsModal .modal-body #likedProductsForm .row .col-6 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+    max-width: 100%;
+  }
+  #likedProductsModal .modal-body #likedProductsForm .row .cart-products-wraper #cartProductsList ul {
+    padding: 0px;
+  }
   .icon-bar-2 {
     top: 90% !important;
   }

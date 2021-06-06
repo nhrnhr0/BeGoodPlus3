@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from websites.views import websites_page_view
 from django.contrib import admin
 from pages.views import order_form, order_form2, order_form3,catalog_view,catalog_page, landing_page_view, my_logo_wrapper_view, catalog_page2
                         
@@ -56,6 +57,7 @@ from catalogAlbum.views import catalogView2,catalogView_api#,catalog_timer
 from myUserTasks.views import updateContactFormUserTaskView, getUserTasksView,updateProductsFormUserTaskView,getUserCartView,delUserLikedProductView
 from myLogo.views import my_logo_view
 from core.views import user_tasks, success_view
+from websites.views import websites_page_view
 #from customerCart.views import cart_changed
 from customerCart.views import cart_del, cart_add,cart_view,cart_info
 urlpatterns = [
@@ -116,7 +118,8 @@ urlpatterns = [
     path('cart/view', cart_view, name='cart-view'),
     path('cart/info', cart_info, name='cart-info'),
     path('user-tasks', user_tasks, name='user-tasks'),
-    path('success/', success_view, name='success')
+    path('success/', success_view, name='success'),
+    path('technology/', websites_page_view, name='technology'),
 ]
 
 if settings.DEBUG:
