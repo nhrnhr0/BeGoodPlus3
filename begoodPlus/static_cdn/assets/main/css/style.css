@@ -1502,7 +1502,7 @@ body.waiting * {
 }
 
 .waves-container-2 {
-  width: 100vw;
+  width: 100%;
   height: 221px;
   position: absolute;
   top: -1px;
@@ -1523,7 +1523,7 @@ body.waiting * {
 }
 
 .waves-container {
-  width: 100vw;
+  width: 100%;
   max-width: 100%;
   height: 221px;
   position: absolute;
