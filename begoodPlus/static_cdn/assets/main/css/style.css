@@ -1502,8 +1502,8 @@ body.waiting * {
 }
 
 .waves-container-2 {
-  min-width: 100%;
-  width: 300%;
+  width: 100vw;
+  min-width: 100vw;
   height: 221px;
   position: absolute;
   top: -1px;
@@ -1524,8 +1524,8 @@ body.waiting * {
 }
 
 .waves-container {
-  width: 300%;
-  max-width: 100vw;
+  width: 100vw;
+  min-width: 100vw;
   height: 221px;
   position: absolute;
   bottom: -1px;
@@ -1543,7 +1543,6 @@ body.waiting * {
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
   animation-direction: alternate-reverse;
-  min-width: 100%;
 }
 
 /*.hero-wraper {
