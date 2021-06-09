@@ -1507,7 +1507,7 @@ body.waiting * {
   height: 221px;
   position: absolute;
   top: -1px;
-  z-index: -1;
+  z-index: 99999;
   background: url(../imgs/wave_3upsd.svg);
   background-repeat: no-repeat;
   background-position-y: top;
@@ -1529,7 +1529,7 @@ body.waiting * {
   height: 221px;
   position: absolute;
   bottom: -1px;
-  z-index: -1;
+  z-index: 99999;
   background: url("../imgs/wave_3.svg");
   background-repeat: no-repeat;
   background-position-y: bottom;
