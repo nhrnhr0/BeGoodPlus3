@@ -1502,6 +1502,7 @@ body.waiting * {
 }
 
 .waves-container-2 {
+  min-width: 100%;
   width: 100%;
   height: 221px;
   position: absolute;
@@ -1524,7 +1525,7 @@ body.waiting * {
 
 .waves-container {
   width: 100%;
-  max-width: 100%;
+  max-width: 100vw;
   height: 221px;
   position: absolute;
   bottom: -1px;
@@ -1542,6 +1543,7 @@ body.waiting * {
   -webkit-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
   animation-direction: alternate-reverse;
+  min-width: 100%;
 }
 
 /*.hero-wraper {
