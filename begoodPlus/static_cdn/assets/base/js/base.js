@@ -679,6 +679,7 @@ function ajax_refresh_cart() {
 
 var last_updated_cart = undefined;
 function render_cart_view(data) {
+    console.log(data);
   if (last_updated_cart != undefined) {
     var last_updated_time = last_updated_cart['timestemp']
     last_updated_time = Date.parse(last_updated_time);
