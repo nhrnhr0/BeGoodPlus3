@@ -185,7 +185,7 @@ function contact_form_changed(data, isImportant=false) {
     if (last_updated_form == undefined) {
         last_updated_form = {}
     }
-    if (last_updated_form?.value != data) {
+    if (last_updated_form && last_updated_form.value != data) {
         last_updated_form['id'] = formUUID;
         last_updated_form['value'] = data;
         last_updated_form['changed'] = true;
