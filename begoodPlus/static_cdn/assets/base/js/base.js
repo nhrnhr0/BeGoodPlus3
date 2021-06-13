@@ -1206,17 +1206,18 @@ function openBuisnessModal() {
     });
 }
 function iOS() {
-    console.log(navigator.platform);
+    console.log('platform: ', navigator.platform);
+    console.log('userAgent: ',navigator.userAgent);
     return [
       'iPad Simulator',
       'iPhone Simulator',
       'iPod Simulator',
       'iPad',
       'iPhone',
-      'iPod'
-    ].includes(navigator.platform)
-    // iPad on iOS 13 detection
-    || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+      'iPod',
+      'Mac',
+      'MacIntel'
+    ].includes(navigator.platform) || (navigator.userAgent.includes("Mac"));
   }
 function fix_IOS_Layout() {
     if(iOS()) {
