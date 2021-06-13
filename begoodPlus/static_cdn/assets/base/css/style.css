@@ -988,7 +988,11 @@ body.waiting * {
   width: 100%;
 }
 
-#categoryModal .modal-content .modal-header .modal-header-links .navbar .container-fluid #categoryNavbarNavDropdown #categoryNav li a .btn-dark:hover, #categoryModal .modal-content .modal-header .modal-header-links .navbar .container-fluid #categoryNavbarNavDropdown #categoryNav li a .btn-dark:focus {
+#categoryModal .modal-content .modal-header .modal-header-links .navbar .container-fluid #categoryNavbarNavDropdown #categoryNav {
+  margin: auto;
+}
+
+#categoryModal .modal-content .modal-header .modal-header-links .navbar .container-fluid #categoryNavbarNavDropdown #categoryNav ul li a .btn-dark:hover, #categoryModal .modal-content .modal-header .modal-header-links .navbar .container-fluid #categoryNavbarNavDropdown #categoryNav ul li a .btn-dark:focus {
   background-color: #b2bac1;
 }
 
@@ -1350,6 +1354,14 @@ body.waiting * {
 }
 
 @media only screen and (max-width: 800px) {
+  #categoryModal .modal-footer {
+    -webkit-box-pack: center !important;
+        -ms-flex-pack: center !important;
+            justify-content: center !important;
+  }
+  #categoryModal .modal-footer .header-logo {
+    display: none;
+  }
   #whousModal .modal-dialog .modal-content .modal-header .header-logo-l {
     display: none;
   }

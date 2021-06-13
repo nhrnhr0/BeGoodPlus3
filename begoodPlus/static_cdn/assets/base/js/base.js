@@ -1205,8 +1205,33 @@ function openBuisnessModal() {
         $('#buisnessModal').modal('hide');
     });
 }
+function iOS() {
+    return [
+      'iPad Simulator',
+      'iPhone Simulator',
+      'iPod Simulator',
+      'iPad',
+      'iPhone',
+      'iPod'
+    ].includes(navigator.platform)
+    // iPad on iOS 13 detection
+    || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+  }
+function fix_IOS_Layout() {
+    if(iOS()) {
+        console.log('IOS');
+        var categoryModal = document.getElementById('categoryModal');
+        categoryModal.querySelector('.modal-content .modal-header').style.height = '100%';
+        categoryModal.querySelector('.modal-content .modal-header .modal-header-links').style.height = '100%';
+        categoryModal.querySelector('.modal-content .modal-footer').style.height = '100%';
+    }
+    else {
+        console.log('not IOS');
+    }
+}
 ajax_user_tasks();
 ajax_refresh_cart();
 set_form_change_listener('#contact-form', 'businessOwner');
 setInterval(contact_form_interval, 10000);
 handle_user_tasks();
+fix_IOS_Layout();
