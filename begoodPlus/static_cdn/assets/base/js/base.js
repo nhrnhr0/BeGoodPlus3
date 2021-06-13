@@ -688,6 +688,8 @@ function render_cart_view(data) {
       last_updated_cart = data;
     } else {
       console.error('packets get in wierd order');
+      console.error('last_updated_cart: ', last_updated_cart);
+      console.error('new data: ', data);
     }
   } else {
     last_updated_cart = data;
