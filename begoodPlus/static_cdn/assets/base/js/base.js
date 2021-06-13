@@ -1208,6 +1208,10 @@ function openBuisnessModal() {
 function iOS() {
     console.log('platform: ', navigator.platform);
     console.log('userAgent: ',navigator.userAgent);
+    var str = '';
+    str += 'platform: ' + navigator.platform + ' userAgent: ' + navigator.userAgent;
+
+    alert(str);
     return [
       'iPad Simulator',
       'iPhone Simulator',
