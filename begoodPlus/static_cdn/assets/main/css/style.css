@@ -963,6 +963,10 @@ body.waiting * {
   height: 100vh;
 }
 
+#categoryModal .modal-content .modal-header {
+  width: 100%;
+}
+
 #categoryModal .modal-content .modal-header .modal-header-links {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -977,6 +981,10 @@ body.waiting * {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  width: 100%;
+}
+
+#categoryModal .modal-content .modal-header .modal-header-links .navbar {
   width: 100%;
 }
 
@@ -1508,7 +1516,7 @@ body.waiting * {
   position: absolute;
   top: -1px;
   z-index: 99999;
-  background: url(../imgs/wave_3upsd.svg);
+  background: url(../imgs/wave_3upsd.png);
   background-repeat: no-repeat;
   background-position-y: top;
   background-size: 200% 15%;
@@ -1530,7 +1538,7 @@ body.waiting * {
   position: absolute;
   bottom: -1px;
   z-index: 99999;
-  background: url("../imgs/wave_3.svg");
+  background: url(../imgs/wave_3.png);
   background-repeat: no-repeat;
   background-position-y: bottom;
   background-size: 200% 15%;

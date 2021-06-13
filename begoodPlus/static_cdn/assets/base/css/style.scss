@@ -882,9 +882,10 @@ body.waiting * {
     height: 100vh;
 
     .modal-header {
-
+      width: 100%;
       .modal-header-links {
         .navbar {
+          width:100%;
           .container-fluid {
             #categoryNavbarNavDropdown {
               #categoryNav {
