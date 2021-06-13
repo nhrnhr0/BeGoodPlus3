@@ -1206,6 +1206,7 @@ function openBuisnessModal() {
     });
 }
 function iOS() {
+    console.log(navigator.platform);
     return [
       'iPad Simulator',
       'iPhone Simulator',
