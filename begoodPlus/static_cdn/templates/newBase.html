@@ -23,7 +23,9 @@
     <link rel="preload" href="{%static 'assets/base/fonts/subset-RoundedMplus1c-Bold.woff2'%}" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="{%static 'assets/base/fonts/subset-RoundedMplus1c-Bold.woff'%}" as="font" type="font/woff2" crossorigin>
     -->
-    
+    {%block before_css %}
+
+    {%endblock%}
 {% compress css %}
     <link rel="stylesheet" href="{%static 'assets/css/bootstrap.min.css'%}">
     <link rel="stylesheet" href="{%static 'assets/css/jquery-ui.css'%}">

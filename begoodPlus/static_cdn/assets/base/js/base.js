@@ -1136,6 +1136,10 @@ function render_user_tasks(data) {
             tasks_markup += `<li> <button type="button" onclick="handle_user_task_click('main')"> לא סיימת למלא טופס יצירת קשר בדף הראשי </button> </li>`;
         }else if(data[i].url == 'businessOwner') {
             tasks_markup += `<li> <button type="button" onclick="handle_user_task_click('businessOwner')"> לא סיימת למלא טופס יצירת קשר בדף בעל עסק </button> </li>`;
+        }else if(data[i].url == 'technology') {
+            tasks_markup += `<li> <button type="button" onclick="handle_user_task_click('technology')"> לא סיימת למלא טופס יצירת קשר בבניית אתרים </button> </li>`;
+        }else if(data[i].url == 'technology2') {
+            tasks_markup += `<li> <button type="button" onclick="handle_user_task_click('technology2')"> לא סיימת למלא טופס יצירת קשר בבניית אתרים </button> </li>`;
         }
     }
     $('#navbarDropdownList').html(tasks_markup);
@@ -1159,6 +1163,12 @@ console.log(e);
     else if(taskName == 'businessOwner') {
         //sessionStorage.setItem('businessOwner_user_task', "true");
         openBuisnessModal();
+    }else if(taskName == 'technology') {
+        sessionStorage.setItem('technology_user_task', "true");
+        window.location.href = '/technology';
+    }else if(taskName == 'technology2') {
+        sessionStorage.setItem('technology2_user_task', "true");
+        window.location.href = '/technology';
     }
 }
 
@@ -1197,6 +1207,26 @@ function handle_user_tasks() {
             document.querySelector("#catalog-contact-form").scrollIntoView();
         },50);
     }
+
+    else if(sessionStorage.getItem("technology_user_task") != undefined){
+        sessionStorage.removeItem("technology_user_task");
+        setTimeout(function() {
+            const yOffset = -100; 
+            var element = document.querySelector("#websites-contact-form");
+            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({top: y, behavior: 'smooth'});
+        },50);
+    }
+
+    else if(sessionStorage.getItem("technology2_user_task") != undefined){
+        sessionStorage.removeItem("technology2_user_task");
+        setTimeout(function() {
+            const yOffset = -100; 
+            var element = document.querySelector("#websites-contact-form-2");
+            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({top: y, behavior: 'smooth'});
+        },50);
+    }
 }
 
 function openBuisnessModal() {
@@ -1211,7 +1241,6 @@ function iOS() {
     var str = '';
     str += 'platform: ' + navigator.platform + ' userAgent: ' + navigator.userAgent;
 
-    alert(str);
     return [
       'iPad Simulator',
       'iPhone Simulator',
