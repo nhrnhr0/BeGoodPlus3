@@ -16,7 +16,6 @@
 <!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> 
 <link rel="stylesheet" href="{%static 'assets/catalog/css/countdowncube.css'%}" />
 -->
-<link rel="stylesheet" href="{%static 'assets/catalog/css/swiper-bundle.min.css'%}">
 <link rel="stylesheet" href="{%static 'assets/catalog/css/flipdown.min.css'%}" />
 <link rel="stylesheet" href="{%static 'assets/catalog/css/style.css' %}">
 {% endblock extra_head%}
@@ -26,17 +25,16 @@
 <div class="bg-wraper">
     <div class="section-2">
         <div class="section-2-fotter">
+                <ul>
+                    <li> עיינו באתר </li>
+                    <li> הוסיפו לעגלה </li>
+                    <li> שלחו אלינו </li>
+                </ul>
+            <!--
             &bull; עיינו באתר
             &bull; הוסיפו לעגלה
             &bull; שלחו אלינו
             &bull;
-            <!--
-            <div class="part-1 shine">
-                מוזמנים לעיין באתר ולהוסיף להצעת מחיר את הפריטים שאהבתם
-            </div>
-            <div class="part-2 shine">
-                לא לשכוח לשלוח את הטופס בסיום
-            </div>
             -->
 
         </div>
@@ -45,270 +43,44 @@
 
         <div class="swiper-container swiper-main">
             <div class="parallax-bg" data-swiper-parallax="23%"></div>
-            <!-- -->
             <div class="swiper-wrapper">
                 <div class="swiper-slide slide-1">
+                    <div class="text">
                     <div class="title" data-swiper-parallax-duration="2000" data-swiper-parallax-y="-500">
-                        בעל עסק? גם לך נמאס לבזבז זמן וכסף בהזמנות רכש לעובדים?
+                        בעל עסק?
+                        <br>
+                        גם לך נמאס לבזבז זמן וכסף בהזמנות רכש לעובדים?
                     </div>
                     <div class="subtitle" data-swiper-parallax-duration="2000" data-swiper-parallax-y="-500">
                         תן למקצוענים לעשות את העבודה בשבילך
                     </div>
-                    <div class="images" data-swiper-parallax="-100">
-                        <div class="img-wraper img-1-wraper">
-                            <img class="main-slide-img img-1" data-swiper-parallax-duration="400"
-                                data-swiper-parallax-y="500" data-swiper-parallax="-1000"
-                                src="{%static 'assets/catalog/imgs/slide1/hero_img1.png' %}"
-                                alt="בעל עסק? גם לך נמאס לבזבז זמן וכסף בהזמנות רכש לעובדים? תן למקצוענים לעשות את העבודה בשבילך" />
-                        </div>
-                        <div class="img-wraper img-2-wraper">
-                            <img class="main-slide-img img-2" data-swiper-parallax-duration="600"
-                                data-swiper-parallax-y="500" data-swiper-parallax="-1000"
-                                src="{%static 'assets/catalog/imgs/slide1/hero_img2.png' %}"
-                                alt="בעל עסק? גם לך נמאס לבזבז זמן וכסף בהזמנות רכש לעובדים? תן למקצוענים לעשות את העבודה בשבילך" />
-                        </div>
-                        <div class="img-wraper img-3-wraper">
-                            <img class="main-slide-img img-3" data-swiper-parallax-duration="800"
-                                data-swiper-parallax-y="500"
-                                src="{%static 'assets/catalog/imgs/slide1/hero_img3.png' %}"
-                                alt="בעל עסק? גם לך נמאס לבזבז זמן וכסף בהזמנות רכש לעובדים? תן למקצוענים לעשות את העבודה בשבילך" />
-                        </div>
-                        <div class="img-wraper img-4-wraper">
-                            <img class="main-slide-img img-4" data-swiper-parallax-duration="1000"
-                                data-swiper-parallax-y="500"
-                                src="{%static 'assets/catalog/imgs/slide1/hero_img4.png' %}"
-                                alt="בעל עסק? גם לך נמאס לבזבז זמן וכסף בהזמנות רכש לעובדים? תן למקצוענים לעשות את העבודה בשבילך" />
-                        </div>
-                        <div class="img-wraper img-5-wraper">
-                            <img class="main-slide-img img-5" data-swiper-parallax-duration="1200"
-                                data-swiper-parallax-y="500"
-                                src="{%static 'assets/catalog/imgs/slide1/hero_img5.png' %}"
-                                alt="בעל עסק? גם לך נמאס לבזבז זמן וכסף בהזמנות רכש לעובדים? תן למקצוענים לעשות את העבודה בשבילך" />
-                        </div>
-                    </div>
+                </div>
+
                 </div>
                 <div class="swiper-slide slide-2">
+                    <div class="text">
                     <div class="title" data-swiper-parallax-duration="2000" data-swiper-parallax-y="500">
                         לא יודעים מה להזמין ומפחדים לטעות בהזמנה?
                     </div>
                     <div class="subtitle" data-swiper-parallax-duration="2000" data-swiper-parallax-y="500">
                         הצוות שלנו אשמח לעמוד לשירותכם
                     </div>
-                    <div class="images" data-swiper-parallax="-100">
-                        <div class="img-wraper img-1-wraper">
-                            <img class="main-slide-img img-1" data-swiper-parallax-duration="400"
-                                data-swiper-parallax-y="-500" data-swiper-parallax="-1000"
-                                src="{%static 'assets/catalog/imgs/slide2/hero_img1.png' %}"
-                                alt="לא יודעים מה להזמין ומפחדים לטעות בהזמנה? הצוות שלנו אשמח לעמוד לשירותכם" />
-                        </div>
-                        <div class="img-wraper img-2-wraper">
-                            <img class="main-slide-img img-2" data-swiper-parallax-duration="600"
-                                data-swiper-parallax-y="-500" data-swiper-parallax="-1000"
-                                src="{%static 'assets/catalog/imgs/slide2/hero_img2.png' %}"
-                                alt="לא יודעים מה להזמין ומפחדים לטעות בהזמנה? הצוות שלנו אשמח לעמוד לשירותכם" />
-                        </div>
-                        <div class="img-wraper img-3-wraper">
-                            <img class="main-slide-img img-3" data-swiper-parallax-duration="800"
-                                data-swiper-parallax-y="-500"
-                                src="{%static 'assets/catalog/imgs/slide2/hero_img3.png' %}"
-                                alt="לא יודעים מה להזמין ומפחדים לטעות בהזמנה? הצוות שלנו אשמח לעמוד לשירותכם" />
-                        </div>
-                        <div class="img-wraper img-4-wraper">
-                            <img class="main-slide-img img-4" data-swiper-parallax-duration="1000"
-                                data-swiper-parallax-y="-500"
-                                src="{%static 'assets/catalog/imgs/slide2/hero_img4.png' %}"
-                                alt="לא יודעים מה להזמין ומפחדים לטעות בהזמנה? הצוות שלנו אשמח לעמוד לשירותכם" />
-                        </div>
-                        <div class="img-wraper img-5-wraper">
-                            <img class="main-slide-img img-5" data-swiper-parallax-duration="1200"
-                                data-swiper-parallax-y="-500"
-                                src="{%static 'assets/catalog/imgs/slide2/hero_img5.png' %}"
-                                alt="לא יודעים מה להזמין ומפחדים לטעות בהזמנה? הצוות שלנו אשמח לעמוד לשירותכם" />
-                        </div>
-                        <div class="img-wraper img-6-wraper">
-                            <img class="main-slide-img img-6" data-swiper-parallax-duration="1400"
-                                data-swiper-parallax-y="-500"
-                                src="{%static 'assets/catalog/imgs/slide2/hero_img6.png' %}"
-                                alt="לא יודעים מה להזמין ומפחדים לטעות בהזמנה? הצוות שלנו אשמח לעמוד לשירותכם" />
-                        </div>
-                        <div class="img-wraper img-7-wraper">
-                            <img class="main-slide-img img-7" data-swiper-parallax-duration="1600"
-                                data-swiper-parallax-y="-500"
-                                src="{%static 'assets/catalog/imgs/slide2/hero_img8.png' %}"
-                                alt="לא יודעים מה להזמין ומפחדים לטעות בהזמנה? הצוות שלנו אשמח לעמוד לשירותכם" />
-                        </div>
-                        <div class="img-wraper img-8-wraper">
-                            <img class="main-slide-img img-8" data-swiper-parallax-duration="1800"
-                                data-swiper-parallax-y="-500"
-                                src="{%static 'assets/catalog/imgs/slide2/hero_img7.png' %}"
-                                alt="לא יודעים מה להזמין ומפחדים לטעות בהזמנה? הצוות שלנו אשמח לעמוד לשירותכם" />
-                        </div>
-                    </div>
+                </div>
                 </div>
 
                 <div class="swiper-slide slide-3">
+                    <div class="text">
                     <div class="title" data-swiper-parallax-duration="2000" data-swiper-parallax-y="500">
                         מנהל רכש? שמור על העובדים שלך
                     </div>
                     <div class="subtitle" data-swiper-parallax-duration="2000" data-swiper-parallax-y="500">עם סידרת
                         מוצרי הבטיחות לעבודה במחירים מנצחים
                     </div>
-                    <div class="images" data-swiper-parallax="-100">
-                        <div class="img-wraper img-1-wraper">
-                            <img class="main-slide-img img-1" data-swiper-parallax-duration="400"
-                                data-swiper-parallax-y="-500" data-swiper-parallax="-1000"
-                                src="{%static 'assets/catalog/imgs/slide3/hero_img1.png' %}"
-                                alt="מנהל רכש? שמור על העובדים שלך. מוצרי הבטיחות לעבודה במחירים מנצחים" />
-                        </div>
-                        <div class="img-wraper img-2-wraper">
-                            <img class="main-slide-img img-2" data-swiper-parallax-duration="600"
-                                data-swiper-parallax-y="-500" data-swiper-parallax="-1000"
-                                src="{%static 'assets/catalog/imgs/slide3/hero_img2.png' %}"
-                                alt="מנהל רכש? שמור על העובדים שלך. מוצרי הבטיחות לעבודה במחירים מנצחים" />
-                        </div>
-                        <div class="img-wraper img-3-wraper">
-                            <img class="main-slide-img img-3" data-swiper-parallax-duration="800"
-                                data-swiper-parallax-y="-500"
-                                src="{%static 'assets/catalog/imgs/slide3/hero_img3.png' %}"
-                                alt="מנהל רכש? שמור על העובדים שלך. מוצרי הבטיחות לעבודה במחירים מנצחים" />
-                        </div>
-                        <div class="img-wraper img-4-wraper">
-                            <img class="main-slide-img img-4" data-swiper-parallax-duration="1000"
-                                data-swiper-parallax-y="-500"
-                                src="{%static 'assets/catalog/imgs/slide3/hero_img4.png' %}"
-                                alt="מנהל רכש? שמור על העובדים שלך. מוצרי הבטיחות לעבודה במחירים מנצחים" />
-                        </div>
-                        <div class="img-wraper img-5-wraper">
-                            <img class="main-slide-img img-5" data-swiper-parallax-duration="1200"
-                                data-swiper-parallax-y="-500"
-                                src="{%static 'assets/catalog/imgs/slide3/hero_img5.png' %}"
-                                alt="מנהל רכש? שמור על העובדים שלך. מוצרי הבטיחות לעבודה במחירים מנצחים" />
-                        </div>
-                        <div class="img-wraper img-6-wraper">
-                            <img class="main-slide-img img-6" data-swiper-parallax-duration="1400"
-                                data-swiper-parallax-y="-500"
-                                src="{%static 'assets/catalog/imgs/slide3/hero_img6.png' %}"
-                                alt="מנהל רכש? שמור על העובדים שלך. מוצרי הבטיחות לעבודה במחירים מנצחים" />
-                        </div>
-                        <div class="img-wraper img-7-wraper">
-                            <img class="main-slide-img img-7" data-swiper-parallax-duration="1600"
-                                data-swiper-parallax-y="-500"
-                                src="{%static 'assets/catalog/imgs/slide3/hero_img7.png' %}"
-                                alt="מנהל רכש? שמור על העובדים שלך. מוצרי הבטיחות לעבודה במחירים מנצחים" />
-                        </div>
-                        <div class="img-wraper img-8-wraper">
-                            <img class="main-slide-img img-8" data-swiper-parallax-duration="1800"
-                                data-swiper-parallax-y="-500"
-                                src="{%static 'assets/catalog/imgs/slide3/hero_img8.png' %}"
-                                alt="מנהל רכש? שמור על העובדים שלך. מוצרי הבטיחות לעבודה במחירים מנצחים" />
-                        </div>
-                    </div>
                 </div>
-
-            </div>
-            <!--
-                <div class="swiper-pagination swiper-pagination-white"></div>
-                <div class="swiper-button-prev swiper-button-white"></div>
-                <div class="swiper-button-next swiper-button-white"></div>
-            -->
-        </div>
-        <!--
-    <div class="main-slider">
-            <img src="{%static 'assets/catalog/imgs/slide1.jpg'%}"/>
-            <img src="{%static 'assets/catalog/imgs/slide2.jpg'%}"/>
-            <img src="{%static 'assets/catalog/imgs/slide3.jpg'%}"/>
-    </div>
-    -->
-
-
-        <!--
-    <div class="swiper-container" dir="rtl">
-        <div class="swiper-wrapper">
-            <div class="main-slide slide-1">
-                <img class="main-slide-bg" srcset="{%static 'assets/catalog/imgs/slide_bg_min.jpg'%}," />
-                <div class="text">
-                    <div class="text-wraper text-wraper-1">
-                        <div class="text-1">
-                            בעל עסק? גם לך נמאס לבזבז זמן וכסף בהזמנות רכש לעובדים?
-                        </div>
-                    </div>
-                    <div class="text-wraper text-wraper-2">
-                        <div class="text-2 ">
-                            תן למקצוענים לעשות את העבודה בשבילך
-                        </div>
-                    </div>
                 </div>
-                <div class="images">
-                    <img class="main-slide-img img-1" src="{%static 'assets/catalog/imgs/slide1/hero_img1.png' %}" />
-                    <img class="main-slide-img img-2" src="{%static 'assets/catalog/imgs/slide1/hero_img2.png' %}" />
-                    <img class="main-slide-img img-3" src="{%static 'assets/catalog/imgs/slide1/hero_img3.png' %}" />
-                    <img class="main-slide-img img-4" src="{%static 'assets/catalog/imgs/slide1/hero_img4.png' %}" />
-                    <img class="main-slide-img img-5" src="{%static 'assets/catalog/imgs/slide1/hero_img5.png' %}" />
-                </div>
-            </div>
-
-            <div class="main-slide slide-2">
-                <img class="main-slide-bg" srcset="{%static 'assets/catalog/imgs/slide_bg_min.jpg'%}," />
-                <div class="text">
-                    <div class="text-wraper text-wraper-1">
-                        <div class="text-1">
-                            לא יודעים מה להזמין ומפחדים לטעות בהזמנה?
-                        </div>
-                    </div>
-                    <div class="text-wraper text-wraper-2">
-                        <div class="text-2 ">
-                            הצוות שלנו אשמח לעמוד לשירותכם
-                        </div>
-                    </div>
-                </div>
-                <div class="images">
-                    <img class="main-slide-img img-1" src="{%static 'assets/catalog/imgs/slide2/hero_img1.png' %}" />
-                    <img class="main-slide-img img-2" src="{%static 'assets/catalog/imgs/slide2/hero_img2.png' %}" />
-                    <img class="main-slide-img img-3" src="{%static 'assets/catalog/imgs/slide2/hero_img3.png' %}" />
-                    <img class="main-slide-img img-4" src="{%static 'assets/catalog/imgs/slide2/hero_img4.png' %}" />
-                    <img class="main-slide-img img-5" src="{%static 'assets/catalog/imgs/slide2/hero_img5.png' %}" />
-                    <img class="main-slide-img img-6" src="{%static 'assets/catalog/imgs/slide2/hero_img6.png' %}" />
-                    <img class="main-slide-img img-7" src="{%static 'assets/catalog/imgs/slide2/hero_img7.png' %}" />
-                    <img class="main-slide-img img-8" src="{%static 'assets/catalog/imgs/slide2/hero_img8.png' %}" />
-                </div>
-            </div>
-
-
-            <div class="main-slide slide-3">
-                <img class="main-slide-bg" srcset="{%static 'assets/catalog/imgs/slide_bg_min.jpg'%}," />
-                <div class="text">
-                    <div class="text-wraper text-wraper-1">
-                        <div class="text-1">
-                            מנהל רכש? שמור על העובדים שלך
-                        </div>
-                    </div>
-                    <div class="text-wraper text-wraper-2">
-                        <div class="text-2 ">
-                            עם סידרת מוצרי הבטיחות לעבודה במחירים מנצחים
-                        </div>
-                    </div>
-                </div>
-                <div class="images">
-                    <img class="main-slide-img img-14" src="{%static 'assets/catalog/imgs/slide3/hero_img14.png' %}" />
-                    <img class="main-slide-img img-15" src="{%static 'assets/catalog/imgs/slide3/hero_img15.png' %}" />
-                    <img class="main-slide-img img-16" src="{%static 'assets/catalog/imgs/slide3/hero_img16.png' %}" />
-                    <img class="main-slide-img img-17" src="{%static 'assets/catalog/imgs/slide3/hero_img17.png' %}" />
-                    <img class="main-slide-img img-18" src="{%static 'assets/catalog/imgs/slide3/hero_img18.png' %}" />
-                    <img class="main-slide-img img-19" src="{%static 'assets/catalog/imgs/slide3/hero_img19.png' %}" />
-                    <img class="main-slide-img img-20" src="{%static 'assets/catalog/imgs/slide3/hero_img20.png' %}" />
-                    <img class="main-slide-img img-23" src="{%static 'assets/catalog/imgs/slide3/hero_img23.png' %}" />
-
-                </div>
-
 
             </div>
         </div>
-
-        <div class="swiper-pagination swiper-pagination-white"></div>
-        <div class="swiper-button-next swiper-button-white"></div>
-        <div class="swiper-button-prev swiper-button-white"></div>
-    </div>
-    -->
     </div>
     <div class="section-1-5">
         <div class="container">
@@ -420,11 +192,8 @@
                 אנו נדאג שתשקיעו מינימום מאמץ ותקבלו מקסימום תוצאה במחיר מנצח
             </div>
             <div class="check-list">
-                <ul>
-                    <li>
-                        <input type="checkbox" id="item-1" name="item-1">
-                        <label for="item-1" class="text">שירות אדיב ומקצועי</label>
-                        <label for="item-1" class="button"></label>
+                <div class="part part-1">
+                       
                         <div class="wrapper">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 98.5 98.5"
@@ -433,11 +202,9 @@
 C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5-23.4l0,0L45.6,68.2L24.7,47.3" />
                             </svg>
                         </div>
-                    </li>
-                    <li>
-                        <input type="checkbox" id="item-2" name="item-2">
-                        <label for="item-2" class="text">מוצרים איכותיים</label>
-                        <label for="item-2" class="button"></label>
+                        <div class="text">שירות אדיב ומקצועי</div>
+            </div>
+            <div class="part part-2">
                         <div class="wrapper">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 98.5 98.5"
@@ -446,11 +213,10 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
 C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5-23.4l0,0L45.6,68.2L24.7,47.3" />
                             </svg>
                         </div>
-                    </li>
-                    <li>
-                        <input type="checkbox" id="item-3" name="item-3">
-                        <label for="item-3" class="text">חיסכון בזמן יקר</label>
-                        <label for="item-3" class="button"></label>
+                        <div class="text">מוצרים איכותיים</div>
+                    </div>
+                    <div class="part part-3">
+                        
                         <div class="wrapper">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 98.5 98.5"
@@ -459,11 +225,10 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
 C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5-23.4l0,0L45.6,68.2L24.7,47.3" />
                             </svg>
                         </div>
-                    </li>
-                    <li>
-                        <input type="checkbox" id="item-4" name="item-4">
-                        <label for="item-4" class="text">מחירים משתלמים והוגנים</label>
-                        <label for="item-4" class="button"></label>
+                        <div class="text">חיסכון בזמן יקר</div>
+                    </div>
+                    <div class="part part-4">
+                        
                         <div class="wrapper">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 98.5 98.5"
@@ -472,11 +237,10 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
 C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5-23.4l0,0L45.6,68.2L24.7,47.3" />
                             </svg>
                         </div>
-                    </li>
-                    <li>
-                        <input type="checkbox" id="item-5" name="item-5">
-                        <label for="item-5" class="text">זמני אספקה מהירים</label>
-                        <label for="item-5" class="button"></label>
+                        <div class="text">מחירים משתלמים והוגנים</div>
+                    </div>
+                    <div class="part part-5">
+                        
                         <div class="wrapper">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 98.5 98.5"
@@ -485,8 +249,8 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
 C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5-23.4l0,0L45.6,68.2L24.7,47.3" />
                             </svg>
                         </div>
-                    </li>
-                </ul>
+                        <div class="text">זמני אספקה מהירים</div>
+                    </div>
 
 
             </div>
@@ -518,105 +282,11 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
     </div>
 </div>
 
-<div class="modal fade" id="catalogModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-center">
-                <img class="header-logo header-logo-r" src="{%static 'assets/base/imgs/logo_ms.png' %}" />
-                <h5 class="modal-title  w-100">Category</h5>
-                <img class="header-logo header-logo-l" src="{%static 'assets/base/imgs/begood_plus_logo.png' %}" />
-
-                <button type="button" class="close close-modal" data-dismiss="catalogModal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Products in the category.</p>
-            </div>
-            <div class="modal-footer">
-
-
-
-                <button id="modal-prev-btn" class="btn modal-nav-btn">
-                    <img src="{%static 'assets/catalog/imgs/icons8-arrow-48.png'%}">
-                </button>
-                <div class="like-btn">
-                    <div id="modal-add-btn" class="like-wrapper">
-                        <a name="like-btn">
-                            <span name="like-btn">
-                                <img src="{%static 'assets/catalog/imgs/icons8-plus-48.png'%}"> הוסף
-                            </span>
-                        </a>
-                    </div>
-                </div>
-
-                <button id="modal-next-btn" class="btn modal-nav-btn">
-                    <img src="{%static 'assets/catalog/imgs/icons8-arrow-48.png'%}">
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal" id="categoryModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-
-
-            <div class="modal-header text-center">
-                <div class="modal-header-links"> </div>
-                <button type="button" class="close close-modal" data-dismiss="categoryModal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Modal body text goes here.</p>
-            </div>
-            <div class="modal-footer">
-                <img class="header-logo header-logo-r" src="{%static 'assets/base/imgs/logo_ms.png' %}" />
-                <h5 class="modal-title">Category</h5>
-                <img class="header-logo header-logo-l" src="{%static 'assets/base/imgs/begood_plus_logo.png' %}" />
-                <!--<button type="button" class="btn btn-secondary close-modal" data-dismiss="catalogModal">Close</button>-->
-
-                <!--
-                <button id="modal-prev-btn" class="btn btn-secondary"> הקודם </button>
-                <button type="button" id="modal-add-btn" class="btn btn-primary">הוסף להצעת מחיר</button>
-                <button id="modal-next-btn" class="btn btn-secondary" > הבא </button>
-                -->
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal" id="ImageProductsModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header text-center">
-                <img class="header-logo header-logo-r" src="{%static 'assets/base/imgs/logo_ms.png' %}" />
-                <h5 class="modal-title  w-100">modal title</h5>
-                <img class="header-logo header-logo-l" src="{%static 'assets/base/imgs/begood_plus_logo.png' %}" />
-
-                <button type="button" class="close close-modal" data-dismiss="ImageProductsModal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                modal body
-            </div>
-            <!--
-            <div class="modal-footer">
-                modal footer
-            </div>
-            -->
-        </div>
-    </div>
-</div>
-
 
 
 <div class="contact-form-wraper2">
     <div class="contact-form-wraper">
-        <form id="catalog-contact-form" action="{%url 'save-contact-form' '/testCatalog'%}" method="post"
+        <form id="catalog-contact-form" action="{%url 'form-change'%}" method="post"
             class="contact-form">
             {% csrf_token %}
             <input type="hidden" name="taskName" id="taskName" value="catalog-ec6bb117-c8fa-4a38-989a-ab0e0805e44e">
@@ -646,8 +316,7 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
 <!--
 <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
 -->
-<script src="{%static 'assets/js/swiper-bundle.js'%}"></script>
-<script src="{%static 'assets/catalog/js/marked.min.js'%}"></script>
+
 <!--<script src="https://zachleat.github.io/BigText/dist/bigtext.js"></script>-->
 <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
 <script type="text/javascript" src="{%static 'assets/catalog/js/countdowncube.js' %}"></script>
@@ -786,6 +455,22 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
                 loadOnTransitionStart: true,
                 //checkInView: true,
                 slideToClickedSlide: true,
+                breakpoints: {
+                    // when window width is >= 320px
+                    220: {
+                    slidesPerView: 2,
+                    },
+                    750: {
+                        slidesPerView: 3,
+                    },
+                    // when window width is >= 640px
+                    1000: {
+                        slidesPerView: 4,
+                    },
+                    1100: {
+                        slidesPerView: 5,
+                    }
+                },
 
                 coverflowEffect: {
                     rotate: -13,
@@ -855,8 +540,12 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
 
         });*/
         mySwiper = swipers[0];
-        mySwiper.params.slidesPerView = 4;
-        mySwiper.update();
+        if ( mySwiper.params.slidesPerView > 2) {
+            mySwiper.params.slidesPerView = mySwiper.params.slidesPerView - 1;
+            mySwiper.update();
+        }
+        
+        
         // TODO: start index from 0 and choose a diffrent selector so the first (main) slider is not selected
         /*for (var i = 1; i < slisks.length; i++) {
 
@@ -897,7 +586,6 @@ C24.3,4,4,24.3,4,49.2s20.3,45.2,45.2,45.2s45.2-20.3,45.2-45.2c0-8.6-2.4-16.6-6.5
 
 
         $('.my-slick-slide + .like-btn .like-wrapper').on('click', (e) => {
-        debugger;;
             console.log('like clicked', e);
             flyToCart($(e.currentTarget.parentNode.parentNode).find('img.product-image'));
             addClientLikeProduct(e.currentTarget.dataset.prodId);

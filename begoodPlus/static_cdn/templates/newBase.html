@@ -9,38 +9,6 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>M.S. Global {% block head_title %}{% endblock %}</title>
     {% load compress %}
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
-    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
- 
-    ym(76576450, "init", {
-         clickmap:true,
-         trackLinks:true,
-         accurateTrackBounce:true,
-         webvisor:true
-    });
- </script>
- <noscript><div><img src="https://mc.yandex.ru/watch/76576450" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
- <!-- /Yandex.Metrika counter -->
-    <!-- Yandex.Metrika counter -->
-<!--
-<script type="text/javascript" >
-    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
- 
-    ym(75509302, "init", {
-         clickmap:true,
-         trackLinks:true,
-         accurateTrackBounce:true,
-         webvisor:true
-    });
- </script>
- <noscript><div><img src="https://mc.yandex.ru/watch/75509302" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
--->
- <!-- /Yandex.Metrika counter -->
 
 
     <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -55,10 +23,13 @@
     <link rel="preload" href="{%static 'assets/base/fonts/subset-RoundedMplus1c-Bold.woff2'%}" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="{%static 'assets/base/fonts/subset-RoundedMplus1c-Bold.woff'%}" as="font" type="font/woff2" crossorigin>
     -->
-    
+    {%block before_css %}
+
+    {%endblock%}
 {% compress css %}
     <link rel="stylesheet" href="{%static 'assets/css/bootstrap.min.css'%}">
     <link rel="stylesheet" href="{%static 'assets/css/jquery-ui.css'%}">
+    <link rel="stylesheet" href="{%static 'assets/catalog/css/swiper-bundle.min.css'%}">
     <link rel="stylesheet" href="{%static 'assets/base/css/style.css'%}">
 {% endcompress %}
 {% compress css %}
@@ -99,7 +70,7 @@
                 </div>
             </a>
         </div>
-
+        <!--
         <div class="icon instegram hide">
             <img src="{%static 'assets/base/imgs/instagram.svg'%}" alt="" srcset="">
             <a target="_blank" href="https://www.instagram.com/shermakdogs/">
@@ -108,6 +79,7 @@
                 </div>
             </a>
         </div>
+        -->
     </div>
 
     <div class="icon-bar-2">
@@ -115,7 +87,7 @@
             <div class="text up">
             בעל עסק?
         </div>
-            <img src="{%static 'assets/base/imgs/entrepreneur.png' %}" alt="" srcset="">
+            <img class="bissness-owner-img" src="{%static 'assets/base/imgs/entrepreneur.png' %}" alt="" srcset="">
             <div class="text down">
             לחץ כאן
         </div>
@@ -139,8 +111,8 @@
     <nav class="navbar navbar-expand-* navbar-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="{%url 'main-view'%}"><img class="nav-logo"
-                    src="{%static 'assets/base/imgs/logo_ms.png'%}" alt="" height="58" width="24px"></a>
-
+                    src="{%static 'assets/base/imgs/logo_ms.png'%}" alt="" ></a>
+<!--
             <div class="menu-wraper">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -174,6 +146,41 @@
                     </ul>
                 </div>
             </div>
+-->
+
+
+<div id="menu" class="menu">
+    <button name="menu-btn" type="button" class="collapsible">
+        <img src="{%static 'assets/base/imgs/icons8-menu.svg' %}" height="40" width="40" alt="menu" srcset="">
+    </button>
+    <div class="content">
+        <ul>
+            <li>
+                <a href="{%url 'main-view'%}">
+                    <img src="{%static 'assets/base/imgs/logo_ms.png' %}" alt="" srcset="">
+                </a>
+            </li>
+            <li>
+                <a href="{%url 'catalogView2'%}">
+                    <img src="{%static 'assets/base/imgs/begood_plus_logo.png' %}"  alt="" srcset="">
+                </a>
+            </li>
+            <!--
+            <li>
+                <a href="{%url 'my-logo' '#'%}">
+                    <img src="http://www.my-logo.co.il/images/my_logo_logo.jpg"   alt="" srcset="">
+                </a>
+            </li>
+            -->
+            <li>
+                <div class="who-us" id="who_us_btn">
+                        מי אנחנו?
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
 
 
             <form class="d-flex" id="search_form">
@@ -199,13 +206,8 @@
                                 <img width="25px" src="{%static 'assets/base/imgs/email.svg' %}">
                                 -->
                         </a>
-                        <ul class="dropdown-menu" id="navbarDropdownList" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <ul class="dropdown-menu" id="navbarDropdownList" aria-labelledby="navbarDropdown" data-content="0">
+                            <li><div class="loader"></div></li>
                         </ul>
                     </li>
                 </ul>
@@ -214,11 +216,12 @@
 
             <div onclick="openCart()" id="cart-btn" class="cart">
                 <i style="font-size: 2em;" class="fas fa-shopping-cart"></i>
+                    <div class="cart-counter">-</div>
             </div>
 
 
             <a class="navbar-brand" href="{%url 'catalogView2'%}"><img class="nav-logo-2"
-                    src="{%static 'assets/base/imgs/begood_plus_logo.png'%}" alt="" height="58" width="24px"></a>
+                    src="{%static 'assets/base/imgs/begood_plus_logo.png'%}" alt=""></a>
 
 
 
@@ -265,7 +268,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label">פאלאפון: </label>
+                                <label class="control-label">פלאפון: </label>
                                 <div>
                                     <input type="tel" class="form-control input-lg" id="id2_phone" name="phone" value=""
                                         required>
@@ -293,6 +296,161 @@
     </div>
 </div>
 
+
+
+<div class="modal" id="categoryModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+
+            <div class="modal-header text-center">
+                <div class="modal-header-links"> </div>
+                <button type="button" class="close close-modal" data-dismiss="categoryModal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <img class="header-logo header-logo-r" src="{%static 'assets/base/imgs/logo_ms.png' %}" />
+                <h5 class="modal-title">Category</h5>
+                <img class="header-logo header-logo-l" src="{%static 'assets/base/imgs/begood_plus_logo.png' %}" />
+                <!--<button type="button" class="btn btn-secondary close-modal" data-dismiss="catalogModal">Close</button>-->
+
+                <!--
+                <button id="modal-prev-btn" class="btn btn-secondary"> הקודם </button>
+                <button type="button" id="modal-add-btn" class="btn btn-primary">הוסף להצעת מחיר</button>
+                <button id="modal-next-btn" class="btn btn-secondary" > הבא </button>
+                -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="ImageProductsModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <img class="header-logo header-logo-r" src="{%static 'assets/base/imgs/logo_ms.png' %}" />
+                <h5 class="modal-title  w-100">modal title</h5>
+                <img class="header-logo header-logo-l" src="{%static 'assets/base/imgs/begood_plus_logo.png' %}" />
+
+                <button type="button" class="close close-modal" data-dismiss="ImageProductsModal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                modal body
+            </div>
+            <!--
+            <div class="modal-footer">
+                modal footer
+            </div>
+            -->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div class="modal" id="whousModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <img class="header-logo header-logo-r" src="{%static 'assets/base/imgs/logo_ms.png' %}" />
+                <h5 class="modal-title  w-100">מי אנחנו</h5>
+                <img class="header-logo header-logo-l" src="{%static 'assets/base/imgs/begood_plus_logo.png' %}" />
+
+                <button type="button" class="close close-modal" data-dismiss="whousModal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+                
+
+
+                <div class="carusel-extra">
+                    <div class="hero-description gold-animation">
+                        <h1 class="hero-description-title gold-animation">
+                            אמ אס גלובל
+                        </h1>
+                        מתמחה באספקת בגדי עבודה, מוצרי טקסטיל ואביזרי מיתוג
+                        למוסדות ולחנויות.
+                        <br>
+                        אפשרויות הדפסה ורקמה על מגוון מוצרים. שירותי גרפיקה
+                        מתקדמים.
+                        <br>
+                        מחלקת הייטק המספקת שירותי בניית אתרים, הקמת תוכנה ושיווק
+                        אינטרנטי יעיל לבעלי העסקים.
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+            <!--
+            <div class="modal-footer">
+                modal footer
+            </div>
+            -->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="catalogModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <img class="header-logo header-logo-r" src="{%static 'assets/base/imgs/logo_ms.png' %}" />
+                <h5 class="modal-title  w-100">Category</h5>
+                <img class="header-logo header-logo-l" src="{%static 'assets/base/imgs/begood_plus_logo.png' %}" />
+
+                <button type="button" class="close close-modal" data-dismiss="catalogModal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Products in the category.</p>
+            </div>
+            <div class="modal-footer">
+
+
+
+                <button id="modal-prev-btn" class="btn modal-nav-btn">
+                    <img src="{%static 'assets/catalog/imgs/icons8-arrow-48.png'%}">
+                </button>
+                <div class="like-btn">
+                    <div id="modal-add-btn" class="like-wrapper">
+                        <a name="like-btn">
+                            <span name="like-btn">
+                                <img src="{%static 'assets/catalog/imgs/icons8-plus-48.png'%}"> הוסף
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <button id="modal-next-btn" class="btn modal-nav-btn">
+                    <img src="{%static 'assets/catalog/imgs/icons8-arrow-48.png'%}">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     <div class="modal" id="buisnessModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -305,7 +463,7 @@
                 <div class="modal-body">
                     <div class="contact-form-wraper2">
                         <div id="contactFormBase" class="contact-form-wraper">
-                            <form id="contact-form"  action="{%url 'save-contact-form' '/test'%}" method="post" class="contact-form">
+                            <form id="contact-form"  action="{%url 'form-change'%}" method="post" class="contact-form">
                                 {% csrf_token %}
                                 
                                 <h2 class="form-header">
@@ -360,6 +518,8 @@
         <script src="{%static 'assets/js/jquery-ui.js'%}"></script>
         <script src="{%static 'assets/base/js/bootstrap.bundle.min.js'%}"></script>
         <script src="{%static 'assets/base/js/022c0fea0b.js'%}"></script>
+        <script src="{%static 'assets/js/swiper-bundle.js'%}"></script>
+        <script src="{%static 'assets/base/js/marked.min.js'%}"></script>
         <script src="{%static 'assets/base/js/base.js' %}"></script>
     {% endcompress %}
     <!--
@@ -573,13 +733,24 @@
                         ).prependTo(ul);
                     }
                 };
+                
+                $('#search').on( "autocompleteopen", function( event, ui ) {
+                    console.log("AutoComplete Opened",ui);
+                    console.log('event: ', event)
+                    var resultsHolder = $('#ui-id-1');
+                    var serachBar = event.target;
+                    var holderWidth = parseFloat(resultsHolder.css('width').replace('px',''));
+                    if(holderWidth < 550) {
+                        var newWidth = 
+                        resultsHolder.css({'width':window.innerWidth*0.8  + 'px',
+                        'left': window.innerWidth*0.1 + 'px'});
+                    }
+                } );
+                
             // TODO: why is this here?
             $('.icon-bar-2').click(()=> {
-                        $('#buisnessModal').modal('show');
-                        $('#buisnessModal .close-modal').click(function () {
-                        $('#buisnessModal').modal('hide');
-                    });
-                });
+                openBuisnessModal();
+            });
         }
 
         getAllAlbums();

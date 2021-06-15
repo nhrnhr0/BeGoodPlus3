@@ -24,7 +24,6 @@
                 flybtn   = $this.find(settings.button),
                 target   = $(settings.target),
                 itemList = $this.find(settings.item);
-        console.log('flybtn:', flybtn);
         flybtn.on('click', function () {
 
             var _this = $(this),

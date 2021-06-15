@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from websites.views import websites_page_view
 from django.contrib import admin
 from pages.views import order_form, order_form2, order_form3,catalog_view,catalog_page, landing_page_view, my_logo_wrapper_view, catalog_page2
                         
@@ -40,6 +41,7 @@ router.register(r'CatalogImages', CatalogImageViewSet)
 router.register(r'freeFlowStores', FfStoreViewSet)
 router.register(r'colors', ColorsViewSet)
 router.register(r'sizes', SizesViewSet)
+
 from provider.views import api_providers
 from packingType.views import api_packing_types
 from productSize.views import api_product_sizes
@@ -49,58 +51,63 @@ from clientLikedImages.views import add_liked_images
 from clientImages.views import upload_user_image
 from glofa_types.views import glofa_data
 from freeFlow.views import freeFlowView, freeFlowChangeLanguage
-from core.views import admin_subscribe_view, mainView, saveBaseContactFormView,autocompleteModel, autocompleteClick, form_changed
+from core.views import admin_subscribe_view, mainView,autocompleteModel, autocompleteClick, form_changed #saveBaseContactFormView
 from leadsCampains.views import landingPageFormSubmit
 from catalogAlbum.views import catalogView2,catalogView_api#,catalog_timer
 from myUserTasks.views import updateContactFormUserTaskView, getUserTasksView,updateProductsFormUserTaskView,getUserCartView,delUserLikedProductView
 from myLogo.views import my_logo_view
+from core.views import user_tasks, success_view
+from websites.views import websites_page_view
 #from customerCart.views import cart_changed
 from customerCart.views import cart_del, cart_add,cart_view,cart_info
 urlpatterns = [
     #path('jet/', include('jet.urls', 'jet')),
     path('admin/', admin.site.urls),
-    path('', landing_page_view),
-    path('order/', order_form),
-    path('order2/', order_form2),
-    path('order3/', order_form3),
+    path('', landing_page_view, name='home'),
+    #path('order/', order_form),
+    #path('order2/', order_form2),
+    #path('order3/', order_form3),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('order/products_select/<str:phrash>', products_select),
-    path('order/products_select/', products_select_all), # TODO: delete in prod 
-    path('products_select/', products_select_all),
-    path('product_detail/<int:id>', product_detail),
+    #path('order/products_select/<str:phrash>', products_select),
+    #path('order/products_select/', products_select_all), # TODO: delete in prod 
+    #path('products_select/', products_select_all),
+    #path('product_detail/<int:id>', product_detail),
     #re_path(r'catalog/(?P<slug>[\w\d\-\_]+)/$', catalog_page, name='albumView'),
-    re_path(r'catalog/(?P<hierarchy>.+)/$', catalog_page, name='albumView'),
-    re_path(r'catalog2/(?P<hierarchy>.+)/$', catalog_page2, name='albumView2'),
-    path('begood-plus', catalog_view),
+    #re_path(r'catalog/(?P<hierarchy>.+)/$', catalog_page, name='albumView'),
+    #re_path(r'catalog2/(?P<hierarchy>.+)/$', catalog_page2, name='albumView2'),
+    #path('begood-plus', catalog_view),
+    
     #path('my-logo', my_logo_wrapper_view),
     path('my-logo/<path:curr>', my_logo_view, name="my-logo"),
-    path('api/providers', api_providers), 
-    path('api/packingTypes', api_packing_types),
-    path('api/productSizes', api_product_sizes),
-    path('api/productColors', api_product_colors),
-    path('api/add_multiple_stocks', add_multiple_stocks),
-    path('add_liked_images', add_liked_images),
-    path('upload_user_image', upload_user_image),
-    path('glofa_data/<int:id>', glofa_data),
-    path('freeFlow/', freeFlowView),
-    path('freeFlow/<str:lang>/', freeFlowView),
-    path('adminSub', admin_subscribe_view),
-    re_path('^webpush/', include('webpush.urls')),
+    
+    #path('api/providers', api_providers), 
+    #path('api/packingTypes', api_packing_types),
+    #path('api/productSizes', api_product_sizes),
+    #path('api/productColors', api_product_colors),
+    #path('api/add_multiple_stocks', add_multiple_stocks),
+    #path('add_liked_images', add_liked_images),
+    #path('upload_user_image', upload_user_image),
+    #path('glofa_data/<int:id>', glofa_data),
+    #path('freeFlow/', freeFlowView),
+    #path('freeFlow/<str:lang>/', freeFlowView),
+    #path('adminSub', admin_subscribe_view),
+    #re_path('^webpush/', include('webpush.urls')),
     #path('TaxReturnCampain/', TaxReturnCampainView)
-    path('landingPageFormSubmit', landingPageFormSubmit),
-    path('saveContactForm/<path:next>/', saveBaseContactFormView, name="save-contact-form"),
+    #path('landingPageFormSubmit', landingPageFormSubmit),
+    
+    #path('saveContactForm/<path:next>/', saveBaseContactFormView, name="save-contact-form"),
 
     path('test/', mainView, name='main-view'),
     path('testCatalog', catalogView2,name="catalogView2"),
+    
     #path('catalogTimer', catalog_timer,name='catalogTimer'),
     path('catalog_api', catalogView_api, name="catalog-view-api"),
-    path('tasks/update-contact-form', updateContactFormUserTaskView, name='update-contact-form-user-task'),
-    #path('tasks/submit-contact-form', submitContactFormUserTaskView, name='submit-contact-form-user-task'),
-    path('tasks/update-products-form', updateProductsFormUserTaskView, name='update-products-form-user-task'),
-    path('tasks/get-user-tasks', getUserTasksView, name='get-user-tasks'),
-    path('tasks/get-user-cart', getUserCartView, name='get-user-cart'),
-    path('tasks/delete-user-liked-product/', delUserLikedProductView, name='delete-user-liked-product'),
+    #path('tasks/update-contact-form', updateContactFormUserTaskView, name='update-contact-form-user-task'),
+    #path('tasks/update-products-form', updateProductsFormUserTaskView, name='update-products-form-user-task'),
+    #path('tasks/get-user-tasks', getUserTasksView, name='get-user-tasks'),
+    #path('tasks/get-user-cart', getUserCartView, name='get-user-cart'),
+    #path('tasks/delete-user-liked-product/', delUserLikedProductView, name='delete-user-liked-product'),
     
     path('search',autocompleteModel),
     path('search-click', autocompleteClick),
@@ -110,6 +117,9 @@ urlpatterns = [
     path('cart/del', cart_del, name='cart-del'),
     path('cart/view', cart_view, name='cart-view'),
     path('cart/info', cart_info, name='cart-info'),
+    path('user-tasks', user_tasks, name='user-tasks'),
+    path('success/', success_view, name='success'),
+    path('technology/', websites_page_view, name='technology'),
 ]
 
 if settings.DEBUG:

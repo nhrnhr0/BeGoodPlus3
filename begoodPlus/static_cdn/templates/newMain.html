@@ -51,37 +51,42 @@
 
             <div class="hero-slogen-wraper">
                 <!-- <h2 class="hero-slogen">M.S. Global - הבית של העסק שלך</h2>-->
-                <div class="waves-container"></div>
+                <div class="waves-container d-block"></div>
             </div>
 
             <div class="scene-wraper">
-                <div class="waves-container-2"></div>
+                <div class="waves-container-2 d-block"></div>
                 <div class="scene-title-wraper">
+                <!--
                     <div class="scene-title gold-animation">
                         למה אתם מחכים? בחרו באפשרות המתאימה עבורכם
                     </div>
+                -->
                 </div>
                 <div class="temp">
+                <!--
                     <div class="part part-1">
                         <div class="title">
                             קטלוג מוצרי פרסום
                         </div>
                         <img class="carusel-img" src="{%static 'assets/main/imgs/caruselImg3.jpg' %}" />
                         <button onclick="window.location='/my-logo/category/קטלוג-מוצרי-פרסום-ומתנות-My-Logo'; "
-                        class="btn btn-success cell-btn">למעבר לקטלוג לחץ כאן</button>
-                        
-                    </div>
-                    <div class="part part-2">
-                        <div class="title">
-                            קטלוג מוצרים
-                        </div>
-                        <img class="carusel-img" src="{%static 'assets/main/imgs/caruselImg1.jpg' %}" />
-                        <button onclick="window.location='{%url 'catalogView2'%}'"
                             class="btn btn-success cell-btn">למעבר לקטלוג לחץ כאן</button>
-                        
+                    </div>
+                -->
+                    <div class="part part-2">
+                        <div class="wraper">
+                            <div class="title">
+                                קטלוג מוצרים
+                            </div>
+                            <img class="carusel-img" src="{%static 'assets/main/imgs/caruselImg1.jpg' %}" />
+                            <button onclick="window.location='{%url 'catalogView2'%}'"
+                                class="btn btn-success cell-btn">למעבר לקטלוג לחץ כאן</button>
+                        </div>
+
                     </div>
                 </div>
-            <!--
+                <!--
                 <div class="scene">
                     <div class="carousel">
                         <div class="carousel__cell">
@@ -123,7 +128,7 @@
                 <input style="display: none;" class="cells-range" type="range" min="1" max="15" value="3" />
                 <input style="display: none;" type="radio" name="orientation" value="vertical" />
                 <input style="display: none;" type="radio" name="orientation" value="horizontal" checked />
-                <div class="carusel-extra">
+                <div class="carusel-extra" id="whous">
                     <div class="hero-description gold-animation">
                         <h1 class="hero-description-title gold-animation">
                             אמ אס גלובל
@@ -144,6 +149,37 @@
         </div>
 
         <div class="section-2-wraper">
+            <div class="logo-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide my-slick-slide">
+                        <img class="slide-image" height="100px" width="auto"
+                            src="{%static 'assets/main/imgs/logo_slider/logo1.png' %}" />
+                    </div>
+                    <div class="swiper-slide my-slick-slide">
+                        <img class="slide-image" height="100px" width="auto"
+                            src="{%static 'assets/main/imgs/logo_slider/logo2.png' %}" />
+                    </div>
+                    <div class="swiper-slide my-slick-slide">
+                        <img class="slide-image" height="100px" width="auto"
+                            src="{%static 'assets/main/imgs/logo_slider/logo5.png' %}" />
+                    </div>
+                    <div class="swiper-slide my-slick-slide">
+                        <img class="slide-image" height="100px" width="auto"
+                            src="{%static 'assets/main/imgs/logo_slider/logo3.png' %}" />
+                    </div>
+                    <div class="swiper-slide my-slick-slide">
+                        <img class="slide-image" height="100px" width="auto"
+                            src="{%static 'assets/main/imgs/logo_slider/logo4.png' %}" />
+                    </div>
+                    
+                    <div class="swiper-slide my-slick-slide">
+                        <img class="slide-image" height="100px" width="auto"
+                            src="{%static 'assets/main/imgs/logo_slider/logo6.png' %}" />
+                    </div>
+
+                </div>
+            </div>
+            <!--
             <div class="slider-wraper">
                 <div class="showcase">
                     <div class="window">
@@ -164,14 +200,15 @@
                         </div>
                     </div>
                 </div>
-    
+            -->
 
-        </div>
+    </div>
 
 
         <div class="contact-form-wraper2">
             <div id="contactForm" class="contact-form-wraper">
-                <form name="contact-form" id="business-contact-form" action="{%url 'save-contact-form' '/test'%}" method="post" class="contact-form">
+                <form name="contact-form" id="business-contact-form" action="{%url 'form-change'%}"
+                    method="post" class="contact-form">
                     {% csrf_token %}
                     <h2 class="form-header">
                         לקבלת הצעת מחיר משתלמת <div class="mark-strong">ללא</div> עלות <div class="mark-strong">וללא
@@ -183,7 +220,7 @@
                         <button type="submit" class="btn btn-success form-submit">לשיחת יעוץ ללא עלות וללא התחייבות השאירו
                         פרטים</button>
                         -->
-                        <button type="submit" class="btn btn-success form-submit">לשליחת טופס לחץ כאן</button>
+                    <button type="submit" class="btn btn-success form-submit">לשליחת טופס לחץ כאן</button>
                     {% endbuttons %}
                 </form>
             </div>
@@ -202,7 +239,6 @@
 <script src="{%static 'assets/main/js/main.js' %}"></script>
 
 <script>
-
     /*
     function activateUserTask(task) {
         if (task == "main-ec6bb117-c8fa-4a38-989a-ab0e0805e44e") {

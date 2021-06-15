@@ -70,7 +70,7 @@ class CatalogAlbum(MPTTModel):
         #ordering = ('throughimage__image_order',)
     def __str__(self):
         return self.title
-        
+    '''
     def get_absolute_url(self, *args, **kwargs):
         from django.urls import reverse
         parent = self.parent
@@ -81,15 +81,15 @@ class CatalogAlbum(MPTTModel):
         full_slug = full_slug  + self.slug
         if full_slug == '':
             return ''
-        return reverse('albumView', args=[full_slug])
+        return full_slug #reverse('albumView', args=[full_slug])
     get_absolute_url.short_description = 'URL'
-
+    
     def view_in_website_link(self, *args, **kwargs):
         ret = '<a href="%s"> צפייה באתר %s</a>' %(self.get_absolute_url(), self.title)
         return mark_safe(ret)
     view_in_website_link.short_description = _("view in website")
         #return ret
-    
+    '''
 
 from adminsortable.fields import SortableForeignKey
 from adminsortable.models import Sortable
