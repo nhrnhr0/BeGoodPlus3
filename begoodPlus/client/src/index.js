@@ -1,3 +1,5 @@
 
 import './styles/main.scss';
-console.log(bootstrap);
+//import * as THREE from 'three';
+
+console.log('t');
