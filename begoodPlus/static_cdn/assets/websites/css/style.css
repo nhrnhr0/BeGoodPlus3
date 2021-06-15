@@ -92,6 +92,9 @@ main .section:nth-child(1) .content {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background: #0000009c;
+  padding: 30px;
+  border-radius: 35px;
 }
 
 main .section:nth-child(1) .content #title_1 {
@@ -213,8 +216,7 @@ main .section:nth-child(3) #parralex_container .line {
   padding-right: 25px;
   position: -webkit-sticky;
   position: sticky;
-  margin-top: calc(var(--i) * 50vh);
-  top: calc(30vh + var(--i) * 5vh);
+  margin-top: calc(var(--i) * 25vh);
 }
 
 main .section:nth-child(3) #parralex_container .line:nth-child(1) {
@@ -282,7 +284,7 @@ main .section:nth-child(5) .websites .website-wraper .iframe iframe {
 main .section:nth-child(5) .websites .website-wraper .content {
   position: -webkit-sticky;
   position: sticky;
-  top: 0px;
+  top: 50%;
   direction: rtl;
   font-size: var(--default-font-size);
   color: black;
@@ -320,6 +322,7 @@ main .section:nth-child(5) .websites .website-wraper .content:hover ul {
 
 main .section:nth-child(6) {
   opacity: 0.8;
+  min-height: auto;
 }
 
 main .section:nth-child(7) {
@@ -392,7 +395,7 @@ main .section:nth-child(7) .text {
   padding: 30px;
   position: -webkit-sticky;
   position: sticky;
-  top: 30%;
+  top: 50%;
 }
 
 main .section:nth-child(7) .text h1, main .section:nth-child(7) .text h2 {
@@ -419,6 +422,28 @@ main .section:nth-child(8) {
       -ms-flex-pack: start;
           justify-content: flex-start;
   min-height: auto;
+}
+
+main #footer-2 {
+  background: #343b40;
+  padding: 5px 0;
+  color: #fff;
+  font-size: 14px;
+}
+
+main #footer-2 .copyright {
+  text-align: center;
+}
+
+main #footer-2 .copyright strong {
+  color: yellow;
+}
+
+main #footer-2 .credits {
+  padding-top: 10px;
+  text-align: center;
+  font-size: 13px;
+  color: #ccc;
 }
 
 #footer {
