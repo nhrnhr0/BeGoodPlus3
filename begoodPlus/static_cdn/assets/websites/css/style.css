@@ -355,23 +355,23 @@ main .section:nth-child(7) .programs-logos .logo-bg {
 }
 
 main .section:nth-child(7) .programs-logos .logo-bg:nth-child(1) {
-  background: url(/static/assets/websites/imgs/logos/css_layer.png);
+  background: url(/static/assets/websites/imgs/logos/css.png);
 }
 
 main .section:nth-child(7) .programs-logos .logo-bg:nth-child(2) {
-  background: url(/static/assets/websites/imgs/logos/cpp_layer.png);
+  background: url(/static/assets/websites/imgs/logos/cpp.png);
 }
 
 main .section:nth-child(7) .programs-logos .logo-bg:nth-child(3) {
-  background: url(/static/assets/websites/imgs/logos/html_layer.png);
+  background: url(/static/assets/websites/imgs/logos/html.png);
 }
 
 main .section:nth-child(7) .programs-logos .logo-bg:nth-child(4) {
-  background: url(/static/assets/websites/imgs/logos/js_layer.png);
+  background: url(/static/assets/websites/imgs/logos/js.png);
 }
 
 main .section:nth-child(7) .programs-logos .logo-bg:nth-child(5) {
-  background: url(/static/assets/websites/imgs/logos/python_layer.png);
+  background: url(/static/assets/websites/imgs/logos/python.png);
 }
 
 main .section:nth-child(7) .programs-logos .logo {
