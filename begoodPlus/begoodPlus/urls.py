@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from dashboard.views import InventoryList, StoreList
 from websites.views import websites_page_view
 from django.contrib import admin
 from pages.views import order_form, order_form2, order_form3,catalog_view,catalog_page, landing_page_view, my_logo_wrapper_view, catalog_page2
@@ -42,6 +43,8 @@ router.register(r'freeFlowStores', FfStoreViewSet)
 router.register(r'colors', ColorsViewSet)
 router.register(r'sizes', SizesViewSet)
 
+#router.register(r'stores', StoreList.as_view(),basename='stores')
+
 from provider.views import api_providers
 from packingType.views import api_packing_types
 from productSize.views import api_product_sizes
@@ -61,6 +64,10 @@ from websites.views import websites_page_view
 #from customerCart.views import cart_changed
 from customerCart.views import cart_del, cart_add,cart_view,cart_info
 urlpatterns = [
+    re_path(r'^api/stores/$', StoreList.as_view(), name="stores-api"),
+    re_path(r'^api/stores/(?P<q>[^/.]+)/$', StoreList.as_view(), name='stores-api'),
+    re_path(r'^api/inventory/$', InventoryList.as_view(), name='inventory-api'),
+    path('api/inventory/<int:pk>/', InventoryList.as_view(), name='inventory-api'),
     #path('jet/', include('jet.urls', 'jet')),
     path('admin/', admin.site.urls),
     path('', landing_page_view, name='home'),
@@ -120,6 +127,9 @@ urlpatterns = [
     path('user-tasks', user_tasks, name='user-tasks'),
     path('success/', success_view, name='success'),
     path('technology/', websites_page_view, name='technology'),
+
+    path('dashboard', include('dashboard.urls')),
+
 ]
 
 if settings.DEBUG:

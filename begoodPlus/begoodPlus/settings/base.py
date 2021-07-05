@@ -91,6 +91,7 @@ INSTALLED_APPS = [
     'mySettings',
     'customerCart',
     'websites',
+    'dashboard',
 
 
     'django.contrib.admin',
@@ -217,7 +218,8 @@ ROOT_URLCONF = 'begoodPlus.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'static_cdn','templates'),],
+        'DIRS': [os.path.join(BASE_DIR, 'static_cdn','templates'),
+                os.path.join(BASE_DIR, 'static_cdn', 'svelte', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -6,8 +6,10 @@ import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
 
 import autoPreprocess from 'svelte-preprocess';
-import { scss } from 'svelte-preprocess';
+//import { scss } from 'svelte-preprocess';
 
+import copy from 'rollup-plugin-copy'
+import watchAssets from 'rollup-plugin-watch-assets';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -63,6 +65,14 @@ export default {
 			dedupe: ['svelte']
 		}),
 		commonjs(),
+		watchAssets({ assets: ['src/dashboard.html'] }),
+
+		copy({
+			targets: [
+				{ src: 'src/dashboard.html', dest: '../../begoodPlus/static_cdn/svelte/templates' },
+				{ src: 'public/build/**/*', dest: '../../begoodPlus/static_cdn/svelte/build' }
+			]
+		}),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated

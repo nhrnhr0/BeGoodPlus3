@@ -1,10 +1,16 @@
 <script>
-	import UpdateInventoryTab from './tabs/UpdateInventoryTab.svelte';
-	export let name;
-	let show_update_tab = false;
+	
+	import AutoComplete from "simple-svelte-autocomplete";
+	import StoreInfoTab from "./tabs/StoreInfoTab.svelte"
+	const base_endpoint = window.location.href.split('/')[0] + '//' + window.location.href.split('/')[2];
+	const api_endpoint = base_endpoint + '/api';
 
-	function show_update_tab_btn(e) {
-		show_update_tab = !show_update_tab;
+	let selectedStore;
+	async function searchStore(keyword) {
+		const url = api_endpoint + '/stores/' + encodeURIComponent(keyword);// + "?fields=name;alpha2Code";
+		console.log(url);
+		const response = await fetch(url);
+		return await response.json();
 	}
 </script>
 
@@ -19,12 +25,17 @@
 		h1 {
 			color: #000000;
 			text-transform: uppercase;
-			font-size: 4em;
+			font-size: 3em;
 			font-weight: 400;
 		}
 		.tab {
-			border: 1px solid red;
+			border: 1px solid rgb(0, 253, 55);
 		}
+		
+	}
+
+	main :global(.autocomplete-input.svelte-77usy.svelte-77usy) {
+		text-align: right;
 	}
 
 	
@@ -37,14 +48,10 @@
 
 
 <main>
-	<h1>בחר אחד מהאפשרויות</h1>
-	<button>עדכון מלאי בחנות</button>
-	<button on:click="{show_update_tab_btn}">הוסף מלאי לחנות</button>
+	<h1>dashboard</h1>
+	<AutoComplete placeholder="חנות" searchFunction={searchStore} bind:selectedItem={selectedStore} labelFieldName="name"
+		maxItemsToShowInList="10" delay=200 localFiltering=false />	
 	<div class="tab">
-		{#if show_update_tab}
-			<UpdateInventoryTab />
-		{:else}
-			this is not the show update tab
-		{/if}
+		<StoreInfoTab selectedStore={selectedStore}/>
 	</div>
 </main>

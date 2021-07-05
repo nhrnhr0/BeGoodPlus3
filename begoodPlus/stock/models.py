@@ -4,6 +4,7 @@ from provider.models import Provider
 from productSize.models import ProductSize
 from productColor.models import ProductColor
 from product.models import Product
+
 from django.utils.translation import gettext_lazy  as _
 from packingType.models import PackingType
 # Create your models here.
@@ -40,9 +41,10 @@ class Stock(models.Model):
         return '(' + str(self.const_inst_client_min) + ' - ' +  str(self.const_inst_client_max) + ')'
     inst_client_range.short_description = _("institutional client price range")
 
+    def __str__(self):
+        return self.catalog_part()#str(self.id)
 
     def catalog_part(self):
-        from product.models import Product
         category_rep = self.product.category.catalog_rep
         provider_rep = self.provider.code
         subcat_rep = self.product.catalog_part()
