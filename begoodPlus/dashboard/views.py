@@ -35,6 +35,7 @@ class StoreList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+import time
 
 class InventoryList(APIView):
     authentication_classes = [SessionAuthentication, BasicAuthentication]
@@ -42,7 +43,7 @@ class InventoryList(APIView):
     def get(self, request,pk=None, format=None):
         many= True
         if(pk):
-            inventorys = Inventory.objects.get(pk=pk)
+            inventorys = Inventory.objects.prefetch_related('entries','entries__stock', 'entries__stock__provider','entries__stock__product', 'entries__stock__productSize', 'entries__stock__productColor').get(pk=pk)
             many = False
         else:
             inventorys = Inventory.objects.all()
@@ -52,9 +53,12 @@ class InventoryList(APIView):
     def post(self, request, format=None):
         pass
 
+
+'''
 class InventoryEntrySerializerList(APIView):
     authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAuthenticated]
+
     def get(self, request, format=None):
         inventoryEntrys = InventoryEntry.objects.all()
         serializer = InventorySerializer(inventoryEntrys, many=True)
@@ -62,3 +66,4 @@ class InventoryEntrySerializerList(APIView):
 
     def post(self, request, format=None):
         pass
+'''

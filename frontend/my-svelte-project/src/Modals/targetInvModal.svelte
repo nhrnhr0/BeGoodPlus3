@@ -1,17 +1,13 @@
 <script>
-    import Content from '../Modals/Content.svelte';
-    import Modal from '../Modals/Modal.svelte';
-    
-    import {getData} from '../utils/fetcher';
-    import {api_endpoint,modal} from '../utils/globalStore';
+      import {api_endpoint} from '../utils/globalStore';
+      import {getData} from '../utils/fetcher';
 
     export let selectedStore;
     let response_value;
     let response;
-    $: {
-        if (selectedStore) {
+    if (selectedStore) {
             console.log('selectedStore:' ,selectedStore)
-            const url = api_endpoint + '/inventory/' + encodeURIComponent(selectedStore.currentInventory);
+            const url = api_endpoint + '/inventory/' + encodeURIComponent(selectedStore.targetInventory);
             response = getData(url);
             response.subscribe(value => {
                 value.then(function (res) {
@@ -19,16 +15,18 @@
                 });
             });
         }
-    }
-</script>
-
-
-<div>
-    {#if response_value == undefined}
-        בחר חנות
-    {:else}
-   
-    <table class="info">
+  </script>
+  
+  <style>
+    h2 {
+          font-size: 2rem;
+          text-align: center;
+      }
+  </style>
+  
+    {#if response_value}
+      <h2>עריכת מטרות  <br> {selectedStore.name}</h2>
+      <table class="edit">
         <thead>
             <tr>
                 <th>id</th>
@@ -70,45 +68,7 @@
             
         </tbody>
     </table>
-    <Modal show={$modal}>
-        <Content selectedStore={selectedStore} />
-    </Modal>
+    {:else}  
+      store is not selected
     {/if}
-
-</div>
-
-
-
-<style lang="scss">
-    table , th, td {
-        border: 1px solid black;
-
-    }
-    table {
-        font-family: Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-        direction: rtl;
-
-        & th {
-            text-align: center;
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-
-        & tr:nth-child(even) {
-            background-color: #f2f2f2f2;
-        }
-
-        & tr:hover {
-            background-color: #ddd;
-        }
-
-        & th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            background-color: #04AA6D;
-            color: white;
-        }
-    }
-</style>
+    
