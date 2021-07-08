@@ -9,7 +9,7 @@
 	let url = api_endpoint + '/stores/'; 
 	
 	async function searchStore(keyword) {
-		const response = await fetch(url + encodeURIComponent(keyword));
+		const response = await fetch(url + encodeURIComponent(keyword) + '/');
 		return await response.json();
 	}
 </script>
@@ -36,7 +36,8 @@
 			font-weight: 400;
 		}
 		.tab {
-			border: 1px solid rgb(0, 253, 55);
+			//border: 1px solid rgb(0, 253, 55);
+			border: 1px solid black;
 			width: 90%;
 		}
 		

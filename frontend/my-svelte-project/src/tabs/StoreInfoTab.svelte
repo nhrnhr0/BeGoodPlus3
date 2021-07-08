@@ -1,114 +1,103 @@
 <script>
-    import Content from '../Modals/Content.svelte';
-    import Modal from '../Modals/Modal.svelte';
-    
-    import {getData} from '../utils/fetcher';
-    import {api_endpoint,modal} from '../utils/globalStore';
+    import { Modals, closeModal, openModal, modals } from 'svelte-modals';
+	import { fade } from 'svelte/transition'
+    import TargetInvModal from '../Modal/targetInvModal.svelte'
+
+    import {
+        getData
+    } from '../utils/fetcher';
+    import {
+        api_endpoint,
+        modal
+    } from '../utils/globalStore';
 
     export let selectedStore;
-    let response_value;
+    //let response_value;
     let response;
     $: {
         if (selectedStore) {
-            console.log('selectedStore:' ,selectedStore)
-            const url = api_endpoint + '/inventory/' + encodeURIComponent(selectedStore.currentInventory);
+            console.log('selectedStore:', selectedStore)
+            const url = api_endpoint + '/inventory/' + encodeURIComponent(selectedStore.currentInventory) + '/';
             response = getData(url);
-            response.subscribe(value => {
-                value.then(function (res) {
-                    response_value = res;
-                });
-            });
         }
+    }
+
+    function handleOpen() {
+		openModal(TargetInvModal, { 
+			selectedStore: selectedStore,
+			/*onOpenAnother: () => {
+				handleOpen()
+			}*/
+		})
     }
 </script>
 
 
 <div>
-    {#if response_value == undefined}
-        בחר חנות
-    {:else}
-   
-    <table class="info">
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>שם</th>
-                <th>כמות</th>
-                <th>צבע</th>
-                <th>מידה</th>
-                <th>מקט</th>
-                <th>ספק</th>
-            </tr>
-        </thead>
-        <tbody id="store_tbody">
-                {#each response_value.entries as row}
-                <tr>
-                    <td>
-                        {row.id}
-                    </td>
-                    <td>
-                        {row.stock.product.name}
-                    </td>
-                    <td>
-                        {row.amount}
-                    </td>
-                    <td>
-                        {row.stock.productColor.name}
-                    </td>
-                    <td>
-                        {row.stock.productSize.size}
-                    </td>
-                    <td>
-                        {row.stock.__str__}
-                    </td>
-                    <td>
-                        {row.stock.provider.name}
-                    </td>
-                </tr>
-                {/each}
-                
+    {#await $response}
+        loading...
+    {:then response_value} 
+        {#if response_value == undefined}
+            בחר חנות
+            {:else}
+            <table class="info">
+                <thead>
+                    <tr>
+                        <th>שם</th>
+                        <th>כמות</th>
+                        <th>צבע</th>
+                        <th>מידה</th>
+                        <th>מקט</th>
+                        <th>ספק</th>
+                    </tr>
+                </thead>
+                <tbody id="store_tbody">
+                        {#each response_value.entries as row}
+                        <tr>
+                            <td>
+                                {row.stock.product.name}
+                            </td>
+                            <td>
+                                {row.amount}
+                            </td>
+                            <td>
+                                {row.stock.productColor.name}
+                            </td>
+                            <td>
+                                {row.stock.productSize.size}
+                            </td>
+                            <td>
+                                {row.stock.__str__}
+                            </td>
+                            <td>
+                                {row.stock.provider.name}
+                            </td>
+                        </tr>
+                        {/each}
+                        
+                    
+                </tbody>
+            </table>
             
-        </tbody>
-    </table>
-    <Modal show={$modal}>
-        <Content selectedStore={selectedStore} />
-    </Modal>
-    {/if}
+<Modals>
+    <div slot="backdrop" class="backdrop" transition:fade on:click={closeModal}/>
+</Modals>
+
+            <button on:click="{handleOpen}">ערוך מטרות</button>
+        {/if}
+    {/await}
 
 </div>
 
 
 
 <style lang="scss">
-    table , th, td {
-        border: 1px solid black;
-
-    }
-    table {
-        font-family: Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-        direction: rtl;
-
-        & th {
-            text-align: center;
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-
-        & tr:nth-child(even) {
-            background-color: #f2f2f2f2;
-        }
-
-        & tr:hover {
-            background-color: #ddd;
-        }
-
-        & th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            background-color: #04AA6D;
-            color: white;
-        }
+    .backdrop {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background: rgba(0,0,0,0.50)
     }
 </style>

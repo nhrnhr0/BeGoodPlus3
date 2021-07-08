@@ -62,13 +62,14 @@ export default {
 		// https://github.com/rollup/plugins/tree/master/packages/commonjs
 		resolve({
 			browser: true,
-			dedupe: ['svelte', 'svelte/transition', 'svelte/internal']
+			dedupe: ['svelte', 'svelte/transition', 'svelte/internal','svelte-modals']
 		}),
 		commonjs(),
 		watchAssets({ assets: ['src/dashboard.html'] }),
 
 		copy({
 			targets: [
+			{src: 'src/global.css', dest: '../../begoodPlus/static_cdn/svelte/build'},
 				{ src: 'src/dashboard.html', dest: '../../begoodPlus/static_cdn/svelte/templates' },
 				{ src: 'public/build/**/*', dest: '../../begoodPlus/static_cdn/svelte/build' }
 			]
