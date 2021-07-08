@@ -1,6 +1,6 @@
 <script>
 	
-	import AutoComplete from "simple-svelte-autocomplete";
+	//import AutoComplete from "simple-svelte-autocomplete";
 	import StoreInfoTab from "./tabs/StoreInfoTab.svelte"
 	import { writable, get } from 'svelte/store';
 	import {api_endpoint} from './utils/globalStore'
@@ -58,8 +58,9 @@
 
 <main>
 	<h1>dashboard</h1>
-	<AutoComplete placeholder="חנות" searchFunction={searchStore} bind:selectedItem={selectedStore} labelFieldName="name"
-		maxItemsToShowInList="10" delay=2 localFiltering=false />	
+	<!-- <AutoComplete placeholder="חנות" searchFunction={searchStore} bind:selectedItem={selectedStore} labelFieldName="name"
+		maxItemsToShowInList="10" delay=2 localFiltering=false />	-->
+		<Select {searchStore} {optionIdentifier} {getSelectionLabel} {getOptionLabel} {Item} placeholder="Search for 🍺"></Select>
 	<div class="tab">
 		<StoreInfoTab selectedStore={selectedStore}/>
 	</div>
