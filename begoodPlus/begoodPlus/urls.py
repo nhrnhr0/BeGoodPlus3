@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from dashboard.views import InventoryList, StoreList
+from dashboard.views import InventoryList, StoreList, products_search
 from websites.views import websites_page_view
 from django.contrib import admin
 from pages.views import order_form, order_form2, order_form3,catalog_view,catalog_page, landing_page_view, my_logo_wrapper_view, catalog_page2
@@ -69,6 +69,7 @@ urlpatterns = [
     re_path(r'^api/stores/$', StoreList.as_view(), name="stores-api"),
     re_path(r'^api/stores/(?P<q>[^/.]+)/$', StoreList.as_view(), name='stores-api'),
     re_path(r'^api/inventory/$', InventoryList.as_view(), name='inventory-api'),
+    path('api/products_search/<str:phrash>/', products_search),
     path('api/inventory/<int:pk>/', InventoryList.as_view(), name='inventory-api'),
     #path('jet/', include('jet.urls', 'jet')),
     path('admin/', admin.site.urls),
@@ -78,6 +79,10 @@ urlpatterns = [
     #path('order3/', order_form3),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    #path('products_select/<str:phrash>/', products_select),
+    #path('product_detail/<int:id>', product_detail),
+
     #path('order/products_select/<str:phrash>', products_select),
     #path('order/products_select/', products_select_all), # TODO: delete in prod 
     #path('products_select/', products_select_all),

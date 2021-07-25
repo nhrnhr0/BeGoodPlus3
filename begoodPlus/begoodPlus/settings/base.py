@@ -39,7 +39,7 @@ CELERY_BEAT_SCHEDULE = {
 }
 '''
 # Application definition
-
+APPEND_SLASH = True
 INSTALLED_APPS = [
 
 
