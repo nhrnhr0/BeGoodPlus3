@@ -8,6 +8,7 @@ from utils.utils import get_next_value
 from django.utils.html import mark_safe
 from django.conf import settings
 from utils import utils
+from catalogImages.models import CatalogImage
         
         
 class Product(models.Model):
@@ -28,6 +29,10 @@ class Product(models.Model):
     suport_embroidery = models.BooleanField(verbose_name=_('suport embroidery'), default=True) 
     content = models.TextField(verbose_name=_('content'), blank=True, default='')
     comments = models.TextField(verbose_name=_('comments'),blank=True, default='')
+    
+    barcode = models.CharField(max_length=30)
+    catalog_images = models.ManyToManyField(to=CatalogImage)
+    
     #customer_catalog = models.CharField(verbose_name=_("customer catalog"), max_length=50)
     def __str__(self):
         return self.name
@@ -50,7 +55,7 @@ class Product(models.Model):
             self.category_index = self.category.itemsCount + 1
             Category.objects.filter(pk=self.category.pk).update(itemsCount=self.category_index)
             
-        super(Product, self).save(*args, **kwargs)
+        #super(Product, self).save(*args, **kwargs)
         self.customer_catalog = self.customer_catalog_gen(args,kwargs) # use product's id
         super(Product, self).save(*args, **kwargs)
         pass

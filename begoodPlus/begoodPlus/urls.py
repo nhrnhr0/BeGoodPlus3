@@ -61,9 +61,11 @@ from myUserTasks.views import updateContactFormUserTaskView, getUserTasksView,up
 from myLogo.views import my_logo_view
 from core.views import user_tasks, success_view
 from websites.views import websites_page_view
+from product.serializers import BarcodeList
 #from customerCart.views import cart_changed
 from customerCart.views import cart_del, cart_add,cart_view,cart_info
 urlpatterns = [
+    re_path('^api/barcode/(?P<barcode>.+)/$', BarcodeList.as_view()),
     re_path(r'^api/stores/$', StoreList.as_view(), name="stores-api"),
     re_path(r'^api/stores/(?P<q>[^/.]+)/$', StoreList.as_view(), name='stores-api'),
     re_path(r'^api/inventory/$', InventoryList.as_view(), name='inventory-api'),

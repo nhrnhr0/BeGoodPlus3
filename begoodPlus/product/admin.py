@@ -48,34 +48,20 @@ class GlofaTypeInline(admin.StackedInline):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'category','customer_catalog_gen',  'total_amount','render_image','suport_printing', 'suport_embroidery',)
+    list_display = ('name', 'barcode', 'category','customer_catalog_gen',  'total_amount','render_image','suport_printing', 'suport_embroidery',)
     readonly_fields = ('id', 'category_index','customer_catalog_gen','total_amount',)
     list_select_related = ('category',)
     list_filter = ('category','suport_printing', 'suport_embroidery',)
+    autocomplete_fields  = ('catalog_images',)
     inlines = [productImageInline, GlofaTypeInline, stockInline] # productColorInline
     
-    '''
     fieldsets = (
         (None, {
             "fields": (
                 ('id','category_index'), 
                 'customer_catalog_gen',
-                'name', 'category',
-                ('buy_cost', 'buy_cost_tax'),
-                ('const_inst_client_min', 'const_inst_client_max'),
-                ('const_sing_client',),
-                ('suport_printing', 'suport_embroidery'),
-                'content','comments',
-            ),
-        }),
-    )
-    '''
-    fieldsets = (
-        (None, {
-            "fields": (
-                ('id','category_index'), 
-                'customer_catalog_gen',
-                'name', 'category',
+                'name', 'category','barcode',
+                'catalog_images',
                 ('suport_printing', 'suport_embroidery'),
                 'content','comments',
             ),
