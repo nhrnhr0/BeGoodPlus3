@@ -1249,12 +1249,25 @@ body.waiting * {
   }
 }
 
+@media only screen and (max-width:600px) {
+  .navbar {
+    .container-fluid {
+      .navbar-logo {
+        //display: none;
+        display: none;
+      }
+      #navbar_filler {
+        display: none;
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: 800px) {
   #categoryModal {
     .modal-footer {
       justify-content: center!important;
       .header-logo {
-
         display: none;
       }
     }
@@ -1314,8 +1327,13 @@ body.waiting * {
 
   .navbar {
     .container-fluid {
-      .navbar-brand {
-        display: none;
+      .navbar-logo {
+        //display: none;
+        border: 1px solid red;
+      }
+      #navbar_filler {
+        border: 1px solid red;
+        //display: none;
       }
     }
   }

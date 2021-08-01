@@ -80,6 +80,8 @@ def renew_timer_date():
     time = datetime.strftime(str(time), '%S-%M-%H-%d-%y')
     return time
 '''
+from rest_framework.renderers import JSONRenderer
+
 def catalogView_api(request, *args, **wkrags):
     print('catalogView_api start')
     #update_catalogAlbum_timers2()
@@ -87,6 +89,8 @@ def catalogView_api(request, *args, **wkrags):
     ser_context={'request': request}
     serializer = CatalogAlbumSerializer(albums,context=ser_context, many=True)
     data = json.dumps(serializer.data)
+    #data = JSONRenderer().render(serializer.data)
+
     context = {'catalogAlbumData':data,}
     print('catalogView_api end')
     return JsonResponse(context)
@@ -103,4 +107,11 @@ def catalogView2(request, *args, **wkargs):
     context = {'albums':albums}
     print('catalogView2 end')
     return render(request, 'catalog2.html', context=context)
-    
+
+
+def catalogView(request, *args, **wkargs):
+    print('catalogView start')
+    albums = CatalogAlbum.objects.prefetch_related('images')
+    context = {'albums':albums}
+    print('catalogView end')
+    return render(request, 'catalog.html', context=context)

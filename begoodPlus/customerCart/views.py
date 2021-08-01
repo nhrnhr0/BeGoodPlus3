@@ -32,7 +32,10 @@ def cart_info(request):
         if 'submited' in data:
             sub = False if data['submited'][0] == 'false' else True
             cart.sumbited = sub
+        print('saved cart: ', cart)
         cart.save()
+
+        print('saved cart: ', cart)
         print('name: ', cart.name)
         print('email', cart.email)
         print('phone',cart.phone)

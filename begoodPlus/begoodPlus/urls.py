@@ -16,7 +16,7 @@ Including another URLconf
 from dashboard.views import InventoryList, StoreList, products_search
 from websites.views import websites_page_view
 from django.contrib import admin
-from pages.views import order_form, order_form2, order_form3,catalog_view,catalog_page, landing_page_view, my_logo_wrapper_view, catalog_page2
+#from pages.views import order_form, order_form2, order_form3,catalog_view,catalog_page, landing_page_view, my_logo_wrapper_view, catalog_page2
                         
 from django.conf import settings
 from django.conf.urls.static import static
@@ -56,7 +56,7 @@ from glofa_types.views import glofa_data
 from freeFlow.views import freeFlowView, freeFlowChangeLanguage
 from core.views import admin_subscribe_view, mainView,autocompleteModel, autocompleteClick, form_changed #saveBaseContactFormView
 from leadsCampains.views import landingPageFormSubmit
-from catalogAlbum.views import catalogView2,catalogView_api#,catalog_timer
+from catalogAlbum.views import catalogView2,catalogView_api, catalogView#,catalog_timer
 from myUserTasks.views import updateContactFormUserTaskView, getUserTasksView,updateProductsFormUserTaskView,getUserCartView,delUserLikedProductView
 from myLogo.views import my_logo_view
 from core.views import user_tasks, success_view
@@ -65,15 +65,17 @@ from product.serializers import BarcodeList
 #from customerCart.views import cart_changed
 from customerCart.views import cart_del, cart_add,cart_view,cart_info
 urlpatterns = [
-    re_path('^api/barcode/(?P<barcode>.+)/$', BarcodeList.as_view()),
+    # used for MD TV
+    re_path('^api/barcode/(?P<barcode>.+)/$', BarcodeList.as_view()), 
     re_path(r'^api/stores/$', StoreList.as_view(), name="stores-api"),
     re_path(r'^api/stores/(?P<q>[^/.]+)/$', StoreList.as_view(), name='stores-api'),
     re_path(r'^api/inventory/$', InventoryList.as_view(), name='inventory-api'),
+
     path('api/products_search/<str:phrash>/', products_search),
     path('api/inventory/<int:pk>/', InventoryList.as_view(), name='inventory-api'),
     #path('jet/', include('jet.urls', 'jet')),
     path('admin/', admin.site.urls),
-    path('', landing_page_view, name='home'),
+    #path('', landing_page_view, name='home'),
     #path('order/', order_form),
     #path('order2/', order_form2),
     #path('order3/', order_form3),
@@ -93,7 +95,7 @@ urlpatterns = [
     #path('begood-plus', catalog_view),
     
     #path('my-logo', my_logo_wrapper_view),
-    path('my-logo/<path:curr>', my_logo_view, name="my-logo"),
+    #path('my-logo/<path:curr>', my_logo_view, name="my-logo"),
     
     #path('api/providers', api_providers), 
     #path('api/packingTypes', api_packing_types),
@@ -114,6 +116,7 @@ urlpatterns = [
 
     path('test/', mainView, name='main-view'),
     path('testCatalog', catalogView2,name="catalogView2"),
+    path('', catalogView, name="catalogView"),
     
     #path('catalogTimer', catalog_timer,name='catalogTimer'),
     path('catalog_api', catalogView_api, name="catalog-view-api"),
