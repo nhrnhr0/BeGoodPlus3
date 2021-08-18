@@ -167,9 +167,9 @@
                             alt="{{img.description}}" />
                             <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>                        
                         -->
-                            {% if img.big_discount %}
-                            <img class="big-discount" alt="מבצע ענק!"
-                                src="{%static 'assets/catalog/imgs/big_discount.gif'%}" />
+                            {% if img.can_tag%}
+                            <img class="can-tag" alt=""
+                                src="{%static 'assets/catalog/imgs/can_tag.jpeg'%}" />
                             {%endif%}
 
                             {%if img.discount %}

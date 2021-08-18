@@ -23,8 +23,8 @@ class CatalogImage(models.Model):
     colors = models.ManyToManyField(to=Color)
     sizes = models.ManyToManyField(to=ProductSize)
 
-    
-    big_discount = models.BooleanField(default=False)
+    can_tag = models.BooleanField(default=False, verbose_name=_('can tag'))
+    #big_discount = models.BooleanField(default=False)
     
     NO_DISCOUNT = ''
     DISCOUNT_10_PRES = '/static/assets/catalog/imgs/discount_10.gif'
