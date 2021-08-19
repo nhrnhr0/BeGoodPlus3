@@ -102,31 +102,12 @@
 
         <div class="logo-swiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide my-slick-slide">
-                    <img class="slide-image" height="100px" width="auto"
-                        src="{%static 'assets/catalog/imgs/logo_slider/logo1.png' %}" />
-                </div>
-                <div class="swiper-slide my-slick-slide">
-                    <img class="slide-image" height="100px" width="auto"
-                        src="{%static 'assets/catalog/imgs/logo_slider/logo2.png' %}" />
-                </div>
-                <div class="swiper-slide my-slick-slide">
-                    <img class="slide-image" height="100px" width="auto"
-                        src="{%static 'assets/catalog/imgs/logo_slider/logo5.png' %}" />
-                </div>
-                <div class="swiper-slide my-slick-slide">
-                    <img class="slide-image" height="100px" width="auto"
-                        src="{%static 'assets/catalog/imgs/logo_slider/logo3.png' %}" />
-                </div>
-                <div class="swiper-slide my-slick-slide">
-                    <img class="slide-image" height="100px" width="auto"
-                        src="{%static 'assets/catalog/imgs/logo_slider/logo4.png' %}" />
-                </div>
-                
-                <div class="swiper-slide my-slick-slide">
-                    <img class="slide-image" height="100px" width="auto"
-                        src="{%static 'assets/catalog/imgs/logo_slider/logo6.png' %}" />
-                </div>
+                {%for logo in logos %}
+                    <div class="swiper-slide my-slick-slide">
+                        <img class="slide-image" height="100px" width="auto"
+                            src="{{logo.img.url}}"/>
+                    </div>
+                {%endfor%}
 
             </div>
         </div>

@@ -15,8 +15,8 @@ def order_form3(request):
     ret = render(request, 'order2.html', {})
     return ret
 
-def catalog_view(request):
-    return render(request, 'catalog.html',{})
+#def catalog_view(request):
+#    return render(request, 'catalog.html',{})
     
     
 def landing_page_view(request):
