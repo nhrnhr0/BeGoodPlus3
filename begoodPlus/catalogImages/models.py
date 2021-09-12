@@ -20,6 +20,31 @@ class CatalogImage(models.Model):
     image = models.ImageField(verbose_name=_("image"))
     image_thumbnail = models.ImageField(verbose_name=_("image thumbnail"), null=True, blank=True)
 
+    cost_price = models.FloatField(verbose_name=_('cost price'), blank=False, null=False)
+    client_price = models.FloatField(verbose_name=_('client price'),  blank=False, null=False)
+    recomended_price = models.FloatField(verbose_name=_('recomended price'),  blank=False, null=False)
+
+    def price_component(buy, sell):
+        prcent = ((buy / sell) - 1)*100
+        precent_clr ="green" if prcent>0 else "red"
+        return mark_safe(f'<div style="direction: ltr;">{buy:.2f}₪ <span style="color:{precent_clr}">({prcent:.2f}%)</span></div>');#.format(buy, prcent))
+    
+
+    def cost_price_dis(self):
+        return mark_safe(f'<div style="font-weight: bold;">{self.cost_price}₪<div>')
+    cost_price_dis.short_description= _('cost price')
+
+    def client_price_dis(self):
+        #prcent = ((self.client_price % self.cost_price) - 1)*100
+        #return f'{self.client_price}₪ \t\t ({prcent}%)'
+        return CatalogImage.price_component(self.client_price, self.cost_price)
+    client_price_dis.short_description= _('client price')
+    def recomended_price_dis(self):
+        #prcent = ((self.recomended_price % self.client_price) - 1)*100
+        #return f'{self.recomended_price}₪ \t\t ({prcent}%)'
+        return CatalogImage.price_component(self.recomended_price, self.client_price)
+    recomended_price_dis.short_description= _('recomended price')
+
     colors = models.ManyToManyField(to=Color)
     sizes = models.ManyToManyField(to=ProductSize)
 
