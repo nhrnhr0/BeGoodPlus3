@@ -1353,6 +1353,15 @@ body.waiting * {
   }
 }
 
+@media only screen and (max-width: 600px) {
+  .navbar .container-fluid .navbar-logo {
+    display: none;
+  }
+  .navbar .container-fluid #navbar_filler {
+    display: none;
+  }
+}
+
 @media only screen and (max-width: 800px) {
   #categoryModal .modal-footer {
     -webkit-box-pack: center !important;
@@ -1389,8 +1398,11 @@ body.waiting * {
   .icon-bar-2 .icon .bissness-owner-img {
     display: none;
   }
-  .navbar .container-fluid .navbar-brand {
-    display: none;
+  .navbar .container-fluid .navbar-logo {
+    border: 1px solid red;
+  }
+  .navbar .container-fluid #navbar_filler {
+    border: 1px solid red;
   }
   #catalogModal .modal-dialog .modal-content .modal-body .inner-body {
     -webkit-box-orient: vertical;

@@ -102,31 +102,12 @@
 
         <div class="logo-swiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide my-slick-slide">
-                    <img class="slide-image" height="100px" width="auto"
-                        src="{%static 'assets/catalog/imgs/logo_slider/logo1.png' %}" />
-                </div>
-                <div class="swiper-slide my-slick-slide">
-                    <img class="slide-image" height="100px" width="auto"
-                        src="{%static 'assets/catalog/imgs/logo_slider/logo2.png' %}" />
-                </div>
-                <div class="swiper-slide my-slick-slide">
-                    <img class="slide-image" height="100px" width="auto"
-                        src="{%static 'assets/catalog/imgs/logo_slider/logo5.png' %}" />
-                </div>
-                <div class="swiper-slide my-slick-slide">
-                    <img class="slide-image" height="100px" width="auto"
-                        src="{%static 'assets/catalog/imgs/logo_slider/logo3.png' %}" />
-                </div>
-                <div class="swiper-slide my-slick-slide">
-                    <img class="slide-image" height="100px" width="auto"
-                        src="{%static 'assets/catalog/imgs/logo_slider/logo4.png' %}" />
-                </div>
-                
-                <div class="swiper-slide my-slick-slide">
-                    <img class="slide-image" height="100px" width="auto"
-                        src="{%static 'assets/catalog/imgs/logo_slider/logo6.png' %}" />
-                </div>
+                {%for logo in logos %}
+                    <div class="swiper-slide my-slick-slide">
+                        <img class="slide-image" height="100px" width="auto"
+                            src="{{logo.img.url}}"/>
+                    </div>
+                {%endfor%}
 
             </div>
         </div>
@@ -167,9 +148,9 @@
                             alt="{{img.description}}" />
                             <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>                        
                         -->
-                            {% if img.big_discount %}
-                            <img class="big-discount" alt="מבצע ענק!"
-                                src="{%static 'assets/catalog/imgs/big_discount.gif'%}" />
+                            {% if img.can_tag%}
+                            <img class="can-tag" alt=""
+                                src="{%static 'assets/catalog/imgs/can_tag.jpeg'%}" />
                             {%endif%}
 
                             {%if img.discount %}

@@ -82,6 +82,7 @@ INSTALLED_APPS = [
     'order_detail_addons',
     'catalogImages',
     'catalogAlbum',
+    'catalogLogos',
     'clientLikedImages',
     'clientImages',
     'freeFlow',
@@ -92,6 +93,7 @@ INSTALLED_APPS = [
     'customerCart',
     'websites',
     'dashboard',
+    
 
 
     'django.contrib.admin',

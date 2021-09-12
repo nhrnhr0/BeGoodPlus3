@@ -100,6 +100,5 @@ class ThroughImage(Sortable):
 
     image_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     class Meta(Sortable.Meta):
-
         ordering = ['image_order']
 
