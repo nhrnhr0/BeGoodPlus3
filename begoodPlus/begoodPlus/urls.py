@@ -139,6 +139,7 @@ urlpatterns = [
     path('technology/', websites_page_view, name='technology'),
 
     path('dashboard', include('dashboard.urls')),
+    re_path(r'^advanced_filters/', include('advanced_filters.urls')),
 
 ]
 

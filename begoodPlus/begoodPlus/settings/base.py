@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'bootstrap5',
     'drf_multiple_model',
     'compressor',
+    'advanced_filters',
     #'django_celery_beat',
 
     # own

@@ -49,7 +49,7 @@ class CatalogAlbum(MPTTModel):
     description= models.TextField(verbose_name=_('description'), default='', blank=True)
     fotter = models.TextField(verbose_name=_('fotter'), default='', blank=True)
     keywords = models.TextField(verbose_name=_('keyworks'), default='', blank=True)
-    images = models.ManyToManyField(to=CatalogImage, related_name='album', blank=True, through='ThroughImage')
+    images = models.ManyToManyField(to=CatalogImage, related_name='album', blank=True, through='ThroughImage', verbose_name=_('album list'))
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     is_public = models.BooleanField(verbose_name=_('is public'), default=True)
     
@@ -95,8 +95,8 @@ from adminsortable.fields import SortableForeignKey
 from adminsortable.models import Sortable
 
 class ThroughImage(Sortable):
-    catalogImage = SortableForeignKey(CatalogImage, on_delete=models.CASCADE)
-    catalogAlbum = models.ForeignKey(CatalogAlbum, on_delete=models.CASCADE)
+    catalogImage = SortableForeignKey(CatalogImage, on_delete=models.CASCADE, verbose_name=_('catalog image'))
+    catalogAlbum = models.ForeignKey(CatalogAlbum, on_delete=models.CASCADE, verbose_name=_('catalog album'))
 
     image_order = models.PositiveIntegerField(default=0, editable=False, db_index=True)
     class Meta(Sortable.Meta):

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-13 08:30+0300\n"
+"POT-Creation-Date: 2021-09-13 12:56+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % "
 "1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
 
-#: .\catalogAlbum\models.py:47 .\catalogImages\models.py:19
+#: .\catalogAlbum\models.py:47 .\catalogImages\models.py:17
 #: .\category\models.py:7
 msgid "title"
 msgstr "כותרת"
@@ -28,7 +28,7 @@ msgstr "כותרת"
 msgid "slug"
 msgstr "סלאג"
 
-#: .\catalogAlbum\models.py:49 .\catalogImages\models.py:20
+#: .\catalogAlbum\models.py:49 .\catalogImages\models.py:18
 #: .\glofa_types\models.py:12
 msgid "description"
 msgstr "תיאור"
@@ -39,66 +39,98 @@ msgstr ""
 
 #: .\catalogAlbum\models.py:51
 msgid "keyworks"
-msgstr ""
+msgstr "מילות מפתח"
+
+#: .\catalogAlbum\models.py:52
+msgid "album list"
+msgstr "רשימת אלבומים"
 
 #: .\catalogAlbum\models.py:54
 msgid "is public"
 msgstr "האם פומבי"
 
-#: .\catalogImages\models.py:22 .\catalogImages\models.py:187
+#: .\catalogAlbum\models.py:98
+#, fuzzy
+#| msgid "Catalog image"
+msgid "catalog image"
+msgstr "תמונת קטלוג"
+
+#: .\catalogAlbum\models.py:99
+#, fuzzy
+#| msgid "Catalog image"
+msgid "catalog album"
+msgstr "תמונת קטלוג"
+
+#: .\catalogImages\models.py:19
+#, fuzzy
+#| msgid "code"
+msgid "barcode"
+msgstr "קוד"
+
+#: .\catalogImages\models.py:20
+msgid "whatsapp text"
+msgstr "טקסט לוואצאפ"
+
+#: .\catalogImages\models.py:23
+msgid "short description"
+msgstr "תיאור קצר"
+
+#: .\catalogImages\models.py:25 .\catalogImages\models.py:186
 #: .\catalogLogos\models.py:10 .\catalogLogos\models.py:21
 #: .\clientImages\models.py:11 .\glofa_types\models.py:24
 #: .\productImages\models.py:12 .\product\models.py:99
 msgid "image"
 msgstr "תמונה"
 
-#: .\catalogImages\models.py:23
+#: .\catalogImages\models.py:26
 msgid "image thumbnail"
 msgstr "תמונה ריבוע"
 
-#: .\catalogImages\models.py:25 .\catalogImages\models.py:37
+#: .\catalogImages\models.py:28 .\catalogImages\models.py:62
 msgid "cost price"
 msgstr "מחיר עלות"
 
-#: .\catalogImages\models.py:26 .\catalogImages\models.py:43
+#: .\catalogImages\models.py:29 .\catalogImages\models.py:66
 msgid "client price"
 msgstr "מחיר לקוח"
 
-#: .\catalogImages\models.py:27 .\catalogImages\models.py:48
+#: .\catalogImages\models.py:30 .\catalogImages\models.py:69
 msgid "recomended price"
 msgstr "מחיר מומלץ"
 
-#: .\catalogImages\models.py:49 .\stock\models.py:21
+#: .\catalogImages\models.py:33 .\stock\models.py:21
 msgid "packing type"
 msgstr "שיטת אריזה"
 
-#: .\catalogImages\models.py:50
+#: .\catalogImages\models.py:34
 msgid "colors"
 msgstr "צבעים"
 
-#: .\catalogImages\models.py:51
+#: .\catalogImages\models.py:35
 msgid "sizes"
 msgstr "גדלים"
 
-#: .\catalogImages\models.py:52
+#: .\catalogImages\models.py:36
 msgid "providers"
 msgstr "ספקים"
 
-#: .\catalogImages\models.py:55
+#: .\catalogImages\models.py:39
 msgid "can tag"
 msgstr "ניתן למיתוג"
 
-#: .\catalogImages\models.py:74
+#: .\catalogImages\models.py:73
+#, fuzzy
+#| msgid "Catalog images"
 msgid "Catalog image"
-msgstr "תמונת קטלוג"
+msgstr "תמונות קטלוג"
 
-#: .\catalogImages\models.py:75
+#: .\catalogImages\models.py:74
 msgid "Catalog images"
 msgstr "תמונות קטלוג"
 
-#: .\catalogImages\models.py:181
+#: .\catalogImages\models.py:180
 msgid "thumbnail"
-msgstr ""
+msgstr "תמונה קטנה"
 
 #: .\catalogLogos\models.py:9 .\clientLikedImages\models.py:7
 #: .\core\models.py:9 .\customerCart\models.py:10 .\dashboard\models.py:8
@@ -171,14 +203,10 @@ msgid "Color"
 msgstr "צבע"
 
 #: .\color\models.py:10
-#, fuzzy
-#| msgid "color"
 msgid "Colors"
 msgstr "צבע"
 
 #: .\color\models.py:12
-#, fuzzy
-#| msgid "color"
 msgid "color name"
 msgstr "צבע"
 
@@ -731,6 +759,135 @@ msgstr "טווח מחירים ללקוח עסקי"
 msgid "makat"
 msgstr "מק\"ט"
 
+#, fuzzy
+#~| msgid "Time saving"
+#~ msgid "DateTime Range"
+#~ msgstr "חוסך זמן"
+
+#, fuzzy
+#~| msgid "create date"
+#~ msgid "Greater Than"
+#~ msgstr "תאריך יצירה"
+
+#, fuzzy
+#~| msgid "client name"
+#~ msgid "Field"
+#~ msgstr "שם לקוח"
+
+#, fuzzy
+#~| msgid "title"
+#~ msgid "Title"
+#~ msgstr "כותרת"
+
+#, fuzzy
+#~| msgid "create date"
+#~ msgid "Created at"
+#~ msgstr "תאריך יצירה"
+
+#, fuzzy
+#~| msgid "create date"
+#~ msgid "Create advanced filter"
+#~ msgstr "תאריך יצירה"
+
+#~ msgid "Messages"
+#~ msgstr "הודעה"
+
+#, fuzzy
+#~| msgid "number"
+#~ msgid "Enter a number."
+#~ msgstr "מספר"
+
+#, fuzzy
+#~| msgid "number"
+#~ msgid "Decimal number"
+#~ msgstr "מספר"
+
+#, fuzzy
+#~| msgid "addres"
+#~ msgid "Email address"
+#~ msgstr "כתובת"
+
+#, fuzzy
+#~| msgid "number"
+#~ msgid "Floating point number"
+#~ msgstr "מספר"
+
+#, fuzzy
+#~| msgid "addres"
+#~ msgid "IPv4 address"
+#~ msgstr "כתובת"
+
+#, fuzzy
+#~| msgid "addres"
+#~ msgid "IP address"
+#~ msgstr "כתובת"
+
+#, fuzzy
+#~| msgid "image"
+#~ msgid "Image"
+#~ msgstr "תמונה"
+
+#, fuzzy
+#~| msgid "number"
+#~ msgid "Enter a whole number."
+#~ msgstr "מספר"
+
+#, fuzzy
+#~| msgid "number"
+#~ msgid "November"
+#~ msgstr "מספר"
+
+#, fuzzy
+#~| msgid "product"
+#~ msgid "oct"
+#~ msgstr "מוצר"
+
+#, fuzzy
+#~| msgid "number"
+#~ msgctxt "alt. month"
+#~ msgid "November"
+#~ msgstr "מספר"
+
+#, fuzzy
+#~| msgid "Welcome to"
+#~ msgid "Welcome,"
+#~ msgstr "ברוך הבא"
+
+#, fuzzy
+#~| msgid "view in website"
+#~ msgid "View site"
+#~ msgstr "צפה באתר"
+
+#, fuzzy
+#~| msgid "view in website"
+#~ msgid "View on site"
+#~ msgstr "צפה באתר"
+
+#, fuzzy
+#~| msgid "Instructions"
+#~ msgid "Recent actions"
+#~ msgstr "הוראות"
+
+#, fuzzy
+#~| msgid "content"
+#~ msgid "Unknown content"
+#~ msgstr "תוכן"
+
+#, fuzzy
+#~| msgid "contact"
+#~ msgid "crontab"
+#~ msgstr "צור קשר"
+
+#, fuzzy
+#~| msgid "contact"
+#~ msgid "crontabs"
+#~ msgstr "צור קשר"
+
+#, fuzzy
+#~| msgid "description"
+#~ msgid "Description"
+#~ msgstr "תיאור"
+
 #, fuzzy, python-format
 #~| msgid "size"
 #~ msgid "%s resize"
@@ -740,6 +897,16 @@ msgstr "מק\"ט"
 #~| msgid "weight"
 #~ msgid "%s height"
 #~ msgstr "משקל"
+
+#, fuzzy
+#~| msgid "Some translatable text"
+#~ msgid "Translation"
+#~ msgstr "טקסט שצריך לתרגם"
+
+#, fuzzy
+#~| msgid "Some translatable text"
+#~ msgid "Value field"
+#~ msgstr "טקסט שצריך לתרגם"
 
 #, fuzzy
 #~| msgid "Some translatable text"
@@ -756,14 +923,25 @@ msgstr "מק\"ט"
 #~ msgid "Field name"
 #~ msgstr "שם לקוח"
 
-#~ msgid "view in website"
-#~ msgstr "צפה באתר"
+#, fuzzy
+#~| msgid "client name"
+#~ msgid "User field name"
+#~ msgstr "שם לקוח"
+
+#, fuzzy
+#~| msgid "weight"
+#~ msgctxt "law"
+#~ msgid "right"
+#~ msgstr "משקל"
+
+#, fuzzy
+#~| msgid "weight"
+#~ msgctxt "good"
+#~ msgid "right"
+#~ msgstr "משקל"
 
 #~ msgid "Some translatable text"
 #~ msgstr "טקסט שצריך לתרגם"
-
-#~ msgid "weight"
-#~ msgstr "משקל"
 
 #~ msgid "single client price range"
 #~ msgstr "טווח מחירים ללקוח פרטי"

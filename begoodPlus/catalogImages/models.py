@@ -18,6 +18,9 @@ class CatalogImage(models.Model):
     description = models.TextField(verbose_name=_("description"))
     barcode = models.CharField(verbose_name=_('barcode'),max_length=50, blank=True, null=True)
     whatsapp_text = models.TextField(verbose_name=_('whatsapp text'), blank=True, null=True)
+    def desc(self):
+        return self.description[0:30]
+    desc.short_description= _('short description')
     
     image = models.ImageField(verbose_name=_("image"))
     image_thumbnail = models.ImageField(verbose_name=_("image thumbnail"), null=True, blank=True)
@@ -172,7 +175,7 @@ class CatalogImage(models.Model):
     def render_thumbnail(self, *args, **kwargs):
         ret = ''
         if self.image_thumbnail:
-            ret += '<img src="%s" />' % (settings.MEDIA_URL + self.image_thumbnail.name) 
+            ret += '<img width="50px" height="50px" src="%s" />' % (settings.MEDIA_URL + self.image_thumbnail.name) 
         return mark_safe(ret)
     render_thumbnail.short_description = _("thumbnail")
     
