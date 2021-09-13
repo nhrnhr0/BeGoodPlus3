@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-12 14:56+0300\n"
+"POT-Creation-Date: 2021-09-13 08:30+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % "
 "1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;\n"
 
-#: .\catalogAlbum\models.py:47 .\catalogImages\models.py:17
+#: .\catalogAlbum\models.py:47 .\catalogImages\models.py:19
 #: .\category\models.py:7
 msgid "title"
 msgstr "כותרת"
@@ -28,7 +28,7 @@ msgstr "כותרת"
 msgid "slug"
 msgstr "סלאג"
 
-#: .\catalogAlbum\models.py:49 .\catalogImages\models.py:18
+#: .\catalogAlbum\models.py:49 .\catalogImages\models.py:20
 #: .\glofa_types\models.py:12
 msgid "description"
 msgstr "תיאור"
@@ -45,173 +45,101 @@ msgstr ""
 msgid "is public"
 msgstr "האם פומבי"
 
-#: .\catalogImages\models.py:20 .\catalogImages\models.py:162
+#: .\catalogImages\models.py:22 .\catalogImages\models.py:187
+#: .\catalogLogos\models.py:10 .\catalogLogos\models.py:21
 #: .\clientImages\models.py:11 .\glofa_types\models.py:24
 #: .\productImages\models.py:12 .\product\models.py:99
 msgid "image"
 msgstr "תמונה"
 
-#: .\catalogImages\models.py:21
+#: .\catalogImages\models.py:23
 msgid "image thumbnail"
 msgstr "תמונה ריבוע"
 
-#: .\catalogImages\models.py:23
+#: .\catalogImages\models.py:25 .\catalogImages\models.py:37
 msgid "cost price"
 msgstr "מחיר עלות"
 
-#: .\catalogImages\models.py:24
+#: .\catalogImages\models.py:26 .\catalogImages\models.py:43
 msgid "client price"
 msgstr "מחיר לקוח"
 
-#: .\catalogImages\models.py:25
+#: .\catalogImages\models.py:27 .\catalogImages\models.py:48
 msgid "recomended price"
 msgstr "מחיר מומלץ"
 
-#: .\catalogImages\models.py:49
+#: .\catalogImages\models.py:49 .\stock\models.py:21
+msgid "packing type"
+msgstr "שיטת אריזה"
+
+#: .\catalogImages\models.py:50
+msgid "colors"
+msgstr "צבעים"
+
+#: .\catalogImages\models.py:51
+msgid "sizes"
+msgstr "גדלים"
+
+#: .\catalogImages\models.py:52
+msgid "providers"
+msgstr "ספקים"
+
+#: .\catalogImages\models.py:55
+msgid "can tag"
+msgstr "ניתן למיתוג"
+
+#: .\catalogImages\models.py:74
 msgid "Catalog image"
 msgstr "תמונת קטלוג"
 
-#: .\catalogImages\models.py:50
+#: .\catalogImages\models.py:75
 msgid "Catalog images"
 msgstr "תמונות קטלוג"
 
-#: .\catalogImages\models.py:156
+#: .\catalogImages\models.py:181
 msgid "thumbnail"
 msgstr ""
 
-#: .\env2\Lib\site-packages\django_image_compressor\mixins.py:35
-#, fuzzy, python-format
-#| msgid "size"
-msgid "%s resize"
-msgstr "גודל"
+#: .\catalogLogos\models.py:9 .\clientLikedImages\models.py:7
+#: .\core\models.py:9 .\customerCart\models.py:10 .\dashboard\models.py:8
+#: .\freeFlow\models.py:8 .\myUserTasks\models.py:19 .\myUserTasks\models.py:27
+#: .\product\models.py:21 .\provider\models.py:12
+msgid "name"
+msgstr "שם"
+
+#: .\category\models.py:10
+#, fuzzy
+#| msgid "color representation"
+msgid "catalog representation"
+msgstr "ייצוג צבע"
 
 #: .\category\models.py:13 .\product\models.py:22
 msgid "category"
 msgstr "קטגוריה"
 
-#: .\env2\Lib\site-packages\django_image_compressor\mixins.py:42
-#, python-format
-msgid "%s width"
-msgstr ""
-
-#: .\env2\Lib\site-packages\django_image_compressor\mixins.py:45
-msgid ""
-"Set custom width. If custom width is not defined, it will be reduced twice"
-msgstr ""
-
-#: .\env2\Lib\site-packages\django_image_compressor\mixins.py:51
-#, fuzzy, python-format
-#| msgid "weight"
-msgid "%s height"
-msgstr "משקל"
-
-#: .\env2\Lib\site-packages\django_image_compressor\mixins.py:54
-msgid ""
-"Set custom height. If custom height is not defined, it will be reduced twice"
-msgstr ""
-
-#: .\env2\Lib\site-packages\django_image_compressor\mixins.py:103
-#, python-format
-msgid "Image [%s] compression is started..."
-msgstr ""
-
-#: .\env2\Lib\site-packages\django_image_compressor\mixins.py:137
-#, python-format
-msgid "Image quality has been set to %s"
-msgstr ""
-
-#: .\env2\Lib\site-packages\django_image_compressor\mixins.py:155
-#, python-format
-msgid "Image [%s] compression is completed."
-msgstr ""
-
-#: .\env2\Lib\site-packages\django_image_compressor\mixins.py:178
-msgid "Image width and height have been set to {} and {}"
-msgstr ""
-
-#: .\env2\Lib\site-packages\django_image_compressor\mixins.py:192
-#, python-brace-format
-msgid ""
-"Input {size} either is not defined or is greater than original {size}.Value "
-"is ignored."
-msgstr ""
-
-#: .\env2\Lib\site-packages\django_image_compressor\utils.py:20
-#, python-format
-msgid "%s - directory is created"
-msgstr ""
-
-#: .\env2\Lib\site-packages\django_image_compressor\utils.py:31
-#, python-format
-msgid "%s - directory is removed with its files and folders"
-msgstr ""
-
-#: .\env2\Lib\site-packages\kombu\transport\qpid.py:1301
-#, python-format
-msgid "Attempting to connect to qpid with SASL mechanism %s"
-msgstr ""
-
-#: .\env2\Lib\site-packages\kombu\transport\qpid.py:1306
-#, python-format
-msgid "Connected to qpid with SASL mechanism %s"
-msgstr ""
-
-#: .\env2\Lib\site-packages\kombu\transport\qpid.py:1324
-#, python-format
-msgid "Unable to connect to qpid with SASL mechanism %s"
-msgstr ""
-
-#: .\env2\Lib\site-packages\timezone_field\rest_framework.py:9
-msgid "A valid timezone is required."
-msgstr ""
-
-#: .\env2\Lib\site-packages\tof\admin.py:103
-#: .\env2\Lib\site-packages\tof\admin.py:149
-msgid "You choose wrong content type"
-msgstr ""
-
-#: .\env2\Lib\site-packages\tof\models.py:23
-#: .\env2\Lib\site-packages\tof\models.py:24
-#: .\env2\Lib\site-packages\tof\models.py:54
-msgid "Translation"
-msgstr ""
-
-#: .\env2\Lib\site-packages\tof\models.py:33
-msgid "First set the field"
-msgstr ""
-
-#: .\env2\Lib\site-packages\tof\models.py:44
-msgid "Value field"
-msgstr ""
-
-#: .\env2\Lib\site-packages\tof\models.py:83
+#: .\category\models.py:14
 #, fuzzy
-#| msgid "Some translatable text"
-msgid "Translatable field"
-msgstr "טקסט שצריך לתרגם"
+#| msgid "category"
+msgid "categories"
+msgstr "קטגוריה"
 
-#: .\env2\Lib\site-packages\tof\models.py:84
+#: .\category\models.py:19
 #, fuzzy
-#| msgid "Some translatable text"
-msgid "Translatable fields"
-msgstr "טקסט שצריך לתרגם"
+#| msgid "product color"
+msgid "products count"
+msgstr "צבע מוצר"
 
-#: .\env2\Lib\site-packages\tof\models.py:88
+#: .\clientImages\models.py:7
 #, fuzzy
 #| msgid "client name"
-msgid "Field name"
+msgid "Client image"
 msgstr "שם לקוח"
 
-#: .\env2\Lib\site-packages\tof\models.py:88
-msgid "Name field"
-msgstr ""
-
-#: .\clientLikedImages\models.py:7 .\core\models.py:9
-#: .\customerCart\models.py:10 .\dashboard\models.py:8 .\freeFlow\models.py:8
-#: .\myUserTasks\models.py:19 .\myUserTasks\models.py:27 .\product\models.py:21
-#: .\provider\models.py:12
-msgid "name"
-msgstr "שם"
+#: .\clientImages\models.py:8
+#, fuzzy
+#| msgid "Catalog images"
+msgid "Client images"
+msgstr "תמונות קטלוג"
 
 #: .\clientLikedImages\models.py:8 .\core\models.py:11
 #: .\customerCart\models.py:12 .\freeFlow\models.py:9
@@ -219,31 +147,40 @@ msgstr "שם"
 msgid "email"
 msgstr "אימייל"
 
-#: .\env2\Lib\site-packages\tof\models.py:173
-msgid "Language"
-msgstr ""
+#: .\clientLikedImages\models.py:9
+#, fuzzy
+#| msgid "number"
+msgid "phone number"
+msgstr "מספר"
 
 #: .\clientLikedImages\models.py:10 .\core\models.py:12 .\freeFlow\models.py:12
 #: .\myUserTasks\models.py:22
 msgid "message"
 msgstr "הודעה"
 
-#: .\env2\Lib\site-packages\tof\models.py:178
-msgid "Active"
-msgstr ""
+#: .\clientLikedImages\models.py:12
+#, fuzzy
+#| msgid "submit date"
+msgid "submited date"
+msgstr "תאריך הגשה"
 
-#: .\env2\Lib\site-packages\tof\templates\tof\multiwidget.html:15
-#: .\env2\Lib\site-packages\tof\templates\tof\multiwidget.html:16
-msgid "Add another Language"
-msgstr ""
+#: .\color\models.py:9
+#, fuzzy
+#| msgid "color"
+msgid "Color"
+msgstr "צבע"
 
-#: .\env2\Lib\site-packages\tornado\locale.py:371
-msgid "1 second ago"
-msgstr ""
+#: .\color\models.py:10
+#, fuzzy
+#| msgid "color"
+msgid "Colors"
+msgstr "צבע"
 
-#: .\env2\Lib\site-packages\tornado\locale.py:377
-msgid "1 minute ago"
-msgstr ""
+#: .\color\models.py:12
+#, fuzzy
+#| msgid "color"
+msgid "color name"
+msgstr "צבע"
 
 #: .\color\models.py:13 .\order_detail\models.py:15 .\stock\models.py:20
 msgid "color"
@@ -313,6 +250,12 @@ msgstr "תמונת קטלוג"
 #| msgid "glofa types"
 msgid "glofa images"
 msgstr "סוגי גלופה"
+
+#: .\order\models.py:16
+#, fuzzy
+#| msgid "Orders"
+msgid "Order"
+msgstr "הזמנות"
 
 #: .\order\models.py:17
 msgid "Orders"
@@ -714,7 +657,7 @@ msgstr ""
 msgid "technology"
 msgstr ""
 
-#: .\static_cdn\templates\catalog.html:7 .\static_cdn\templates\catalog2.html:7
+#: .\static_cdn\templates\catalog.html:7
 #, fuzzy
 #| msgid "Catalog image"
 msgid "Catalog"
@@ -743,10 +686,6 @@ msgstr "שם מוצר"
 #: .\stock\models.py:18
 msgid "product provider"
 msgstr "ספק מוצר"
-
-#: .\stock\models.py:21
-msgid "packing type"
-msgstr "שיטת אריזה"
 
 #: .\stock\models.py:22
 msgid "provider makat"
@@ -791,6 +730,31 @@ msgstr "טווח מחירים ללקוח עסקי"
 #: .\stock\models.py:55
 msgid "makat"
 msgstr "מק\"ט"
+
+#, fuzzy, python-format
+#~| msgid "size"
+#~ msgid "%s resize"
+#~ msgstr "גודל"
+
+#, fuzzy, python-format
+#~| msgid "weight"
+#~ msgid "%s height"
+#~ msgstr "משקל"
+
+#, fuzzy
+#~| msgid "Some translatable text"
+#~ msgid "Translatable field"
+#~ msgstr "טקסט שצריך לתרגם"
+
+#, fuzzy
+#~| msgid "Some translatable text"
+#~ msgid "Translatable fields"
+#~ msgstr "טקסט שצריך לתרגם"
+
+#, fuzzy
+#~| msgid "client name"
+#~ msgid "Field name"
+#~ msgstr "שם לקוח"
 
 #~ msgid "view in website"
 #~ msgstr "צפה באתר"

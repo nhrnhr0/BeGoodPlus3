@@ -7,15 +7,17 @@ from django.utils.html import mark_safe
 from django.conf import settings
 
 from color.models import Color
+from provider.models import Provider
 from productSize.models import ProductSize
+from packingType.models import PackingType
 from django.core.files.uploadedfile import InMemoryUploadedFile
 import sys
 # Create your models here.
 class CatalogImage(models.Model):
-
-        
     title = models.CharField(max_length=120, verbose_name=_("title"), unique=False)
     description = models.TextField(verbose_name=_("description"))
+    barcode = models.CharField(verbose_name=_('barcode'),max_length=50, blank=True, null=True)
+    whatsapp_text = models.TextField(verbose_name=_('whatsapp text'), blank=True, null=True)
     
     image = models.ImageField(verbose_name=_("image"))
     image_thumbnail = models.ImageField(verbose_name=_("image thumbnail"), null=True, blank=True)
@@ -24,29 +26,12 @@ class CatalogImage(models.Model):
     client_price = models.FloatField(verbose_name=_('client price'),  blank=False, null=False)
     recomended_price = models.FloatField(verbose_name=_('recomended price'),  blank=False, null=False)
 
-    def price_component(buy, sell):
-        prcent = ((buy / sell) - 1)*100
-        precent_clr ="green" if prcent>0 else "red"
-        return mark_safe(f'<div style="direction: ltr;">{buy:.2f}₪ <span style="color:{precent_clr}">({prcent:.2f}%)</span></div>');#.format(buy, prcent))
+
+    packingType = models.ForeignKey(to=PackingType, on_delete=models.CASCADE, default=9, verbose_name=_('packing type'))
+    colors = models.ManyToManyField(to=Color, verbose_name=_('colors'))
+    sizes = models.ManyToManyField(to=ProductSize, verbose_name=_('sizes'))
+    providers = models.ManyToManyField(to=Provider, verbose_name=_('providers'))
     
-
-    def cost_price_dis(self):
-        return mark_safe(f'<div style="font-weight: bold;">{self.cost_price}₪<div>')
-    cost_price_dis.short_description= _('cost price')
-
-    def client_price_dis(self):
-        #prcent = ((self.client_price % self.cost_price) - 1)*100
-        #return f'{self.client_price}₪ \t\t ({prcent}%)'
-        return CatalogImage.price_component(self.client_price, self.cost_price)
-    client_price_dis.short_description= _('client price')
-    def recomended_price_dis(self):
-        #prcent = ((self.recomended_price % self.client_price) - 1)*100
-        #return f'{self.recomended_price}₪ \t\t ({prcent}%)'
-        return CatalogImage.price_component(self.recomended_price, self.client_price)
-    recomended_price_dis.short_description= _('recomended price')
-
-    colors = models.ManyToManyField(to=Color)
-    sizes = models.ManyToManyField(to=ProductSize)
 
     can_tag = models.BooleanField(default=False, verbose_name=_('can tag'))
     #big_discount = models.BooleanField(default=False)
@@ -63,7 +48,22 @@ class CatalogImage(models.Model):
     ]
     discount = models.CharField(max_length=50, choices=DISCOUNT_TYPES, default=NO_DISCOUNT, null=True, blank=True)
     
+    def price_component(buy, sell):
+        prcent = ((buy / sell) - 1)*100
+        precent_clr ="green" if prcent>0 else "red"
+        return mark_safe(f'<div style="direction: ltr;">{buy:.2f}₪ <span style="color:{precent_clr}">({prcent:.2f}%)</span></div>');#.format(buy, prcent))
     
+
+    def cost_price_dis(self):
+        return mark_safe(f'<div style="font-weight: bold;">{self.cost_price}₪<div>')
+    cost_price_dis.short_description= _('cost price')
+
+    def client_price_dis(self):
+        return CatalogImage.price_component(self.client_price, self.cost_price)
+    client_price_dis.short_description= _('client price')
+    def recomended_price_dis(self):
+        return CatalogImage.price_component(self.recomended_price, self.client_price)
+    recomended_price_dis.short_description= _('recomended price')
     
     
     class Meta():
