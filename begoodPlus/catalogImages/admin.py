@@ -7,7 +7,7 @@ from django.urls import reverse
 from .models import CatalogImage
 # Register your models here.
 class CatalogImageAdmin(AdminAdvancedFiltersMixin, admin.ModelAdmin):
-    list_display = ('id', 'render_thumbnail', 'title', 'desc','cost_price_dis','client_price_dis','recomended_price_dis','get_albums')
+    list_display = ('id', 'render_thumbnail', 'title', 'barcode','cost_price_dis','client_price_dis','recomended_price_dis','get_albums')
     list_display_links = ('title',)
     readonly_fields = ('id', 'render_thumbnail', 'render_image',)
     search_fields = ('title','description')
