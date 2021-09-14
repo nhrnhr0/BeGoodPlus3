@@ -49,7 +49,7 @@ class CatalogAlbum(MPTTModel):
     description= models.TextField(verbose_name=_('description'), default='', blank=True)
     fotter = models.TextField(verbose_name=_('fotter'), default='', blank=True)
     keywords = models.TextField(verbose_name=_('keyworks'), default='', blank=True)
-    images = models.ManyToManyField(to=CatalogImage, related_name='album', blank=True, through='ThroughImage', verbose_name=_('album list'))
+    images = models.ManyToManyField(to=CatalogImage, related_name='albums', blank=True, through='ThroughImage', verbose_name=_('album list'))
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     is_public = models.BooleanField(verbose_name=_('is public'), default=True)
     
