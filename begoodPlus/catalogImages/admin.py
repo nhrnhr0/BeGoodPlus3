@@ -13,6 +13,7 @@ class CatalogImageAdmin(AdminAdvancedFiltersMixin, admin.ModelAdmin):
     search_fields = ('title','description')
     list_filter = ('providers','sizes','colors','albums')
     filter_horizontal = ('colors', 'sizes','providers')
+    list_per_page = 50
     advanced_filter_fields = (
         'title', 'description','sizes__size', 'colors__name','provides__name')
 

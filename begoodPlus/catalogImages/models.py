@@ -26,8 +26,8 @@ class CatalogImage(models.Model):
     image_thumbnail = models.ImageField(verbose_name=_("image thumbnail"), null=True, blank=True)
 
     cost_price = models.FloatField(verbose_name=_('cost price'), blank=False, null=False)
-    client_price = models.FloatField(verbose_name=_('client price'),  blank=False, null=False)
-    recomended_price = models.FloatField(verbose_name=_('recomended price'),  blank=False, null=False)
+    client_price = models.FloatField(verbose_name=_('store price'),  blank=False, null=False)
+    recomended_price = models.FloatField(verbose_name=_('private client price'),  blank=False, null=False)
 
 
     packingType = models.ForeignKey(to=PackingType, on_delete=models.CASCADE, default=9, verbose_name=_('packing type'))
@@ -59,14 +59,14 @@ class CatalogImage(models.Model):
 
     def cost_price_dis(self):
         return mark_safe(f'<div style="font-weight: bold;">{self.cost_price}₪<div>')
-    cost_price_dis.short_description= _('cost price')
+    cost_price_dis.short_description= _('cost price (no VAT)')
 
     def client_price_dis(self):
         return CatalogImage.price_component(self.client_price, self.cost_price)
-    client_price_dis.short_description= _('client price')
+    client_price_dis.short_description= _('store price  (no VAT)')
     def recomended_price_dis(self):
         return CatalogImage.price_component(self.recomended_price, self.client_price)
-    recomended_price_dis.short_description= _('recomended price')
+    recomended_price_dis.short_description= _('private client price (no VAT)')
     
     
     class Meta():

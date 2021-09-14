@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-13 12:56+0300\n"
+"POT-Creation-Date: 2021-09-14 14:45+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,17 +86,17 @@ msgstr "תמונה"
 msgid "image thumbnail"
 msgstr "תמונה ריבוע"
 
-#: .\catalogImages\models.py:28 .\catalogImages\models.py:62
+#: .\catalogImages\models.py:28
 msgid "cost price"
 msgstr "מחיר עלות"
 
-#: .\catalogImages\models.py:29 .\catalogImages\models.py:66
-msgid "client price"
-msgstr "מחיר לקוח"
+#: .\catalogImages\models.py:29
+msgid "store price"
+msgstr "מחיר חנות"
 
-#: .\catalogImages\models.py:30 .\catalogImages\models.py:69
-msgid "recomended price"
-msgstr "מחיר מומלץ"
+#: .\catalogImages\models.py:30
+msgid "private client price"
+msgstr "מחיר לקוח פרטי"
 
 #: .\catalogImages\models.py:33 .\stock\models.py:21
 msgid "packing type"
@@ -118,11 +118,21 @@ msgstr "ספקים"
 msgid "can tag"
 msgstr "ניתן למיתוג"
 
+#: .\catalogImages\models.py:62
+msgid "cost price (no VAT)"
+msgstr "מחיר עלות (ללא מע'מ)"
+
+#: .\catalogImages\models.py:66
+msgid "store price  (no VAT)"
+msgstr "מחיר חנות (ללא מע'מ)"
+
+#: .\catalogImages\models.py:69
+msgid "private client price (no VAT)"
+msgstr "מחיר לקוח פרטי (ללא מע'מ)"
+
 #: .\catalogImages\models.py:73
-#, fuzzy
-#| msgid "Catalog images"
 msgid "Catalog image"
-msgstr "תמונות קטלוג"
+msgstr "תמונת קטלוג"
 
 #: .\catalogImages\models.py:74
 msgid "Catalog images"
@@ -942,6 +952,3 @@ msgstr "מק\"ט"
 
 #~ msgid "Some translatable text"
 #~ msgstr "טקסט שצריך לתרגם"
-
-#~ msgid "single client price range"
-#~ msgstr "טווח מחירים ללקוח פרטי"
