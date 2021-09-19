@@ -19,4 +19,4 @@ class CatalogImageSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CatalogImage
         #fields = '__all__'
-        exclude = ('colors','sizes', 'packingType', 'providers')
+        exclude = ('colors','sizes', 'packingTypeProvider','packingTypeClient', 'providers')
