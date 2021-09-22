@@ -64,7 +64,14 @@ from websites.views import websites_page_view
 from product.serializers import BarcodeList
 #from customerCart.views import cart_changed
 from customerCart.views import cart_del, cart_add,cart_view,cart_info
+
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 urlpatterns = [
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # used for MD TV
     re_path('^api/barcode/(?P<barcode>.+)/$', BarcodeList.as_view()), 
     re_path(r'^api/stores/$', StoreList.as_view(), name="stores-api"),

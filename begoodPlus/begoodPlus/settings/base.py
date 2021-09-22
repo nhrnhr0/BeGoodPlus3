@@ -64,6 +64,8 @@ INSTALLED_APPS = [
     'drf_multiple_model',
     'compressor',
     'advanced_filters',
+    'rest_framework_simplejwt',
+    'corsheaders',
     #'django_celery_beat',
 
     # own
@@ -122,29 +124,6 @@ DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR  + '/backups/'}
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240 # higher than the count of fields
 
-# djnago-pipeline
-'''
-STATICFILES_STORAGE = 'pipeline.storage.PipelineManifestStorage'
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'pipeline.finders.PipelineFinder',
-)
-PIPELINE = {
-    'PIPELINE_ENABLED': True,
-    'JAVASCRIPT': {
-        'base': {
-            'source_sfilenames': (
-                'assets/base/js/022c0fea0b.js'
-                'assets/base/js/jquery-3.6.0.min.js'
-                'assets/base/js/bootstrap.bundle.min.js',
-                'assets/base/js/base.js',
-            ),
-            'output_filename': 'pipeline/js/base.js',
-        }
-    }
-}
-'''
 #cron
 CRONJOBS = [
     ('59 23 * * *', 'begoodPlus.cron.my_db_backup')
@@ -186,6 +165,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
 
     # own
     #'django.middleware.locale.LocaleMiddleware',
@@ -194,7 +174,7 @@ MIDDLEWARE = [
 ]
 
 # Compressor and minifier config
-
+'''
 COMPRESS_CSS_HASHING_METHOD = 'content'
 COMPRESS_FILTERS = {
     'css':[
@@ -208,13 +188,10 @@ COMPRESS_FILTERS = {
 HTML_MINIFY = False # is True, create problems with markdown in catalog2.html page
 KEEP_COMMENTS_ON_MINIFYING = False
 
-# TODO: remove in production (SQL debug)
 INTERNAL_IPS = [
-    # ...
     '127.0.0.1',
-    # ...
 ]
-
+'''
 
 ROOT_URLCONF = 'begoodPlus.urls'
 
@@ -329,7 +306,10 @@ EMAIL_HOST_PASSWORD =  secrects.EMAIL_HOST_PASSWORD
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-    ]
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
 }
 
 WEBPUSH_SETTINGS = {
