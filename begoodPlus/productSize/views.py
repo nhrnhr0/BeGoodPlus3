@@ -18,7 +18,11 @@ def api_product_sizes(request, *args, **kwargs):
     ret = HttpResponse(json.dumps(prep), content_type="application/json")
     return ret    
 from rest_framework import viewsets
-from .serializers import ProductSizeSerializer
+from .serializers import ProductSizeSerializer, SvelteProductSizeSerializer
 class SizesViewSet(viewsets.ModelViewSet):
     queryset = ProductSize.objects.all()
     serializer_class = ProductSizeSerializer
+
+class SvelteApiSizesViewSet(viewsets.ModelViewSet):
+    queryset = ProductSize.objects.all()
+    serializer_class = SvelteProductSizeSerializer

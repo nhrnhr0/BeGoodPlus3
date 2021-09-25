@@ -3,8 +3,14 @@ from .models import CatalogImage
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import CatalogImageSerializer
+from .serializers import CatalogImageSerializer, CatalogImageApiSerializer
 from rest_framework.request import Request
+
+class SvelteCatalogImageViewSet(viewsets.ModelViewSet):
+    queryset = CatalogImage.objects.all()
+    serializer_class = CatalogImageApiSerializer
+    
+
 
 # Create your views here.
 class CatalogImageViewSet(viewsets.ModelViewSet):

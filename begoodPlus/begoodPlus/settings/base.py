@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+
+from rest_framework.fields import DateTimeField
 from .. import secrects
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -301,8 +303,11 @@ EMAIL_HOST_USER = secrects.EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD =  secrects.EMAIL_HOST_PASSWORD
 # from django.core.mail import send_mail
 # send_mail(subject='hey', message='message', from_email='bot@ms-global.co.il', recipient_list=['nhrnhr0@gmail.com'])
+import datetime
 
-
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=50),
+}
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',

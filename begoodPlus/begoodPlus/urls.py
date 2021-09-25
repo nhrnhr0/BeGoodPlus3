@@ -13,6 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from packingType.views import SvelteApiPackingTypeViewSet
+from color.views import SvelteColorsViewSet
+from catalogImages.views import SvelteCatalogImageViewSet
+from productSize.views import SvelteApiSizesViewSet
 from dashboard.views import InventoryList, StoreList, products_search
 from websites.views import websites_page_view
 from django.contrib import admin
@@ -21,7 +25,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include, re_path
-
+from provider.views import SvelteApiProviderViewSet
 from rest_framework import routers
 from product.views import ProductViewSet
 from category.views import CategoryViewSet
@@ -42,6 +46,15 @@ router.register(r'CatalogImages', CatalogImageViewSet)
 router.register(r'freeFlowStores', FfStoreViewSet)
 router.register(r'colors', ColorsViewSet)
 router.register(r'sizes', SizesViewSet)
+
+
+svelteRouter = routers.DefaultRouter()
+svelteRouter.register(r'colors',SvelteColorsViewSet)
+svelteRouter.register(r'sizes', SvelteApiSizesViewSet)
+svelteRouter.register(r'products', SvelteCatalogImageViewSet)
+svelteRouter.register(r'packing',  SvelteApiPackingTypeViewSet)
+svelteRouter.register(r'providers', SvelteApiProviderViewSet)
+
 
 #router.register(r'stores', StoreList.as_view(),basename='stores')
 
@@ -87,6 +100,7 @@ urlpatterns = [
     #path('order2/', order_form2),
     #path('order3/', order_form3),
     path('api/', include(router.urls)),
+    path('svelte/api/', include(svelteRouter.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     #path('products_select/<str:phrash>/', products_select),

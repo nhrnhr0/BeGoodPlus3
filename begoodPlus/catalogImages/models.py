@@ -28,7 +28,7 @@ class CatalogImage(models.Model):
     cost_price = models.FloatField(verbose_name=_('cost price'), blank=False, null=False)
     client_price = models.FloatField(verbose_name=_('store price'),  blank=False, null=False)
     recomended_price = models.FloatField(verbose_name=_('private client price'),  blank=False, null=False)
-
+    date_modified = models.DateTimeField(auto_now=True)
 
     packingTypeProvider = models.ForeignKey(to=PackingType,related_name='PTprovider', on_delete=models.CASCADE, default=9, verbose_name=_('packing type from provider'))
     packingTypeClient = models.ForeignKey(to=PackingType,related_name='PTclient', on_delete=models.CASCADE, default=9, verbose_name=_('packing type for client'))

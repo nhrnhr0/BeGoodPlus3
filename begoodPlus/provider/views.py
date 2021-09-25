@@ -15,3 +15,12 @@ def api_providers(request, *args, **kwargs):
     prep = {"providers": providers}
     ret = HttpResponse(json.dumps(prep), content_type="application/json")
     return ret    
+
+
+
+from rest_framework import viewsets
+from .models import Provider
+from .serializers import SvelteProviderSerializer
+class SvelteApiProviderViewSet(viewsets.ModelViewSet):
+    queryset = Provider.objects.all()
+    serializer_class = SvelteProviderSerializer
