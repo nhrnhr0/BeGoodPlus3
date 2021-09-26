@@ -10,6 +10,7 @@ from color.models import Color
 from provider.models import Provider
 from productSize.models import ProductSize
 from packingType.models import PackingType
+from catalogImageDetail.models import CatalogImageDetail
 from django.core.files.uploadedfile import InMemoryUploadedFile
 import sys
 # Create your models here.
@@ -36,6 +37,7 @@ class CatalogImage(models.Model):
     sizes = models.ManyToManyField(to=ProductSize, verbose_name=_('sizes'))
     providers = models.ManyToManyField(to=Provider, verbose_name=_('providers'))
     
+    detailTabel = models.ManyToManyField(related_name='parent',to=CatalogImageDetail, verbose_name=_('mini-tabel'), blank=True)
 
     can_tag = models.BooleanField(default=False, verbose_name=_('can tag'))
     #big_discount = models.BooleanField(default=False)

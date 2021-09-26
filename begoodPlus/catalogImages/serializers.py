@@ -16,7 +16,7 @@ class CatalogImageApiSerializer(serializers.ModelSerializer):
                   'whatsapp_text', 'image',
                   'cost_price', 'client_price', 'recomended_price', 
                   'packingTypeProvider', 'packingTypeClient',
-                  'colors', 'sizes', 'providers', 'can_tag')
+                  'colors', 'sizes', 'providers', 'can_tag', 'detailTabel')
         extra_kwargs = {"image": {"required": False, "allow_null": True}}
         
     '''def to_internal_value(self, data):
