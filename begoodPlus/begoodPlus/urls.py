@@ -16,7 +16,7 @@ Including another URLconf
 from catalogImageDetail.views import SvelteCatalogImageDetailViewSet
 from packingType.views import SvelteApiPackingTypeViewSet
 from color.views import SvelteColorsViewSet
-from catalogImages.views import SvelteCatalogImageViewSet
+from catalogImages.views import SvelteCatalogImageViewSet, create_mini_table
 from productSize.views import SvelteApiSizesViewSet
 from dashboard.views import InventoryList, StoreList, products_search
 from websites.views import websites_page_view
@@ -85,6 +85,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 urlpatterns = [
+    path('create_mini_table/<int:id>/',create_mini_table, name='create_mini_table'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # used for MD TV

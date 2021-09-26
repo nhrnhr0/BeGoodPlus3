@@ -7,14 +7,17 @@ from django.urls import reverse
 from .models import CatalogImage
 class tabelInline(admin.TabularInline):
     model = CatalogImage.detailTabel.through
-    fields = ['id','provider','dis_colors','dis_sizes', 'dis_cost_price']
-    readonly_fields = ['id','provider','dis_colors', 'dis_sizes', 'dis_cost_price']
+    fields = ['id','provider','dis_colors','dis_sizes', 'dis_cost_price', 'dis_client_price', 'dis_recomended_price']
+    readonly_fields = ['id','provider','dis_colors', 'dis_sizes', 'dis_cost_price', 'dis_client_price', 'dis_recomended_price']
     extra=0
 
-    
+    def price_component(buy, sell):
+        prcent = ((buy / sell) - 1)*100
+        precent_clr ="green" if prcent>0 else "red"
+        return mark_safe(f'<div style="direction: rtl;">{buy:.2f}₪ <span style="color:{precent_clr}">({prcent:.2f}%)</span></div>');#.format(buy, prcent))
     def provider(self, instance):
         return instance.catalogimagedetail.provider
-    
+    provider.short_description = _('provider')
     def dis_colors(self, instance):
         clrs = instance.catalogimagedetail.colors
         ret = ''
@@ -29,13 +32,21 @@ class tabelInline(admin.TabularInline):
         for s in sizes.all():
             ret += s.size + ', '
         return ret
-    dis_colors.short_description = _('sizes')
+    dis_sizes.short_description = _('sizes')
     
     def dis_cost_price(self, instance):
-        return instance.catalogimagedetail.cost_price
-
+        return mark_safe(f'<div style="font-weight: bold;">{instance.catalogimagedetail.cost_price}₪<div>')
     dis_cost_price.short_description = _('cost price')
+
+    def dis_client_price(self, instance):
+        comp = tabelInline.price_component(instance.catalogimagedetail.client_price, instance.catalogimagedetail.cost_price)
+        return comp#instance.catalogimagedetail.client_price
+    dis_client_price.short_description = _('client price')
     
+    def dis_recomended_price(self, instance):
+        comp = tabelInline.price_component(instance.catalogimagedetail.recomended_price, instance.catalogimagedetail.client_price)
+        return comp
+    dis_recomended_price.short_description = _('recomended price')
     
 # Register your models here.
 class CatalogImageAdmin(AdminAdvancedFiltersMixin, admin.ModelAdmin):

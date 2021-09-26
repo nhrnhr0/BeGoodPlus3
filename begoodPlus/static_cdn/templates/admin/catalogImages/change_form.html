@@ -10,18 +10,70 @@
 {% block field_sets %}
 
     {% for fieldset in adminform %}
+        <div class="temp">{{fieldset}}</div>
         {% include "admin/includes/fieldset.html" %}
     {% endfor %}
-    <button type="button" onclick="exportDetailTabel()">ייצא לטבלת פרטים</button>
     <script>
-        function exportDetailTabel(e) {
-            
-            debugger;
-            let currUrl = window.location.href;
-            currUrl = currUrl.substr(currUrl.indexOf('catalogimage/') + 'catalogimage/'.length);
-            currUrl = currUrl.substr(0, currUrl.indexOf('/'));
-            console.log(currUrl);
+        let currUrl = window.location.href;
+        currUrl = currUrl.substr(currUrl.indexOf('catalogimage/') + 'catalogimage/'.length);
+        let id = currUrl.substr(0, currUrl.indexOf('/'));
+    </script>
+    <svelte-custom-element id="custom" catalog_image_id={id}></svelte-custom-element>
+    <button type="button" onclick="exportDetailTabel()">ייצא לטבלת פרטים (פעולה חד פעמית!)</button>
+    
+    <div id="export_report"></div>
+    <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
         }
+        const csrftoken = getCookie('csrftoken');
+        
+        function exportDetailTabel(e) {
+            console.log(id);
+            let raw = {'id': id};
+            var myHeaders = new Headers();
+            myHeaders.append("X-CSRFToken", csrftoken);
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+            fetch("/create_mini_table/" + id + "/", requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    debugger;
+                    console.log('result: ', result);
+                    report_div = document.getElementById('export_report');
+                    let text = '';
+                    for(let i = 0; i < result.actions.length; i++) {
+                        text += result.actions[i].msg + '<br/>';
+                    }
+                    report_div.innerHTML=text;
+                })
+                .catch(error => console.log('error', error));
+        }
+
+
+
+        debugger;
+        let customElement = document.getElementById('custom');
+        customElement.setAttribute('catalog_image_id', id)
+        console.log(customElement);
     </script>
     <script src="{%static 'admin/catalogImages/handlePrices.js' %}"></script>
+    <script src="{%static 'admin/catalogImages/svelte-custom-element.0.1.0.min.js' %}"></script>
 {% endblock %}
